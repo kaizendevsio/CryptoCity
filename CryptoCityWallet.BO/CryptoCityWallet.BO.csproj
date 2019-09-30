@@ -1,7 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CryptoCityWallet.DTO\CryptoCityWallet.DTO.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CryptoCityWallet.Repository">
+      <HintPath>..\CryptoCityWallet.Repository\bin\Debug\netcoreapp2.1\CryptoCityWallet.Repository.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>

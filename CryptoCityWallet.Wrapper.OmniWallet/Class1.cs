@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CryptoCityWallet.Api
+namespace CryptoCityWallet.Wrapper.OmniWallet
 {
     public class Class1
     {

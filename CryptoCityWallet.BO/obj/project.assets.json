@@ -1,15 +1,33 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.0": {}
+    ".NETCoreApp,Version=v3.0": {
+      "CryptoCityWallet.DTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "compile": {
+          "bin/placeholder/CryptoCityWallet.DTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CryptoCityWallet.DTO.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "CryptoCityWallet.DTO/1.0.0": {
+      "type": "project",
+      "path": "../CryptoCityWallet.DTO/CryptoCityWallet.DTO.csproj",
+      "msbuildProject": "../CryptoCityWallet.DTO/CryptoCityWallet.DTO.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.0": []
+    ".NETCoreApp,Version=v3.0": [
+      "CryptoCityWallet.DTO >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {},
-    "C:\\ProgramData\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\Xeon\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -18,17 +36,15 @@
       "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.BO\\CryptoCityWallet.BO.csproj",
       "projectName": "CryptoCityWallet.BO",
       "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.BO\\CryptoCityWallet.BO.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
       "outputPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.BO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\ProgramData\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Xeon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"
@@ -39,7 +55,11 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DTO\\CryptoCityWallet.DTO.csproj": {
+              "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DTO\\CryptoCityWallet.DTO.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -59,7 +79,13 @@
           "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -10,27 +10,25 @@
         "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService.DI\\CryptoCityWallet.AppService.DI.csproj",
         "projectName": "CryptoCityWallet.AppService.DI",
         "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService.DI\\CryptoCityWallet.AppService.DI.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
         "outputPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService.DI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Xeon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.0"
+          "netcoreapp2.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.0": {
+          "netcoreapp2.1": {
             "projectReferences": {}
           }
         },
@@ -41,7 +39,15 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.0": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -51,7 +57,8 @@
             "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
