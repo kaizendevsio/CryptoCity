@@ -19,7 +19,7 @@ namespace CryptoCityWallet.DTO
         public DateTime? EffectivityDate { get; set; }
         public DateTime? ExpiryDate { get; set; }
 
-        public virtual TblCurrency SourceCurrency { get; set; }
-        public virtual TblCurrency TargetCurrency { get; set; }
+        public TblCurrency SourceCurrency { get; set; }
+        public TblCurrency TargetCurrency { get; set; }
     }
 }

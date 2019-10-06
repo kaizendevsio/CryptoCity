@@ -23,6 +23,6 @@ namespace CryptoCityWallet.DTO
         public string CountryIsoCode2 { get; set; }
         public bool? IsPrimary { get; set; }
 
-        public virtual TblUserAuth UserAuth { get; set; }
+        public TblUserAuth UserAuth { get; set; }
     }
 }

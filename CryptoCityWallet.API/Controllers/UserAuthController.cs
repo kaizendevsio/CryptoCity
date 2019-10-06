@@ -33,30 +33,38 @@ namespace CryptoCityWallet.API.Controllers
         {
             UserAppService userAppService = new UserAppService();
             UserAuthResponse _apiResponse = new UserAuthResponse();
-
-            try
+            if (ModelState.IsValid)
             {
-                UserAuthResponse userAuthResponse = userAppService.Authenticate(userBO);
+                try
+                {
+                    UserAuthResponse userAuthResponse = userAppService.Authenticate(userBO);
 
-                _apiResponse.UserInfo = userAuthResponse.UserInfo;
-                _apiResponse.UserWallet = userAuthResponse.UserWallet;
-                
-                // SET SESSIONS
-                SessionController sessionController = new SessionController();
-                sessionController.CreateSession(userAuthResponse, HttpContext.Session);
-                
-                _apiResponse.Status = "Success";
-                _apiResponse.HttpStatusCode = "200";
-                _apiResponse.Message = "User successfully authenticated";
-                
+                    _apiResponse.UserInfo = userAuthResponse.UserInfo;
+                    _apiResponse.UserWallet = userAuthResponse.UserWallet;
+
+                    // SET SESSIONS
+                    SessionController sessionController = new SessionController();
+                    sessionController.CreateSession(userAuthResponse, HttpContext.Session);
+
+
+                    _apiResponse.HttpStatusCode = "200";
+                    _apiResponse.Message = "User successfully authenticated";
+                    _apiResponse.Status = "Success";
+
+                }
+                catch (Exception ex)
+                {
+                    _apiResponse.HttpStatusCode = "500";
+                    _apiResponse.Message = ex.Message;
+                    _apiResponse.Status = "Error";
+                }
             }
-            catch (Exception ex)
+            else
             {
                 _apiResponse.HttpStatusCode = "500";
-                _apiResponse.Message = ex.Message;
+                _apiResponse.Message = "Please input the required credentials";
                 _apiResponse.Status = "Error";
             }
-
             return Ok(_apiResponse);
 
         }

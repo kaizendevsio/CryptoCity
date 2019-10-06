@@ -35,14 +35,14 @@ namespace CryptoCityWallet.DTO
         public string UserAlias { get; set; }
         public byte[] PasswordByte { get; set; }
 
-        public virtual TblUserInfo UserInfo { get; set; }
-        public virtual TblUserMap TblUserMap { get; set; }
-        public virtual ICollection<TblUserAddress> TblUserAddress { get; set; }
-        public virtual ICollection<TblUserIncomeTransaction> TblUserIncomeTransaction { get; set; }
-        public virtual ICollection<TblUserRole> TblUserRole { get; set; }
-        public virtual ICollection<TblUserWallet> TblUserWallet { get; set; }
-        public virtual ICollection<TblUserWalletAddress> TblUserWalletAddress { get; set; }
-        public virtual ICollection<TblUserWalletTransaction> TblUserWalletTransaction { get; set; }
-        public virtual ICollection<TblUserWithdrawalRequest> TblUserWithdrawalRequest { get; set; }
+        public TblUserInfo UserInfo { get; set; }
+        public TblUserMap TblUserMap { get; set; }
+        public ICollection<TblUserAddress> TblUserAddress { get; set; }
+        public ICollection<TblUserIncomeTransaction> TblUserIncomeTransaction { get; set; }
+        public ICollection<TblUserRole> TblUserRole { get; set; }
+        public ICollection<TblUserWallet> TblUserWallet { get; set; }
+        public ICollection<TblUserWalletAddress> TblUserWalletAddress { get; set; }
+        public ICollection<TblUserWalletTransaction> TblUserWalletTransaction { get; set; }
+        public ICollection<TblUserWithdrawalRequest> TblUserWithdrawalRequest { get; set; }
     }
 }

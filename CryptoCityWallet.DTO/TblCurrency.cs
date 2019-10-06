@@ -9,6 +9,7 @@ namespace CryptoCityWallet.DTO
         {
             TblExchangeRateSourceCurrency = new HashSet<TblExchangeRate>();
             TblExchangeRateTargetCurrency = new HashSet<TblExchangeRate>();
+            TblWalletType = new HashSet<TblWalletType>();
         }
 
         public long Id { get; set; }
@@ -23,7 +24,8 @@ namespace CryptoCityWallet.DTO
         public string Description { get; set; }
         public short? CurrencyType { get; set; }
 
-        public virtual ICollection<TblExchangeRate> TblExchangeRateSourceCurrency { get; set; }
-        public virtual ICollection<TblExchangeRate> TblExchangeRateTargetCurrency { get; set; }
+        public ICollection<TblExchangeRate> TblExchangeRateSourceCurrency { get; set; }
+        public ICollection<TblExchangeRate> TblExchangeRateTargetCurrency { get; set; }
+        public ICollection<TblWalletType> TblWalletType { get; set; }
     }
 }

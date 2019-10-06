@@ -22,9 +22,20 @@ namespace CryptoCityWallet.API.Controllers
         public TblUserAuth GetSession(ISession session)
         {
             string _currentUserSession = session.GetString(USER_SESSION);
-            TblUserAuth userAuth = JsonConvert.DeserializeObject<TblUserAuth>(_currentUserSession);
 
-            return userAuth;
+            if (_currentUserSession != null)
+            {
+                TblUserAuth userAuth = JsonConvert.DeserializeObject<TblUserAuth>(_currentUserSession);
+                return userAuth;
+            }
+            else
+            {
+                throw new System.ArgumentException("User session invalid or expired.");
+            }
+
+            
+
+            
         }
     }
 }

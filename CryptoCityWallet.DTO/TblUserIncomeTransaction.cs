@@ -20,6 +20,6 @@ namespace CryptoCityWallet.DTO
         public short? IncomeStatus { get; set; }
         public string Remarks { get; set; }
 
-        public virtual TblUserAuth UserAuth { get; set; }
+        public TblUserAuth UserAuth { get; set; }
     }
 }

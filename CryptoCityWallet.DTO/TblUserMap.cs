@@ -17,6 +17,6 @@ namespace CryptoCityWallet.DTO
         public string UplineUserId { get; set; }
         public short? Position { get; set; }
 
-        public virtual TblUserAuth IdNavigation { get; set; }
+        public TblUserAuth IdNavigation { get; set; }
     }
 }

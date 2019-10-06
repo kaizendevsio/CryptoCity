@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using CryptoCityWallet.DTO;
 
@@ -28,11 +29,13 @@ namespace CryptoCityWallet.BO
         public short? EmailStatus { get; set; }
         public long UserInfoId { get; set; }
         public byte[] SecretByte { get; set; }
+        [Required]
         public string PasswordString { get; set; }
         public bool? IsTempPassword { get; set; }
         public byte[] ResetPasswordCodeByte { get; set; }
         public DateTime? ResetPasswordCodeExpiration { get; set; }
         public short? LoginStatus { get; set; }
+        [Required]
         public string UserName { get; set; }
         public short? FailPassAttempt { get; set; }
         public string TemporaryPassword { get; set; }

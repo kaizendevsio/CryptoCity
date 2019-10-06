@@ -19,6 +19,6 @@ namespace CryptoCityWallet.DTO
         public short? WithdrawalStatus { get; set; }
         public BitArray Remarks { get; set; }
 
-        public virtual TblUserAuth UserAuth { get; set; }
+        public TblUserAuth UserAuth { get; set; }
     }
 }

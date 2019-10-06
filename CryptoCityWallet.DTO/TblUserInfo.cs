@@ -30,6 +30,6 @@ namespace CryptoCityWallet.DTO
         public byte[] VerifyEmailCodeByte { get; set; }
         public short? EmailStatus { get; set; }
 
-        public virtual ICollection<TblUserAuth> TblUserAuth { get; set; }
+        public ICollection<TblUserAuth> TblUserAuth { get; set; }
     }
 }

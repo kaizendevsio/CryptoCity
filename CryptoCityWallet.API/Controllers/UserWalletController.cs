@@ -15,23 +15,8 @@ namespace CryptoCityWallet.API.Controllers
     public class UserWalletController : ControllerBase
     {
 
-        // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "hehe", "hehe" };
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public ActionResult Post([FromBody] UserBO userBO)
+        public ActionResult Get()
         {
             UserWalletAppService userWalletAppService = new UserWalletAppService();
             UserAuthResponse _apiResponse = new UserAuthResponse();
@@ -42,20 +27,28 @@ namespace CryptoCityWallet.API.Controllers
                 SessionController sessionController = new SessionController();
                 TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
 
-                UserAuthResponse userAuthResponse = new UserAuthResponse();
+                _apiResponse.UserWallet = userWalletAppService.GetBO(userAuth);
 
-
-                userAuthResponse.UserWallet = userWalletAppService.Get(userAuth);
-
+                _apiResponse.HttpStatusCode = "200";
+                _apiResponse.Message = "User successfully authenticated";
+                _apiResponse.Status = "Success";
             }
             catch (Exception ex)
             {
                 _apiResponse.HttpStatusCode = "500";
                 _apiResponse.Message = ex.Message;
                 _apiResponse.Status = "Error";
+
             }
 
             return Ok(_apiResponse);
+        }
+
+        // POST api/values
+        [HttpPost]
+        public ActionResult<IEnumerable<string>> Post([FromBody] UserBO userBO)
+        {
+            return new string[] { "hehe" }; 
 
         }
 

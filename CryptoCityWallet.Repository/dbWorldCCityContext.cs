@@ -1,9 +1,8 @@
 ﻿using System;
-using CryptoCityWallet.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace CryptoCityWallet.Repository
+namespace CryptoCityWallet.DTO
 {
     public partial class dbWorldCCityContext : DbContext
     {
@@ -47,8 +46,6 @@ namespace CryptoCityWallet.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
-
             modelBuilder.Entity<TblAddressCity>(entity =>
             {
                 entity.ToTable("tbl_AddressCity", "dbo");
@@ -147,7 +144,7 @@ namespace CryptoCityWallet.Repository
 
                 entity.Property(e => e.CurrencyIsoCode3)
                     .IsRequired()
-                    .HasMaxLength(3);
+                    .HasMaxLength(4);
 
                 entity.Property(e => e.Description).HasMaxLength(500);
 
@@ -263,6 +260,10 @@ namespace CryptoCityWallet.Repository
             {
                 entity.ToTable("tbl_UserAuth", "dbo");
 
+                entity.HasIndex(e => e.UserName)
+                    .HasName("Username")
+                    .IsUnique();
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .UseNpgsqlIdentityAlwaysColumn();
@@ -272,8 +273,6 @@ namespace CryptoCityWallet.Repository
                 entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
 
                 entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
-
-                entity.Property(e => e.PasswordByte).HasMaxLength(500);
 
                 entity.Property(e => e.ResetPasswordCodeExpiration).HasColumnType("timestamp with time zone");
 
@@ -345,6 +344,10 @@ namespace CryptoCityWallet.Repository
             modelBuilder.Entity<TblUserInfo>(entity =>
             {
                 entity.ToTable("tbl_UserInfo", "dbo");
+
+                entity.HasIndex(e => e.Email)
+                    .HasName("Email")
+                    .IsUnique();
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -556,6 +559,8 @@ namespace CryptoCityWallet.Repository
 
                 entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
 
+                entity.Property(e => e.CurrencyId).HasColumnName("CurrencyID");
+
                 entity.Property(e => e.Desc).HasMaxLength(500);
 
                 entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
@@ -565,6 +570,11 @@ namespace CryptoCityWallet.Repository
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(20);
+
+                entity.HasOne(d => d.Currency)
+                    .WithMany(p => p.TblWalletType)
+                    .HasForeignKey(d => d.CurrencyId)
+                    .HasConstraintName("CurrencyID");
             });
         }
     }

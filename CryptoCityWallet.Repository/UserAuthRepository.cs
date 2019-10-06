@@ -68,6 +68,10 @@ namespace CryptoCityWallet.Repository
                              };
                 tblUserAuth = _qAuth2.FirstOrDefault();
 
+                if (tblUserAuth == null)
+                {
+                    throw new System.ArgumentException("User Does Not Exist");
+                }
                 UserAuthHistoryRepository userAuthHistoryRepository = new UserAuthHistoryRepository();
                 userAuthHistoryRepository.Create((int)AuthStatus.Invalid_User, tblUserAuth, db);
                 throw new System.ArgumentException("User Authentication Failed");

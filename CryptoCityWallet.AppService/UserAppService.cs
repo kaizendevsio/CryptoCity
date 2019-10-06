@@ -20,7 +20,7 @@ namespace CryptoCityWallet.AppService
                 TblUserInfo userInfo = userInfoRepository.Get(userAuth, db);
 
                 UserWalletRepository userWalletRepository = new UserWalletRepository();
-                List<TblUserWallet> userWallet = userWalletRepository.Get(userAuth, db);
+                List<UserWalletBO> userWallet = userWalletRepository.GetBO(userAuth, db);
 
                 UserAuthResponse userAuthResponse = new UserAuthResponse();
 

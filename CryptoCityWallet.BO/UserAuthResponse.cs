@@ -7,6 +7,6 @@ namespace CryptoCityWallet.BO
     {
         public TblUserAuth UserAuth { get; set; }
         public TblUserInfo UserInfo { get; set; }
-        public List<TblUserWallet> UserWallet { get; set;}
+        public List<UserWalletBO> UserWallet { get; set;}
     }
 }

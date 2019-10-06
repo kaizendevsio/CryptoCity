@@ -30,11 +30,13 @@ namespace CryptoCityWallet.API
 
             services.AddCors(options =>
             {
+                
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
                     builder.WithOrigins("https://localhost/", "http://localhost/");
                 });
+                
                 
             });
 
@@ -47,7 +49,12 @@ namespace CryptoCityWallet.API
             });
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    options.SuppressModelStateInvalidFilter = true;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +68,8 @@ namespace CryptoCityWallet.API
             {
                 app.UseHsts();
             }
-            app.UseCors(MyAllowSpecificOrigins);
+            //app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader());
             app.UseSession();
 
             app.UseHttpsRedirection();

@@ -15,6 +15,6 @@ namespace CryptoCityWallet.DTO
         public long UserAuthId { get; set; }
         public string AccessRole { get; set; }
 
-        public virtual TblUserAuth UserAuth { get; set; }
+        public TblUserAuth UserAuth { get; set; }
     }
 }

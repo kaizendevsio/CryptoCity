@@ -21,7 +21,9 @@ namespace CryptoCityWallet.DTO
         public string Name { get; set; }
         public string Desc { get; set; }
         public short Type { get; set; }
+        public long? CurrencyId { get; set; }
 
-        public virtual ICollection<TblUserWallet> TblUserWallet { get; set; }
+        public TblCurrency Currency { get; set; }
+        public ICollection<TblUserWallet> TblUserWallet { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace CryptoCityWallet.DTO
         public long? WalletTypeId { get; set; }
         public decimal? Balance { get; set; }
 
-        public virtual TblUserAuth UserAuth { get; set; }
-        public virtual TblWalletType WalletType { get; set; }
+        public TblUserAuth UserAuth { get; set; }
+        public TblWalletType WalletType { get; set; }
     }
 }

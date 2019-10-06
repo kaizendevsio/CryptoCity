@@ -46,6 +46,7 @@ namespace CryptoCityWallet.Repository
         public List<TblUserWallet> Get(TblUserAuth userAuth, dbWorldCCityContext db)
         {
             var _qUi = from a in db.TblUserWallet
+                       join b in db.TblWalletType on a.WalletTypeId equals b.Id
                        where a.UserAuthId == userAuth.Id
                        select new TblUserWallet
                        {
@@ -55,10 +56,35 @@ namespace CryptoCityWallet.Repository
                            IsEnabled = a.IsEnabled,
                            Balance = a.Balance,
                            CreatedOn = a.CreatedOn,
-                           ModifiedOn = a.ModifiedOn
+                           ModifiedOn = a.ModifiedOn,
+                           WalletType = a.WalletType
                        };
 
             List<TblUserWallet> userWallet = _qUi.ToList<TblUserWallet>();
+
+            return userWallet;
+        }
+
+        public List<UserWalletBO> GetBO(TblUserAuth userAuth, dbWorldCCityContext db)
+        {
+            var _qUi = from a in db.TblUserWallet
+                       join b in db.TblWalletType on a.WalletTypeId equals b.Id
+                       join c in db.TblExchangeRate on a.WalletType.CurrencyId equals c.SourceCurrencyId
+                       where a.UserAuthId == userAuth.Id
+                       select new UserWalletBO
+                       {
+                           Id = a.Id,
+                           UserAuthId = a.UserAuthId,
+                           WalletTypeId = a.WalletTypeId,
+                           IsEnabled = a.IsEnabled,
+                           Balance = a.Balance,
+                           BalanceFiat = a.Balance * c.Value,
+                           CreatedOn = a.CreatedOn,
+                           ModifiedOn = a.ModifiedOn,
+                           WalletType = a.WalletType                           
+                       };
+
+            List<UserWalletBO> userWallet = _qUi.ToList<UserWalletBO>();
 
             return userWallet;
         }

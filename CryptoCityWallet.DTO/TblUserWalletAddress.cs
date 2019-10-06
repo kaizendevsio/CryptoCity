@@ -18,6 +18,6 @@ namespace CryptoCityWallet.DTO
         public byte[] AddressByte { get; set; }
         public decimal? Balance { get; set; }
 
-        public virtual TblUserAuth UserAuth { get; set; }
+        public TblUserAuth UserAuth { get; set; }
     }
 }

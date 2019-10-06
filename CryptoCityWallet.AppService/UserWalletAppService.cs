@@ -1,4 +1,5 @@
 ﻿using CryptoCityWallet.DTO;
+using CryptoCityWallet.BO;
 using System.Collections.Generic;
 using CryptoCityWallet.Repository;
 
@@ -48,6 +49,26 @@ namespace CryptoCityWallet.AppService
                 }
             }
             
+        }
+        public List<UserWalletBO> GetBO(TblUserAuth tblUserAuth, dbWorldCCityContext db = null)
+        {
+            if (db != null)
+            {
+                UserWalletRepository userWalletRepository = new UserWalletRepository();
+                return userWalletRepository.GetBO(tblUserAuth, db);
+            }
+            else
+            {
+                using (db = new dbWorldCCityContext())
+                {
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                        UserWalletRepository userWalletRepository = new UserWalletRepository();
+                        return userWalletRepository.GetBO(tblUserAuth, db);
+                    }
+                }
+            }
+
         }
 
     }
