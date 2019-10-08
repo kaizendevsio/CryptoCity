@@ -55,5 +55,20 @@ namespace CryptoCityWallet.AppService
                 }
             }
         }
+
+        public TblUserInfo Get(TblUserAuth userAuth)
+        {
+            using (var db = new dbWorldCCityContext())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+
+                    UserInfoRepository userInfoRepository = new UserInfoRepository();
+                    TblUserInfo userInfo = userInfoRepository.Get(userAuth, db);
+
+                    return userInfo;
+                }
+            }
+        }
     }
 }

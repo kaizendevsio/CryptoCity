@@ -46,7 +46,7 @@ namespace CryptoCityWallet.Repository
                          select new TblUserAuth
                          {
                              UserName = a.UserName,
-                             PasswordByte = a.PasswordByte, 
+                             PasswordByte = a.PasswordByte,
                              IsEnabled = a.IsEnabled,
                              UserInfoId = a.UserInfoId,
                              Id = a.Id
@@ -57,15 +57,15 @@ namespace CryptoCityWallet.Repository
             if (tblUserAuth == null)
             {
                 var _qAuth2 = from a in db.TblUserAuth
-                             where a.UserName == userBO.UserName
-                             select new TblUserAuth
-                             {
-                                 UserName = a.UserName,
-                                 PasswordByte = a.PasswordByte,
-                                 IsEnabled = a.IsEnabled,
-                                 UserInfoId = a.UserInfoId,
-                                 Id = a.Id
-                             };
+                              where a.UserName == userBO.UserName
+                              select new TblUserAuth
+                              {
+                                  UserName = a.UserName,
+                                  PasswordByte = a.PasswordByte,
+                                  IsEnabled = a.IsEnabled,
+                                  UserInfoId = a.UserInfoId,
+                                  Id = a.Id
+                              };
                 tblUserAuth = _qAuth2.FirstOrDefault();
 
                 if (tblUserAuth == null)
@@ -77,12 +77,12 @@ namespace CryptoCityWallet.Repository
                 throw new System.ArgumentException("User Authentication Failed");
             }
             else
-            {         
+            {
                 UserAuthHistoryRepository userAuthHistoryRepository = new UserAuthHistoryRepository();
                 userAuthHistoryRepository.Create((int)AuthStatus.Success, tblUserAuth, db);
                 return tblUserAuth;
             }
-           
+
         }
     }
 }

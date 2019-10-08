@@ -1,24 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using CryptoCityWallet.DTO;
 using CryptoCityWallet.BO;
 using CryptoCityWallet.AppService;
-using Microsoft.AspNetCore.Mvc;
-using CryptoCityWallet.DTO;
-using System;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-
 
 namespace CryptoCityWallet.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserWalletController : ControllerBase
+    public class UserProfileController : ControllerBase
     {
-        
         [HttpGet]
         public ActionResult Get()
-        {
-            UserWalletAppService userWalletAppService = new UserWalletAppService();
+        {   
             UserAuthResponse _apiResponse = new UserAuthResponse();
 
             try
@@ -27,10 +23,13 @@ namespace CryptoCityWallet.API.Controllers
                 SessionController sessionController = new SessionController();
                 TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
 
-                _apiResponse.UserWallet = userWalletAppService.GetBO(userAuth);
+                UserAppService userAppService = new UserAppService();
+                TblUserInfo userInfo = userAppService.Get(userAuth);
+
+                _apiResponse.UserInfo = userInfo;
 
                 _apiResponse.HttpStatusCode = "200";
-                _apiResponse.Message = "UserWallet GET";
+                _apiResponse.Message = "UserProfile GET";
                 _apiResponse.Status = "Success";
             }
             catch (Exception ex)
@@ -48,7 +47,7 @@ namespace CryptoCityWallet.API.Controllers
         [HttpPost]
         public ActionResult<IEnumerable<string>> Post([FromBody] UserBO userBO)
         {
-            return new string[] { "hehe" }; 
+            return new string[] { "hehe" };
 
         }
 
@@ -63,5 +62,6 @@ namespace CryptoCityWallet.API.Controllers
         public void Delete(int id)
         {
         }
+
     }
 }
