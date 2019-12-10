@@ -688,24 +688,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Xeon\\.nuget\\packages\\": {},
+    "C:\\Users\\loria\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Middleware.UnitTest\\CryptoCityWallet.Middleware.UnitTest.csproj",
+      "projectUniqueName": "D:\\Codes\\CryptoCity\\CryptoCityWallet.Middleware.UnitTest\\CryptoCityWallet.Middleware.UnitTest.csproj",
       "projectName": "CryptoCityWallet.Middleware.UnitTest",
-      "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Middleware.UnitTest\\CryptoCityWallet.Middleware.UnitTest.csproj",
-      "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Middleware.UnitTest\\obj\\",
+      "projectPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.Middleware.UnitTest\\CryptoCityWallet.Middleware.UnitTest.csproj",
+      "packagesPath": "C:\\Users\\loria\\.nuget\\packages\\",
+      "outputPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.Middleware.UnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Xeon\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\loria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -745,7 +748,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
