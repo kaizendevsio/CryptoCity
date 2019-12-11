@@ -31,6 +31,13 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 
                 return View();
             }
+        [Route("SignUp")]
+        [HttpGet]
+        public IActionResult SignUp()
+        {
+
+            return View();
+        }
         //[Route("Logout")]
         //[HttpGet]
         //public async Task<IActionResult> LogOut()
@@ -168,20 +175,20 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         //    }
 
 
-            //public byte[] ConvertToByte(HttpPostedFileBase file_)
-            //{
-            //    //byte[] fileByte = null;
-            //    //BinaryReader rdr = new BinaryReader(file_.InputStream);
-            //    //fileByte = rdr.ReadBytes((int)file_.ContentLength);
-            //    //return fileByte;
-            //}
+        //public byte[] ConvertToByte(HttpPostedFileBase file_)
+        //{
+        //    //byte[] fileByte = null;
+        //    //BinaryReader rdr = new BinaryReader(file_.InputStream);
+        //    //fileByte = rdr.ReadBytes((int)file_.ContentLength);
+        //    //return fileByte;
+        //}
 
 
 
 
 
 
-            public IActionResult Privacy()
+        public IActionResult Privacy()
             {
                 return View();
             }

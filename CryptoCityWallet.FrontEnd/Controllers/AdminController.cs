@@ -9,7 +9,7 @@ using CryptoCityWallet.FrontEnd.Models;
 
 namespace CryptoCityWallet.FrontEnd.Controllers
 {
-    public class Admin : Controller
+    public class AdminController : Controller
     {
      
 
