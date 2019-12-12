@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Codes\\CryptoCity\\CryptoCityWallet.API\\CryptoCityWallet.API.csproj": {}
+    "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Api\\CryptoCityWallet.Api.csproj": {}
   },
   "projects": {
-    "D:\\Codes\\CryptoCity\\CryptoCityWallet.API\\CryptoCityWallet.API.csproj": {
+    "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Api\\CryptoCityWallet.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Codes\\CryptoCity\\CryptoCityWallet.API\\CryptoCityWallet.API.csproj",
-        "projectName": "CryptoCityWallet.API",
-        "projectPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.API\\CryptoCityWallet.API.csproj",
-        "packagesPath": "C:\\Users\\loria\\.nuget\\packages\\",
-        "outputPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.API\\obj\\",
+        "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Api\\CryptoCityWallet.Api.csproj",
+        "projectName": "CryptoCityWallet.Api",
+        "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Api\\CryptoCityWallet.Api.csproj",
+        "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\loria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Xeon\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -32,8 +31,11 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "D:\\Codes\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj": {
-                "projectPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj"
+              "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj": {
+                "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj"
+              },
+              "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
+                "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj"
               }
             }
           }
@@ -47,69 +49,33 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
-            "Microsoft.AspNetCore.Session": {
+            "Microsoft.CodeAnalysis.FxCopAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[2.9.8, )"
             },
-            "Microsoft.EntityFrameworkCore": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[2.2.6, )"
+              "version": "[3.0.0, )"
             },
-            "Microsoft.EntityFrameworkCore.Abstractions": {
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[2.2.6, )"
+              "version": "[3.0.0, )"
             },
-            "Microsoft.EntityFrameworkCore.Analyzers": {
+            "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
-              "version": "[2.2.6, )"
+              "version": "[3.0.0, )"
             },
-            "Microsoft.EntityFrameworkCore.Design": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[2.2.6, )"
-            },
-            "Microsoft.EntityFrameworkCore.Relational": {
-              "target": "Package",
-              "version": "[2.2.6, )"
-            },
-            "Microsoft.Extensions.Caching.Abstractions": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.Extensions.Caching.Memory": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.Extensions.Configuration": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.Extensions.Configuration.Abstractions": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.Extensions.Configuration.Binder": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.Extensions.DependencyInjection": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.Extensions.DependencyInjection.Abstractions": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.Extensions.Logging": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.Extensions.Logging.Abstractions": {
-              "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[3.0.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[12.0.3-beta1, )"
+              "version": "[12.0.2, )"
             }
           },
           "imports": [
@@ -122,24 +88,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.0.1, 3.0.1]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.0.1, 3.0.1]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[3.0.0, 3.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[3.0.0, 3.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -148,40 +96,42 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Codes\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj": {
+    "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Codes\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj",
+        "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj",
         "projectName": "CryptoCityWallet.AppService",
-        "projectPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj",
-        "packagesPath": "C:\\Users\\loria\\.nuget\\packages\\",
-        "outputPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.AppService\\obj\\",
+        "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj",
+        "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\loria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Xeon\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.1"
+          "netcoreapp3.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.1": {
+          "netcoreapp3.0": {
             "projectReferences": {
-              "D:\\Codes\\CryptoCity\\CryptoCityWallet.Repository\\CryptoCityWallet.Repository.csproj": {
-                "projectPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.Repository\\CryptoCityWallet.Repository.csproj"
+              "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj": {
+                "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj"
+              },
+              "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
+                "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj"
               }
             }
           }
@@ -193,13 +143,71 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.1": {
-          "dependencies": {
+        "netcoreapp3.0": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
-              "suppressParent": "All",
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj",
+        "projectName": "CryptoCityWallet.DataAccessLayer",
+        "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj",
+        "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Xeon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
+                "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.1.0, )",
-              "autoReferenced": true
+              "version": "[3.0.0, )"
             }
           },
           "imports": [
@@ -212,37 +220,41 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Codes\\CryptoCity\\CryptoCityWallet.Repository\\CryptoCityWallet.Repository.csproj": {
+    "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Codes\\CryptoCity\\CryptoCityWallet.Repository\\CryptoCityWallet.Repository.csproj",
-        "projectName": "CryptoCityWallet.Repository",
-        "projectPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.Repository\\CryptoCityWallet.Repository.csproj",
-        "packagesPath": "C:\\Users\\loria\\.nuget\\packages\\",
-        "outputPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.Repository\\obj\\",
+        "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj",
+        "projectName": "CryptoCityWallet.Entities",
+        "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj",
+        "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\loria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Xeon\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.1"
+          "netcoreapp3.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.1": {
+          "netcoreapp3.0": {
             "projectReferences": {}
           }
         },
@@ -253,27 +265,21 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.1": {
+        "netcoreapp3.0": {
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.2.6, )"
+              "version": "[3.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.2.6, )"
-            },
-            "Microsoft.NETCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.1.0, )",
-              "autoReferenced": true
+              "version": "[3.0.0, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[2.1.2, )"
+              "version": "[3.0.1, )"
             }
           },
           "imports": [
@@ -286,7 +292,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

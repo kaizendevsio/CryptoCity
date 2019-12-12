@@ -1,7 +1,8 @@
-﻿using CryptoCityWallet.DTO;
-using CryptoCityWallet.BO;
+﻿using CryptoCityWallet.Entities.DTO;
+using CryptoCityWallet.Entities.BO;
+using CryptoCityWallet.Entities.Enums;
+using CryptoCityWallet.DataAccessLayer;
 using System.Collections.Generic;
-using CryptoCityWallet.Repository;
 
 namespace CryptoCityWallet.AppService
 {

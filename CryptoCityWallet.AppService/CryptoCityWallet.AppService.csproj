@@ -1,23 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CryptoCityWallet.Repository\CryptoCityWallet.Repository.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="CryptoCityWallet.BO">
-      <HintPath>..\CryptoCityWallet.BO\bin\Debug\netcoreapp3.0\CryptoCityWallet.BO.dll</HintPath>
-    </Reference>
-    <Reference Include="CryptoCityWallet.DTO">
-      <HintPath>..\CryptoCityWallet.DTO\bin\Debug\netcoreapp3.0\CryptoCityWallet.DTO.dll</HintPath>
-    </Reference>
-    <Reference Include="CryptoCityWallet.Enums">
-      <HintPath>..\CryptoCityWallet.Enums\bin\Debug\netcoreapp3.0\CryptoCityWallet.Enums.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\CryptoCityWallet.DataAccessLayer\CryptoCityWallet.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\CryptoCityWallet.Entities\CryptoCityWallet.Entities.csproj" />
   </ItemGroup>
 
 </Project>

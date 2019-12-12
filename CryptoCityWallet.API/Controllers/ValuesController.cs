@@ -1,9 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using CryptoCityWallet.Entities.DTO;
+using CryptoCityWallet.Entities.BO;
+using CryptoCityWallet.AppService;
 using Microsoft.AspNetCore.Mvc;
-using CryptoCityWallet.BO;
+using System;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace CryptoCityWallet.API.Controllers
 {
@@ -15,7 +18,7 @@ namespace CryptoCityWallet.API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "MinnyCasinoAffiliate   API is now running" };
         }
 
         // GET api/values/5
@@ -29,7 +32,6 @@ namespace CryptoCityWallet.API.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
-
 
         }
 

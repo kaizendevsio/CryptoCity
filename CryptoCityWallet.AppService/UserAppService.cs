@@ -1,7 +1,7 @@
-﻿using CryptoCityWallet.DTO;
-using CryptoCityWallet.BO;
-using CryptoCityWallet.Repository;
-using CryptoCityWallet.Enums;
+﻿using CryptoCityWallet.Entities.DTO;
+using CryptoCityWallet.Entities.BO;
+using CryptoCityWallet.Entities.Enums;
+using CryptoCityWallet.DataAccessLayer;
 using System.Collections.Generic;
 
 namespace CryptoCityWallet.AppService
@@ -9,7 +9,7 @@ namespace CryptoCityWallet.AppService
     public class UserAppService
     {
 
-        public UserAuthResponse Authenticate(UserBO userBO)
+        public UserResponseBO Authenticate(UserBO userBO)
         {
             using (var db = new dbWorldCCityContext())
             {
@@ -22,11 +22,15 @@ namespace CryptoCityWallet.AppService
                 UserWalletRepository userWalletRepository = new UserWalletRepository();
                 List<UserWalletBO> userWallet = userWalletRepository.GetBO(userAuth, db);
 
-                UserAuthResponse userAuthResponse = new UserAuthResponse();
+                UserRoleRepository userRoleRepository = new UserRoleRepository();
+                TblUserRole userRole = userRoleRepository.Get(userAuth, db);
+
+                UserResponseBO userAuthResponse = new UserResponseBO();
 
                 userAuthResponse.UserInfo = userInfo;
                 userAuthResponse.UserWallet = userWallet;
                 userAuthResponse.UserAuth = userAuth;
+                userAuthResponse.UserRole = userRole;
 
                 return userAuthResponse;
             }
@@ -44,6 +48,9 @@ namespace CryptoCityWallet.AppService
 
                     UserAuthRepository userAuthRepository = new UserAuthRepository();
                     TblUserAuth userAuth = userAuthRepository.Create(userBO, userInfo, db);
+
+                    UserRoleRepository userRoleRepository = new UserRoleRepository();
+                    userRoleRepository.Create(userAuth, db);
 
                     // CREATE USER WALLETS
                     UserWalletAppService userWallet = new UserWalletAppService();
@@ -69,6 +76,11 @@ namespace CryptoCityWallet.AppService
                     return userInfo;
                 }
             }
+        }
+
+        public bool Activate()
+        {
+            return true;
         }
     }
 }

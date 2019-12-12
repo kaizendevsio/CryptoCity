@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using CryptoCityWallet.BO;
+using CryptoCityWallet.Entities.DTO;
+using CryptoCityWallet.Entities.BO;
 using CryptoCityWallet.AppService;
 using Microsoft.AspNetCore.Mvc;
-using CryptoCityWallet.DTO;
 using System;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -13,7 +13,7 @@ namespace CryptoCityWallet.API.Controllers
     public class SessionController : ControllerBase
     {
         public string USER_SESSION { get; private set; } = "USER_SESSION";
-        public bool CreateSession([FromBody] UserAuthResponse userAuthResponse, ISession session)
+        public bool CreateSession([FromBody] UserResponseBO userAuthResponse, ISession session)
         {
             session.SetString(USER_SESSION, JsonConvert.SerializeObject(userAuthResponse.UserAuth));
             return true;
@@ -32,10 +32,6 @@ namespace CryptoCityWallet.API.Controllers
             {
                 throw new System.ArgumentException("User session invalid or expired.");
             }
-
-            
-
-            
         }
     }
 }

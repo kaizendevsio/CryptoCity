@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
-namespace CryptoCityWallet.API
+namespace CryptoCityWallet.Api
 {
     public class Startup
     {
@@ -19,7 +19,6 @@ namespace CryptoCityWallet.API
         {
             Configuration = configuration;
         }
-
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public IConfiguration Configuration { get; }
@@ -27,19 +26,17 @@ namespace CryptoCityWallet.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddCors(options =>
             {
-                
+
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
                     builder.WithOrigins("https://localhost/", "http://localhost/");
                 });
-                
-                
-            });
 
+
+            });
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);//You can set Time   
@@ -55,25 +52,33 @@ namespace CryptoCityWallet.API
                 {
                     options.SuppressModelStateInvalidFilter = true;
                 });
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
-            //app.UseCors(MyAllowSpecificOrigins);
+
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader());
+
             app.UseSession();
 
             app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
             app.UseMvc();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
