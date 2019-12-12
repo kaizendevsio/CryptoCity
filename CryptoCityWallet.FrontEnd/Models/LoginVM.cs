@@ -4,8 +4,8 @@ namespace CryptoCityWallet.FrontEnd.Models
 {
     public class LoginVM
     {
-        public string RequestId { get; set; }
+        public string Username { get; set; }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public string PasswordString { get; set; }
     }
 }

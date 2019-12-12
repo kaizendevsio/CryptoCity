@@ -9,7 +9,7 @@ using CryptoCityWallet.FrontEnd.Models;
 
 namespace CryptoCityWallet.FrontEnd.Controllers
 {
-    public class TransactionController : Controller
+    public class WalletController : Controller
     {
          
 
