@@ -1367,7 +1367,7 @@ img.mfp-img{
     font-weight:400;
     font-style:normal;
     src:url(../fonts/Gilroy-Light/Gilroy-Light.eot);
-    src:url(../fonts/Gilroy-Light/Gilroy-Light.eot?#iefix) format("embedded-opentype"),url(../fonts/Gilroy-Light/Gilroy-Light.woff) format("woff"),url(../fonts/Gilroy-Light/Gilroy-Light.ttf) format("truetype")
+    src:url(../fonts/Gilroy-Light/Gilroy-Lightd41d.eot?#iefix) format("embedded-opentype"),url(../fonts/Gilroy-Light/Gilroy-Light.woff) format("woff"),url(../fonts/Gilroy-Light/Gilroy-Light.ttf) format("truetype")
 }
 *,::after,::before{
     -webkit-box-sizing:border-box;

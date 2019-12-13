@@ -1,60 +1,9 @@
-﻿@{
+﻿
+@{
     Layout = "~/Views/Shared/_PartialView.cshtml";
 
     ViewBag.Title = "Settings";
-}
-
-@section Styles{
-
-
-    <link rel="stylesheet" href="~/settings_files/bootstrap.min.css">
-    <link href="~/settings_files/font-awesome.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="~/settings_files/main.min.css">
-    <link rel="stylesheet" href="~/settings_files/defaults.css">
-}
-
-@section Scripts{
-    <script type="text/javascript">
-        var _html = document.documentElement;
-        _html.className = _html.className.replace("no-js", "js");
-
-
-    </script>
-    <script>
-        $(function () {
-
-            $('[data-tab]').on('click', function (e) {
-                $(this).addClass('active').siblings('[data-tab]').removeClass('active')
-                $(this).siblings('[data-content=' + $(this).data('tab') + ']').addClass('active').siblings('[data-content]').removeClass('active')
-                e.preventDefault()
-            })
-
-        })
-    </script>
-    <script src="~/settings_files/webfont.js" type="text/javascript" async=""></script>
-    <script type="text/javascript">
-        WebFontConfig = {
-            google: { families: ['Lato:300,400,500,700'] }
-        };
-        (function () {
-            var wf = document.createElement('script');
-            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-                '://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
-            wf.type = 'text/javascript';
-            wf.async = 'true';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(wf, s);
-        })();
-    </script>
-
-    <script src="~/settings_files/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
-
-    <script src="~/settings_files/scripts.min.js"></script>
-}
-
-
+} 
 <main class="main-content">
     <section class="settings">
 
@@ -87,7 +36,7 @@
 
                         </div>
 
-                        <button href="" class="btn btn--green">Browse</button>
+                        <button href="#" class="btn btn--green">Browse</button>
 
                     </div>
                     <div class="settings__col">
@@ -159,10 +108,7 @@
                                         <option value="October">October</option>
                                         <option value="November">November</option>
                                         <option value="December">December</option>
-                                    </select><div class="custom-select">
-                                        <button class="custom-select__option custom-select__option--value" type="button">September</button>
-                                        <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">January</button><button class="custom-select__option" type="button">February</button><button class="custom-select__option" type="button">March</button><button class="custom-select__option" type="button">April</button><button class="custom-select__option" type="button">May</button><button class="custom-select__option" type="button">June</button><button class="custom-select__option" type="button">July</button><button class="custom-select__option" type="button">August</button><button class="custom-select__option" type="button">October</button><button class="custom-select__option" type="button">November</button><button class="custom-select__option" type="button">December</button></div>
-                                    </div>
+                                    </select> 
                                 </div>
                                 <div class="form__col-sm">
                                     <div class="custom-select">
@@ -199,10 +145,7 @@
                                             <option value="29">29</option>
                                             <option value="30">30</option>
                                             <option value="31">31</option>
-                                        </select><div class="custom-select">
-                                            <button class="custom-select__option custom-select__option--value" type="button">15</button>
-                                            <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">1</button><button class="custom-select__option" type="button">2</button><button class="custom-select__option" type="button">3</button><button class="custom-select__option" type="button">4</button><button class="custom-select__option" type="button">5</button><button class="custom-select__option" type="button">6</button><button class="custom-select__option" type="button">7</button><button class="custom-select__option" type="button">8</button><button class="custom-select__option" type="button">3</button><button class="custom-select__option" type="button">9</button><button class="custom-select__option" type="button">10</button><button class="custom-select__option" type="button">11</button><button class="custom-select__option" type="button">12</button><button class="custom-select__option" type="button">13</button><button class="custom-select__option" type="button">14</button><button class="custom-select__option" type="button">16</button><button class="custom-select__option" type="button">17</button><button class="custom-select__option" type="button">18</button><button class="custom-select__option" type="button">19</button><button class="custom-select__option" type="button">20</button><button class="custom-select__option" type="button">21</button><button class="custom-select__option" type="button">22</button><button class="custom-select__option" type="button">23</button><button class="custom-select__option" type="button">24</button><button class="custom-select__option" type="button">25</button><button class="custom-select__option" type="button">26</button><button class="custom-select__option" type="button">27</button><button class="custom-select__option" type="button">28</button><button class="custom-select__option" type="button">29</button><button class="custom-select__option" type="button">30</button><button class="custom-select__option" type="button">31</button></div>
-                                        </div>
+                                        </select> 
                                     </div>
                                 </div>
                                 <div class="form__col-sm">
@@ -214,17 +157,14 @@
                                         <option selected="" value="1977">1977</option>
                                         <option value="1978">1978</option>
                                         <option value="1979">1979</option>
-                                    </select><div class="custom-select">
-                                        <button class="custom-select__option custom-select__option--value" type="button">1977</button>
-                                        <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">1974</button><button class="custom-select__option" type="button">1975</button><button class="custom-select__option" type="button">1976</button><button class="custom-select__option" type="button">1978</button><button class="custom-select__option" type="button">1979</button></div>
-                                    </div>
+                                    </select> 
 
                                 </div>
                             </div>
                         </div>
 
                         <div class="form__col-lg">
-                            <label class="form__label">Adress</label>
+                            <label class="form__label">Address</label>
                             <div class="input-wrap">
                                 <input type="text" value="av. Miry 23">
                             </div>
@@ -236,10 +176,7 @@
                                 <option value="English">English</option>
                                 <option value="Russian">Russian</option>
                                 <option value="Ukrainian">Ukrainian</option>
-                            </select><div class="custom-select">
-                                <button class="custom-select__option custom-select__option--value" type="button">English</button>
-                                <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Russian</button><button class="custom-select__option" type="button">Ukrainian</button></div>
-                            </div>
+                            </select> 
                         </div>
 
                     </div>
@@ -250,10 +187,7 @@
                             <label class="form__label">Date of birth</label>
                             <select class="custom-select" style="display: none;">
                                 <option value="Philippines">Philippines</option>
-                            </select><div class="custom-select">
-                                <button class="custom-select__option custom-select__option--value" type="button" disabled="">Philippines</button>
-                                <div class="custom-select__dropdown" style="display: none;"></div>
-                            </div>
+                            </select> 
                         </div>
 
                         <div class="form__col-lg">
@@ -262,10 +196,7 @@
                                 <option value="City">City</option>
                                 <option value="City2">Cit2y</option>
                                 <option value="City3">City3</option>
-                            </select><div class="custom-select">
-                                <button class="custom-select__option custom-select__option--value" type="button">City</button>
-                                <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Cit2y</button><button class="custom-select__option" type="button">City3</button></div>
-                            </div>
+                            </select> 
                         </div>
 
                         <div class="form__col-xs">
@@ -369,7 +300,7 @@
                         </div>
                     </div>
                     <div class="security__row">
-                        <button href="" class="btn btn--blue">Save settings</button>
+                        <button href="#" class="btn btn--blue">Save settings</button>
                     </div>
 
                 </form>
@@ -431,7 +362,7 @@
                 </div>
 
             </div>
-            <div id="tab-3" class="settings__content-item settings__wallets ">
+            <div id="tab-3" class="settings__content-item settings__wallets">
 
                 <div class="wallet__list">
                     <div class="wallet__item">
@@ -481,7 +412,7 @@
                         </div>
 
                         <div class="wallet__item__action">
-                            <img src="~/settings_files/trash.png" alt="">
+                            <img src="~/img/trash.png" alt="">
                         </div>
 
                     </div>
@@ -528,7 +459,7 @@
                         </div>
 
                         <div class="wallet__item__action">
-                            <img src="~/settings_files/trash.png" alt="">
+                            <img src="~/img/trash.png" alt="">
                         </div>
 
                     </div>
@@ -545,7 +476,7 @@
                         <div class="wallet__item__currency">
                             <!-- <svg style="box-shadow: 0 3px 7px rgba(194, 194, 194, 0.57);" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="30px" height="30px" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve"> -->
-                            <img src="~/settings_files/b.png" width="30px"> &nbsp;&nbsp;&nbsp;
+                            <img src="~/img/b.png" width="30px"> &nbsp;&nbsp;&nbsp;
                             <path fill="#c5c5c5" d="M22.857,0H7.143C3.214,0,0,3.214,0,7.143v15.714C0,26.786,3.214,30,7.143,30h15.714C26.786,30,30,26.786,30,22.857V7.143
 												C30,3.214,26.786,0,22.857,0z M19.334,21.071c-2.825,0-5.591,0-8.416,0c0.24-1.142,0.481-2.224,0.721-3.366
 												c-0.481,0.301-0.902,0.601-1.383,0.962c0.06-0.24,0.06-0.421,0.12-0.661c0.06-0.361,0.12-0.721,0.18-1.082
@@ -581,7 +512,7 @@
                         </div>
 
                         <div class="wallet__item__action">
-                            <img src="~/settings_files/trash.png" alt="">
+                            <img src="~/img/trash.png" alt="">
                         </div>
 
 
@@ -598,7 +529,7 @@
                         </div>
 
                         <div class="wallet__item__currency">
-                            <img src="~/settings_files/tether.png" width="30px"> &nbsp;&nbsp;&nbsp;
+                            <img src="~/img/tether.png" width="30px"> &nbsp;&nbsp;&nbsp;
 
                             <!-- <svg style="box-shadow: 0 3px 7px rgba(194, 194, 194, 0.57);" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="30px" height="30px" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve"> -->
@@ -637,15 +568,15 @@
                         </div>
 
                         <div class="wallet__item__action">
-                            <img src="~/settings_files/trash.png" alt="">
+                            <img src="~/img/trash.png" alt="">
                         </div>
                     </div>
 
                 </div>
 
                 <div class="wallet__btns">
-                    <button href="" class="btn btn--blue">Save Changes</button>
-                    <button href="" class="btn btn--blue">Edit wallet</button>
+                    <button href="#" class="btn btn--blue">Save Changes</button>
+                    <button href="#" class="btn btn--blue">Edit wallet</button>
                 </div>
 
             </div>
@@ -653,39 +584,4 @@
         </div>
 
     </section>
-</main> 
-<div class="d-none">
-
-    <form class="popup popup-add-wallet zoom-anim-dialog" id="add-wallet">
-        <div class="popup__content">
-
-
-            <img class="popup-add-wallet__img" src="~/settings_files/popup-add-wallet-icon.png" alt="">
-            <h3>Add new wallet</h3>
-
-            <div class="popup-add-wallet__row">
-
-                <div class="input-wrap">
-                    <input type="text" placeholder="Name wallet">
-                </div>
-
-                <select class="custom-select" style="display: none;">
-                    <option value="Bitcoin">Bitcoin</option>
-                    <option value="Ethereum">Ethereum</option>
-                    <option value="Litecoin">Litecoin</option>
-                </select><div class="custom-select">
-                    <button class="custom-select__option custom-select__option--value" type="button">Bitcoin</button>
-                    <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Ethereum</button><button class="custom-select__option" type="button">Litecoin</button></div>
-                </div>
-
-            </div>
-
-            <button class="btn btn--blue btn--full">Add new wallet</button>
-        </div>
-        <div class="popup__thanks">
-            <img src="~/settings_files/popup-success.png" alt="">
-            <h3>Your wallet added successful!</h3>
-        </div>
-    </form>
-
-</div>
+</main>

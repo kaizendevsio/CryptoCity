@@ -1,0 +1,214 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_PartialView.cshtml";
+
+    ViewBag.Title = "Trade";
+} <main class="main-content">
+
+    <div class="buy">
+        <div class="buy__header">
+
+            <h2>Wcc Trade</h2>
+
+
+
+        </div>
+
+        <div class="buy__body">
+
+            <div class="exchange">
+                <div class="exchange__col">
+                    <label class="form__label">Give Currency:</label>
+                    <div class="group-input">
+                        <input type="text" value="0.00">
+
+                        <select class="custom-select" style="display: none;">
+                            <option value="USD">USD</option>
+                        </select> 
+                    </div>
+                    <p style="color:red; margin-top: 10px;">Note : *100 USD Minimum</p>
+                </div>
+                <div class="exchange__col">
+                    <label class="form__label">Get Currency:</label>
+                    <div class="group-input">
+                        <input type="text" value="0.00">
+                        <select class="custom-select" style="display: none;">
+                            <option value="BTC">BTC</option>
+                            <option value="ETH">ETH</option>
+                            <option value="USDT">USDT</option>
+                        </select> 
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <a href="success_1.html" class="btn btn--blue">Buy</a>
+            </div>
+
+            <div class="d-none">
+
+                <form class="popup popup-add-wallet zoom-anim-dialog" id="add-wallet">
+                    <div class="popup__content">
+
+
+                        <img class="popup-add-wallet__img" src="~/img/popup-add-wallet-icon.png" alt="">
+                        <h3>Add new wallet</h3>
+
+                        <div class="popup-add-wallet__row">
+
+                            <div class="input-wrap">
+                                <input type="text" placeholder="Name wallet">
+                            </div>
+
+                            <select class="custom-select" style="display: none;">
+                                <option value="Bitcoin">Bitcoin</option>
+                                <option value="Ethereum">Ethereum</option>
+                                <option value="Litecoin">Litecoin</option>
+                            </select><div class="custom-select">
+                                <button class="custom-select__option custom-select__option--value" type="button">Bitcoin</button>
+                                <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Ethereum</button><button class="custom-select__option" type="button">Litecoin</button></div>
+                            </div>
+
+                        </div>
+
+                        <button class="btn btn--blue btn--full">Add new wallet</button>
+                    </div>
+                    <div class="popup__thanks">
+                        <img src="~/img/popup-success.png" alt="">
+                        <h3>Your wallet added successful!</h3>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+
+        <div align="center">
+            <div class="panel panel-default" style="width: 1055px;" align="left">
+                <div class="panel-heading">
+                    <strong>Wcc Trade History</strong>
+                </div>
+
+                <div class="panel-body">
+                    <div class="wallets__list">
+
+                        <a href="#" class="wallet" style="background-color: #de8262;">
+                            <span class="wallet__header">
+                                <span class="wallet__currency">
+                                    <span class="wallet__currency-icon">
+
+                                    </span>
+                                    <span class="wallet__currency-info">
+                                        <span>Total Investment</span>
+
+                                    </span>
+                                </span>
+
+                                <span class="wallet__course">
+                                    <span> </span>
+                                    <span>2000 USD Rate</span>
+                                </span>
+                            </span>
+
+                            <span class="wallet__bg-img">
+
+                            </span>
+                        </a>
+
+                        <a href="#" class="wallet" style="background-color: #de8262;">
+
+                            <span class="wallet__header">
+                                <span class="wallet__currency">
+                                    <span class="wallet__currency-icon">
+
+                                    </span>
+                                    <span class="wallet__currency-info">
+                                        <span>Yesterday's Profit</span>
+
+                                    </span>
+                                </span>
+
+                                <span class="wallet__course">
+                                    <span> </span>
+                                    <span>2.44 WCCP</span>
+                                </span>
+                            </span>
+
+                            <span class="wallet__bg-img">
+
+                            </span>
+                        </a>
+                        <a href="#" class="wallet" style="background-color: #de8262;">
+
+                            <span class="wallet__header">
+                                <span class="wallet__currency">
+                                    <span class="wallet__currency-icon">
+
+                                    </span>
+                                    <span class="wallet__currency-info">
+                                        <span>WCCP Balance</span>
+
+                                    </span>
+                                </span>
+
+                                <span class="wallet__course">
+                                    <span> </span>
+                                    <span>15 WCCP</span>
+                                </span>
+                            </span>
+
+                            <span class="wallet__bg-img">
+
+                            </span>
+                        </a>
+
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>USD Rate Amount</th>
+                                    <th>Total Profit</th>
+                                    <th>WCCP Details</th>
+                                    <th>Cancel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Details</th>
+                                    <th>In </th>
+                                    <th>Out</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,40 +1,48 @@
-﻿<!DOCTYPE html>
-<!-- saved from url=(0033)http://frontend.test/transactions -->
-<html lang="ru" class="js wf-lato-n3-active wf-lato-n4-active wf-lato-n5-active wf-lato-n7-active wf-active">
+﻿ 
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+
+ 
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /> 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-
+    <meta charset="utf-8">
     <!-- <base href="/"> -->
 
-    <title>@ViewBag.Title</title>
+    <title> </title>
     <meta name="description" content="">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-
 
     <script src="~/assets/jquery-3.3.1.min.js"></script>
     <script src="~/assets/popper.min.js"></script>
     <script src="~/assets/bootstrap.min.js"></script>
     <script src="~/assets/particles.js"></script>
     <script src="~/assets/custom.js"></script>
+
+    <script src="../ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
+
+    <script src="~/js/scripts.min.js"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
     <!-- Template Basic Images Start -->
-    <meta property="og:image" content="path/to/image.jpg">
-    <link rel="icon" href=" ~/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="http://frontend.test/img/favicon/apple-touch-icon-180x180.png">
-    
+    <meta property="og:image" content="path/to/image.html">
+    <link rel="icon" href="~/img/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/favicon/apple-touch-icon-180x180.png">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="../stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Template Basic Images End -->
     <!-- Custom Browsers Color Start -->
     <meta name="theme-color" content="#000">
     <!-- Custom Browsers Color End -->
-    @RenderSection("Styles", required: false)
+
+    <link rel="stylesheet" href="~/css/main.min.css">
+    <link rel="stylesheet" href="~/css/defaults.css">
     <!-- <link rel="stylesheet" href="assets/css/style.min.css"> -->
     <!-- Load google font
     ================================================== -->
-    <script src="~/transactions_files/webfont.js" type="text/javascript" async=""></script>
     <script type="text/javascript">
         WebFontConfig = {
             google: { families: ['Lato:300,400,500,700'] }
@@ -66,44 +74,28 @@
             z-index: 9999;
         }
     </style>
-    <link rel="stylesheet" href="~/transactions_files/css" media="all">
+
 
 </head>
 
 <body>
 
 
-    <div class="content">
 
 
         <partial name="_NavBar.cshtml" />
-        <partial name="_SideBar.cshtml" />
-
-        @RenderBody()
-        @RenderSection("Scripts", required: false)
+        <div class="content">
 
 
-    </div>
+            <partial name="_SideBar.cshtml" />
 
+            @RenderBody() 
+
+
+        </div>
+  
 
 
 
 </body>
 </html>
-@section Scripts{
-
-
-    <script>
-        $(".toggle-password").click(function () {
-            $(this).toggleClass("fa-eye fa-eye-slash");
-            var input = $($(this).attr("toggle"));
-            if (input.attr("type") == "password") {
-                input.attr("type", "text");
-            } else {
-                input.attr("type", "password");
-            }
-        });
-
-
-    </script>
-}

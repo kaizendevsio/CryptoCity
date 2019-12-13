@@ -17,6 +17,26 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             return View();
         }
+        [Route("/Wallet/MyBitcoin")]
+        [HttpGet]
+        public IActionResult MyBitcoin()
+        {
+            return View();
+        }
+        [Route("/Wallet/MyEthereum")]
+        [HttpGet]
+        public IActionResult MyEthereum()
+        {
+            return View();
+        }
+        [Route("/Wallet/MyTether")]
+        [HttpGet]
+        public IActionResult MyTether()
+        {
+            return View();
+        }
+
+
 
         public IActionResult Privacy()
         {
