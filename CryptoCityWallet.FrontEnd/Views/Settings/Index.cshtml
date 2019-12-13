@@ -4,6 +4,56 @@
     ViewBag.Title = "Settings";
 }
 
+@section Styles{
+
+
+    <link rel="stylesheet" href="~/settings_files/bootstrap.min.css">
+    <link href="~/settings_files/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/settings_files/main.min.css">
+    <link rel="stylesheet" href="~/settings_files/defaults.css">
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        var _html = document.documentElement;
+        _html.className = _html.className.replace("no-js", "js");
+
+
+    </script>
+    <script>
+        $(function () {
+
+            $('[data-tab]').on('click', function (e) {
+                $(this).addClass('active').siblings('[data-tab]').removeClass('active')
+                $(this).siblings('[data-content=' + $(this).data('tab') + ']').addClass('active').siblings('[data-content]').removeClass('active')
+                e.preventDefault()
+            })
+
+        })
+    </script>
+    <script src="~/settings_files/webfont.js" type="text/javascript" async=""></script>
+    <script type="text/javascript">
+        WebFontConfig = {
+            google: { families: ['Lato:300,400,500,700'] }
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+    <script src="~/settings_files/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
+
+    <script src="~/settings_files/scripts.min.js"></script>
+}
+
 
 <main class="main-content">
     <section class="settings">
@@ -61,7 +111,7 @@
                                 User name
                             </label>
                             <div class="input-wrap">
-                                <input type="text" value="">
+                                <input type="text" value="Alex Balden">
                             </div>
                         </div>
 
@@ -70,7 +120,7 @@
                                 Email
                             </label>
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" value="infor@grypterium.io">
                             </div>
                         </div>
 
@@ -176,7 +226,7 @@
                         <div class="form__col-lg">
                             <label class="form__label">Adress</label>
                             <div class="input-wrap">
-                                <input type="text" value="">
+                                <input type="text" value="av. Miry 23">
                             </div>
                         </div>
 
@@ -290,7 +340,7 @@
                         <div class="security__col">
 
                             <div class="security__block">
-                                <h3><br><br></h3>
+                                <h3><br></h3>
                                 <p>Two-factor authorization allows you to significantly enhance the protection of your account.</p>
 
                                 <div class="switch-block">
@@ -603,9 +653,7 @@
         </div>
 
     </section>
-</main>
-
-
+</main> 
 <div class="d-none">
 
     <form class="popup popup-add-wallet zoom-anim-dialog" id="add-wallet">
@@ -641,29 +689,3 @@
     </form>
 
 </div>
-
-
-@section Scripts{
-    @*<script src="./settings_files/jquery.min.js.download"></script>*@
-    <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
-
-    <script src="~/settings_files/scripts.min.js.download"></script>
-    <script type="text/javascript">
-        var _html = document.documentElement;
-        _html.className = _html.className.replace("no-js", "js");
-
-
-    </script>
-    <script>
-        $(function () {
-
-            $('[data-tab]').on('click', function (e) {
-                $(this).addClass('active').siblings('[data-tab]').removeClass('active')
-                $(this).siblings('[data-content=' + $(this).data('tab') + ']').addClass('active').siblings('[data-content]').removeClass('active')
-                e.preventDefault()
-            })
-
-        })
-    </script>
-
-}

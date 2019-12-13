@@ -4,15 +4,23 @@
 
     ViewBag.Title = "Cash In";
 }
+@section Styles{
 
+
+    <link rel="stylesheet" href="~/cash-in_files/bootstrap.min.css">
+    <link href="~/cash-in_files/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/cash-in_files/main.min.css">
+    <link rel="stylesheet" href="~/cash-in_files/defaults.css">
+}
 <main class="main-content">
 
     <div class="buy">
         <div class="buy__header">
 
-            <h2>Deposit</h2>
+            <h2>Cash In</h2>
 
-            <a href="" class="btn btn--blue">sale currency</a>
+            <a href="cash-in.html" class="btn btn--blue">sale currency</a>
 
         </div>
 
@@ -22,15 +30,12 @@
                 <div class="exchange__col">
                     <label class="form__label">Give Currency:</label>
                     <div class="group-input">
-                        <input  type="text" value="0.00">
+                        <input type="text" value="0.00">
                         <select class="custom-select" style="display: none;">
                             <option value="USD">USD</option>
                             <option value="EUR">EUR</option>
                             <option value="UAH">UAH</option>
-                        </select><div class="custom-select">
-                            <button class="custom-select__option custom-select__option--value" type="button">USD</button>
-                            <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">EUR</button><button class="custom-select__option" type="button">UAH</button></div>
-                        </div>
+                        </select> 
                     </div>
                 </div>
                 <div class="exchange__col">
@@ -38,246 +43,80 @@
                     <div class="group-input">
                         <input type="text" value="0.00">
                         <select class="custom-select" style="display: none;">
-                            <option value="Bitcoin">Bitcoin</option>
-                            <option value="Litecoin">Litecoin</option>
-                            <option value="Ethereum">Ethereum</option>
-                        </select><div class="custom-select">
-                            <button class="custom-select__option custom-select__option--value" type="button">Bitcoin</button>
-                            <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Litecoin</button><button class="custom-select__option" type="button">Ethereum</button></div>
-                        </div>
+                            <option value="BTC">BTC</option>
+                            <option value="ETH">ETH</option>
+                            <option value="USDT">USDT</option>
+                        </select> 
                     </div>
                 </div>
             </div>
 
-            <div class="payment">
-
-                <h3>Payment details</h3>
-
-                <div class="payment__row">
-
-                    <div class="form__row">
-                        <label class="radio-input">
-                            <input checked="" class="radio-input__radio" name="group1" type="radio">
-                            <span class="radio-input__checkmark"></span>
-                            <img src="~/cash-in_files/visa-mc.png" alt="">
-                        </label>
-
-                        <label class="radio-input">
-                            <input class="radio-input__radio" name="group1" type="radio">
-                            <span class="radio-input__checkmark"></span>
-                            <img src="~/cash-in_files/paypal.png" alt="">
-                        </label>
-                    </div>
 
 
-                </div>
 
-                <div class="payment__row">
+            <div class="d-none">
 
-                    <div class="form__row">
-                        <div class="form__col credit-card">
-                            <label class="form__label">Credit card number:</label>
+                <form class="popup popup-add-wallet zoom-anim-dialog" id="add-wallet">
+                    <div class="popup__content">
+
+
+                        <img class="popup-add-wallet__img" src="~/cash-in_files/popup-add-wallet-icon.png" alt="">
+                        <h3>Add new wallet</h3>
+
+                        <div class="popup-add-wallet__row">
+
                             <div class="input-wrap">
-                                <input type="text">
+                                <input type="text" placeholder="Name wallet">
                             </div>
-                        </div>
-                        <div class="form__col credit-card-name">
-                            <label class="form__label">Full Name:</label>
-                            <div class="input-wrap">
-                                <input type="text">
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-
-                <div class="payment__row">
-
-                    <div class="form__row">
-                        <div class="form__col credit-card-month">
-                            <div class="form__label">
-                                Month:
-                            </div>
                             <select class="custom-select" style="display: none;">
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option selected="" value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
+                                <option value="Bitcoin">Bitcoin</option>
+                                <option value="Ethereum">Ethereum</option>
+                                <option value="Litecoin">Litecoin</option>
                             </select><div class="custom-select">
-                                <button class="custom-select__option custom-select__option--value" type="button">September</button>
-                                <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">January</button><button class="custom-select__option" type="button">February</button><button class="custom-select__option" type="button">March</button><button class="custom-select__option" type="button">April</button><button class="custom-select__option" type="button">May</button><button class="custom-select__option" type="button">June</button><button class="custom-select__option" type="button">July</button><button class="custom-select__option" type="button">August</button><button class="custom-select__option" type="button">October</button><button class="custom-select__option" type="button">November</button><button class="custom-select__option" type="button">December</button></div>
+                                <button class="custom-select__option custom-select__option--value" type="button">Bitcoin</button>
+                                <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Ethereum</button><button class="custom-select__option" type="button">Litecoin</button></div>
                             </div>
+
                         </div>
-                        <div class="form__col credit-card-year">
-                            <div class="form__label">
-                                Year:
-                            </div>
-                            <select class="custom-select" style="display: none;">
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                <option value="2019">2019</option>
-                                <option value="2018">2018</option>
-                            </select><div class="custom-select">
-                                <button class="custom-select__option custom-select__option--value" type="button">2022</button>
-                                <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">2021</button><button class="custom-select__option" type="button">2020</button><button class="custom-select__option" type="button">2019</button><button class="custom-select__option" type="button">2018</button></div>
-                            </div>
-                        </div>
-                        <div class="form__col credit-card-cvv">
-                            <label class="form__label">CVV:</label>
-                            <div class="input-wrap">
-                                <input type="text">
-                            </div>
-                        </div>
+
+                        <button class="btn btn--blue btn--full">Add new wallet</button>
                     </div>
-
-                </div>
-
-                <div class="payment__row">
-
-                    <a href="" class="btn btn--blue">Buy currency</a>
-                    <a href="" class="btn btn--green">Save</a>
-
-                </div>
-
-                <img src="~/cash-in_files/credit-card.png" alt="" class="payment__img">
+                    <div class="popup__thanks">
+                        <img src="~/cash-in_files/popup-success.png" alt="">
+                        <h3>Your wallet added successful!</h3>
+                    </div>
+                </form>
 
             </div>
-
-            <div class="save-payment">
-
-                <h3>Save payment method</h3>
-
-                <div class="save-payment__item">
-
-                    <div class="save-payment__header">
-                        <label class="radio-input">
-                            <input class="radio-input__radio" name="group1" type="radio">
-                            <span class="radio-input__checkmark"></span>
-                            <img src="~/cash-in_files/visa-mc.png" alt="">
-                        </label>
-
-                        <div class="save-payment__card-num">
-                        </div>
-
-                        <div class="save-payment__owner-name">
-                        </div>
-
-                        <div class="edit">Edit</div>
-                    </div>
-
-                    <div class="save-payment__body">
+             
 
 
-                        <div class="payment">
-
-                            <div class="payment__row">
-
-                                <div class="form__row">
-                                    <label class="radio-input">
-                                        <input checked="" class="radio-input__radio" name="group2" type="radio">
-                                        <span class="radio-input__checkmark"></span>
-                                        <img src="~/cash-in_files/visa-mc.png" alt="">
-                                    </label>
-
-                                </div>
-
-
-                            </div>
-
-                            <div class="payment__row">
-
-                                <div class="form__row">
-                                    <div class="form__col credit-card">
-                                        <label class="form__label">Credit card number:</label>
-                                        <div class="input-wrap">
-                                            <input type="text">
-                                        </div>
-                                    </div>
-                                    <div class="form__col credit-card-name">
-                                        <label class="form__label">Full Name:</label>
-                                        <div class="input-wrap">
-                                            <input type="text">
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="payment__row">
-
-                                <div class="form__row">
-                                    <div class="form__col credit-card-month">
-                                        <div class="form__label">
-                                            Month:
-                                        </div>
-                                        <select class="custom-select" style="display: none;">
-                                            <option value="January">January</option>
-                                            <option value="February">February</option>
-                                            <option value="March">March</option>
-                                            <option value="April">April</option>
-                                            <option value="May">May</option>
-                                            <option value="June">June</option>
-                                            <option value="July">July</option>
-                                            <option value="August">August</option>
-                                            <option selected="" value="September">September</option>
-                                            <option value="October">October</option>
-                                            <option value="November">November</option>
-                                            <option value="December">December</option>
-                                        </select><div class="custom-select">
-                                            <button class="custom-select__option custom-select__option--value" type="button">September</button>
-                                            <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">January</button><button class="custom-select__option" type="button">February</button><button class="custom-select__option" type="button">March</button><button class="custom-select__option" type="button">April</button><button class="custom-select__option" type="button">May</button><button class="custom-select__option" type="button">June</button><button class="custom-select__option" type="button">July</button><button class="custom-select__option" type="button">August</button><button class="custom-select__option" type="button">October</button><button class="custom-select__option" type="button">November</button><button class="custom-select__option" type="button">December</button></div>
-                                        </div>
-                                    </div>
-                                    <div class="form__col credit-card-year">
-                                        <div class="form__label">
-                                            Year:
-                                        </div>
-                                        <select class="custom-select" style="display: none;">
-                                            <option value="2022">2022</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                        </select><div class="custom-select">
-                                            <button class="custom-select__option custom-select__option--value" type="button">2022</button>
-                                            <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">2021</button><button class="custom-select__option" type="button">2020</button><button class="custom-select__option" type="button">2019</button><button class="custom-select__option" type="button">2018</button></div>
-                                        </div>
-                                    </div>
-                                    <div class="form__col credit-card-cvv">
-                                        <label class="form__label">CVV:</label>
-                                        <div class="input-wrap">
-                                            <input type="text">
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="payment__row">
-
-                                <a href="" class="btn btn--blue">Buy currency</a>
-                                <a href="" class="btn btn--green">Save</a>
-
-                            </div>
-                            \
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
 
         </div>
     </div>
-
 </main>
+
+
+@section Scripts{
+    <script src="~/cash-in_files/webfont.js" type="text/javascript" async=""></script>
+    <script type="text/javascript">
+        WebFontConfig = {
+            google: { families: ['Lato:300,400,500,700'] }
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+    <script src="~/cash-in_files/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
+ 
+    <script src="~/cash-in_files/scripts.min.js"></script>
+}

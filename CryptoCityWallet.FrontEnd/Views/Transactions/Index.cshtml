@@ -4,6 +4,15 @@
     ViewBag.Title = "Transactions";
 
 }
+@section Styles{
+
+
+    <link rel="stylesheet" href="~/transactions_files/bootstrap.min.css">
+    <link href="~/transactions_files/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/transactions_files/main.min.css">
+    <link rel="stylesheet" href="~/transactions_files/defaults.css">
+}
 
 <main class="main-content">
     <section class="transactions">
@@ -26,10 +35,7 @@
                         <option value="Pending">Pending</option>
                         <option value="Recieved">Recieved</option>
                         <option value="Decline">Decline</option>
-                    </select><div class="custom-select">
-                        <button class="custom-select__option custom-select__option--value" type="button">All transactions</button>
-                        <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Sent</button><button class="custom-select__option" type="button">Pending</button><button class="custom-select__option" type="button">Recieved</button><button class="custom-select__option" type="button">Decline</button></div>
-                    </div>
+                    </select>  
                 </div>
 
             </div>
@@ -37,12 +43,12 @@
             <div class="transactions__filters-col transactions__filters-col--align-right">
                 <div class="datapickers">
                     <div class="datapicker-range">
-                        <img src="~/img/calendar.svg" alt="">
+                        <img src="~/transactions_files/calendar.svg" alt="">
                         <input type="text" placeholder="2017-04-01" class="datepicker-input datepicker-here" data-date-format="yyyy-mm-dd">
                     </div>
                     <div class="separator"></div>
                     <div class="datapicker-range">
-                        <img src="~/img/calendar.svg" alt="">
+                        <img src="~/transactions_files/calendar.svg" alt="">
                         <input type="text" placeholder="2017-04-01" class="datepicker-input datepicker-here" data-date-format="yyyy-mm-dd">
                     </div>
                 </div>
@@ -55,21 +61,19 @@
                     <option value="Currency">Currency</option>
                     <option value="Ethereum">Ethereum</option>
                     <option value="Litecoin">Bitcoincash</option>
-                </select><div class="custom-select">
-                    <button class="custom-select__option custom-select__option--value" type="button">Currency</button>
-                    <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Ethereum</button><button class="custom-select__option" type="button">Bitcoincash</button></div>
-                </div>
+                </select> 
             </div>
 
 
             <div class="input-wrap search-input">
-                <img src="~/img/search.svg" alt="">
+                <img src="~/transactions_files/search.svg" alt="">
                 <input type="text" placeholder="Search">
             </div>
         </div>
 
     </section>
-</main> 
+</main></div>
+
 <div class="transactions__list">
     <div class="transaction">
 
@@ -650,3 +654,67 @@
     </div>
 
 </div>
+
+
+		</div>
+
+
+
+<div class="d-none">
+
+    <form class="popup popup-add-wallet zoom-anim-dialog" id="add-wallet">
+        <div class="popup__content">
+
+
+            <img class="popup-add-wallet__img" src="~/transactions_files/popup-add-wallet-icon.png" alt="">
+            <h3>Add new wallet</h3>
+
+            <div class="popup-add-wallet__row">
+
+                <input type="text" placeholder="Name wallet">
+
+            </div>
+
+            <button class="btn btn--blue btn--full">Add new wallet</button>
+        </div>
+        <div class="popup__thanks">
+            <img src="~/transactions_files/popup-success.png" alt="">
+            <h3>Your wallet added successful!</h3>
+        </div>
+    </form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts{
+    <script src="~/transactions_files/webfont.js" type="text/javascript" async=""></script>
+    <script type="text/javascript">
+        WebFontConfig = {
+            google: { families: ['Lato:300,400,500,700'] }
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+    <script src="~/transactions_files/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
+
+    <script src="~/transactions_files/scripts.min.js"></script>
+}

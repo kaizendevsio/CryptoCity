@@ -1,0 +1,512 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_PartialView.cshtml";
+}
+@section Styles{
+
+
+    <link rel="stylesheet" href="~/wallet-ethereum_files/bootstrap.min.css">
+    <link href="~/wallet-ethereum_files/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/wallet-ethereum_files/main.min.css">
+    <link rel="stylesheet" href="~/wallet-ethereum_files/defaults.css">
+}
+
+@section Scripts{
+    <script src="~/wallet-ethereum_files/webfont.js" type="text/javascript" async=""></script>
+    <script type="text/javascript">
+        WebFontConfig = {
+            google: { families: ['Lato:300,400,500,700'] }
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+    <script src="~/wallet-ethereum_files/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
+
+    <script src="~/wallet-ethereum_files/scripts.min.js"></script>
+}
+
+<main class="main-content">
+    <div class="wallet-inner">
+        <div class="wallet-inner__header">
+            <h2>Ethereum wallet</h2>
+        </div>
+    </div>
+
+    <div class="wallet-inner__row">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="wallet-inner__col">
+            <div class="wallet wallet--full-width" style="background-color: #707bcc;">
+
+                <span class="wallet__header">
+                    <span class="wallet__currency">
+                        <span class="wallet__currency-icon">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve">
+                            <path d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M14.831,21.05
+										   c1.99-3.383,4.08-6.667,6.07-10.05c2.09,3.383,4.08,6.667,6.07,10.05c-0.099,0.099-0.199,0.099-0.298,0.199
+										   c-1.891,1.094-3.781,2.189-5.572,3.284c-0.199,0.099-0.398,0.099-0.597,0c-1.791-1.095-3.932-2.304-5.723-3.398L14.831,21.05z
+											M20.901,31c-1.99-3.085-4.08-5.97-6.169-8.856c0.199,0.099,0.298,0.199,0.497,0.298c1.791,1.095,3.483,2.09,5.274,3.184
+										   c0.298,0.199,0.497,0.199,0.796,0c1.891-1.094,3.781-2.189,5.672-3.284l0.249-0.139C25.13,25.089,23.09,28.114,20.901,31z"></path>
+									   </svg>
+                        </span>
+                        <span class="wallet__currency-info">
+                            <span>Ethereum Wallet</span>
+                            <span>ETC</span>
+                        </span>
+                    </span>
+
+                    <span class="wallet__last-transactions">
+                        <span>- 0$</span>
+                        <span>Last day</span>
+                    </span>
+
+                    <span class="wallet__currency-course">
+                        <span>0 ETH</span>
+                        <span>0 USD</span>
+                    </span>
+
+                    <span class="wallet__course">
+                        <span>0ETH</span>
+                        <span>0 USD</span>
+                    </span>
+                </span>
+
+                <span class="wallet__footer">
+                    <a href="wallet-ethereum.html" class="small-btn">Edit</a>
+
+                    <span><b>Wallet number:</b> 0x45e1D2D3C1d001aC30E9C0B10e3a9cdD35018Bf0</span>
+                </span>
+
+                <span class="wallet__bg-img">
+                    <img src="~/wallet-ethereum_files/wallet-bg-img-2.png" alt="">
+                </span>
+            </div>
+
+            <div class="wallet-inner__chart">
+                <h3>Ethereum Chart</h3>
+                <div class="chart">
+                    <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                    <canvas id="line-chart" style="display: block; width: 469px; height: 234px;" width="469" height="234" class="chartjs-render-monitor"></canvas>
+                </div>
+                <div class="wallet-inner__btns">
+                    <a href="cash-in.html" class="btn btn--blue">Send Ethereum</a>
+                    <a href="cash-in.html" class="btn btn--purpure">Buy Ethereum</a>
+                    <a href="wallet-ethereum.html#confirmation" class="btn btn--green popup-link">Convert</a>
+                </div>
+            </div>
+        </div>
+        <div class="wallet-inner__col">
+            <section class="transactions">
+                <h3>Ethereum wallet transactions</h3>
+
+                <div class="transactions__list">
+                    <div class="transaction ">
+
+                        <div class="transaction__header transaction__header--three-cols">
+                            <div class="transaction__data">
+                                June 26, 2017
+                            </div>
+
+                            <div class="transaction__info">
+                                <img src="~/wallet-ethereum_files/transaction-icon-sent.svg" alt="">
+                                <p>Sent to 3Bhe5sbhSTNxcDpYyy</p>
+                            </div>
+
+                            <div class="transaction__course">
+                                <span class="rate rate--minus">- 0 BTC</span>
+                                <span class="rate rate--normal">- 0 USD</span>
+                            </div>
+                        </div>
+
+                        <div class="transaction__body">
+                            <ul class="transaction__details">
+                                <li>
+                                    <span>Sender name:</span> Andrew Smith
+                                </li>
+                                <li>
+                                    <span>Sender adress:</span> 3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
+                                </li>
+                                <li>
+                                    <span>Condition:</span> Pending
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="transaction ">
+
+                        <div class="transaction__header transaction__header--three-cols">
+                            <div class="transaction__data">
+                                June 26, 2017
+                            </div>
+
+                            <div class="transaction__info">
+                                <img src="~/wallet-ethereum_files/transaction-icon-recived.svg" alt="">
+                                <p>Got from 3Bhe5sbhSTNxcDpYyy</p>
+                            </div>
+
+                            <div class="transaction__course">
+                                <span class="rate rate--plus">- 0 BTC</span>
+                                <span class="rate rate--normal">- 0 USD</span>
+                            </div>
+                        </div>
+
+                        <div class="transaction__body">
+                            <ul class="transaction__details">
+                                <li>
+                                    <span>Sender name:</span> Andrew Smith
+                                </li>
+                                <li>
+                                    <span>Sender adress:</span> 3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
+                                </li>
+                                <li>
+                                    <span>Condition:</span> Pending
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="transaction ">
+
+                        <div class="transaction__header transaction__header--three-cols">
+                            <div class="transaction__data">
+                                June 26, 2017
+                            </div>
+
+                            <div class="transaction__info">
+                                <img src="~/wallet-ethereum_files/transaction-icon-pending.svg" alt="">
+                                <p>Pending to 3Bhe5sbhSTNxcDpYyy</p>
+                            </div>
+
+                            <div class="transaction__course">
+                                <span class="rate rate--minus">- 0 BTC</span>
+                                <span class="rate rate--normal">- 0 USD</span>
+                            </div>
+                        </div>
+
+                        <div class="transaction__body">
+                            <ul class="transaction__details">
+                                <li>
+                                    <span>Sender name:</span> Andrew Smith
+                                </li>
+                                <li>
+                                    <span>Sender adress:</span> 3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
+                                </li>
+                                <li>
+                                    <span>Condition:</span> Pending
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="transaction ">
+
+                        <div class="transaction__header transaction__header--three-cols">
+                            <div class="transaction__data">
+                                June 26, 2017
+                            </div>
+
+                            <div class="transaction__info">
+                                <img src="~/wallet-ethereum_files/transaction-icon-sent.svg" alt="">
+                                <p>Sent to 3Bhe5sbhSTNxcDpYyy</p>
+                            </div>
+
+                            <div class="transaction__course">
+                                <span class="rate rate--minus">- 0 BTC</span>
+                                <span class="rate rate--normal">- 0 USD</span>
+                            </div>
+                        </div>
+
+                        <div class="transaction__body">
+                            <ul class="transaction__details">
+                                <li>
+                                    <span>Sender name:</span> Andrew Smith
+                                </li>
+                                <li>
+                                    <span>Sender adress:</span> 3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
+                                </li>
+                                <li>
+                                    <span>Condition:</span> Pending
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="transaction ">
+
+                        <div class="transaction__header transaction__header--three-cols">
+                            <div class="transaction__data">
+                                June 26, 2017
+                            </div>
+
+                            <div class="transaction__info">
+                                <img src="~/wallet-ethereum_files/transaction-icon-recived.svg" alt="">
+                                <p>Got from 3Bhe5sbhSTNxcDpYyy</p>
+                            </div>
+
+                            <div class="transaction__course">
+                                <span class="rate rate--plus">- 0 BTC</span>
+                                <span class="rate rate--normal">- 0 USD</span>
+                            </div>
+                        </div>
+
+                        <div class="transaction__body">
+                            <ul class="transaction__details">
+                                <li>
+                                    <span>Sender name:</span> Andrew Smith
+                                </li>
+                                <li>
+                                    <span>Sender adress:</span> 3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
+                                </li>
+                                <li>
+                                    <span>Condition:</span> Pending
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="transaction ">
+
+                        <div class="transaction__header transaction__header--three-cols">
+                            <div class="transaction__data">
+                                June 26, 2017
+                            </div>
+
+                            <div class="transaction__info">
+                                <img src="~/wallet-ethereum_files/transaction-icon-pending.svg" alt="">
+                                <p>Pending to 3Bhe5sbhSTNxcDpYyy</p>
+                            </div>
+
+                            <div class="transaction__course">
+                                <span class="rate rate--minus">- 0 BTC</span>
+                                <span class="rate rate--normal">- 0 USD</span>
+                            </div>
+                        </div>
+
+                        <div class="transaction__body">
+                            <ul class="transaction__details">
+                                <li>
+                                    <span>Sender name:</span> Andrew Smith
+                                </li>
+                                <li>
+                                    <span>Sender adress:</span> 3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
+                                </li>
+                                <li>
+                                    <span>Condition:</span> Pending
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="transaction ">
+
+                        <div class="transaction__header transaction__header--three-cols">
+                            <div class="transaction__data">
+                                June 26, 2017
+                            </div>
+
+                            <div class="transaction__info">
+                                <img src="~/wallet-ethereum_files/transaction-icon-recived.svg" alt="">
+                                <p>Got from 3Bhe5sbhSTNxcDpYyy</p>
+                            </div>
+
+                            <div class="transaction__course">
+                                <span class="rate rate--plus">- 0 BTC</span>
+                                <span class="rate rate--normal">- 0 USD</span>
+                            </div>
+                        </div>
+
+                        <div class="transaction__body">
+                            <ul class="transaction__details">
+                                <li>
+                                    <span>Sender name:</span> Andrew Smith
+                                </li>
+                                <li>
+                                    <span>Sender adress:</span> 3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
+                                </li>
+                                <li>
+                                    <span>Condition:</span> Pending
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="transaction ">
+
+                        <div class="transaction__header transaction__header--three-cols">
+                            <div class="transaction__data">
+                                June 26, 2017
+                            </div>
+
+                            <div class="transaction__info">
+                                <img src="~/wallet-ethereum_files/transaction-icon-pending.svg" alt="">
+                                <p>Pending to 3Bhe5sbhSTNxcDpYyy</p>
+                            </div>
+
+                            <div class="transaction__course">
+                                <span class="rate rate--minus">- 0 BTC</span>
+                                <span class="rate rate--normal">- 0 USD</span>
+                            </div>
+                        </div>
+
+                        <div class="transaction__body">
+                            <ul class="transaction__details">
+                                <li>
+                                    <span>Sender name:</span> Andrew Smith
+                                </li>
+                                <li>
+                                    <span>Sender adress:</span> 3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
+                                </li>
+                                <li>
+                                    <span>Condition:</span> Pending
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <a href="http://frontend.test/wallet-ethereum" class="btn btn--green">All transactions</a>
+            </section>
+        </div>
+    </div>
+
+</main>
+		</div>
+
+	</div>
+
+<div class="d-none">
+
+    <div class="confirmation" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h1 class="modal-title" id="exampleModalLabel" align="center">CONVERT</h1> -->
+                    <img src="~/wallet-ethereum_files/s.png" width="70px"> <font style="font-size:  100%;"> CONVERT </font>
+                </div>
+                <div class="modal-body ">
+                    <div class="form-group ">
+                        <div class="col-12">
+                            <label>
+                                <!-- <p class="notification__icon">
+                                                       BTC   <b class="caret"></b>
+                                                   </p>
+                                                   <div class="notification__list">
+                                                       <div class="notification__list-item">
+                                                           <p><span class="circle" style="background-color: #58a3ea;"></span>	Sent Litecoin</p>
+                                                           <span class="rate rate--minus">- 0 LTC</span>
+                                                       </div>
+                                                       <div class="notification__list-item">
+                                                           <p><span class="circle" style="background-color: #45d0c;"></span>Recieved Bitcoin</p>
+                                                           <span class="rate rate--plus">+ 0.056 BTC</span>
+                                                       </div>
+                                                       <div class="notification__list-item">
+                                                           <p><span class="circle" style="background-color: #fd5e71;"></span>Declined Bitcoin</p>
+                                                           <span class="rate rate--normal">1 BTC</span>
+                                                       </div>
+                                                       <div class="notification__list-item">
+                                                           <p><span class="circle" style="background-color: #58a3ea;"></span>Sent Litecoin</p>
+                                                           <span class="rate rate--minus">- 0.1 LTC</span>
+                                                       </div>
+                                                       <a href="" class="notification__more">See more</a>
+                                                   </div>
+                                               </div>
+                                -->
+                            </label>
+                            <!-- <div class="col-4">
+                                 <select class="mdb-select md-form">
+                                  <option value="" disabled selected>Choose your option</option>
+                                  <option value="1">Option 1</option>
+                                  <option value="2">Option 2</option>
+                                  <option value="3">Option 3</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+
+
+                                    <div class="input-wrap">
+                                        <input type="text" placeholder="Amount">
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="row">
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select class="mdb-select md-form" style="display: none;">
+                                            <option value="" disabled="" selected="">BTC</option>
+                                            <option value="BITCOIN">BITCOIN</option>
+                                            <option value="TETHER">TETHER</option>
+                                            <option value="BITCOINCASH">BITCOINCASH</option>
+                                            <option value="ETHERIUM">ETHERIUM</option>
+                                        </select><div class="custom-select">
+                                            <button class="custom-select__option custom-select__option--value" type="button">BTC</button>
+                                            <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">BITCOIN</button><button class="custom-select__option" type="button">TETHER</button><button class="custom-select__option" type="button">BITCOINCASH</button><button class="custom-select__option" type="button">ETHERIUM</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="input-wrap">
+                                        <input type="text" name="" class="form-control" placeholder="Amount">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select class="mdb-select md-form" style="display: none;">
+                                            <option value="" disabled="" selected="">BTC</option>
+                                            <option value="BITCOIN">BITCOIN</option>
+                                            <option value="TETHER">TETHER</option>
+                                            <option value="BITCOINCASH">BITCOINCASH</option>
+                                            <option value="ETHERIUM">ETHERIUM</option>
+                                        </select><div class="custom-select">
+                                            <button class="custom-select__option custom-select__option--value" type="button">BTC</button>
+                                            <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">BITCOIN</button><button class="custom-select__option" type="button">TETHER</button><button class="custom-select__option" type="button">BITCOINCASH</button><button class="custom-select__option" type="button">ETHERIUM</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="input-wrap">
+                                        <input type="text" name="middlename" class="form-control" placeholder="Amount">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Convert</button>
+                            </div>
+
+
+
+                            @section Scripts{
+
+
+
+                                <script src="~/Wallet_files/jquery.min.js"></script>
+                                <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
+
+                                <script src="~/Wallet_files/scripts.min.js"></script>
+                            }

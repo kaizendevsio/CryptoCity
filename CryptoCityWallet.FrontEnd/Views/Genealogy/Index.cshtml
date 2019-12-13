@@ -4,7 +4,15 @@
 
     ViewBag.Title = "Genealogy";
 }
+@section Styles{
 
+
+    <link rel="stylesheet" href="~/group-tree_files/bootstrap.min.css">
+    <link href="~/group-tree_files/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/group-tree_files/main.min.css">
+    <link rel="stylesheet" href="~/group-tree_files/defaults.css">
+}
 <main class="main-content">
 
     <div class="buy">
@@ -32,7 +40,7 @@
             </div>
             <div class="wallets__list">
 
-                <a href="http://frontend.test/group-tree#" class="wallet" style="background-color: #FF0800;">
+                <a href="group-tree.html" class="wallet" style="background-color: #FF0800;">
 
                     <span class="wallet__header">
                         <span class="wallet__currency">
@@ -55,7 +63,7 @@
 
                     </span>
                 </a>
-                <a href="http://frontend.test/group-tree#" class="wallet" style="background-color: #03A57F;">
+                <a href="group-tree.html" class="wallet" style="background-color: #03A57F;">
                     <span class="wallet__header">
                         <span class="wallet__currency">
 
@@ -76,7 +84,7 @@
 
 
 
-                <a href="http://frontend.test/group-tree#" class="wallet" style="background-color: #2e6da4;">
+                <a href="group-tree.html" class="wallet" style="background-color: #2e6da4;">
                     <span class="wallet__header">
                         <span class="wallet__currency">
 
@@ -94,7 +102,7 @@
 
                 </a>
 
-                <a href="http://frontend.test/group-tree#" class="wallet" style="background-color: green;">
+                <a href="group-tree.html" class="wallet" style="background-color: green;">
                     <span class="wallet__header">
                         <span class="wallet__currency">
 
@@ -112,19 +120,35 @@
 
 
 
-
-
-
-
-
-                <script src="./group-tree_files/jquery.min.js.download"></script>
-                <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
-
-                <script src="./group-tree_files/scripts.min.js.download"></script>
-
+                 
 
 
             </div>
         </div>
     </div>
 </main>
+
+
+
+@section Scripts{
+    <script src="~/group-tree_files/webfont.js" type="text/javascript" async=""></script>
+    <script type="text/javascript">
+        WebFontConfig = {
+            google: { families: ['Lato:300,400,500,700'] }
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+    <script src="~/group-tree_files/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
+
+    <script src="~/group-tree_files/scripts.min.js"></script>
+}

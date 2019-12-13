@@ -25,14 +25,12 @@
     <meta property="og:image" content="path/to/image.jpg">
     <link rel="icon" href=" ~/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="http://frontend.test/img/favicon/apple-touch-icon-180x180.png">
-    <link rel="stylesheet" href="~/transactions_files/bootstrap.min.css">
-    <link href="~/transactions_files/font-awesome.min.css" rel="stylesheet">
+    
     <!-- Template Basic Images End -->
     <!-- Custom Browsers Color Start -->
     <meta name="theme-color" content="#000">
     <!-- Custom Browsers Color End -->
-    <link rel="stylesheet" href="~/transactions_files/main.min.css"> 
-    <link rel="stylesheet" href="~/settings_files/defaults.css">
+    @RenderSection("Styles", required: false)
     <!-- <link rel="stylesheet" href="assets/css/style.min.css"> -->
     <!-- Load google font
     ================================================== -->
@@ -69,7 +67,7 @@
         }
     </style>
     <link rel="stylesheet" href="~/transactions_files/css" media="all">
- 
+
 </head>
 
 <body>

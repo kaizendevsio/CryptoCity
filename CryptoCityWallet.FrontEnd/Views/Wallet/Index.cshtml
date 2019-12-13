@@ -4,7 +4,38 @@
     Layout = "~/Views/Shared/_PartialView.cshtml";
 }
 
+@section Styles{
 
+
+    <link rel="stylesheet" href="~/Wallet-files/bootstrap.min.css">
+    <link href="~/Wallet-files/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Wallet-files/main.min.css">
+    <link rel="stylesheet" href="~/Wallet-files/defaults.css">
+}
+
+@section Scripts{
+    <script src="~/Wallet-files/webfont.js" type="text/javascript" async=""></script>
+    <script type="text/javascript">
+        WebFontConfig = {
+            google: { families: ['Lato:300,400,500,700'] }
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+    <script src="~/Wallet-files/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
+
+    <script src="~/Wallet-files/scripts.min.js"></script>
+}
 
 <main class="main-content">
     <section class="wallets">
@@ -12,7 +43,7 @@
 
         <div class="wallets__list">
 
-            <a href="/wallet-bitcoin" class="wallet" style="background-color: #FF0800;">
+            <a href="wallet-bitcoin.html" class="wallet" style="background-color: #FF0800;">
 
                 <span class="wallet__header">
                     <span class="wallet__currency">
@@ -30,7 +61,7 @@
 									   </svg>
                         </span>
                         <span class="wallet__currency-info">
-                            <span>BITCOIN</span>
+                            <span>Bitcoin</span>
                             <span>BTC</span>
                         </span>
                     </span>
@@ -50,7 +81,7 @@
                     <img src="~/Wallet_files/wallet-bg-img-1.png" alt="">
                 </span>
             </a>
-            <a href="/wallet-tether" class="wallet" style="background-color: #03A57F;">
+            <a href="wallet-tether.html" class="wallet" style="background-color: #03A57F;">
 
                 <span class="wallet__header">
                     <span class="wallet__currency">
@@ -67,7 +98,7 @@
                             </path>
                         </span>
                         <span class="wallet__currency-info">
-                            <span>TETHER</span>
+                            <span>Theter</span>
                             <span>USDT</span>
                         </span>
                     </span>
@@ -79,7 +110,7 @@
                 </span>
 
                 <span class="wallet__footer">
-                    <span>0 USDT - 0 USD</span>
+                    <span>1 USDT - 0 USD</span>
                     <span>0$</span>
                 </span>
 
@@ -88,7 +119,7 @@
                 </span>
             </a>
 
-            <a href="#add-wallet" class="add-wallet popup-link">
+            <a href="http://frontend.test/wallet#add-wallet" class="add-wallet popup-link">
                 <span class="add-wallet__icon">
                     <img src="~/Wallet_files/add-wallet-icon.png" alt="">
                 </span>
@@ -100,7 +131,7 @@
         </div>
         <br>
         <div class="wallets__list">
-            <a href="/wallet-ethereum" class="wallet" style="background-color: #6082B6;">
+            <a href="wallet-ethereum.html" class="wallet" style="background-color: #6082B6;">
 
                 <span class="wallet__header">
                     <span class="wallet__currency">
@@ -114,7 +145,7 @@
 									   </svg>
                         </span>
                         <span class="wallet__currency-info">
-                            <span>ETHEREUM</span>
+                            <span>Ethereum</span>
                             <span>ETH</span>
                         </span>
                     </span>
@@ -126,7 +157,7 @@
                 </span>
 
                 <span class="wallet__footer">
-                    <span>0 ETH - 0 USD</span>
+                    <span>0 ETH -0 USD</span>
                     <span>- 31$</span>
                 </span>
 
@@ -134,44 +165,10 @@
                     <img src="~/Wallet_files/wallet-bg-img-2.png" alt="">
                 </span>
             </a>
-            <a href="wallet-bitcoin-cash.html" class="wallet" style="background-color: #FBED28;">
 
-                <span class="wallet__header">
-                    <span class="wallet__currency">
-                        <span class="wallet__currency-icon">
-                            <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve"> -->
-                            <img src="~/Wallet_files/bitcoin.png" width="50px">
-                            <path d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M14.831,21.05
-										   c1.99-3.383,4.08-6.667,6.07-10.05c2.09,3.383,4.08,6.667,6.07,10.05c-0.099,0.099-0.199,0.099-0.298,0.199
-										   c-1.891,1.094-3.781,2.189-5.572,3.284c-0.199,0.099-0.398,0.099-0.597,0c-1.791-1.095-3.932-2.304-5.723-3.398L14.831,21.05z
-											M20.901,31c-1.99-3.085-4.08-5.97-6.169-8.856c0.199,0.099,0.298,0.199,0.497,0.298c1.791,1.095,3.483,2.09,5.274,3.184
-										   c0.298,0.199,0.497,0.199,0.796,0c1.891-1.094,3.781-2.189,5.672-3.284l0.249-0.139C25.13,25.089,23.09,28.114,20.901,31z">
 
-                            </path>
-                        </span>
-                        <span class="wallet__currency-info">
-                            <span>BITCOIN CASH</span>
-                            <span>BCH</span>
-                        </span>
-                    </span>
 
-                    <span class="wallet__course">
-                        <span>0 BCH</span>
-                        <span>0 USD</span>
-                    </span>
-                </span>
-
-                <span class="wallet__footer">
-                    <span>0 BCH - 0 USD</span>
-                    <span>0$</span>
-                </span>
-
-                <span class="wallet__bg-img">
-                    <img src="~/Wallet_files/wallet-bg-img-2.png" alt="">
-                </span>
-            </a>
-            <a href="#add-wallet" class="add-wallet popup-link">
+            <a href="http://frontend.test/wallet#add-wallet" class="add-wallet popup-link">
                 <span class="add-wallet__icon">
                     <img src="~/Wallet_files/add-wallet-icon.png" alt="">
                 </span>
@@ -184,65 +181,130 @@
     <div align="center">
         <div class="panel panel-default" style="width: 1055px;" align="left">
             <div class="panel-heading">
-                <strong>Transaction History</strong>
+                <strong>Trade Investment History</strong>
             </div>
 
             <div class="panel-body">
-                <div class="transactions__filters">
+                <div class="wallets__list">
 
-                    <div class="transactions__filters-col" style="margin-left: -30px;">
+                    <a href="wallet.html" class="wallet" style="background-color: #de8262;">
 
-                        <div class="custom-select--grey custom-select--actions">
-                            <select class="custom-select" style="display: none;">
-                                <option value="All transactions">All transactions</option>
-                                <option value="Sent">Sent</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Recieved">Recieved</option>
-                                <option value="Decline">Decline</option>
-                            </select><div class="custom-select">
-                                <button class="custom-select__option custom-select__option--value" type="button">All transactions</button>
-                                <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Sent</button><button class="custom-select__option" type="button">Pending</button><button class="custom-select__option" type="button">Recieved</button><button class="custom-select__option" type="button">Decline</button></div>
-                            </div>
-                        </div>
+                        <span class="wallet__header">
+                            <span class="wallet__currency">
+                                <span class="wallet__currency-icon">
 
-                    </div>
+                                </span>
+                                <span class="wallet__currency-info">
+                                    <span>Total Investment</span>
 
-                    <div class="transactions__filters-col transactions__filters-col--align-right">
-                        <div class="datapickers">
-                            <div class="datapicker-range">
-                                <img src="~/transactions_files/calendar.svg" alt="">
-                                <input type="text" placeholder="2017-04-01" class="datepicker-input datepicker-here" data-date-format="yyyy-mm-dd">
-                            </div>
-                            <div class="separator"></div>
-                            <div class="datapicker-range">
-                                <img src="~/transactions_files/calendar.svg" alt="">
-                                <input type="text" placeholder="2017-04-01" class="datepicker-input datepicker-here" data-date-format="yyyy-mm-dd">
-                            </div>
-                        </div>
+                                </span>
+                            </span>
 
-                    </div>
+                            <span class="wallet__course">
+                                <span> </span>
+                                <span>2000 USD Rate</span>
+                            </span>
+                        </span>
 
+                        <span class="wallet__bg-img">
 
-                    <div class="custom-select--grey custom-select--currency">
-                        <select class="custom-select" style="display: none;">
-                            <option value="Currency">Currency</option>
-                            <option value="Ethereum">Ethereum</option>
-                            <option value="Litecoin">Bitcoincash</option>
-                        </select><div class="custom-select">
-                            <button class="custom-select__option custom-select__option--value" type="button">Currency</button>
-                            <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Ethereum</button><button class="custom-select__option" type="button">Bitcoincash</button></div>
-                        </div>
-                    </div>
+                        </span>
+                    </a>
 
+                    <a href="wallet.html" class="wallet" style="background-color: #de8262;">
 
-                    <div class="input-wrap search-input">
-                        <img src="~/transactions_files/search.svg" alt="">
-                        <input type="text" placeholder="Search">
-                    </div>
+                        <span class="wallet__header">
+                            <span class="wallet__currency">
+                                <span class="wallet__currency-icon">
+
+                                </span>
+                                <span class="wallet__currency-info">
+                                    <span>Yesterday's Profit</span>
+
+                                </span>
+                            </span>
+
+                            <span class="wallet__course">
+                                <span> </span>
+                                <span>2.44 WCCP</span>
+                            </span>
+                        </span>
+
+                        <span class="wallet__bg-img">
+
+                        </span>
+                    </a>
+                    <a href="wallet.html" class="wallet" style="background-color: #de8262;">
+
+                        <span class="wallet__header">
+                            <span class="wallet__currency">
+                                <span class="wallet__currency-icon">
+
+                                </span>
+                                <span class="wallet__currency-info">
+                                    <span>WCCP Balance</span>
+
+                                </span>
+                            </span>
+
+                            <span class="wallet__course">
+                                <span> </span>
+                                <span>15 WCCP</span>
+                            </span>
+                        </span>
+
+                        <span class="wallet__bg-img">
+
+                        </span>
+                    </a>
+
                 </div>
+                <div style="margin-top: 20px;">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th style="background-color: #e95420; color: #fff;">Date</th>
+                                <th style="background-color: #e95420; color: #fff;">USD Rate Amount</th>
+                                <th style="background-color: #e95420; color: #fff;">Total Profit</th>
+                                <th style="background-color: #e95420; color: #fff;">WCCP Details</th>
+                                <th style="background-color: #e95420; color: #fff;">Cancel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th style="background-color: #e95420; color: #fff;">Date</th>
+                                <th style="background-color: #e95420; color: #fff;">Details</th>
+                                <th style="background-color: #e95420; color: #fff;">In </th>
+                                <th style="background-color: #e95420; color: #fff;">Out</th>
+                                <th style="background-color: #e95420; color: #fff;">Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </main>
+
+
