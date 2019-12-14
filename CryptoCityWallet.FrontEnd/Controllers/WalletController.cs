@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CryptoCityWallet.FrontEnd.Models;
+using CryptoCityWallet.Wrapper;
+using CryptoCityWallet.Wrapper.Models;
+using CryptoCityWallet.Entities.BO;
+using CryptoCityWallet.Entities.DTO;
+using Newtonsoft.Json;
 
 namespace CryptoCityWallet.FrontEnd.Controllers
 {
@@ -13,9 +18,51 @@ namespace CryptoCityWallet.FrontEnd.Controllers
     {
          
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.GetAsync("User/Profile", session.SessionCookies);
+                UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+                TblUserInfo userInfo = apiResponse.UserInfo;
+                TblUserAuth userAuth = apiResponse.UserAuth;
+
+                _res = await apiRequest.GetAsync("User/Wallet", session.SessionCookies);
+                apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+                List<UserWalletBO> userWallets = apiResponse.UserWallet;
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    WalletVM walletVM = new WalletVM();
+                    walletVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
+                    walletVM.Username = userAuth.UserName;
+                    walletVM.BTCBalance = (decimal)userWallets.Find(i => i.WalletCode == "BTC").Balance;
+                    walletVM.BCHBalance = (decimal)userWallets.Find(i => i.WalletCode == "BCH").Balance;
+                    walletVM.ETHBalance = (decimal)userWallets.Find(i => i.WalletCode == "ETH").Balance;
+                    walletVM.TTHBalance = (decimal)userWallets.Find(i => i.WalletCode == "USDT").Balance;
+                    
+                    return View(walletVM);
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+
+
+            }
+            catch (System.Exception e)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
+            
         }
         [Route("/Wallet/MyBitcoin")]
         [HttpGet]

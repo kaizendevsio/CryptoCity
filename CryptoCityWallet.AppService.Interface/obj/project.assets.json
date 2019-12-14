@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService.Interface\\CryptoCityWallet.AppService.Interface.csproj",
+      "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.AppService.Interface\\CryptoCityWallet.AppService.Interface.csproj",
       "projectName": "CryptoCityWallet.AppService.Interface",
-      "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService.Interface\\CryptoCityWallet.AppService.Interface.csproj",
+      "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.AppService.Interface\\CryptoCityWallet.AppService.Interface.csproj",
       "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService.Interface\\obj\\",
+      "outputPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.AppService.Interface\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

@@ -19,6 +19,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CryptoCityWallet.Wrapper\CryptoCityWallet.Wrapper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CryptoCityWallet.Entities">
+      <HintPath>..\CryptoCityWallet.Entities\bin\Debug\netcoreapp3.0\CryptoCityWallet.Entities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Views\Shared\_Layout.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

@@ -6,14 +6,60 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CryptoCityWallet.FrontEnd.Models;
+using CryptoCityWallet.Wrapper.Models;
+using CryptoCityWallet.Entities.BO;
+using Newtonsoft.Json;
+using CryptoCityWallet.Entities.DTO;
+using CryptoCityWallet.Wrapper;
 
 namespace CryptoCityWallet.FrontEnd.Controllers
 {
     public class GenealogyController : Controller
     { 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.GetAsync("User/Profile", session.SessionCookies);
+                UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+                TblUserInfo userInfo = apiResponse.UserInfo;
+                TblUserAuth userAuth = apiResponse.UserAuth;
+
+                _res = await apiRequest.GetAsync("User/Wallet", session.SessionCookies);
+                apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+                List<UserWalletBO> userWallets = apiResponse.UserWallet;
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    GenealogyVM genealogyVM = new GenealogyVM();
+                    genealogyVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
+                    genealogyVM.Username = userAuth.UserName;
+                    genealogyVM.TotalInvestment = (double)userWallets.Find(i => i.WalletCode == "TLI").Balance;
+                    genealogyVM.DirectPartners = (int)userWallets.Find(i => i.WalletCode == "DLN").Balance;
+                    genealogyVM.DirectVolume = (int)userWallets.Find(i => i.WalletCode == "DVL").Balance;
+                    genealogyVM.TotalGroupVolume = (int)userWallets.Find(i => i.WalletCode == "TGV").Balance;
+
+                    return View(genealogyVM);
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+
+
+            }
+            catch (System.Exception e)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
 
         public IActionResult Privacy()

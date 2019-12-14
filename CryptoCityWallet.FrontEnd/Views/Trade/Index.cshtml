@@ -3,7 +3,9 @@
     Layout = "~/Views/Shared/_PartialView.cshtml";
 
     ViewBag.Title = "Trade";
-} <main class="main-content">
+} 
+@model TradeVM
+<main class="main-content">
 
     <div class="buy">
         <div class="buy__header">
@@ -107,7 +109,7 @@
 
                                 <span class="wallet__course">
                                     <span> </span>
-                                    <span>2000 USD Rate</span>
+                                    <span>@Html.DisplayFor(model => model.TotalInvestment) USD Rate</span>
                                 </span>
                             </span>
 
@@ -131,7 +133,7 @@
 
                                 <span class="wallet__course">
                                     <span> </span>
-                                    <span>2.44 WCCP</span>
+                                    <span>@Html.DisplayFor(model => model.YesterdayProfit) WCCP</span>
                                 </span>
                             </span>
 
@@ -154,7 +156,7 @@
 
                                 <span class="wallet__course">
                                     <span> </span>
-                                    <span>15 WCCP</span>
+                                    <span>@Html.DisplayFor(model => model.WCCPBalance) WCCP</span>
                                 </span>
                             </span>
 

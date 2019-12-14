@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CryptoCityWallet.FrontEnd.Models
 {
-    public class WalletVM
+    public class WalletVM : UserVM
     {
         public decimal BTCBalance { get; set; }
 

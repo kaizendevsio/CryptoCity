@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj": {}
+    "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj": {
+    "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj",
+        "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj",
         "projectName": "CryptoCityWallet.AppService",
-        "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj",
+        "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj",
         "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.AppService\\obj\\",
+        "outputPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.AppService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -31,11 +31,11 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj": {
-                "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj"
+              "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj": {
+                "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj"
               },
-              "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
-                "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj"
+              "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
+                "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj"
               }
             }
           }
@@ -67,14 +67,14 @@
         }
       }
     },
-    "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj": {
+    "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj",
+        "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj",
         "projectName": "CryptoCityWallet.DataAccessLayer",
-        "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj",
+        "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.DataAccessLayer\\CryptoCityWallet.DataAccessLayer.csproj",
         "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.DataAccessLayer\\obj\\",
+        "outputPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.DataAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -94,8 +94,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
-                "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj"
+              "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
+                "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj"
               }
             }
           }
@@ -133,14 +133,14 @@
         }
       }
     },
-    "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
+    "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj",
+        "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj",
         "projectName": "CryptoCityWallet.Entities",
-        "projectPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj",
+        "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj",
         "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Net Core\\CryptoCity\\CryptoCityWallet.Entities\\obj\\",
+        "outputPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

@@ -1,8 +1,11 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CryptoCityWallet.FrontEnd.Models
 {
-    public class TransactionVM : UserVM
+    public class TradeVM : UserVM
     {
         public double TotalInvestment { get; set; }
         public double YesterdayProfit { get; set; }

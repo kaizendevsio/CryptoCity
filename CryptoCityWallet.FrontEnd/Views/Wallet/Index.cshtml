@@ -3,6 +3,7 @@
 @{
     Layout = "~/Views/Shared/_PartialView.cshtml";
 }
+@model WalletVM
 <main class="main-content">
     <section class="wallets">
         <h2>My Wallet</h2>
@@ -43,7 +44,7 @@
                     </span>
 
                     <span class="wallet__course">
-                        <span>0 BTC</span>
+                        <span> @Html.DisplayFor(model => model.BTCBalance) BTC</span>
                         <span>0 USD</span>
                     </span>
                 </span>
@@ -79,7 +80,7 @@
                     </span>
 
                     <span class="wallet__course">
-                        <span>0 USDT</span>
+                        <span>@Html.DisplayFor(model => model.TTHBalance) USDT</span>
                         <span>0 USD</span>
                     </span>
                 </span>
@@ -130,7 +131,7 @@
                     </span>
 
                     <span class="wallet__course">
-                        <span>0 ETH</span>
+                        <span>@Html.DisplayFor(model => model.ETHBalance) ETH</span>
                         <span>0 USD</span>
                     </span>
                 </span>

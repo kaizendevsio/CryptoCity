@@ -40,6 +40,11 @@
 
     <link rel="stylesheet" href="~/css/main.min.css">
     <link rel="stylesheet" href="~/css/defaults.css">
+    <link href="~/css/orgchart.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.9/js/jquery.orgchart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.9/js/jquery.orgchart.min.js.map"></script>
+
     <!-- <link rel="stylesheet" href="assets/css/style.min.css"> -->
     <!-- Load google font
     ================================================== -->
@@ -89,8 +94,8 @@
 
             <partial name="_SideBar.cshtml" />
 
-            @RenderBody() 
-
+            @RenderBody()
+            @RenderSection("Scripts", required: false)
 
         </div>
   

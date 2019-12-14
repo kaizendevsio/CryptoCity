@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CryptoCityWallet.FrontEnd.Models;
+using CryptoCityWallet.Entities.BO;
+using CryptoCityWallet.Wrapper;
+using CryptoCityWallet.Wrapper.Models;
+using Newtonsoft.Json;
+using CryptoCityWallet.Entities.DTO;
 
 namespace CryptoCityWallet.FrontEnd.Controllers
 {
@@ -83,96 +88,93 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         //}
 
 
-        //[Route("Login")]
-        //    [HttpPost]
-        //    public async Task<IActionResult> Login([FromBody] UserBO userBO)
-        //    {
-        //        try
-        //        {
-        //            ApiRequest apiRequest = new ApiRequest();
-        //            ResponseBO _res = await apiRequest.PostAsync("User/Authenticate", userBO);
+        [Route("Login")]
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] UserBO userBO)
+        {
+            try
+            {
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.PostAsync("User/Authenticate", userBO);
 
-        //            UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+                UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 
-        //            if (apiResponse.HttpStatusCode == "200")
-        //            {
-        //                SessionsController sessionController = new SessionsController();
-        //                sessionController.CreateSession(apiResponse, _res.ResponseCookies, HttpContext.Session);
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    SessionController sessionController = new SessionController();
+                    sessionController.CreateSession(apiResponse, _res.ResponseCookies, HttpContext.Session);
 
-        //                TblUserInfo tblUserInfo = apiResponse.UserInfo;
-        //                TblUserAuth tblUserAuth = apiResponse.UserAuth;
-        //                TblUserRole tblUserRole = apiResponse.UserRole;
+                    TblUserInfo tblUserInfo = apiResponse.UserInfo;
+                    TblUserAuth tblUserAuth = apiResponse.UserAuth;
+                    TblUserRole tblUserRole = apiResponse.UserRole;
 
+                    apiResponse.RedirectUrl = "/Wallet/";
+                    return Ok(apiResponse);
+                }
+                else
+                {
+                    apiResponse.RedirectUrl = "/User/Login/Failed";
+                    return BadRequest(apiResponse);
+                }
+            }
+            catch (System.Exception e)
+            {
+                UserResponseBO apiResponse = new UserResponseBO();
+                apiResponse.RedirectUrl = "/User/Login/Failed";
+                apiResponse.Message = e.Message;
+                return BadRequest(apiResponse);
+                //return Redirect("~/User/Login/Failed");
 
+            }
 
-        //                if (tblUserRole.AccessRole.Equals("Admin") || tblUserRole.AccessRole.Equals("SuperAdmin"))
-        //                {
-        //                    apiResponse.RedirectUrl = "/Admin/";
-        //                }
-        //                else
-        //                {
-        //                    apiResponse.RedirectUrl = "/Dashboard/";
-        //                }
-        //                apiResponse.RedirectUrl = "Dashboard";
-        //                return Ok(apiResponse);
-        //            }
-        //            else
-        //            {
-        //                apiResponse.RedirectUrl = "Login/Failed";
-        //                return Ok(apiResponse);
-        //            }
-        //        }
-        //        catch (System.Exception e)
-        //        {
-        //            return Redirect("Login/Failed");
-
-        //        }
-
-        //    }
+        }
 
 
 
-        //    [Route("SignUp")]
-        //    [HttpPost]
-        //    public async Task<IActionResult> SignUp([FromBody] UserBO userBO)
-        //    {
-        //        try
-        //        {
-        //            ApiRequest apiRequest = new ApiRequest();
-        //            ResponseBO _res = await apiRequest.PostAsync("User/Create", userBO);
+        [Route("SignUp")]
+        [HttpPost]
+        public async Task<IActionResult> SignUp([FromBody] UserBO userBO)
+        {
+            try
+            {
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.PostAsync("User/Create", userBO);
 
-        //            UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+                UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 
-        //            if (apiResponse.HttpStatusCode == "200")
-        //            {
-        //                SessionsController sessionController = new SessionsController();
-        //                sessionController.CreateSession(apiResponse, _res.ResponseCookies, HttpContext.Session);
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    SessionController sessionController = new SessionController();
+                    sessionController.CreateSession(apiResponse, _res.ResponseCookies, HttpContext.Session);
 
-        //                TblUserInfo tblUserInfo = apiResponse.UserInfo;
-        //                TblUserAuth tblUserAuth = apiResponse.UserAuth;
-        //                TblUserRole tblUserRole = apiResponse.UserRole;
-
-
-
-        //                apiResponse.RedirectUrl = "SuccessfulRegistration/";
+                    TblUserInfo tblUserInfo = apiResponse.UserInfo;
+                    TblUserAuth tblUserAuth = apiResponse.UserAuth;
+                    TblUserRole tblUserRole = apiResponse.UserRole;
 
 
 
-        //                return Ok(apiResponse);
-        //            }
-        //            else
-        //            {
-        //                apiResponse.RedirectUrl = "Login/Failed";
-        //                return Unauthorized(apiResponse);
-        //            }
-        //        }
-        //        catch (System.Exception e)
-        //        {
-        //            return Redirect("Login/Failed");
+                    apiResponse.RedirectUrl = "Login/";
 
-        //        }
 
-        //    }
+
+                    return Ok(apiResponse);
+                }
+                else
+                {
+                    apiResponse.RedirectUrl = "Login/Failed";
+                    return BadRequest(apiResponse);
+                }
+            }
+            catch (System.Exception e)
+            {
+                UserResponseBO apiResponse = new UserResponseBO();
+                apiResponse.RedirectUrl = "/User/Login/Failed";
+                apiResponse.Message = e.Message;
+                return BadRequest(apiResponse);
+
+            }
+
+        }
 
 
         //public byte[] ConvertToByte(HttpPostedFileBase file_)

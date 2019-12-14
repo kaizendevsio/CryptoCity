@@ -8,20 +8,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@ViewBag.Title</title>
-    <link href="~/assets/css" rel="stylesheet">
+   
+
+    <script src="~/assets/jquery-3.3.1.min.js"></script>
+    <script src="~/assets/popper.min.js"></script>
+    <script src="~/assets/bootstrap.min.js"></script>
+    <script src="~/assets/particles.js"></script>
+    <script src="~/assets/custom.js"></script>
+    <script src="~/js/site.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" href="~/assets/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/assets/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/galaxy-style.css">
 </head>
 <body>
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-message">Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-
-
-
-
-
-    @RenderBody() 
+    @RenderBody()
     @RenderSection("Scripts", required: false)
 
 

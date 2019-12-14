@@ -1,116 +1,99 @@
-﻿@{
-    Layout = null;
-
+﻿@{    
     ViewBag.Title = "Sign Up";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model SignUpVM
 
-<!DOCTYPE html>
-<html lang="en">
 
-<!-- Mirrored from frontend.test/sign-up by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Dec 2019 01:31:54 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 auth-left">
+                    <div class="row auth-form mb-4">
+                        <div class="col-12 col-sm-12">
+                            <div class="auth-text-top mb-4">
+                                <h1>Sign Up</h1>
+                            </div>
 
-
+                            <form class="form-horizontal" onsubmit=" sendFormData('@Url.Action("SignUp", "Home")','POST',this); return false">
 
 
-    <script src="~/assets/jquery-3.3.1.min.js"></script>
-    <script src="~/assets/popper.min.js"></script>
-    <script src="~/assets/bootstrap.min.js"></script>
-    <script src="~/assets/particles.js"></script>
-    <script src="~/assets/custom.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-    <link rel="stylesheet" href="~/assets/materialdesignicons.min.css">
-    <link rel="stylesheet" href="~/assets/bootstrap.min.css">
-    <link rel="stylesheet" href="~/assets/galaxy-style.css">
-</head>
-<body>
+                                <div class="form-group">
+                                    <label for="name">First Name</label>
+                                    <div class="input-icon">
+                                        <i class="mdi mdi-user"></i>
+                                        <input type="text" class="form-control" id="username" asp-for="FirstName" name="FirstName" placeholder="Enter First Name" autofocus>
 
-
-
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-4 auth-left">
-                <div class="row auth-form mb-4">
-                    <div class="col-12 col-sm-12">
-                        <div class="auth-text-top mb-4">
-                            <h1>Sign Up</h1>
-                        </div>
-
-                        <form class="form-horizontal"onsubmit=" sendFormData('@Url.Action("SignUp", "Home")','POST',this); return false" >
-
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <div class="input-icon">
-                                    <i class="mdi mdi-user"></i>
-                                    <input type="text" class="form-control" id="username" asp-for="Name" name="username" placeholder="Enter Name" autofocus>
+                                    </div>
 
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <div class="input-icon">
-                                    <i class="mdi mdi-email"></i>
-                                    <input type="text" class="form-control" id="username" asp-for="Username" name="username" placeholder="Enter Email" autofocus>
+                                <div class="form-group">
+                                    <label for="name">Last Name</label>
+                                    <div class="input-icon">
+                                        <i class="mdi mdi-user"></i>
+                                        <input type="text" class="form-control" id="username" asp-for="LastName" name="LastName" placeholder="Enter Last Name" autofocus>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="name">User Name</label>
+                                    <div class="input-icon">
+                                        <i class="mdi mdi-user"></i>
+                                        <input type="text" class="form-control" id="username" asp-for="Username" name="UserName" placeholder="Enter Desired Username" autofocus>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <div class="input-icon">
+                                        <i class="mdi mdi-email"></i>
+                                        <input type="text" class="form-control" id="username" asp-for="Email" name="Email" placeholder="Enter Email" autofocus>
+
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="password">Password</label>
+                                    <div class="input-icon">
+                                        <i class="mdi mdi-lock"></i>
+                                        <span class="passtoggle mdi mdi-eye toggle-password"></span>
+                                        <input type="password" class="form-control" asp-for="Password" name="PasswordString" placeholder="Enter Your Password">
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label for="password">Confirm Password</label>
+                                    <div class="input-icon">
+                                        <i class="mdi mdi-lock"></i>
+                                        <span class="passtoggle mdi mdi-eye toggle-password"></span>
+                                        <input type="password" class="form-control" name="password" asp-for="Password" placeholder="Enter Your Confirm Password">
+                                    </div>
+                                </div>
+
+                                <div class="d-flex form-check">
+                                    <!--          	<input type="checkbox"> <p>I aggree with  <a href="#">Term of Service</a> -->
 
                                 </div>
+                                <button class="btn btn-primary btn-block btn-c mt-4 mb-4">Submit</button>
+                            </form>
+                            <div class="btn-social mb-4">
                             </div>
-                            <div class="form-group ">
-                                <label for="password">Password</label>
-                                <div class="input-icon">
-                                    <i class="mdi mdi-lock"></i>
-                                    <span class="passtoggle mdi mdi-eye toggle-password"></span>
-                                    <input type="password" class="form-control"  asp-for="Password" name="password" placeholder="Enter Your Password">
-                                </div>
-                            </div>
-
-                            <div class="form-group ">
-                                <label for="password">Confirm Password</label>
-                                <div class="input-icon">
-                                    <i class="mdi mdi-lock"></i>
-                                    <span class="passtoggle mdi mdi-eye toggle-password"></span>
-                                    <input type="password" class="form-control" name="password"  asp-for="Password" placeholder="Enter Your Confirm Password">
-                                </div>
-                            </div>
-
-                            <div class="d-flex form-check">
-                                <!--          	<input type="checkbox"> <p>I aggree with  <a href="#">Term of Service</a> -->
-
-                            </div>
-                            <button class="btn btn-primary btn-block btn-c mt-4 mb-4">Submit</button>
-                        </form>
-                        <div class="btn-social mb-4">
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-8 auth-right d-lg-flex d-none bg-gradient" id="particles">
-                <div class="logo">
+                <div class="col-lg-8 auth-right d-lg-flex d-none bg-gradient" id="particles">
+                    <div class="logo">
+                    </div>
+                    <div class="heading">
+                    </div>
+                    <div class="shape"></div>
                 </div>
-                <div class="heading">
-                </div>
-                <div class="shape"></div>
             </div>
         </div>
-    </div>
+    </section>
+
    
-
-
-
-
-
-
-
-</body>
-
-<!-- Mirrored from frontend.test/sign-up by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Dec 2019 01:31:54 GMT -->
-</html>
+   
