@@ -44,7 +44,13 @@ namespace CryptoCityWallet.DataAccessLayer
             return true;
         }
 
-        public List<TblUserWallet> Get(TblUserAuth userAuth, dbWorldCCityContext db)
+        public TblUserWallet Get(UserWalletBO userWallet, dbWorldCCityContext db) 
+        {
+            TblUserWallet tblUserWallet = db.TblUserWallet.FirstOrDefault(item => item.UserAuthId == userWallet.UserAuthId && item.WalletTypeId == userWallet.WalletTypeId);
+            return tblUserWallet;
+        }
+
+        public List<TblUserWallet> GetAll(TblUserAuth userAuth, dbWorldCCityContext db)
         {
             var _qUi = from a in db.TblUserWallet
                        join b in db.TblWalletType on a.WalletTypeId equals b.Id
@@ -66,7 +72,7 @@ namespace CryptoCityWallet.DataAccessLayer
             return userWallet;
         }
 
-        public List<UserWalletBO> GetBO(TblUserAuth userAuth, dbWorldCCityContext db)
+        public List<UserWalletBO> GetAllBO(TblUserAuth userAuth, dbWorldCCityContext db)
         {
             var _qUi = from a in db.TblUserWallet
                        join b in db.TblWalletType on a.WalletTypeId equals b.Id
@@ -90,6 +96,36 @@ namespace CryptoCityWallet.DataAccessLayer
             List<UserWalletBO> userWallet = _qUi.ToList<UserWalletBO>();
 
             return userWallet;
+        }
+
+        public bool Update(UserWalletBO userWallet, dbWorldCCityContext db)
+        {
+            TblUserWallet tblUserWallet = db.TblUserWallet.FirstOrDefault(item => item.UserAuthId == userWallet.UserAuthId && item.WalletTypeId == userWallet.WalletTypeId);
+            
+            UserWalletBO UWT_entry = new UserWalletBO();
+            UWT_entry.Id = tblUserWallet.Id;
+            UWT_entry.Balance = tblUserWallet.Balance;
+            UWT_entry.UserAuthId = tblUserWallet.UserAuthId;
+
+            WalletTransactionBO walletTransaction = new WalletTransactionBO();
+            walletTransaction.Amount = userWallet.Balance - UWT_entry.Balance;
+
+            UserWalletTransactionRepository userWalletTransactionRepository = new UserWalletTransactionRepository();
+            bool y = userWalletTransactionRepository.Create(UWT_entry, walletTransaction, db);
+
+            if (y == false)
+            {
+                return false;
+            }
+            else
+            {
+                tblUserWallet.Balance = userWallet.Balance;
+                tblUserWallet.ModifiedOn = DateTime.Now;
+
+                db.TblUserWallet.Update(tblUserWallet);
+                db.SaveChanges();
+                return true;
+            }            
         }
     }
 }

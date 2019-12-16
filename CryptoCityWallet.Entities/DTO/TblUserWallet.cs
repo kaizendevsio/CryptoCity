@@ -12,7 +12,7 @@ namespace CryptoCityWallet.Entities.DTO
         public DateTime? ModifiedOn { get; set; }
         public long? ModifiedBy { get; set; }
         public DateTime? LastChanged { get; set; }
-        public long? UserAuthId { get; set; }
+        public long UserAuthId { get; set; }
         public long? WalletTypeId { get; set; }
         public decimal? Balance { get; set; }
 

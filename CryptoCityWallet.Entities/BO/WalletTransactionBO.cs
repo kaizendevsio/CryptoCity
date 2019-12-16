@@ -8,7 +8,7 @@ namespace CryptoCityWallet.Entities.BO
     {
         public string From{ get; set; }
         public string To { get; set; }
-        public double Amount { get; set; }
+        public decimal? Amount { get; set; }
         public string TxHash { get; set; }
     }
 }

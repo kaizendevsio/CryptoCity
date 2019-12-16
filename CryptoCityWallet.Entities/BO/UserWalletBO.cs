@@ -7,7 +7,7 @@ namespace CryptoCityWallet.Entities.BO
 {
     public class UserWalletBO : BaseAuditBO
     {
-        public long? UserAuthId { get; set; }
+        public long UserAuthId { get; set; }
         public long? WalletTypeId { get; set; }
         public decimal? Balance { get; set; }
         public decimal? BalanceFiat { get; set; }
