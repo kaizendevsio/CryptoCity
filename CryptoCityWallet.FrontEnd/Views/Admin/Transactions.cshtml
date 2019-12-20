@@ -1,8 +1,8 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_PartialView.cshtml";
+    Layout = "~/Views/Shared/_AdminPartialView.cshtml";
 
-    ViewBag.Title = "Genealogy";
+    ViewBag.Title = "Transactions";
 }
 
 <main class="main-content" style="height: 1000px;">
@@ -10,17 +10,20 @@
         <div class="card content-area">
             <div class="card-innr">
                 <div class="card-head">
-                    <h4 class="card-title">KYC lists</h4>
+                    <h4 class="card-title">Admin Transactions</h4>
                 </div>
-                <table class="table table-bordered data-table dt-init user-tnx">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>USER</th>
-                            <th>DOC TYPE</th>
-                            <th>DOCUMENTS</th>
-                            <th></th>
-                            <th>STATUS	</th>
-                            <th></th>
+                            <th>Tranx NO</th>
+                            <th>currency </th>
+                            <th>Amount</th>
+                            <th>USD Amount</th>
+                            <th>From</th>
+                            <th>
+                                <div>Type</div>
+                            </th>
+                            <th class="data-col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,7 +34,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-
+                            <td></td>
                         </tr>
                         <!-- .data-item -->
                     </tbody>
@@ -40,5 +43,6 @@
             <!-- .card-innr -->
         </div>
         <!-- .card -->
-        </section>
-        </main>
+     </section>
+    </main>
+
