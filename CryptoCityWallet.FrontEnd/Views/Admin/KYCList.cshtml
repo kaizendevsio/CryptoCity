@@ -1,0 +1,181 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_PartialView.cshtml";
+
+    ViewBag.Title = "Genealogy";
+}<main class="main-content">
+
+
+
+    <div class="buy">
+        <div class="buy__header">
+
+            <h2>Genealogy Map</h2>
+
+        </div>
+        <div class="buy__body">
+
+            <div class="exchange">
+                <div class="exchange__col">
+
+                    <div class="form__col credit-card-name">
+                        <label class="form__label">Search:</label>
+                        <div class="input-wrap">
+                            <input type="text">
+                            <br>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="wallets__list">
+
+                <a href="#" class="wallet" style="background-color: #FF0800;">
+
+                    <span class="wallet__header">
+                        <span class="wallet__currency">
+                            <span class="wallet__currency-icon">
+
+                            </span>
+                            <span class="wallet__currency-info">
+                                <span>Your Investment</span>
+
+                            </span>
+                        </span>
+
+                        <span class="wallet__course">
+                            <span> </span>
+                            <span>2000 </span>
+                        </span>
+                    </span>
+
+                    <span class="wallet__bg-img">
+
+                    </span>
+                </a>
+                <a href="#" class="wallet" style="background-color: #03A57F;">
+                    <span class="wallet__header">
+                        <span class="wallet__currency">
+
+                            <span class="wallet__currency-info">
+                                <span>Direct Partner</span>
+
+                            </span>
+                        </span>
+
+                        <span class="wallet__course">
+                            <span>4</span>
+
+                        </span>
+                    </span>
+
+
+                </a>
+
+
+
+                <a href="#" class="wallet" style="background-color: #2e6da4;">
+                    <span class="wallet__header">
+                        <span class="wallet__currency">
+
+                            <span class="wallet__currency-info">
+                                <span>Direct Volume</span>
+
+                            </span>
+                        </span>
+
+                        <span class="wallet__course">
+                            <span>200,000</span>
+
+                        </span>
+                    </span>
+
+                </a>
+
+                <a href="#" class="wallet" style="background-color: green;">
+                    <span class="wallet__header">
+                        <span class="wallet__currency">
+
+                            <span class="wallet__currency-info">
+                                <span>Total Group Volume</span>
+
+                            </span>
+                        </span>
+                        <span class="wallet__course">
+                            <span>1,000,000</span>
+                        </span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div align="center">
+        <div class="panel panel-default" style="width: 1055px;" align="left">
+            <div class="panel-heading">
+                <strong>Genealogy </strong>
+            </div>
+
+            <div class="panel-body">
+                <div class="wallets__list">
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+        <script src="../ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="~/js/jquery-2.2.4.min.js"><\/script>')</script>
+        <script src="~/js/jquery-2.2.4.min.js"></script>
+
+        <script src="~/js/scripts.min.js"></script>
+
+        <script type="text/javascript" src="~/js/jquery.min-1.js"></script>
+        <script type="text/javascript" src="~/js/jquery.orgchart.js"></script>
+        <script type="text/javascript">
+            $(function () {
+
+                var datascource = {
+                    'name': '',
+                    'title': '',
+                    'children': [
+                        {
+                            'name': '', 'title': '',
+                            'children': [
+                                { 'name': '', 'title': '' },
+                                { 'name': '', 'title': '' }
+                            ]
+                        },
+
+                        {
+                            'name': '', 'title': '',
+                            'children': [
+                                { 'name': '', 'title': 'r' },
+                                { 'name': '', 'title': 'r' }
+                            ]
+                        }
+                    ]
+                };
+
+                $('#chart-container').orgchart({
+                    'data': datascource,
+                    'nodeContent': 'title',
+                    'toggleSiblingsResp': true
+                });
+
+            });
+        </script>
+
+
+
+
+        <!-- Mirrored from frontend.test/group-tree by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Dec 2019 01:19:59 GMT -->
+
+    </div>
+</main>
