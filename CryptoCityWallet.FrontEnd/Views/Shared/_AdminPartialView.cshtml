@@ -1,0 +1,101 @@
+﻿ 
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+
+ 
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /> 
+<head>
+
+    <meta charset="utf-8">
+    <!-- <base href="/"> -->
+
+    <title> </title>
+    <meta name="description" content="">
+
+    <script src="~/assets/jquery-3.3.1.min.js"></script>
+    <script src="~/assets/popper.min.js"></script>
+    <script src="~/assets/bootstrap.min.js"></script>
+    <script src="~/assets/particles.js"></script>
+    <script src="~/assets/custom.js"></script>
+
+    <script src="../ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
+
+    <script src="~/js/scripts.min.js"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Template Basic Images Start -->
+    <meta property="og:image" content="path/to/image.html">
+    <link rel="icon" href="~/img/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/favicon/apple-touch-icon-180x180.png">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="../stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Template Basic Images End -->
+    <!-- Custom Browsers Color Start -->
+    <meta name="theme-color" content="#000">
+    <!-- Custom Browsers Color End -->
+
+    <link rel="stylesheet" href="~/css/main.min.css">
+    <link rel="stylesheet" href="~/css/defaults.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.min.css"> -->
+    <!-- Load google font
+    ================================================== -->
+    <script type="text/javascript">
+        WebFontConfig = {
+            google: { families: ['Lato:300,400,500,700'] }
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+    <!-- Load other scripts
+    ================================================== -->
+    <script type="text/javascript">
+        var _html = document.documentElement;
+        _html.className = _html.className.replace("no-js", "js");
+    </script>
+
+    <style>
+        .preloader {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background-color: #fff;
+            z-index: 9999;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+
+
+        <partial name="_AdminNavBar.cshtml" />
+        <div class="content">
+
+
+            <partial name="_AdminSideBar.cshtml" />
+
+            @RenderBody() 
+
+
+        </div>
+  
+
+
+
+</body>
+</html>

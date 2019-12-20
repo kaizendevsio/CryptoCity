@@ -15,8 +15,35 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 
         public IActionResult Index()
         {
+            return Redirect("Admin/Transactions");
+        }
+
+
+        [Route("Admin/KYCList")]
+        public IActionResult KYCList()
+        {
             return View();
-        } 
+        }
+
+        [Route("Admin/Users")]
+        public IActionResult Users()
+        {
+            return View();
+        }
+
+
+        [Route("Admin/Transactions")]
+        public IActionResult Transactions()
+        {
+            return View();
+        }
+
+
+        [Route("Admin/Settings")]
+        public IActionResult Settings()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
