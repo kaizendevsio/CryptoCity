@@ -21,6 +21,9 @@ function sendFormData(url, type, form) {
         contentType: 'application/json',
         success: function (data) {
             //console.log(data);
+            if (data.Message != undefined) {
+                alert(data.Message);
+            }
             window.location.href = data.RedirectUrl;
 
         },

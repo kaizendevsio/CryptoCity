@@ -45,6 +45,7 @@ namespace CryptoCityWallet.AppService
 
                     UserInfoRepository userInfoRepository = new UserInfoRepository();
                     TblUserInfo userInfo = userInfoRepository.Create(userBO, db);
+                    userBO.Uid = userInfo.Uid;
 
                     UserAuthRepository userAuthRepository = new UserAuthRepository();
                     TblUserAuth userAuth = userAuthRepository.Create(userBO, userInfo, db);
@@ -55,6 +56,10 @@ namespace CryptoCityWallet.AppService
                     // CREATE USER WALLETS
                     UserWalletAppService userWallet = new UserWalletAppService();
                     userWallet.Create(userAuth, db);
+
+                    // CREATE USER MAP
+                    UserMapAppService userMapAppService = new UserMapAppService();
+                    userMapAppService.Create(userBO,userAuth,db);
 
                     transaction.Commit();
 

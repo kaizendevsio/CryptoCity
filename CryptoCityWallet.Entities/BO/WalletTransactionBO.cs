@@ -10,5 +10,6 @@ namespace CryptoCityWallet.Entities.BO
         public string To { get; set; }
         public decimal? Amount { get; set; }
         public string TxHash { get; set; }
+        public bool IsFeeEnabled { get; set; }
     }
 }

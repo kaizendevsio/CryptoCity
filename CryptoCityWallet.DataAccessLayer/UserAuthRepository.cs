@@ -7,16 +7,21 @@ using CryptoCityWallet.Entities.Enums;
 
 namespace CryptoCityWallet.DataAccessLayer
 {
-    public class UserAuthRepository
+    public class UserAuthRepository : GenericRepository
     {
         public TblUserAuth Create(UserBO userBO, TblUserInfo userInfo, dbWorldCCityContext db)
         {
+            GenericRepository genericRepository = new GenericRepository();
+
             TblUserAuth _userAuth = new TblUserAuth();
             byte[] _passwordByte = Encoding.ASCII.GetBytes(userBO.PasswordString);
             byte[] _hashPasswordByte;
             SHA512 shaM = new SHA512Managed();
             _hashPasswordByte = shaM.ComputeHash(_passwordByte);
             string base64Password = System.Convert.ToBase64String(_hashPasswordByte);
+
+            //TblAuditFields auditFields = genericRepository.GenericInjection();
+            //_userAuth = _mapper.Map<TblUserAuth>(auditFields);
 
             _userAuth.UserName = userBO.UserName;
             _userAuth.PasswordByte = _hashPasswordByte;
@@ -83,6 +88,26 @@ namespace CryptoCityWallet.DataAccessLayer
                 return tblUserAuth;
             }
 
+        }
+
+        public TblUserAuth GetByUID(string Uid, dbWorldCCityContext db)
+        {
+            var _qAuth = from a in db.TblUserAuth
+                         join b in db.TblUserInfo on a.UserInfoId equals b.Id
+                         where b.Uid == Uid
+                         select new TblUserAuth
+                         {
+                             UserName = a.UserName,
+                             PasswordByte = a.PasswordByte,
+                             IsEnabled = a.IsEnabled,
+                             UserInfoId = a.UserInfoId,
+                             UserInfo = b,
+                             CreatedOn = a.CreatedOn,
+                             Id = a.Id
+                         };
+
+            TblUserAuth tblUserAuth = _qAuth.FirstOrDefault();
+            return tblUserAuth;
         }
     }
 }

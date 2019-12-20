@@ -13,8 +13,8 @@ namespace CryptoCityWallet.Entities.DTO
         public long? ModifiedBy { get; set; }
         public DateTime? LastChanged { get; set; }
         public string UserUid { get; set; }
-        public string SponsorUserId { get; set; }
-        public string UplineUserId { get; set; }
+        public long SponsorUserId { get; set; }
+        public long UplineUserId { get; set; }
         public short? Position { get; set; }
 
         public virtual TblUserAuth IdNavigation { get; set; }

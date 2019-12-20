@@ -21,6 +21,16 @@ namespace CryptoCityWallet.DataAccessLayer
             userWalletTransaction.CreatedOn = DateTime.Now;
             userWalletTransaction.RunningBalance = userWallet.Balance;
 
+            if (userWallet.IsEnabled == true)
+            {
+                userWalletTransaction.Remarks = GenericStatusType.Approved.ToString();
+            }
+            else
+            {
+                userWalletTransaction.Remarks = GenericStatusType.Disabled.ToString();
+            }
+
+
             db.TblUserWalletTransaction.Add(userWalletTransaction);
             db.SaveChanges();
             return true;

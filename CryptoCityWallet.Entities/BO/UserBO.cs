@@ -31,6 +31,9 @@ namespace CryptoCityWallet.Entities.BO
         public string UserName { get; set; }
         public short? FailPassAttempt { get; set; }
         public string TemporaryPassword { get; set; }
-                
+        public string DirectSponsorID { get; set; }
+        public string BinarySponsorID { get; set; }
+        public string BinaryPosition { get; set; }
+
     }
 }

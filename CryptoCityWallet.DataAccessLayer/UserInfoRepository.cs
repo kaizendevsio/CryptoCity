@@ -11,6 +11,8 @@ namespace CryptoCityWallet.DataAccessLayer
         public TblUserInfo Create(UserBO userBO, dbWorldCCityContext db)
         {
             TblUserInfo _userInfo = new TblUserInfo();
+            Guid g = Guid.NewGuid();
+
             _userInfo.FirstName = userBO.FirstName;
             _userInfo.LastName = userBO.LastName;
             _userInfo.PhoneNumber = userBO.PhoneNumber;
@@ -18,7 +20,7 @@ namespace CryptoCityWallet.DataAccessLayer
             _userInfo.Dob = userBO.Dob;
             _userInfo.CountryIsoCode2 = userBO.CountryIsoCode2;
             _userInfo.Gender = userBO.Gender;
-            _userInfo.Uid = new Guid().ToString();
+            _userInfo.Uid = g.ToString();
             _userInfo.IsEnabled = true;
             _userInfo.EmailStatus = (short)EmailStatus.Unverified;
 

@@ -11,8 +11,7 @@ namespace CryptoCityWallet.AppService
 {
     public class WalletAppService
     {
-
-       
+               
 
     }
 }

@@ -42,7 +42,8 @@ namespace CryptoCityWallet.DataAccessLayer
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=dbworldccity.crbu3tdpw97d.us-east-2.rds.amazonaws.com;Database=dbWorldCCity;Username=dbAdmin;Password=Jr2Ge4FvY!=Z5u!^");
+                optionsBuilder.UseNpgsql("Host=dbworldccity.caxbcdtsfhob.ap-southeast-1.rds.amazonaws.com;Database=dbWorldCCity;Username=dbAdmin;Password=Jr2Ge4FvY!=Z5u!^");
+               //optionsBuilder.UseNpgsql("Host=localhost;Database=dbWorldCCity;Username=dbAdmin;Password=Jr2Ge4FvY!=Z5u!^");
             }
         }
 

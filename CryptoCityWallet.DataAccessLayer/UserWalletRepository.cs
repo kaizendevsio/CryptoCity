@@ -15,18 +15,9 @@ namespace CryptoCityWallet.DataAccessLayer
         public bool Create(TblUserAuth userAuth, dbWorldCCityContext db)
         {
             // ENUMERATE ALL WALELT TYPES
-            var _q = from a in db.TblWalletType
-                     //where a.Type == (int)WalletType.CurrencyValue
-                     select new TblWalletType
-                     {
-                         Name = a.Name,
-                         Desc = a.Desc,
-                         Type = a.Type,
-                         Code = a.Code,
-                         Id = a.Id
-                     };
+            WalletTypeRepository walletTypeRepository = new WalletTypeRepository();
 
-            List<TblWalletType> _qWalletTypeRes = _q.ToList<TblWalletType>();
+            List<TblWalletType> _qWalletTypeRes = walletTypeRepository.GetAll(db);
 
             for (int i = 0; i < _qWalletTypeRes.Count; i++)
             {
@@ -46,8 +37,27 @@ namespace CryptoCityWallet.DataAccessLayer
 
         public TblUserWallet Get(UserWalletBO userWallet, dbWorldCCityContext db) 
         {
-            TblUserWallet tblUserWallet = db.TblUserWallet.FirstOrDefault(item => item.UserAuthId == userWallet.UserAuthId && item.WalletTypeId == userWallet.WalletTypeId);
-            return tblUserWallet;
+            var _q = from a in db.TblUserWallet
+                     where a.UserAuthId == userWallet.UserAuthId && a.WalletTypeId == userWallet.WalletTypeId && a.IsEnabled == true
+                     join b in db.TblWalletType on a.WalletTypeId equals b.Id
+                     select new TblUserWallet
+                     {
+                         Id = a.Id,
+                         WalletType = b,
+                         Balance = a.Balance,
+                         UserAuthId = a.UserAuthId,
+                         WalletTypeId = a.WalletTypeId,
+                         CreatedOn = a.CreatedOn,
+                         IsEnabled = a.IsEnabled,
+                         ModifiedOn = a.ModifiedOn
+                     };
+
+            TblUserWallet _qRes = _q.FirstOrDefault<TblUserWallet>();
+
+            return _qRes;
+
+            //TblUserWallet tblUserWallet = db.TblUserWallet.FirstOrDefault(item => item.UserAuthId == userWallet.UserAuthId && item.WalletTypeId == userWallet.WalletTypeId);
+            //return tblUserWallet;
         }
 
         public List<TblUserWallet> GetAll(TblUserAuth userAuth, dbWorldCCityContext db)
@@ -100,17 +110,18 @@ namespace CryptoCityWallet.DataAccessLayer
 
         public bool Update(UserWalletBO userWallet, dbWorldCCityContext db)
         {
+            UserWalletTransactionRepository userWalletTransactionRepository = new UserWalletTransactionRepository();
             TblUserWallet tblUserWallet = db.TblUserWallet.FirstOrDefault(item => item.UserAuthId == userWallet.UserAuthId && item.WalletTypeId == userWallet.WalletTypeId);
             
             UserWalletBO UWT_entry = new UserWalletBO();
             UWT_entry.Id = tblUserWallet.Id;
             UWT_entry.Balance = tblUserWallet.Balance;
             UWT_entry.UserAuthId = tblUserWallet.UserAuthId;
+            UWT_entry.IsEnabled = tblUserWallet.IsEnabled;
 
             WalletTransactionBO walletTransaction = new WalletTransactionBO();
             walletTransaction.Amount = userWallet.Balance - UWT_entry.Balance;
-
-            UserWalletTransactionRepository userWalletTransactionRepository = new UserWalletTransactionRepository();
+            
             bool y = userWalletTransactionRepository.Create(UWT_entry, walletTransaction, db);
 
             if (y == false)
@@ -119,6 +130,10 @@ namespace CryptoCityWallet.DataAccessLayer
             }
             else
             {
+                if (userWallet.IsEnabled == false)
+                {
+                    return false;
+                }
                 tblUserWallet.Balance = userWallet.Balance;
                 tblUserWallet.ModifiedOn = DateTime.Now;
 

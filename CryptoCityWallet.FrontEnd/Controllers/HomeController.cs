@@ -154,7 +154,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 
 
                     apiResponse.RedirectUrl = "Login/";
-
+                    apiResponse.Message = "Signup Successful. You will be redirected to Login.";
 
 
                     return Ok(apiResponse);

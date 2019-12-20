@@ -185,16 +185,36 @@ namespace CryptoCityWallet.AppService
         public bool Transfer(UserWalletBO sourceUserWalletBO, UserWalletBO targetUserWalletBO, WalletTransactionBO walletTransaction, dbWorldCCityContext db = null)
         {
             UserWalletRepository userWalletRepository = new UserWalletRepository();
+            ExchangeRateRepository exchangeRateRepository = new ExchangeRateRepository();
 
             if (db != null)
             {
                 TblUserWallet sourceUserWallet = userWalletRepository.Get(sourceUserWalletBO, db);
                 TblUserWallet targetUserWallet = userWalletRepository.Get(targetUserWalletBO, db);
-                
+
+
+                TblExchangeRate exchangeRate = new TblExchangeRate();
+                exchangeRate.SourceCurrencyId = (long)sourceUserWallet.WalletType.CurrencyId;
+                exchangeRate.TargetCurrencyId = (long)targetUserWallet.WalletType.CurrencyId;
+                exchangeRate = exchangeRateRepository.Get(exchangeRate, db);
+
+                decimal? topUpValue = (walletTransaction.Amount * exchangeRate.Value);
+                decimal? fee;
+
+                if (walletTransaction.IsFeeEnabled == true)
+                {
+                    fee = topUpValue * exchangeRate.Fee; // Percentage Fee
+                }
+                else
+                {
+                    fee = 0m;
+                }                
+                topUpValue = topUpValue - fee;
+
                 UserWalletBO sourceUserWalletUpdate = new UserWalletBO();
                 sourceUserWalletUpdate.UserAuthId = sourceUserWallet.UserAuthId;
                 sourceUserWalletUpdate.WalletTypeId = sourceUserWallet.WalletTypeId;
-                sourceUserWalletUpdate.Balance = (decimal)sourceUserWallet.Balance - walletTransaction.Amount;
+                sourceUserWalletUpdate.Balance = (decimal)sourceUserWallet.Balance - topUpValue;
 
                 bool a = userWalletRepository.Update(sourceUserWalletUpdate, db);
 
@@ -202,17 +222,17 @@ namespace CryptoCityWallet.AppService
                 {
                     return false;
                 }
-                else { 
-                UserWalletBO targetUserWalletUpdate = new UserWalletBO();
+                else
+                {
+                    UserWalletBO targetUserWalletUpdate = new UserWalletBO();
                     targetUserWalletUpdate.UserAuthId = targetUserWallet.UserAuthId;
                     targetUserWalletUpdate.WalletTypeId = targetUserWallet.WalletTypeId;
-                    targetUserWalletUpdate.Balance = (decimal)targetUserWallet.Balance + walletTransaction.Amount;
+                    targetUserWalletUpdate.Balance = (decimal)targetUserWallet.Balance + topUpValue;
 
-                    userWalletRepository.Update(targetUserWalletUpdate, db);
-                    return true;
+                    return userWalletRepository.Update(targetUserWalletUpdate, db);
                 }
             }
-            else 
+            else
             {
                 using (db = new dbWorldCCityContext())
                 {
@@ -221,10 +241,29 @@ namespace CryptoCityWallet.AppService
                         TblUserWallet sourceUserWallet = userWalletRepository.Get(sourceUserWalletBO, db);
                         TblUserWallet targetUserWallet = userWalletRepository.Get(targetUserWalletBO, db);
 
+
+                        TblExchangeRate exchangeRate = new TblExchangeRate();
+                        exchangeRate.SourceCurrencyId = (long)sourceUserWallet.WalletType.CurrencyId;
+                        exchangeRate.TargetCurrencyId = (long)targetUserWallet.WalletType.CurrencyId;
+                        exchangeRate = exchangeRateRepository.Get(exchangeRate, db);
+
+                        decimal? topUpValue = (walletTransaction.Amount * exchangeRate.Value);
+                        decimal? fee;
+
+                        if (walletTransaction.IsFeeEnabled == true)
+                        {
+                            fee = topUpValue * exchangeRate.Fee; // Percentage Fee
+                        }
+                        else
+                        {
+                            fee = 0m;
+                        }
+                        topUpValue = topUpValue - fee;
+
                         UserWalletBO sourceUserWalletUpdate = new UserWalletBO();
                         sourceUserWalletUpdate.UserAuthId = sourceUserWallet.UserAuthId;
                         sourceUserWalletUpdate.WalletTypeId = sourceUserWallet.WalletTypeId;
-                        sourceUserWalletUpdate.Balance = (decimal)sourceUserWallet.Balance - walletTransaction.Amount;
+                        sourceUserWalletUpdate.Balance = (decimal)sourceUserWallet.Balance - topUpValue;
 
                         bool a = userWalletRepository.Update(sourceUserWalletUpdate, db);
 
@@ -237,17 +276,16 @@ namespace CryptoCityWallet.AppService
                             UserWalletBO targetUserWalletUpdate = new UserWalletBO();
                             targetUserWalletUpdate.UserAuthId = targetUserWallet.UserAuthId;
                             targetUserWalletUpdate.WalletTypeId = targetUserWallet.WalletTypeId;
-                            targetUserWalletUpdate.Balance = (decimal)targetUserWallet.Balance + walletTransaction.Amount;
+                            targetUserWalletUpdate.Balance = (decimal)targetUserWallet.Balance + topUpValue;
 
-                            userWalletRepository.Update(targetUserWalletUpdate, db);
                             transaction.Commit();
 
-                            return true;
+                            return userWalletRepository.Update(targetUserWalletUpdate, db);
                         }
                     }
                 }
             }
-            
+
         }
 
     }
