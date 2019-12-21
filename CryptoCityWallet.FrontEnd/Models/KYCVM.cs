@@ -2,7 +2,7 @@ using System;
 
 namespace CryptoCityWallet.FrontEnd.Models
 {
-    public class AdminSettingsVM
+    public class KycVM
     {
 
 

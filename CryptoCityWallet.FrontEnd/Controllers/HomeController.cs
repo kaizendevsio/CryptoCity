@@ -25,17 +25,17 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         //}
 
         public IActionResult Index()
-            {
-                return View();
-            }
+        {
+            return View();
+        }
 
-            [Route("Login")]
-            [HttpGet]
-            public IActionResult LogIn()
-            {
+        [Route("Login")]
+        [HttpGet]
+        public IActionResult LogIn()
+        {
 
-                return View();
-            }
+            return View();
+        }
         [Route("SignUp")]
         [HttpGet]
         public IActionResult SignUp()
@@ -109,6 +109,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     TblUserRole tblUserRole = apiResponse.UserRole;
 
                     apiResponse.RedirectUrl = "/Wallet/";
+                    apiResponse.Message = null;
                     return Ok(apiResponse);
                 }
                 else
@@ -176,31 +177,15 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 
         }
 
+        [Route("Logout")]
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            SessionController sessionController = new SessionController();
+            sessionController.DestroySession(HttpContext.Session);
 
-        //public byte[] ConvertToByte(HttpPostedFileBase file_)
-        //{
-        //    //byte[] fileByte = null;
-        //    //BinaryReader rdr = new BinaryReader(file_.InputStream);
-        //    //fileByte = rdr.ReadBytes((int)file_.ContentLength);
-        //    //return fileByte;
-        //}
-
-
-
-
-
-
-        public IActionResult Privacy()
-            {
-                return View();
-            }
-
-            [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-            public IActionResult Error()
-            {
-                return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-            }
+            return Redirect("~/Login");
         }
 
-
     }
+}

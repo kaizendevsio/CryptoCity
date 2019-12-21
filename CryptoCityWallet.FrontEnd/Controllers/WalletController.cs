@@ -16,8 +16,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 {
     public class WalletController : Controller
     {
-         
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             try

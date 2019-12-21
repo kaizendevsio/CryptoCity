@@ -12,8 +12,8 @@ namespace CryptoCityWallet.Wrapper
 {
     public class ApiRequest
     {
-        private Uri ApiUri { get; set; } = new Uri("http://13.251.181.208:8096/");
-        //private Uri ApiUri { get; set; } = new Uri("https://localhost:55007/");
+        //private Uri ApiUri { get; set; } = new Uri("http://13.251.181.208:8096/");
+        private Uri ApiUri { get; set; } = new Uri("https://localhost:55007/");
         public async Task<ResponseBO> PostAsync(string url, object param, CookieCollection requestCookies = null, string contentType = "application/json")
         {
             CookieContainer cookies = new CookieContainer();

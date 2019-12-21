@@ -24,8 +24,8 @@ function sendFormData(url, type, form) {
             if (data.Message != undefined) {
                 alert(data.Message);
             }
-            window.location.href = data.RedirectUrl;
-
+            //window.location = data.RedirectUrl;
+            window.location.replace(data.RedirectUrl);
         },
         error: function (data, textStatus, jqXHR) {
             console.log(data.responseJSON);

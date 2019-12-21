@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Newtonsoft.Json.Serialization;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace CryptoCityWallet.FrontEnd
 {
@@ -84,6 +86,13 @@ namespace CryptoCityWallet.FrontEnd
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img")),
+            //    RequestPath = "/wwwroot/img"
+            //});
         }
     }
 }
