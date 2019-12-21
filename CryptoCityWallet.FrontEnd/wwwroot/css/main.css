@@ -4313,11 +4313,12 @@ h4{
     color:#f2f5f6;
     font-weight:500
 }
-.menu__link:hover{
-    color:#fff
-}
-.menu__link:hover .menu__link-text:hover{
-    color:#444952
+    .menu__link:hover {
+        color: #444952;
+        background-color: aliceblue;
+    }
+.menu__link:hover .menu__link-text_2:hover{
+    color:#444952;
 }
 .menu__link svg{
     width:15px;
@@ -4332,7 +4333,7 @@ h4{
 .menu__link-icon{
     margin-left:-40px
 }
-.menu__link-text{
+.menu__link-text_2{
     position:absolute;
     top:50%;
     -webkit-transform:translateY(-50%);
@@ -4341,9 +4342,13 @@ h4{
     left:45px; /* 50 */
     -webkit-transition:color .4s;
     -o-transition:color .4s;
-    transition:color .4s
+    transition:color .4s;
+    color: #fff;
+     width:79%;
 }
-.copyright{
+
+
+    .copyright{
     position:absolute;
     bottom:40px;
     left:0;
@@ -4698,13 +4703,13 @@ h4{
     .sidebar.open .menu__link:after{
         display:none
     }
-    .sidebar.open .menu__link:hover .menu__link-text{
+    .sidebar.open .menu__link:hover .menu__link-text_2{
         color:#444952
     }
-    .sidebar.open .menu__item.active .menu__link-text{
+    .sidebar.open .menu__item.active .menu__link-text_2{
         color:#58a3ea
     }
-    .sidebar.open .menu__link-text{
+    .sidebar.open .menu__link-text_2{
         opacity:1
     }
     .menu__item.active .menu__link-icon svg path{
@@ -4736,7 +4741,7 @@ h4{
         width:calc(100% + 70px);
         opacity:1
     }
-    .menu__link:hover .menu__link-text{
+    .menu__link:hover .menu__link-text_2{
         opacity:1
     }
     .menu__link-icon{
@@ -4749,7 +4754,7 @@ h4{
         position:relative;
         top:3px
     }
-    .menu__link-text{
+    .menu__link-text_2{
         opacity:0;
         z-index:1;
         left:85px;
@@ -4769,7 +4774,7 @@ h4{
     .menu__link{
         padding-left:38px
     }
-    .menu__link-text{
+    .menu__link-text_2{
         left:70px
     }
 }

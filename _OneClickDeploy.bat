@@ -32,7 +32,7 @@ cd C:\Projects\Net Core\CryptoCityWallet
 
 
 echo Deploying to server: Portal
-plink ubuntu@3.0.78.60 -m oneclick.portal.sh -batch
+plink ubuntu@54.169.98.94 -m oneclick.portal.sh -batch
 
 
 echo Deploying to server: API

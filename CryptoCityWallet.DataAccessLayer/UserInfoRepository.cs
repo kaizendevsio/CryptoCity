@@ -33,7 +33,8 @@ namespace CryptoCityWallet.DataAccessLayer
         public TblUserInfo Get(TblUserAuth userAuth, dbWorldCCityContext db)
         {
             var _qUi = from a in db.TblUserInfo
-                       where a.Id == userAuth.UserInfoId
+                       join b in db.TblUserAuth on a.Id equals b.UserInfoId
+                       where a.Id == userAuth.UserInfoId || b.UserName == userAuth.UserName
                        select new TblUserInfo
                        {
                            FirstName = a.FirstName,

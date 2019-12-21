@@ -4,6 +4,8 @@ using System.Security.Cryptography;
 using CryptoCityWallet.Entities.DTO;
 using CryptoCityWallet.Entities.BO;
 using CryptoCityWallet.Entities.Enums;
+using AutoMapper;
+using System;
 
 namespace CryptoCityWallet.DataAccessLayer
 {
@@ -21,8 +23,7 @@ namespace CryptoCityWallet.DataAccessLayer
             string base64Password = System.Convert.ToBase64String(_hashPasswordByte);
 
             //TblAuditFields auditFields = genericRepository.GenericInjection();
-            //_userAuth = _mapper.Map<TblUserAuth>(auditFields);
-
+            
             _userAuth.UserName = userBO.UserName;
             _userAuth.PasswordByte = _hashPasswordByte;
             _userAuth.IsTempPassword = false;

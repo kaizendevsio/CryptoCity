@@ -3,6 +3,7 @@ using CryptoCityWallet.Entities.BO;
 using CryptoCityWallet.Entities.Enums;
 using CryptoCityWallet.DataAccessLayer;
 using System.Collections.Generic;
+using System;
 
 namespace CryptoCityWallet.AppService
 {
@@ -36,36 +37,62 @@ namespace CryptoCityWallet.AppService
             }
         }
 
-        public bool Create(UserBO userBO)
+        public bool Create(UserBO userBO, dbWorldCCityContext db = null)
         {
-            using (var db = new dbWorldCCityContext())
+            if (db != null)
             {
-                using (var transaction = db.Database.BeginTransaction())
+                UserInfoRepository userInfoRepository = new UserInfoRepository();
+                TblUserInfo userInfo = userInfoRepository.Create(userBO, db);
+                userBO.Uid = userInfo.Uid;
+
+                UserAuthRepository userAuthRepository = new UserAuthRepository();
+                TblUserAuth userAuth = userAuthRepository.Create(userBO, userInfo, db);
+
+                UserRoleRepository userRoleRepository = new UserRoleRepository();
+                userRoleRepository.Create(userAuth, db);
+
+                // CREATE USER WALLETS
+                UserWalletAppService userWallet = new UserWalletAppService();
+                userWallet.Create(userAuth, db);
+
+                // CREATE USER MAP
+                UserMapAppService userMapAppService = new UserMapAppService();
+                userMapAppService.Create(userBO, userAuth, db);
+
+                return true;
+            }
+            else
+            {
+                using (db = new dbWorldCCityContext())
                 {
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
 
-                    UserInfoRepository userInfoRepository = new UserInfoRepository();
-                    TblUserInfo userInfo = userInfoRepository.Create(userBO, db);
-                    userBO.Uid = userInfo.Uid;
+                        UserInfoRepository userInfoRepository = new UserInfoRepository();
+                        TblUserInfo userInfo = userInfoRepository.Create(userBO, db);
+                        userBO.Uid = userInfo.Uid;
 
-                    UserAuthRepository userAuthRepository = new UserAuthRepository();
-                    TblUserAuth userAuth = userAuthRepository.Create(userBO, userInfo, db);
+                        UserAuthRepository userAuthRepository = new UserAuthRepository();
+                        TblUserAuth userAuth = userAuthRepository.Create(userBO, userInfo, db);
 
-                    UserRoleRepository userRoleRepository = new UserRoleRepository();
-                    userRoleRepository.Create(userAuth, db);
+                        UserRoleRepository userRoleRepository = new UserRoleRepository();
+                        userRoleRepository.Create(userAuth, db);
 
-                    // CREATE USER WALLETS
-                    UserWalletAppService userWallet = new UserWalletAppService();
-                    userWallet.Create(userAuth, db);
+                        // CREATE USER WALLETS
+                        UserWalletAppService userWallet = new UserWalletAppService();
+                        userWallet.Create(userAuth, db);
 
-                    // CREATE USER MAP
-                    UserMapAppService userMapAppService = new UserMapAppService();
-                    userMapAppService.Create(userBO,userAuth,db);
+                        // CREATE USER MAP
+                        UserMapAppService userMapAppService = new UserMapAppService();
+                        userMapAppService.Create(userBO, userAuth, db);
 
-                    transaction.Commit();
+                        transaction.Commit();
 
-                    return true;
+                        return true;
+                    }
                 }
             }
+
         }
 
         public TblUserInfo Get(TblUserAuth userAuth)
@@ -85,6 +112,63 @@ namespace CryptoCityWallet.AppService
 
         public bool Activate()
         {
+            return true;
+        }
+
+        public bool StructureMapTesting(StructureMapInjection structureMap)
+        {
+            UserAppService userAppService = new UserAppService();
+
+            int BinaryCount = structureMap.BinarySponsorDataArray.Count;
+            int UnilevelCount = structureMap.DirectSponsorDataArray.Count;
+            TblUserInfo userInfoBinarySponsor = new TblUserInfo();
+            TblUserInfo userInfoDirectSponsor = new TblUserInfo();
+            TblUserAuth userAuth = new TblUserAuth();
+
+            using (var db = new dbWorldCCityContext())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    for (int i = 0; i < BinaryCount; i++)
+                    {
+                        if (structureMap.BinarySponsorDataArray[i].Parent == 0)
+                        {
+                            userInfoBinarySponsor = new TblUserInfo();
+                        }
+                        else
+                        {
+                            userAuth.UserName = structureMap.BinarySponsorDataArray[structureMap.BinarySponsorDataArray[i].Parent - 1].Name;
+                            userInfoBinarySponsor = userAppService.Get(userAuth);
+                        }
+                        if (structureMap.DirectSponsorDataArray[i].Parent == 0)
+                        {
+                            userInfoDirectSponsor = new TblUserInfo();
+                        }
+                        else
+                        {
+                            userAuth.UserName = structureMap.DirectSponsorDataArray[structureMap.DirectSponsorDataArray[i].Parent - 1].Name;
+                            userInfoDirectSponsor = userAppService.Get(userAuth);
+                        }
+
+                        UserBO user = new UserBO();
+                        user.FirstName = structureMap.BinarySponsorDataArray[i].Name;
+                        user.LastName = "User";
+                        user.UserName = structureMap.BinarySponsorDataArray[i].Name;
+                        user.Email = String.Format("{0}{1}", structureMap.BinarySponsorDataArray[i].Name, "@mail.com");
+                        user.PasswordString = "123";
+                        user.DirectSponsorID = userInfoDirectSponsor.Uid;
+                        user.BinarySponsorID = userInfoBinarySponsor.Uid;
+                        user.BinaryPosition = structureMap.BinarySponsorDataArray[i].Comments;
+
+                        userAppService.Create(user);
+                    }
+
+                    transaction.Commit();
+                }
+            }
+
+          
+
             return true;
         }
     }
