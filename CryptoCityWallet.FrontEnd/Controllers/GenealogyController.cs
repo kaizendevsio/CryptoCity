@@ -45,6 +45,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     genealogyVM.DirectPartners = (int)userWallets.Find(i => i.WalletCode == "DLN").Balance;
                     genealogyVM.DirectVolume = (int)userWallets.Find(i => i.WalletCode == "DVL").Balance;
                     genealogyVM.TotalGroupVolume = (int)userWallets.Find(i => i.WalletCode == "TGV").Balance;
+                    genealogyVM.UserInfo = new UserBO { Uid = userInfo.Uid };
 
                     return View(genealogyVM);
                 }
@@ -59,6 +60,39 @@ namespace CryptoCityWallet.FrontEnd.Controllers
             {
                 return RedirectToAction("Login", "Home");
 
+            }
+        }
+
+        [HttpGet("GetMap")]
+        public async Task<IActionResult> GetMap()
+        {
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.GetAsync("User/Map", session.SessionCookies);
+                UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    return Ok(apiResponse);
+                }
+                else
+                {
+                    apiResponse.RedirectUrl = "/User/Login/Failed";
+                    return BadRequest(apiResponse);
+                }
+                
+            }
+            catch (System.Exception e)
+            {
+                UserResponseBO apiResponse = new UserResponseBO();
+                apiResponse.RedirectUrl = "/User/Login/Failed";
+                apiResponse.Message = e.Message;
+                return BadRequest(apiResponse);
             }
         }
 

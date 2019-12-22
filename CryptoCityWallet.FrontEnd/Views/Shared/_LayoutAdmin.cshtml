@@ -1,0 +1,277 @@
+﻿
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+
+    <link rel="icon" href="~~/img/favicon/fav.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/favicon/fav.png">
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/animate.min.css" rel="stylesheet" />
+    <link href="~/css/style.min.css" rel="stylesheet" />
+    <link href="~/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/jquery.gritter.css" rel="stylesheet" />
+    <link href="~/css/defaults.css" rel="stylesheet" id="theme" />
+    <link href="~/css/nv.d3.css" rel="stylesheet" id="theme" />
+    <link href="~/css/jquery-jvectormap.css" rel="stylesheet" id="theme" />
+
+
+    <!-- ================== END BASE CSS STYLE ================== -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="./js/pace.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
+
+
+</head>
+<body>
+
+    <div id="header" class="header navbar-inverse">
+        <!-- begin navbar-header -->
+        <div class="navbar-header">
+            <a href="" class="navbar-brand">
+                <span class=""><img src="~/img/logo.png"> </span>
+            </a>
+            <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <ul class="navbar-nav navbar-right">
+            <li class="dropdown navbar-user">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src=".~/img/user.png" alt="" />
+                    <span class="d-none d-md-inline">Jake</span> <b class="caret"></b>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <!-- <a href="javascript:;" class="dropdown-item">Edit Profile</a>
+                    <a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
+                    <a href="javascript:;" class="dropdown-item">Calendar</a> -->
+                    <div class="dropdown-divider"></div>
+                    <a href="#" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" class="dropdown-item">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                    </form>
+                </div>
+            </li>
+        </ul>
+        <!-- end header navigation right -->
+    </div>
+    <!-- end #header -->
+    <div id="sidebar" class="sidebar">
+        <!-- begin sidebar scrollbar -->
+        <div data-scrollbar="true" data-height="100%">
+            <!-- begin sidebar user -->
+            <ul class="nav">
+                <li class="nav-profile">
+                    <a href="javascript:;" data-toggle="nav-profile">
+                        <div class="cover with-shadow"></div>
+                        <div class="image">
+                            <img src="~/img/user.png" alt="" />
+
+                        </div>
+                        <div class="info">
+                            Jake
+                            <small>Programmer</small>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- end sidebar user -->
+            <!-- begin sidebar nav -->
+            <ul class="nav">
+                <li class="nav-header">Navigation</li>
+
+                <li class="has-sub active" style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                    <a href="javascript:;">
+
+                        <i class="fa fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+
+
+
+                <li class="has-sub" style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                    <a href="@Url.Action("Index", "Admin")">
+                        <b class="caret"></b>
+                        <i class="fa fa-building"></i>
+                        <span>Deposit</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class=""><a href="#">Deposit</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="has-sub" style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                    <a href="@Url.Action("Trade", "Admin")">
+                        <b class="caret"></b>
+                        <i class="fa fa-book"></i>
+                        <span>Trade</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="has-sub "><a href="trade.html">Trade lists</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="has-sub" style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                    <a href="@Url.Action("Ledger", "Admin")">
+                        <b class="caret"></b>
+                        <i class="fa fa-users"></i>
+                        <span>Ledger</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="has-sub"><a href="ledger.html">Ledger</a></li>
+
+
+                </li>
+            </ul>
+            </li>
+
+            <li class="has-sub " style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="fa fa-cog"></i>
+                    <span>Withdrawal</span>
+                </a>
+                <ul class="sub-menu">
+                    <li class=""><a href="withdrawal.html">Withdrawal </a></li>
+
+                </ul>
+            </li>
+
+            <li class="has-sub " style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                <a href="@Url.Action("Members", "Admin")">
+                    <b class="caret"></b>
+                    <i class="fa fa-cog"></i>
+                    <span>Account</span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="account.html"><a href="create_ticket.html">Account </a></li>
+
+                </ul>
+            </li>
+
+            <li class="has-sub " style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="fa fa-cog"></i>
+                    <span>Map</span>
+                </a>
+                <ul class="sub-menu">
+                    <li class=""><a href="map.html">Map </a></li>
+
+                </ul>
+            </li>
+
+
+            <li class="has-sub " style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="fa fa-file"></i>
+                    <span>Files</span>
+                </a>
+                <ul class="sub-menu">
+                    <li class=""><a href="members.html">Member list </a></li>
+                    <li class=""><a href="member-register.html">Member Register </a></li>
+                    <li class=""><a href="trade-list.html">Trade list </a></li>
+                    <li class=""><a href="withdrawal.html">Withdrawal list </a></li>
+                    <li class=""><a href="close.html">Close </a></li>
+
+                </ul>
+            </li>
+
+            </ul>
+
+
+
+            <!-- end sidebar nav -->
+        </div>
+        <!-- end sidebar scrollbar -->
+    </div>
+
+    <div class="sidebar-bg"></div>
+
+    @RenderBody()
+    @RenderSection("Scripts", required: false)
+
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+                 ~
+    <script src="~/js/jquery.slimscroll.min.js"></script>
+    <script src="~/js/js.cookie.js"></script>
+    <script src="~/js/default.min.js"></script>
+    <script src="~/js/apps.min.js"></script>
+    <script src="~/js/jquery.gritter.js"></script>
+    <script src="~/js/moment.js"></script>
+    <script src="~/js/form-plugins.demo.min.js"></script>
+
+
+    <!-- ================== BEGIN BASE JS ================== -->
+
+    <script src="~/js/default.min.js"></script>
+
+    <script src="~/js/d3.min.js"></script>
+    <script src="~/js/nv.d3.min.js"></script>
+    <script src="~/js/jquery-jvectormap.min.js"></script>
+    <script src="~/js/jquery-jvectormap-world-mill.js"></script>
+    <script src="~/js/apexcharts.min.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/js/dashboard-v3.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+
+
+    </script>
+
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-53034621-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+

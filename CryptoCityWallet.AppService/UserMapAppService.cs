@@ -38,5 +38,29 @@ namespace CryptoCityWallet.AppService
 
            return userMapRepository.Create(userMap,db);
         }
+
+        public UserMapBO Get(TblUserAuth userAuth, dbWorldCCityContext db = null)
+        {
+            if (db != null)
+            {
+                UserMapRepository userMapRepository = new UserMapRepository();
+                return userMapRepository.GetMap(userAuth);
+            }
+            else
+            {
+                using (db = new dbWorldCCityContext())
+                {
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                        UserMapRepository userMapRepository = new UserMapRepository();
+                        UserInfoRepository userInfoRepository = new UserInfoRepository();
+
+                        UserMapBO userMap = userMapRepository.GetMap(userAuth);
+                        userMap.title = userInfoRepository.Get(userAuth, db).Email;
+                        return userMap;
+                    }
+                }
+            }
+        }
     }
 }

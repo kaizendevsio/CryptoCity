@@ -1,0 +1,118 @@
+﻿@{
+
+    ViewBag.Title = "WCC Admin | Members";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content" class="content">
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb float-xl-right">
+        <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+        <li class="breadcrumb-item active">All channels</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Member List  <small> </small></h1>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Member</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <!-- inline -->
+                        <label>SORT :</label> &nbsp;
+                        <div class="radio radio-css radio-inline">
+                            <input type="radio" id="inlineCssRadio1" checked="" />
+                            <label for="inlineCssRadio1">DESC</label>
+                        </div>
+                        <div class="radio radio-css radio-inline">
+                            <input type="radio" id="inlineCssRadio1" />
+                            <label for="inlineCssRadio1">ASC</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Keyword</label>
+                        <input type="" name="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox checkbox-css checkbox-inline">
+                            <input type="checkbox" id="inlineCssCheckbox1" />
+                            <label for="inlineCssCheckbox1">Incomplete Profile</label>
+                        </div>
+                        <div class="checkbox checkbox-css checkbox-inline">
+                            <input type="checkbox" id="inlineCssCheckbox1" />
+                            <label for="inlineCssCheckbox1">Incomplete Profile</label>
+                        </div>
+                        <div class="checkbox checkbox-css checkbox-inline">
+                            <input type="checkbox" id="inlineCssCheckbox1" />
+                            <label for="inlineCssCheckbox1">Deposit</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Member lists</h4>
+                </div>
+                <div class="table-responsive">
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Int.ID (Code)</th>
+                                    <th>Int.Name</th>
+                                    <th>TradeItem</th>
+                                    <th>Deposit BTC</th>
+                                    <th>Deposit ETH</th>
+                                    <th>Deposit USDT</th>
+                                    <th>Deposit BCH</th>
+                                    <th>Home</th>
+                                    <th>Deposit</th>
+                                    <th>Trade</th>
+                                    <th>Ledger</th>
+                                    <th>Withdrawal</th>
+                                    <th>Account</th>
+                                    <th>Map</th>
+                                    <th>Deny</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="16"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-4 -->
+
+</div>

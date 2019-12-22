@@ -56,7 +56,7 @@
                 </span>
 
                 <span class="wallet__footer">
-                    <a href="#" class="small-btn">Edit</a>
+                    @*<a href="#" class="small-btn">Edit</a>*@
 
                     <span><b>Wallet number:</b> 0x45e1D2D3C1d001aC30E9C0B10e3a9cdD35018Bf0</span>
                 </span>
@@ -72,9 +72,8 @@
                     <canvas id="line-chart"></canvas>
                 </div>
                 <div class="wallet-inner__btns">
-                    <a href="cash-in.html" class="btn btn--blue">Send Ethereum</a>
-                    <a href="cash-in.html" class="btn btn--purpure">Buy Ethereum</a>
-                    <a href="#confirmation" class="btn btn--green popup-link">Convert</a>
+                    <a href="#confirmation" class="btn btn--green popup-link">Send</a>
+                    <a href="" class="btn btn--green popup-link">Receive</a>
                 </div>
             </div>
         </div>
@@ -136,14 +135,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- <h1 class="modal-title" id="exampleModalLabel" align="center">CONVERT</h1> -->
-                    <img src="~/img/s.png" width="70px"> <font style="font-size:  100%;"> CONVERT </font>
+                    <img src="~/img/s.png" width="70px"> <font style="font-size:  100%;"> SEND </font>
                 </div>
                 <div class="modal-body ">
                     <div class="form-group ">
                         <div class="col-12">
                             <label>
                                 <!-- <p class="notification__icon">
-                                                       BTC   <b class="caret"></b>
+                                                       USDT   <b class="caret"></b>
                                                    </p>
                                                    <div class="notification__list">
                                                        <div class="notification__list-item">
@@ -152,11 +151,11 @@
                                                        </div>
                                                        <div class="notification__list-item">
                                                            <p><span class="circle" style="background-color: #45d0c;"></span>Recieved Bitcoin</p>
-                                                           <span class="rate rate--plus">+ 0.056 BTC</span>
+                                                           <span class="rate rate--plus">+ 0.056 USDT</span>
                                                        </div>
                                                        <div class="notification__list-item">
                                                            <p><span class="circle" style="background-color: #fd5e71;"></span>Declined Bitcoin</p>
-                                                           <span class="rate rate--normal">1 BTC</span>
+                                                           <span class="rate rate--normal">1 USDT</span>
                                                        </div>
                                                        <div class="notification__list-item">
                                                            <p><span class="circle" style="background-color: #58a3ea;"></span>Sent Litecoin</p>
@@ -186,47 +185,28 @@
 
                             <div class="row">
 
-
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <select class="mdb-select md-form">
-                                            <option value="" disabled selected>BTC</option>
-                                            <option value="BITCOIN">BITCOIN</option>
-                                            <option value="TETHER">TETHER</option>
-                                            <option value="BITCOINCASH">BITCOINCASH</option>
-                                            <option value="ETHERIUM">ETHERIUM</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <div class="input-wrap">
-                                        <input type="text" name="" class="form-control" placeholder="Amount">
+                                        <label>Recipient Address</label>
+                                        <input type="text" name="" class="form-control" placeholder="Address..">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <select class="mdb-select md-form">
-                                            <option value="" disabled selected>BTC</option>
-                                            <option value="BITCOIN">BITCOIN</option>
-                                            <option value="TETHER">TETHER</option>
-                                            <option value="BITCOINCASH">BITCOINCASH</option>
-                                            <option value="ETHERIUM">ETHERIUM</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <br />
 
-                                <div class="col-md-8">
+                            <div class="row">
+
+
+                                <div class="col-md-12">
                                     <div class="input-wrap">
-                                        <input type="text" name="middlename" class="form-control" placeholder="Amount">
+                                        <label>Amount</label>
+                                        <input type="text" name="middlename" class="form-control" placeholder="Value to be sent..">
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Convert</button>
+                                <button type="button" class="btn btn-primary">Send</button>
                             </div>
 
                         </div>

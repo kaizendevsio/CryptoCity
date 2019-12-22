@@ -62,7 +62,7 @@
 
     .orgchart .verticalNodes > td::before {
         content: '';
-        border: 1px solid rgba(217, 83, 79, 0.8);
+        border: 1px solid #002347;
     }
 
     .orgchart .verticalNodes > td > ul > li:first-child::before {
@@ -83,7 +83,7 @@
             content: '';
             position: absolute;
             left: -6px;
-            border-color: rgba(217, 83, 79, 0.8);
+            border-color: #002347;
             border-style: solid;
             border-width: 0 0 2px 2px;
         }
@@ -144,28 +144,28 @@
     }
 
     .orgchart .lines .topLine {
-        border-top: 2px solid rgba(217, 83, 79, 0.8);
+        border-top: 2px solid #002347;
     }
 
     .orgchart .lines .rightLine {
-        border-right: 1px solid rgba(217, 83, 79, 0.8);
+        border-right: 1px solid #002347;
         float: none;
         border-radius: 0;
     }
 
-    .orgchart .lines .leftLine {
-        border-left: 1px solid rgba(217, 83, 79, 0.8);
-        float: none;
-        border-radius: 0;
-    }
+.orgchart .lines .leftLine {
+    border-left: 1px solid #002347;
+    float: none;
+    border-radius: 0;
+}
 
-    .orgchart .lines .downLine {
-        background-color: rgba(217, 83, 79, 0.8);
-        margin: 0 auto;
-        height: 20px;
-        width: 2px;
-        float: none;
-    }
+.orgchart .lines .downLine {
+    background-color: #002347;
+    margin: 0 auto;
+    height: 20px;
+    width: 2px;
+    float: none;
+}
 
     /* node styling */
     .orgchart .node {
@@ -218,21 +218,21 @@
         border-color: rgba(68, 157, 68, 0.9);
     }
 
-    .orgchart .node .title {
-        box-sizing: border-box;
-        padding: 2px;
-        width: 130px;
-        text-align: center;
-        font-size: 0.75rem;
-        font-weight: bold;
-        height: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        background-color: rgba(217, 83, 79, 0.8);
-        color: #fff;
-        border-radius: 4px 4px 0 0;
-    }
+.orgchart .node .title {
+    box-sizing: border-box;
+    padding: 2px;
+    width: 130px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: #002347;
+    color: #fff;
+    border-radius: 4px 4px 0 0;
+}
 
     .orgchart.b2t .node .title {
         transform: rotate(-180deg);
@@ -255,20 +255,20 @@
         margin-left: 2px;
     }
 
-    .orgchart .node .content {
-        box-sizing: border-box;
-        padding: 2px;
-        height: 20px;
-        font-size: 0.625rem;
-        border: 1px solid rgba(217, 83, 79, 0.8);
-        border-radius: 0 0 4px 4px;
-        text-align: center;
-        background-color: #fff;
-        color: #333;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        margin: 0 !important;
-    }
+.orgchart .node .content {
+    box-sizing: border-box;
+    padding: 2px;
+    height: 20px;
+    font-size: 0.625rem;
+    border: 1px solid #002347;
+    border-radius: 0 0 4px 4px;
+    text-align: center;
+    background-color: #fff;
+    color: #333;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 !important;
+}
 
     .orgchart.b2t .node .content {
         transform: rotate(180deg);

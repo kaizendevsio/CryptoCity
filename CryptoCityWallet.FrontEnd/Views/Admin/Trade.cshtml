@@ -1,0 +1,122 @@
+﻿@{
+
+    ViewBag.Title = "WCC Admin | Trade";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content" class="content">
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb float-xl-right">
+        <li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
+        <li class="breadcrumb-item active">All channels</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Trade <small> </small></h1>
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Trade</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="" name="" class="form-control" readonly="">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label><br></label>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Check Deposit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Rate Information</label>
+                                <input type="" name="" class="form-control" readonly="">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label><br></label>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Check Current Rate</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Trade</label>
+                                <input type="number" name="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Set</label>
+                            <div class="form-group">
+                                <input type="number" name="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-inverse">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Trade History</h4>
+                </div>
+                <div class="panel-body">
+
+                    <table class="table table-bordered">
+                        <thead>
+                        <th>Date</th>
+                        <th>Trade Item</th>
+                        <th>Amount</th>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="alert alert-warning">
+                                        <i class="fa fa-info-circle fa-lg m-r-5 pull-left m-t-2"></i>
+                                        No Data
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!-- end panel -->
+</div>

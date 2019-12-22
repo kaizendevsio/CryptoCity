@@ -15,7 +15,25 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 
         public IActionResult Index()
         {
-            return Redirect("Admin/Transactions");
+            return View();
+        }
+
+        [Route("Admin/Trade")]
+        public IActionResult Trade()
+        {
+            return View();
+        }
+
+        [Route("Admin/Members")]
+        public IActionResult Members()
+        {
+            return View();
+        }
+
+        [Route("Admin/Ledger")]
+        public IActionResult Ledger()
+        {
+            return View();
         }
 
 

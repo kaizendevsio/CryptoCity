@@ -38,10 +38,14 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         }
         [Route("SignUp")]
         [HttpGet]
-        public IActionResult SignUp()
+        public IActionResult SignUp(string dsi, string bsi, int bp)
         {
+            SignUpVM signUpVM = new SignUpVM();
+            signUpVM.BinaryPosition = bp;
+            signUpVM.BinarySponsorID = bsi;
+            signUpVM.DirectSponsorID = dsi;
 
-            return View();
+            return View(signUpVM);
         }
         //[Route("Logout")]
         //[HttpGet]

@@ -19,33 +19,31 @@
         <div class="buy__body">
 
             <div class="exchange">
-                <div class="exchange__col">
-                    <label class="form__label">Give Currency:</label>
-                    <div class="group-input">
-                        <input type="text" value="0.00">
+                <div class="exchange__col row">
+                    <label class="form__label" style="margin-left:12px">Select currency to participate in WCC Trade:</label>
+                    <div class="panel-body col-6">
+                        <label class="form__label">Currency</label>
 
-                        <select class="custom-select" style="display: none;">
-                            <option value="USD">USD</option>
-                        </select> 
-                    </div>
-                    <p style="color:red; margin-top: 10px;">Note : *100 USD Minimum</p>
-                </div>
-                <div class="exchange__col">
-                    <label class="form__label">Get Currency:</label>
-                    <div class="group-input">
-                        <input type="text" value="0.00">
-                        <select class="custom-select" style="display: none;">
+                        <select class="custom-select">
                             <option value="BTC">BTC</option>
-                            <option value="ETH">ETH</option>
+                            <option value="ETC">ETC</option>
                             <option value="USDT">USDT</option>
-                        </select> 
+                        </select>
                     </div>
+                    <div class="panel-body col-6">
+                        <label class="form__label">Amount</label>
+                        <div class="input-wrap">
+                            <input type="text" value="0.00">
+                        </div>
+                    </div>
+
+                    <p style="color:red; margin-top: 10px; margin-left:16px;">Note : *100 USD Minimum</p>
                 </div>
 
             </div>
 
             <div class="form-group">
-                <a href="success_1.html" class="btn btn--blue">Buy</a>
+                <a href="#" class="btn btn--blue">Join Trade</a>
             </div>
 
             <div class="d-none">

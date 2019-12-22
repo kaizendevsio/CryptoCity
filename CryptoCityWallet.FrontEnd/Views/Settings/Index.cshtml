@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_PartialView.cshtml";
 
     ViewBag.Title = "World CryptoCity | Settings";
-} 
+}
 <main class="main-content">
     <section class="settings">
 
@@ -96,7 +96,7 @@
                                 </select>
                             </div>
 
-                            
+
                             <div class="form__col-xs">
                                 <label class="form__label">Date of birth</label>
                                 <div class="form__col-xl">
@@ -175,13 +175,13 @@
                             </div>
                         </div>
 
-                      
+
 
                     </div>
 
                     <div class="form__row">
 
-                       
+
 
                         <div class="form__col-lg">
                             <label class="form__label">Select city</label>
@@ -201,7 +201,7 @@
 
                     </div>
 
-                    <button class="btn btn--green">Change Password</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @*<button class="btn btn--green">Change Password</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*@
                     <button class="btn btn--blue">Save Settings</button>
                     <br>
                     <br>
@@ -261,7 +261,7 @@
                             </div>
 
                         </div>
-                        <div class="security__col">
+                        @*<div class="security__col">
 
                             <div class="security__block">
                                 <h3><br></h3>
@@ -290,7 +290,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div>*@
                     </div>
                     <div class="security__row">
                         <button href="#" class="btn btn--blue">Save settings</button>
@@ -389,20 +389,20 @@
                         </div>
 
                         <div class="wallet__item__id">
-                            3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
+                            1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY
                         </div>
 
                         <div class="wallet__item__course">
-                            <span>12 LTC</span>
+                            <span>12 BTC</span>
                             25 USD
                         </div>
 
-                        <div class="wallet__item__toggle">
-                            <label class="switch">
-                                <input checked="" class="switch__checkbox" type="checkbox">
-                                <span class="switch__slider"></span>
-                            </label>
-                        </div>
+                        @*<div class="wallet__item__toggle">
+                                <label class="switch">
+                                    <input checked="" class="switch__checkbox" type="checkbox">
+                                    <span class="switch__slider"></span>
+                                </label>
+                            </div>*@
 
                         <div class="wallet__item__action">
                             <img src="~/img/trash.png" alt="">
@@ -432,138 +432,34 @@
                         </div>
 
                         <div class="wallet__item__status">
-                            <div class="status status--inactive">Inactive</div>
-                        </div>
-
-                        <div class="wallet__item__id">
-                            3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
-                        </div>
-
-                        <div class="wallet__item__course">
-                            <span>12 LTC</span>
-                            25 USD
-                        </div>
-
-                        <div class="wallet__item">
-                            <label class="switch">
-                                <input class="switch__checkbox" type="checkbox">
-                                <span class="switch__slider"></span>
-                            </label>
-                        </div>
-
-                        <div class="wallet__item__action">
-                            <img src="~/img/trash.png" alt="">
-                        </div>
-
-                    </div>
-
-                    <div class="wallet__item">
-
-                        <div class="wallet__item__checkbox">
-                            <label class="checkbox">
-                                <input class="checkbox__input" type="checkbox">
-                                <span class="checkbox__checkmark"></span>
-                            </label>
-                        </div>
-
-                        <div class="wallet__item__currency">
-                            <!-- <svg style="box-shadow: 0 3px 7px rgba(194, 194, 194, 0.57);" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="30px" height="30px" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve"> -->
-                            <img src="~/img/b.png" width="30px"> &nbsp;&nbsp;&nbsp;
-                            <path fill="#c5c5c5" d="M22.857,0H7.143C3.214,0,0,3.214,0,7.143v15.714C0,26.786,3.214,30,7.143,30h15.714C26.786,30,30,26.786,30,22.857V7.143
-												C30,3.214,26.786,0,22.857,0z M19.334,21.071c-2.825,0-5.591,0-8.416,0c0.24-1.142,0.481-2.224,0.721-3.366
-												c-0.481,0.301-0.902,0.601-1.383,0.962c0.06-0.24,0.06-0.421,0.12-0.661c0.06-0.361,0.12-0.721,0.18-1.082
-												c0-0.06,0.06-0.12,0.12-0.18c0.421-0.301,0.842-0.601,1.262-0.902c0.06-0.06,0.06-0.12,0.12-0.12
-												c0.481-2.224,0.902-4.388,1.383-6.612c0,0,0,0,0-0.06c0.842-0.12,1.683-0.12,2.585-0.12c-0.12,0.721-0.301,1.383-0.421,2.104
-												c-0.18,0.842-0.361,1.683-0.541,2.525c0,0,0,0,0,0.06c1.142-0.781,2.284-1.563,3.426-2.344c-0.06,0.18-0.06,0.361-0.12,0.481
-												c-0.06,0.421-0.18,0.842-0.24,1.322c0,0.06-0.06,0.12-0.12,0.18c-1.082,0.721-2.164,1.443-3.186,2.224
-												c-0.06,0.06-0.12,0.12-0.12,0.18c-0.18,1.022-0.421,2.044-0.661,3.066v0.06c1.924,0,3.847,0,5.771,0
-												C19.634,19.569,19.514,20.29,19.334,21.071z">
-
-                                Bitcoincash
-                            </path>
-                        </div>
-
-                        <div class="wallet__item__status">
                             <div class="status status--active">Active</div>
                         </div>
 
                         <div class="wallet__item__id">
-                            3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
+                            18cBEMRxXHqzWWCxZNtU91F5sbUNKhL5PX
                         </div>
 
                         <div class="wallet__item__course">
-                            <span>12 LTC</span>
+                            <span>12 ETH</span>
                             25 USD
                         </div>
 
-                        <div class="wallet__item__toggle">
-                            <label class="switch">
-                                <input checked="" class="switch__checkbox" type="checkbox">
-                                <span class="switch__slider"></span>
-                            </label>
-                        </div>
+                        @*<div class="wallet__item">
+                                <label class="switch">
+                                    <input class="switch__checkbox" type="checkbox">
+                                    <span class="switch__slider"></span>
+                                </label>
+                            </div>*@
 
                         <div class="wallet__item__action">
                             <img src="~/img/trash.png" alt="">
                         </div>
 
-
-
                     </div>
 
-                    <div class="wallet__item">
+                   
 
-                        <div class="wallet__item__checkbox">
-                            <label class="checkbox">
-                                <input class="checkbox__input" type="checkbox">
-                                <span class="checkbox__checkmark"></span>
-                            </label>
-                        </div>
-
-                        <div class="wallet__item__currency">
-                            <img src="~/img/tether.png" width="30px"> &nbsp;&nbsp;&nbsp;
-
-                            <!-- <svg style="box-shadow: 0 3px 7px rgba(194, 194, 194, 0.57);" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="30px" height="30px" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve"> -->
-                            <path fill="#c5c5c5" d="M22.857,0H7.143C3.214,0,0,3.214,0,7.143v15.714C0,26.786,3.214,30,7.143,30h15.714C26.786,30,30,26.786,30,22.857V7.143
-												C30,3.214,26.786,0,22.857,0z M19.334,21.071c-2.825,0-5.591,0-8.416,0c0.24-1.142,0.481-2.224,0.721-3.366
-												c-0.481,0.301-0.902,0.601-1.383,0.962c0.06-0.24,0.06-0.421,0.12-0.661c0.06-0.361,0.12-0.721,0.18-1.082
-												c0-0.06,0.06-0.12,0.12-0.18c0.421-0.301,0.842-0.601,1.262-0.902c0.06-0.06,0.06-0.12,0.12-0.12
-												c0.481-2.224,0.902-4.388,1.383-6.612c0,0,0,0,0-0.06c0.842-0.12,1.683-0.12,2.585-0.12c-0.12,0.721-0.301,1.383-0.421,2.104
-												c-0.18,0.842-0.361,1.683-0.541,2.525c0,0,0,0,0,0.06c1.142-0.781,2.284-1.563,3.426-2.344c-0.06,0.18-0.06,0.361-0.12,0.481
-												c-0.06,0.421-0.18,0.842-0.24,1.322c0,0.06-0.06,0.12-0.12,0.18c-1.082,0.721-2.164,1.443-3.186,2.224
-												c-0.06,0.06-0.12,0.12-0.12,0.18c-0.18,1.022-0.421,2.044-0.661,3.066v0.06c1.924,0,3.847,0,5.771,0
-												C19.634,19.569,19.514,20.29,19.334,21.071z">
-
-                                Tether
-                            </path>
-                        </div>
-
-                        <div class="wallet__item__status">
-                            <div class="status status--inactive">Inactive</div>
-                        </div>
-
-                        <div class="wallet__item__id">
-                            3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
-                        </div>
-
-                        <div class="wallet__item__course">
-                            <span>12 LTC</span>
-                            25 USD
-                        </div>
-
-                        <div class="wallet__item__toggle">
-                            <label class="switch">
-                                <input class="switch__checkbox" type="checkbox">
-                                <span class="switch__slider"></span>
-                            </label>
-                        </div>
-
-                        <div class="wallet__item__action">
-                            <img src="~/img/trash.png" alt="">
-                        </div>
-                    </div>
+                  
 
                 </div>
 

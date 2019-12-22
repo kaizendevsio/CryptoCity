@@ -110,5 +110,26 @@ namespace CryptoCityWallet.DataAccessLayer
             TblUserAuth tblUserAuth = _qAuth.FirstOrDefault();
             return tblUserAuth;
         }
+
+        public TblUserAuth GetByID(int Id, dbWorldCCityContext db)
+        {
+            var _qAuth = from a in db.TblUserAuth
+                         join b in db.TblUserInfo on a.UserInfoId equals b.Id
+                         where a.Id == Id
+                         select new TblUserAuth
+                         {
+                             UserName = a.UserName,
+                             PasswordByte = a.PasswordByte,
+                             IsEnabled = a.IsEnabled,
+                             UserInfoId = a.UserInfoId,
+                             UserInfo = b,
+                             CreatedOn = a.CreatedOn,
+                             Id = a.Id
+                         };
+
+            TblUserAuth tblUserAuth = _qAuth.FirstOrDefault();
+            return tblUserAuth;
+        }
+
     }
 }

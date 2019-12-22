@@ -17,7 +17,7 @@
         </div>
         <div class="buy__body">
 
-            <div class="exchange">
+            @*<div class="exchange">
                 <div class="exchange__col">
 
                     <div class="form__col credit-card-name">
@@ -31,7 +31,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div>*@
             <div class="wallets__list">
 
                 <a href="#" class="wallet" style="background-color: #FF0800;">
@@ -115,8 +115,8 @@
     </div>
 
 
-    <div align="center">
-        <div class="panel panel-default" style="width: 1055px;" align="left">
+    <div align="center" class="row">
+        <div class="panel panel-default col-8" align="left">
             <div class="panel-heading">
                 <strong>Genealogy </strong>
             </div>
@@ -124,11 +124,74 @@
             <div class="panel-body">
                 <div class="wallets__list">
                 </div>
-                <div style="height:40vh" id="chart-container"></div>
+                <div style="height:50vh" id="chart-container"></div>
 
 
             </div>
         </div>
+
+        <div class="panel panel-default col-4" style="width: 1055px;" align="left">
+            <div class="panel-heading">
+                <strong>Generate URL </strong>
+            </div>
+
+            <div class="panel-body">
+                <label for="name">My ID:</label>
+                <strong>@Html.DisplayFor(model => model.UserInfo.Uid)</strong>
+
+            </div>
+
+
+            <div class="panel-body">
+                <label for="name">Introducer ID</label>
+                <div class="input-icon">
+                    <i class="mdi mdi-user"></i>
+                    <input type="text" class="form-control" id="DirectSponsorID" name="DirectSponsorID" placeholder="Introducer ID" required>
+
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <label for="name">Binary Sponsor ID</label>
+                <div class="input-icon">
+                    <i class="mdi mdi-user"></i>
+                    <input type="text" class="form-control" id="BinarySponsorID" name="BinarySponsorID" placeholder="Binary Sponsor ID" required>
+
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <label for="name">Binary Position</label>
+                <div class="input-icon">
+                    <i class="mdi mdi-user"></i>
+
+                    <select class="form-control" id="BinaryPosition" name="BinaryPosition">
+                        <option value=1>Left</option>
+                        <option value=2>Right</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <button onclick="GenerateURL();" class="btn btn-primary">Create Link</button>
+            </div>
+
+            <div class="panel-body">
+                <label for="name">Binary Position</label>
+                <div class="input-icon">
+
+                    <div class="col-8" style="padding: 0px;display: inline-block;">
+                        <input type="text" class="form-control" style="margin:0px" id="genlink" name="Genlink" placeholder="Generated link.." autofocus="">
+                    </div>
+                    <div class="col-3" style="padding: 0px;display: inline-block;">
+                        <button class="btn btn-primary" onclick="CopyText();" style="margin:0px;line-height: 25px;height: 35px;margin-top: -5px;">Copy</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
 
@@ -145,41 +208,83 @@
 
             <script type="text/javascript">
 
-                var datascource = {
-                    'name': 'You',
-                    'title': 'Admin',
-                    'children': [
-                        { 'name': 'Left', 'title': 'Vacant Position' },
-                        { 'name': 'Right', 'title': 'Vacant Position' }
-                    ]
-                };
+                function CopyText() {
+                    /* Get the text field */
+                    var copyText = document.getElementById("genlink");
+
+                    /* Select the text field */
+                    copyText.select();
+                    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+                    /* Copy the text inside the text field */
+                    document.execCommand("copy");
+
+                    /* Alert the copied text */
+                    alert("Link Copied to clipboard.");
+                }
+
+                function GenerateURL() {
+                    document.getElementById('genlink').value = "http://wallet.world-ccity.com/SignUp?dsi=" + document.getElementById("DirectSponsorID").value + "&bsi=" + document.getElementById("BinarySponsorID").value + "&bp=" + document.getElementById("BinaryPosition").value;
+                }
+                //var datascource = {
+                //    'name': 'You',
+                //    'title': 'Admin',
+                //    'children': [
+                //        { 'name': 'Left', 'title': 'Vacant Position' },
+                //        { 'name': 'Right', 'title': 'Vacant Position' }
+                //    ]
+                //};
+
+                $.ajax({
+                    url: '@Url.Action("GetMap", "Genealogy")',
+                    type: 'GET',
+                    success: function (data) {
+                        //console.log(data);
+                        if (data.Message != undefined) {
+                            alert(data.Message);
+                        }
+                        //window.location = data.RedirectUrl;
+                        //window.location.replace(data.RedirectUrl);
+                        datascource = data.UserMap;
+
+                        var oc = $('#chart-container').orgchart({
+                            'data': datascource,
+                            'nodeContent': 'title',
+                            'pan': true,
+                            'zoom': true,
+                            'initCompleted': function ($chart) {
+                                //oc.setChartScale(oc.$chart, 1.5);
+                                //document.getElementsByClassName('orgchart')[0].style.transform = "matrix(2, 0, 0, 2, 0, 100)";
+                            }
+                        });
+
+
+                        $('#togglePan').on('click', function () {
+                            // of course, oc.setOptions({ 'pan': this.checked }); is also OK.
+                            oc.setOptions('pan', this.checked);
+                        });
+
+                        $('#toggleZoom').on('click', function () {
+                            // of course, oc.setOptions({ 'zoom': this.checked }); is also OK.
+                            oc.setOptions('zoom', this.checked);
+                        });
+
+                    },
+                    error: function (data, textStatus, jqXHR) {
+                        console.log(data.responseJSON);
+                        document.getElementById("myModal").getElementsByClassName("modal-title")[0].innerHTML = data.responseJSON.Status;
+                        document.getElementById("myModal").getElementsByClassName("modal-message")[0].innerHTML = data.responseJSON.Message;
+                        $('#myModal').modal('show');
+                        //window.location.href = data.responseJSON.RedirectUrl;
+                    },
+                });
 
                 //$('#chart-container').orgchart({
                 //    'data': datascource,
                 //    'nodeContent': 'title',
                 //    'toggleSiblingsResp': true
                 //});
-                var oc = $('#chart-container').orgchart({
-                    'data': datascource,
-                    'nodeContent': 'title',
-                    'pan': true,
-                    'zoom': true,
-                    'initCompleted': function ($chart) {
-                        oc.setChartScale(oc.$chart, 1.5);
-                        document.getElementsByClassName('orgchart')[0].style.transform = "matrix(2, 0, 0, 2, 0, 100)";                      
-                    }
-                });
-              
 
-                $('#togglePan').on('click', function () {
-                    // of course, oc.setOptions({ 'pan': this.checked }); is also OK.
-                    oc.setOptions('pan', this.checked);
-                });
-
-                $('#toggleZoom').on('click', function () {
-                    // of course, oc.setOptions({ 'zoom': this.checked }); is also OK.
-                    oc.setOptions('zoom', this.checked);
-                });
 
             </script>
         }
