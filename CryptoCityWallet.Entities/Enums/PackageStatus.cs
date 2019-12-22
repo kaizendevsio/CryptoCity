@@ -12,6 +12,7 @@ namespace CryptoCityWallet.Entities.Enums
         Activated = 2,
         Revoked = 3,
         Invalid = 4,
-        Expired = 5
+        Expired = 5,
+        Cancelled = 6
     }
 }
