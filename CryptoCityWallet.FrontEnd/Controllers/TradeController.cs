@@ -63,6 +63,11 @@ namespace CryptoCityWallet.FrontEnd.Controllers
             }
         }
 
+        [Route("Trade/History")]
+        public IActionResult History()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
