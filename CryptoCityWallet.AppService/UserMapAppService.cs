@@ -62,5 +62,32 @@ namespace CryptoCityWallet.AppService
                 }
             }
         }
+
+        public bool Validate(UserBO userBO,dbWorldCCityContext db)
+        {
+            UserAuthRepository userAuthRepository = new UserAuthRepository();
+
+            if (userBO.BinarySponsorID != null)
+            {
+                TblUserAuth binarySponsorUser = userAuthRepository.GetByUID(userBO.BinarySponsorID, db);
+
+                if (binarySponsorUser == null)
+                {
+                    throw new ArgumentException("Binary Sponsor ID is invalid");
+                }
+            }
+
+            if (userBO.DirectSponsorID != null)
+            {
+                TblUserAuth directSponsorUser = userAuthRepository.GetByUID(userBO.DirectSponsorID, db);
+
+                if (directSponsorUser == null)
+                {
+                    throw new ArgumentException("Introducer ID is invalid");
+                }                
+            }
+            return true;
+
+        }
     }
 }

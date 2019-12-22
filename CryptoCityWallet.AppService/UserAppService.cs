@@ -4,6 +4,8 @@ using CryptoCityWallet.Entities.Enums;
 using CryptoCityWallet.DataAccessLayer;
 using System.Collections.Generic;
 using System;
+using SendGrid;
+using System.Threading.Tasks;
 
 namespace CryptoCityWallet.AppService
 {
@@ -42,6 +44,7 @@ namespace CryptoCityWallet.AppService
             if (db != null)
             {
                 UserInfoRepository userInfoRepository = new UserInfoRepository();
+
                 TblUserInfo userInfo = userInfoRepository.Create(userBO, db);
                 userBO.Uid = userInfo.Uid;
 
@@ -57,6 +60,8 @@ namespace CryptoCityWallet.AppService
 
                 // CREATE USER MAP
                 UserMapAppService userMapAppService = new UserMapAppService();
+                userMapAppService.Validate(userBO, db);
+
                 userMapAppService.Create(userBO, userAuth, db);
 
                 return true;
@@ -67,8 +72,9 @@ namespace CryptoCityWallet.AppService
                 {
                     using (var transaction = db.Database.BeginTransaction())
                     {
-
                         UserInfoRepository userInfoRepository = new UserInfoRepository();
+                        MailAppService mailAppService = new MailAppService();
+
                         TblUserInfo userInfo = userInfoRepository.Create(userBO, db);
                         userBO.Uid = userInfo.Uid;
 
@@ -84,10 +90,11 @@ namespace CryptoCityWallet.AppService
 
                         // CREATE USER MAP
                         UserMapAppService userMapAppService = new UserMapAppService();
+                        userMapAppService.Validate(userBO,db);
+
                         userMapAppService.Create(userBO, userAuth, db);
-
+                       
                         transaction.Commit();
-
                         return true;
                     }
                 }

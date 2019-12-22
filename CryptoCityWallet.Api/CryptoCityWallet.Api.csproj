@@ -26,4 +26,8 @@
     <ProjectReference Include="..\CryptoCityWallet.Entities\CryptoCityWallet.Entities.csproj" />
   </ItemGroup>
 
+ <ItemGroup>
+    <Content Include="Resources\**" CopyToPublishDirectory="PreserveNewest"/>
+  </ItemGroup>
+
 </Project>

@@ -9,6 +9,7 @@ using CryptoCityWallet.AppService;
 using CryptoCityWallet.Entities.BO;
 using CryptoCityWallet.Entities.DTO;
 using System.Dynamic;
+using SendGrid;
 
 namespace CryptoCityWallet.Api.Controllers
 {
@@ -17,24 +18,25 @@ namespace CryptoCityWallet.Api.Controllers
     public class UserController : ControllerBase
     {
         [HttpPost("Create")]
-        public ActionResult Create([FromBody] UserBO userBO)
+        public async Task<ActionResult> CreateAsync([FromBody] UserBO userBO)
         {
             UserAppService userAppService = new UserAppService();
             ApiResponseBO _apiResponse = new ApiResponseBO();
-           
-            
+            MailAppService mailAppService = new MailAppService();
+
             try
             {
                 userAppService.Create(userBO);
+                Response response = await mailAppService.SendAsync(userBO).ConfigureAwait(true);
 
                 _apiResponse.HttpStatusCode = "200";
-                _apiResponse.Message = "User successfully created";
+                _apiResponse.Message = "User successfully created : " + response.StatusCode;
                 _apiResponse.Status = "Success";
             }
             catch (Exception ex)
             {
                 _apiResponse.HttpStatusCode = "500";
-                _apiResponse.Message = ex.InnerException.Message;
+                _apiResponse.Message = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
                 _apiResponse.Status = "Error";
             }
 
