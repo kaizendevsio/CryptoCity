@@ -9,9 +9,51 @@
     <title>@ViewBag.Title</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 
-    <link rel="icon" href="~~/img/favicon/fav.png">
+    <link rel="icon" href="~/img/favicon/fav.png">
     <link rel="apple-touch-icon" sizes="180x180" href="~/img/favicon/fav.png">
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script> 
+    <script src="~/js/jquery.slimscroll.min.js"></script>
+    <script src="~/js/js.cookie.js"></script>
+    <script src="~/js/default.min.js"></script>
+    <script src="~/js/apps.min.js"></script>
+    <script src="~/js/jquery.gritter.js"></script>
+    <script src="~/js/moment.js"></script>
+    <script src="~/js/form-plugins.demo.min.js"></script>
 
+    <!-- ================== BEGIN BASE JS ================== -->
+
+
+    <script src="~/js/d3.min.js"></script>
+    <script src="~/js/nv.d3.min.js"></script>
+    <script src="~/js/jquery-jvectormap.min.js"></script>
+    <script src="~/js/jquery-jvectormap-world-mill.js"></script>
+    <script src="~/js/apexcharts.min.js"></script>
+    <script src="~/js/dashboard-v3.js"></script> 
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+
+
+    </script>
+
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-53034621-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
@@ -26,10 +68,16 @@
     <link href="~/css/nv.d3.css" rel="stylesheet" id="theme" />
     <link href="~/css/jquery-jvectormap.css" rel="stylesheet" id="theme" />
 
+    <link href="~/css/orgchart.css" rel="stylesheet" />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.9/js/jquery.orgchart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.9/js/jquery.orgchart.min.js.map"></script>
+    <link href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet" />
+
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <!-- ================== END BASE CSS STYLE ================== -->
     <!-- ================== BEGIN BASE JS ================== -->
-    <script src="./js/pace.min.js"></script>
+    <script src="~/js/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 
 
@@ -52,7 +100,7 @@
         <ul class="navbar-nav navbar-right">
             <li class="dropdown navbar-user">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src=".~/img/user.png" alt="" />
+                    <img src="~/img/user-512.png" alt="" />
                     <span class="d-none d-md-inline">Jake</span> <b class="caret"></b>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -81,7 +129,7 @@
                     <a href="javascript:;" data-toggle="nav-profile">
                         <div class="cover with-shadow"></div>
                         <div class="image">
-                            <img src="~/img/user.png" alt="" />
+                            <img src="~/img/user-512.png" alt="" />
 
                         </div>
                         <div class="info">
@@ -96,113 +144,68 @@
             <ul class="nav">
                 <li class="nav-header">Navigation</li>
 
-                <li class="has-sub active" style="border-bottom: 1px solid #46505a;
+                <li class="has-sub " style="border-bottom: 1px solid #46505a;
     border-top: 1px solid #46505a;">
-                    <a href="javascript:;">
+                    <a onclick="location.href='@Url.Action("Index", "Admin")'">
 
                         <i class="fa fa-home"></i>
                         <span>Dashboard</span>
                     </a>
 
+                    @*<a onclick="location.href='@Url.Action("Deposit", "Admin")'">
+
+                            <i class="fa fa-home"></i>
+                            <span>Deposit</span>
+                        </a>
+
+                        <a onclick="location.href='@Url.Action("Trade", "Admin")'">
+
+                            <i class="fa fa-home"></i>
+                            <span>Trade</span>
+                        </a>
+
+                        <a onclick="location.href='@Url.Action("Ledger", "Admin")'">
+
+                            <i class="fa fa-home"></i>
+                            <span>Ledger</span>
+                        </a>
+                        <a href="javascript:;">
+
+                            <i class="fa fa-home"></i>
+                            <span>Withdrawal</span>
+                        </a>*@
+
+                    <a onclick="location.href='@Url.Action("Account", "Admin")'">
 
 
-                <li class="has-sub" style="border-bottom: 1px solid #46505a;
-    border-top: 1px solid #46505a;">
-                    <a href="@Url.Action("Index", "Admin")">
-                        <b class="caret"></b>
-                        <i class="fa fa-building"></i>
-                        <span>Deposit</span>
+                        <i class="fa fa-cog"></i>
+                        <span>Account</span>
                     </a>
-                    <ul class="sub-menu">
-                        <li class=""><a href="#">Deposit</a></li>
-                    </ul>
-                </li>
+
+                    <a onclick="location.href='@Url.Action("Map", "Admin")'">
 
 
-                <li class="has-sub" style="border-bottom: 1px solid #46505a;
-    border-top: 1px solid #46505a;">
-                    <a href="@Url.Action("Trade", "Admin")">
-                        <b class="caret"></b>
                         <i class="fa fa-book"></i>
-                        <span>Trade</span>
+                        <span>Map</span>
+                    </a>
+                <li class="has-sub " style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fa fa-file"></i>
+                        <span>Files</span>
                     </a>
                     <ul class="sub-menu">
-                        <li class="has-sub "><a href="trade.html">Trade lists</a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("Members", "Admin")'">Member List </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("MemberRegistration", "Admin")'">Member Registration </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("Trade", "Admin")'">Trade List </a></li>
+
+                        <li class=""><a onclick="location.href='@Url.Action("Convert", "Admin")'">Convert List </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("Withdrawal", "Admin")'">Withdrawal List </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("Close", "Admin")'">Close </a></li>
 
                     </ul>
                 </li>
-
-                <li class="has-sub" style="border-bottom: 1px solid #46505a;
-    border-top: 1px solid #46505a;">
-                    <a href="@Url.Action("Ledger", "Admin")">
-                        <b class="caret"></b>
-                        <i class="fa fa-users"></i>
-                        <span>Ledger</span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="has-sub"><a href="ledger.html">Ledger</a></li>
-
-
-                </li>
-            </ul>
-            </li>
-
-            <li class="has-sub " style="border-bottom: 1px solid #46505a;
-    border-top: 1px solid #46505a;">
-                <a href="javascript:;">
-                    <b class="caret"></b>
-                    <i class="fa fa-cog"></i>
-                    <span>Withdrawal</span>
-                </a>
-                <ul class="sub-menu">
-                    <li class=""><a href="withdrawal.html">Withdrawal </a></li>
-
-                </ul>
-            </li>
-
-            <li class="has-sub " style="border-bottom: 1px solid #46505a;
-    border-top: 1px solid #46505a;">
-                <a href="@Url.Action("Members", "Admin")">
-                    <b class="caret"></b>
-                    <i class="fa fa-cog"></i>
-                    <span>Account</span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="account.html"><a href="create_ticket.html">Account </a></li>
-
-                </ul>
-            </li>
-
-            <li class="has-sub " style="border-bottom: 1px solid #46505a;
-    border-top: 1px solid #46505a;">
-                <a href="javascript:;">
-                    <b class="caret"></b>
-                    <i class="fa fa-cog"></i>
-                    <span>Map</span>
-                </a>
-                <ul class="sub-menu">
-                    <li class=""><a href="map.html">Map </a></li>
-
-                </ul>
-            </li>
-
-
-            <li class="has-sub " style="border-bottom: 1px solid #46505a;
-    border-top: 1px solid #46505a;">
-                <a href="javascript:;">
-                    <b class="caret"></b>
-                    <i class="fa fa-file"></i>
-                    <span>Files</span>
-                </a>
-                <ul class="sub-menu">
-                    <li class=""><a href="members.html">Member list </a></li>
-                    <li class=""><a href="member-register.html">Member Register </a></li>
-                    <li class=""><a href="trade-list.html">Trade list </a></li>
-                    <li class=""><a href="withdrawal.html">Withdrawal list </a></li>
-                    <li class=""><a href="close.html">Close </a></li>
-
-                </ul>
-            </li>
 
             </ul>
 
@@ -218,52 +221,7 @@
     @RenderBody()
     @RenderSection("Scripts", required: false)
 
-    <script src="~/js/jquery-3.3.1.min.js"></script>
-    <script src="~/js/jquery-ui.min.js"></script>
-    <script src="~/js/bootstrap.bundle.min.js"></script>
-                 ~
-    <script src="~/js/jquery.slimscroll.min.js"></script>
-    <script src="~/js/js.cookie.js"></script>
-    <script src="~/js/default.min.js"></script>
-    <script src="~/js/apps.min.js"></script>
-    <script src="~/js/jquery.gritter.js"></script>
-    <script src="~/js/moment.js"></script>
-    <script src="~/js/form-plugins.demo.min.js"></script>
 
-
-    <!-- ================== BEGIN BASE JS ================== -->
-
-    <script src="~/js/default.min.js"></script>
-
-    <script src="~/js/d3.min.js"></script>
-    <script src="~/js/nv.d3.min.js"></script>
-    <script src="~/js/jquery-jvectormap.min.js"></script>
-    <script src="~/js/jquery-jvectormap-world-mill.js"></script>
-    <script src="~/js/apexcharts.min.js"></script>
-    <script src="~/js/moment.min.js"></script>
-    <script src="~/js/dashboard-v3.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            App.init();
-        });
-
-
-    </script>
-
-
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-53034621-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
 
 
 

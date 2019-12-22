@@ -17,46 +17,75 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             return View();
         }
-
-        [Route("Admin/Trade")]
-        public IActionResult Trade()
+        public IActionResult Account()
         {
             return View();
         }
+
+
+        //[Route("Admin/Deposit")]
+        //public IActionResult Deposit()
+        //{
+        //    return View();
+        //}
+
+        //[Route("Admin/Trade")]
+        //public IActionResult Trade()
+        //{
+        //    return View();
+        //}
+
+
+        //[Route("Admin/Ledger")]
+        //public IActionResult Ledger()
+        //{
+        //    return View();
+        //}
+
+
+        [Route("Admin/Map")]
+        public IActionResult Map()
+        {
+            return View();
+        }
+         
+
+
 
         [Route("Admin/Members")]
         public IActionResult Members()
         {
             return View();
         }
+        [Route("Admin/Convert")]
+        public IActionResult Convert()
+        {
+            return View();
+        }
 
-        [Route("Admin/Ledger")]
-        public IActionResult Ledger()
+        [Route("Admin/MemberRegistration")]
+        public IActionResult MemberRegistration()
         {
             return View();
         }
 
 
-        [Route("Admin/KYCList")]
-        public IActionResult KYCList()
+        [Route("Admin/Withdrawal")]
+        public IActionResult WithdrawalList()
         {
             return View();
         }
-
-        [Route("Admin/Users")]
-        public IActionResult Users()
+        [Route("Admin/Trade")]
+        public IActionResult Trade()
         {
             return View();
         }
-
-
-        [Route("Admin/Transactions")]
-        public IActionResult Transactions()
+        [Route("Admin/Close")]
+        public IActionResult Close()
         {
             return View();
         }
-
-
+   
         [Route("Admin/Settings")]
         public IActionResult Settings()
         {

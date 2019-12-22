@@ -1,0 +1,219 @@
+﻿@{
+
+    ViewBag.Title = "WCC Admin | Withdrawal List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content" class="content">
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb float-xl-right">
+        <li class="breadcrumb-item"><a href="javascript:;">Withdrawal</a></li>
+        <li class="breadcrumb-item active">All channels</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Withdrawal List  <small> </small></h1>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">-</h4>
+                </div>
+                <div class="panel-body">
+                    <label>SORT</label>
+                    <div class="container">
+
+                        <form>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio" checked>DESC
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio">ASC
+                            </label>
+
+                        </form>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Keyword</label>
+                        <input type="" name="" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Withdrawal List</h4>
+                </div>
+                <div class="table-responsive">
+                    <div class="panel-body">
+                        <table border="0" cellspacing="5" cellpadding="5">
+                            <tbody>
+                                <tr>
+                                    <td>Minimum Date:</td>
+                                    <td><input name="min" id="min" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td>Maximum Date:</td>
+                                    <td><input name="max" id="max" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Date of Request</th>
+                                    <th>ID (Code)</th>
+                                    <th>Name</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Withdrawal Amount</th>
+                                    <th>Currency</th>
+                                    <th>Txid</th>
+                                    <th>Status</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="16"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-4 -->
+
+</div>
+@section Scripts{ 
+
+<script>
+ $(document).ready(function () {
+
+
+        var table = $('#dataTable').DataTable();
+
+
+
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var min = $('#min').datepicker("getDate");
+                    var max = $('#max').datepicker("getDate");
+                    var startDate = new Date(data[3]);
+                    if (min == null && max == null) { return true; }
+                    if (min == null && startDate <= max) { return true; }
+                    if (max == null && startDate >= min) { return true; }
+                    if (startDate <= max && startDate >= min) { return true; }
+                    return false;
+
+                });
+
+
+            $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            var table = $('#dataTable').DataTable();
+
+
+
+
+
+        //    $("#confirm").on("submit", function(event) {
+        //    event.preventDefault();
+
+        //    var formData = {
+        //        'txid': $('input[name=email]').val(),
+        //        'amount': $('input[name=email]').val(),
+        //        'email': $('input[name=email]').val()//for get email
+        //    };
+        //    console.log(formData);
+
+        //    $.ajax({
+        //        url: "/Withdraw/SendADA",
+        //        type: "post",
+        //        data: formData,
+        //        success: function(d) {
+        //            alert("Sent Successfully");
+        //        }
+        //    });
+        //});
+
+
+
+            $('#min, #max').change(function () {
+                table.draw();
+            });
+
+
+
+
+
+
+        });
+    var d = new Date();
+
+var month = d.getMonth()+1;
+var day = d.getDate();
+
+var output = d.getFullYear() + '/' +
+    (month<10 ? '0' : '' ) + month + '/' +
+              (day<10 ? '0' : '' ) + day;
+    $('#dataTable').DataTable({
+    stateSave: true,
+    autoWidth: true,
+    dom: 'Bfrtip' ,
+    buttons: [
+    'copy' , { extend: 'csv' ,
+    orientation: 'landscape' ,
+    title: 'WCC.com' ,
+    messageTop: 'The information in this table is copyright to WCC.' ,
+    messageBottom: output
+    } , { extend: 'excel' ,
+    orientation: 'landscape' ,
+    extend: 'excelHtml5' ,
+    title: 'WCC.com' ,
+    messageTop: 'The information in this table is copyright to WCC.' ,
+    messageBottom: output
+    } , {
+    extend: 'pdf' ,
+    orientation: 'landscape' ,
+    extend: 'pdfHtml5' ,
+    title: 'WCC.com' ,
+    messageTop: 'The information in this table is copyright to WCC.' ,
+    messageBottom: output
+    }, { extend: 'print' ,
+    orientation: 'landscape' ,
+    title: 'WCC.com' ,
+    messageTop: 'The information in this table is copyright to WCC.' ,
+    messageBottom: output
+    }
+    ]
+    } );
+
+    </script>
+  }

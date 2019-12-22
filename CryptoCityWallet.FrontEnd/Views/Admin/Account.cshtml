@@ -1,17 +1,18 @@
 ﻿@{
 
-    ViewBag.Title = "WCC Admin | Trade";
+    ViewBag.Title = "WCC Admin | Account";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+@model AdminVM
 <div id="content" class="content">
     <!-- begin breadcrumb -->
     <ol class="breadcrumb float-xl-right">
-        <li class="breadcrumb-item"><a href="javascript:;">Trade</a></li>
+        <li class="breadcrumb-item"><a href="javascript:;">Admin Account</a></li>
         <li class="breadcrumb-item active">All channels</li>
     </ol>
     <!-- end breadcrumb -->
     <!-- begin page-header -->
-    <h1 class="page-header">Trade <small> </small></h1>
+    <h1 class="page-header">Admin Details <small> </small></h1>
 
 
     <div class="row">
@@ -25,39 +26,29 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
-                    <h4 class="panel-title">Trade</h4>
+                    <h4 class="panel-title">Admin Account</h4>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-8">
                             <div class="form-group">
-                                <label>Amount</label>
-                                <input type="" name="" class="form-control" readonly="">
+                                <label>Username</label>
+                                <input type="" name="" asp-for="Username" class="form-control" readonly="">
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <label><br></label>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Check Deposit</button>
-                            </div>
-                        </div>
+                    
                     </div>
                     <div class="row">
                         <div class="col-md-8">
                             <div class="form-group">
-                                <label>Rate Information</label>
+                                <label>Date Joined</label>
                                 <input type="" name="" class="form-control" readonly="">
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <label><br></label>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Check Current Rate</button>
-                            </div>
-                        </div>
+                       
                     </div>
 
-                    <div class="row">
+                    @*<div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Trade</label>
@@ -73,12 +64,12 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-inverse">Submit</button>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
 
-        <div class="col-md-12">
+        @*<div class="col-md-12">
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
@@ -115,7 +106,7 @@
 
                 </div>
             </div>
-        </div>
+        </div>*@
 
 
 

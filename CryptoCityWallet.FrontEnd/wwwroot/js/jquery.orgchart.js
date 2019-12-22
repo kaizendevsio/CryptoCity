@@ -1166,7 +1166,7 @@
         if(Number(flags.substr(2,1))) {
           $nodeDiv.append('<i class="edge verticalEdge bottomEdge fa"></i>')
             .children('.title').prepend('<i class="fa '+ opts.parentNodeSymbol + ' symbol"></i>');
-        } 
+        }
       }
 
       $nodeDiv.on('mouseenter mouseleave', this.nodeEnterLeaveHandler.bind(this));
@@ -1187,7 +1187,7 @@
         opts.createNode($nodeDiv, data);
       }
 
-      return $nodeDiv; 
+      return $nodeDiv;
     },
     // recursively build the tree
     buildHierarchy: function ($appendTo, data) {
@@ -1211,7 +1211,7 @@
           $nodeWrapper = $('<table>');
           $appendTo.append($nodeWrapper.append($('<tr/>').append($('<td' + (hasChildren ? ' colspan="' + childrenData.length * 2 + '"' : '') + '></td>').append($nodeDiv))));
         }
-      }   
+      }
       // Construct the lower level(two "connectiong lines" rows and "inferior nodes" row)
       if (hasChildren) {
         var isHidden = (level + 1 > opts.visibleLevel || data.collapsed) ? ' hidden' : '';
@@ -1228,7 +1228,7 @@
           } else {
             $appendTo.append($nodesLayer);
           }
-        } else { 
+        } else {
           var $upperLines = $('<tr class="lines' + isHidden + '"><td colspan="' + childrenData.length * 2 + '"><div class="downLine"></div></td></tr>');
           var lowerLines = '<tr class="lines' + isHidden + '"><td class="rightLine"></td>';
           for (var i=1; i<childrenData.length; i++) {
@@ -1241,7 +1241,7 @@
           } else {
             $nodeWrapper.append($upperLines).append(lowerLines).append($nodesLayer);
           }
-        } 
+        }
         // recurse through children nodes
         $.each(childrenData, function () {
           var $nodeCell = isVerticalLayer ? $('<li>') : $('<td colspan="2">');
@@ -1250,7 +1250,7 @@
           that.buildHierarchy($nodeCell, this);
         });
       }
-    }, 
+    },
     // build the child nodes of specific node
     buildChildNode: function ($appendTo, data) {
       $appendTo.find('td:first').attr('colspan', data.length * 2);
@@ -1268,7 +1268,7 @@
       if (this.isInAction($node)) {
         this.switchVerticalArrow($node.children('.bottomEdge'));
       }
-    }, 
+    },
     // build the parent node of specific node
     buildParentNode: function ($currentRoot, data) {
       data.relationship = data.relationship || '001';
@@ -1288,7 +1288,7 @@
       }
       if (this.isInAction($currentRoot)) {
         this.switchVerticalArrow($currentRoot.children('.topEdge'));
-      }  
+      }
     },
     // subsequent processing of build sibling nodes
     complementLine: function ($oneSibling, siblingCount, existingSibligCount) {
@@ -1298,7 +1298,7 @@
       }
       $oneSibling.parent().prevAll('tr:gt(0)').children().attr('colspan', siblingCount * 2)
         .end().next().children(':first').after(lines);
-    },  
+    },
     // build the sibling nodes of specific node
     buildSiblingNode: function ($nodeChart, data) {
       var newSiblingCount = $.isArray(data) ? data.length : data.children.length;
@@ -1322,7 +1322,7 @@
           siblingCount, 1);
       }
     },
-    //   
+    //
     addSiblings: function ($node, data) {
       this.buildSiblingNode($node.closest('table'), data);
       $node.closest('.nodes').data('siblingsLoaded', true);
@@ -1351,7 +1351,7 @@
       } else {
         $parent.add($parent.siblings()).remove();
       }
-    },  
+    },
     //
     exportPDF: function(canvas, exportFilename){
       var doc = {};
@@ -1376,7 +1376,7 @@
     },
     //
     exportPNG: function(canvas, exportFilename){
-      var that = this; 
+      var that = this;
       var isWebkit = 'WebkitAppearance' in document.documentElement.style;
       var isFf = !!window.sidebar;
       var isEdge = navigator.appName === 'Microsoft Internet Explorer' || (navigator.appName === "Netscape" && navigator.appVersion.indexOf('Edge') > -1);
@@ -1396,7 +1396,7 @@
       }
     },
     //
-    export: function (exportFilename, exportFileextension) { 
+    export: function (exportFilename, exportFileextension) {
       var that = this;
       exportFilename = (typeof exportFilename !== 'undefined') ?  exportFilename : this.options.exportFilename;
       exportFileextension = (typeof exportFileextension !== 'undefined') ?  exportFileextension : this.options.exportFileextension;
@@ -1440,4 +1440,4 @@
     return new OrgChart(this, opts).init();
   };
 
-}));                                      
+}));

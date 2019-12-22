@@ -6,12 +6,11 @@ using CryptoCityWallet.Entities.BO;
 
 namespace CryptoCityWallet.FrontEnd.Models
 {
-    public class UserVM
+    public class ConvertVM
     {
         public string Fullname { get; set; }
         public string Username { get; set; }
         public DateTime DateJoined { get; set; }
         public UserBO UserInfo { get; set; }
-
     }
 }
