@@ -12,5 +12,6 @@ namespace CryptoCityWallet.FrontEnd.Models
         public string Username { get; set; }
         public DateTime DateJoined { get; set; }
         public UserBO UserInfo { get; set; }
+        public List<TradeVM> TradeHistory { get; set; }
     }
 }

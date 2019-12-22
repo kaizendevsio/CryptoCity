@@ -1,8 +1,10 @@
 ﻿@{
 
-    ViewBag.Title = "WCC Admin | Trade";
+    ViewBag.Title = "WCC Admin | Trade List";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
+@model TradeListVM
 <div id="content" class="content">
     <!-- begin breadcrumb -->
     <ol class="breadcrumb float-xl-right">
@@ -11,8 +13,7 @@
     </ol>
     <!-- end breadcrumb -->
     <!-- begin page-header -->
-    <h1 class="page-header">Trade <small> </small></h1>
-
+    <h1 class="page-header">Trade List  <small> </small></h1>
 
     <div class="row">
 
@@ -25,58 +26,69 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
-                    <h4 class="panel-title">Trade</h4>
+                    <h4 class="panel-title">Trades</h4>
                 </div>
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label>Amount</label>
-                                <input type="" name="" class="form-control" readonly="">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label><br></label>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Check Deposit</button>
-                            </div>
-                        </div>
+                    <label>SORT</label>
+                    <div class="container">
+
+                        <form>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio" checked>DESC
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio">ASC
+                            </label>
+
+                        </form>
                     </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label>Rate Information</label>
-                                <input type="" name="" class="form-control" readonly="">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label><br></label>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Check Current Rate</button>
-                            </div>
+                    <div class="container">
+                        <div class="form-group">
+                            <label>Keyword</label>
+                            <input type="" name="" class="form-control">
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Trade</label>
-                                <input type="number" name="" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label>Set</label>
-                            <div class="form-group">
-                                <input type="number" name="" class="form-control">
-                            </div>
-                        </div>
+
+                    <div class="container">
+
+                        <form>
+                            <label class="radio-inline">
+                                <input type="checkbox" id="inlineCssCheckbox1">Incomplete Profile
+                            </label>
+                            <label class="radio-inline">
+                                <input type="checkbox" name="inlineCssCheckbox1">Incomplete Profile
+                            </label>
+                            <label class="radio-inline">
+                                <input type="checkbox" name="inlineCssCheckbox1">Deposit
+                            </label>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-inverse">Submit</button>
+                    @*<div class="form-group">
+                            <div class="checkbox checkbox-css checkbox-inline">
+                                <input type="checkbox" id="inlineCssCheckbox1" />
+                                <label for="inlineCssCheckbox1">Incomplete Profile</label>
+                            </div>
+                            <div class="checkbox checkbox-css checkbox-inline">
+                                <input type="checkbox" id="inlineCssCheckbox1" />
+                                <label for="inlineCssCheckbox1">Incomplete Profile</label>
+                            </div>
+                            <div class="checkbox checkbox-css checkbox-inline">
+                                <input type="checkbox" id="inlineCssCheckbox1" />
+                                <label for="inlineCssCheckbox1">Deposit</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>*@
+                    <div class="container">
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="col-md-12">
             <div class="panel panel-inverse">
@@ -87,38 +99,270 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
-                    <h4 class="panel-title">Trade History</h4>
+                    <h4 class="panel-title">Trade List</h4>
                 </div>
-                <div class="panel-body">
+                <div class="table-responsive">
+                    <div class="panel-body">
+                        @*<table border="0" cellspacing="5" cellpadding="5">
+                                <tbody>
+                                    <tr>
+                                        <td>Minimum Date:</td>
+                                        <td><input name="min" id="min" type="text"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maximum Date:</td>
+                                        <td><input name="max" id="max" type="text"></td>
+                                    </tr>
+                                </tbody>
+                            </table>*@
 
-                    <table class="table table-bordered">
-                        <thead>
 
-                        <th>Code</th>
-                        <th>Date</th>
-                        <th>Member Name (ID)</th>
-                        <th>Int. Name</th>
-                        <th>Trade Item</th>
-                        <th>Quantity</th>
+                        <table class="table table-bordered" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>CreatedOn</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Int.ID(Code) </th>
+                                    <th>Int.Name </th>
+                                    <th>TradeItem   </th>
+                                    <th>Quantity   </th>
+                                    <th>Amount   </th>
 
-                        <th>Amount</th>
-                        </thead>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @*@foreach (var item in Model.TradeHistory)
+                                    {*@
+                                <tr>
+                                    <td>
 
-                        <tbody>
-                            <tr>
+                                        Html.DisplayFor(modelItem => item.CreatedOn)
+                                    </td>
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.ID)
+                                    </td>
 
-                                <td colspan="16"></td>
-                            </tr>
-                        </tbody>
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.FirstName)   Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td>
 
-                    </table>
+                                        Html.DisplayFor(modelItem => item.IntName)
+                                    </td>
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.IntCode)
+                                    </td>
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.TradeItem)
+                                    </td>
 
+
+
+
+
+
+
+
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.Quantity)
+                                    </td>
+                                    <td>
+
+                                        Html.DisplayFor(modelItem => item.Amount)
+                                    </td>
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+                                </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
         </div>
-
-
-
+        <!-- end panel -->
     </div>
-    <!-- end panel -->
+    <!-- end col-4 -->
+
 </div>
+@section Scripts{
+    <style>
+        .toggle-button {
+            margin: 5px 0;
+            border-radius: 20px;
+            border: 2px solid #D0D0D0;
+            height: 24px;
+            cursor: pointer;
+            width: 50px;
+            position: relative;
+            display: inline-block;
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+        }
+
+            .toggle-button span {
+                position: absolute;
+                left: 0;
+                top: 0;
+                border-radius: 100%;
+                width: 26px;
+                height: 26px;
+                background-color: white;
+                float: left;
+                margin: -3px 0 0 -3px;
+                border: 2px solid #D0D0D0;
+                transition: left 0.3s;
+            }
+
+        .toggle-button-selected {
+            background-color: #83B152;
+            border: 2px solid #7DA652;
+        }
+
+            .toggle-button-selected span {
+                left: 26px;
+                top: 0;
+                margin: 0;
+                border: none;
+                width: 24px;
+                height: 24px;
+                box-shadow: 0 0 4px rgba(0,0,0,0.1);
+            }
+    </style>
+    <script>
+
+        $('.toggle').change(function () {
+            debugger;
+            if ($('.toggle').hasClass('off')) {
+                //$('#staticMapImg').hide();
+            } else {
+                //$('#staticMapImg').show();
+            }
+        })
+
+
+        $(document).ready(function () {
+
+
+            var table = $('#dataTable').DataTable();
+
+
+
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var min = $('#min').datepicker("getDate");
+                    var max = $('#max').datepicker("getDate");
+                    var startDate = new Date(data[3]);
+                    if (min == null && max == null) { return true; }
+                    if (min == null && startDate <= max) { return true; }
+                    if (max == null && startDate >= min) { return true; }
+                    if (startDate <= max && startDate >= min) { return true; }
+                    return false;
+
+                });
+
+
+            $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            var table = $('#dataTable').DataTable();
+
+
+
+
+
+            //    $("#confirm").on("submit", function(event) {
+            //    event.preventDefault();
+
+            //    var formData = {
+            //        'txid': $('input[name=email]').val(),
+            //        'amount': $('input[name=email]').val(),
+            //        'email': $('input[name=email]').val()//for get email
+            //    };
+            //    console.log(formData);
+
+            //    $.ajax({
+            //        url: "/Withdraw/SendADA",
+            //        type: "post",
+            //        data: formData,
+            //        success: function(d) {
+            //            alert("Sent Successfully");
+            //        }
+            //    });
+            //});
+
+
+
+            $('#min, #max').change(function () {
+                table.draw();
+            });
+
+
+
+
+
+
+        });
+        var d = new Date();
+
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+
+        var output = d.getFullYear() + '/' +
+            (month < 10 ? '0' : '') + month + '/' +
+            (day < 10 ? '0' : '') + day;
+
+        $('#dataTable').DataTable({
+            stateSave: true,
+            autoWidth: true,
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', {
+                    extend: 'csv',
+                    orientation: 'landscape',
+                    title: 'WCC.com',
+                    messageTop: 'The information in this table is copyright to WCC.',
+                    messageBottom: output
+                }, {
+                    extend: 'excel',
+                    orientation: 'landscape',
+                    extend: 'excelHtml5',
+                    title: 'WCC.com',
+                    messageTop: 'The information in this table is copyright to WCC.',
+                    messageBottom: output
+                }, {
+                    extend: 'pdf',
+                    orientation: 'landscape',
+                    extend: 'pdfHtml5',
+                    title: 'WCC.com',
+                    messageTop: 'The information in this table is copyright to WCC.',
+                    messageBottom: output
+                }, {
+                    extend: 'print',
+                    orientation: 'landscape',
+
+                    title: 'WCC.com',
+                    messageTop: 'The information in this table is copyright to WCC.',
+                    messageBottom: output
+                }
+            ]
+
+        });
+
+    </script>
+}

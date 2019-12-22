@@ -11,8 +11,8 @@ namespace CryptoCityWallet.FrontEnd.Models
         public double YesterdayProfit { get; set; }
         public double WCCPBalance { get; set; }
 
-         
+      
         public List<HistoryVM> History { get; set; }
-        
+           
     }
 }
