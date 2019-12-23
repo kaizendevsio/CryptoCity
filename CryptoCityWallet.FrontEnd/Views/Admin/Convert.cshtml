@@ -3,6 +3,8 @@
     ViewBag.Title = "WCC Admin | Convert List";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
+@model ConvertListVM
 <div id="content" class="content">
     <!-- begin breadcrumb -->
     <ol class="breadcrumb float-xl-right">
@@ -11,9 +13,12 @@
     </ol>
     <!-- end breadcrumb -->
     <!-- begin page-header -->
-    <h1 class="page-header">Convert List  <small> </small></h1>
+    <h1 class="page-header"> Convert List  <small> </small></h1>
 
     <div class="row">
+
+
+
 
         <div class="col-md-12">
             <div class="panel panel-inverse">
@@ -26,60 +31,14 @@
                     </div>
                     <h4 class="panel-title">Convert List</h4>
                 </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <!-- inline -->
-                        <label>SORT :</label> &nbsp;
-                        <div>
-                            <input type="radio" id="inlineCssRadio1" name="sort">
-                            <label for="inlineCssRadio1">DESC</label>
-                            </br>
-
-                            <input type="radio" id="inlineCssRadio1" name="sort" />
-                            <label for="inlineCssRadio1">ASC</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Keyword</label>
-                        <input type="" name="" class="form-control">
-                    </div>
-                    @*<div class="form-group">
-                            <div class="checkbox checkbox-css checkbox-inline">
-                                <input type="checkbox" id="inlineCssCheckbox1" />
-                                <label for="inlineCssCheckbox1">Incomplete Profile</label>
-                            </div>
-                            <div class="checkbox checkbox-css checkbox-inline">
-                                <input type="checkbox" id="inlineCssCheckbox1" />
-                                <label for="inlineCssCheckbox1">Incomplete Profile</label>
-                            </div>
-                            <div class="checkbox checkbox-css checkbox-inline">
-                                <input type="checkbox" id="inlineCssCheckbox1" />
-                                <label for="inlineCssCheckbox1">Deposit</label>
-                            </div>
-                        </div>*@
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-12">
-            <div class="panel panel-inverse">
-                <div class="panel-heading">
-                    <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                    </div>
-                    <h4 class="panel-title">Convert lists</h4>
-                </div>
                 <div class="table-responsive">
                     <div class="panel-body">
-                        <table border="0" cellspacing="5" cellpadding="5">
+                        @* <table border="0" cellspacing="5" cellpadding="5">
+
+
+
+
+
                             <tbody>
                                 <tr>
                                     <td>Minimum Date:</td>
@@ -90,8 +49,10 @@
                                     <td><input name="max" id="max" type="text"></td>
                                 </tr>
                             </tbody>
-                        </table>
-                        <table class="table table-bordered" id="dataTable">
+                        </table>*@
+
+                        <table class="display table dataTable table-bordered table-striped" id="property" cellspacing="0" width="100%">
+
                             <thead>
                                 <tr>
                                     <th>Date of Request</th>
@@ -106,9 +67,8 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
+                         
                             <tbody>
-                                @*@foreach (var item in Model.History)
-                                    {*@
                                 <tr>
                                     <td>
 
@@ -161,8 +121,8 @@
 
 
                                 </tr>
-                                }
                             </tbody>
+
                         </table>
 
                     </div>
@@ -177,176 +137,192 @@
     <partial name="Partials/Cancel.cshtml" />
 </div>
 @section Scripts{
-    <script> 
+    <style>
+        .toggle-button {
+            margin: 5px 0;
+            border-radius: 20px;
+            border: 2px solid #D0D0D0;
+            height: 24px;
+            cursor: pointer;
+            width: 50px;
+            position: relative;
+            display: inline-block;
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+        }
+
+            .toggle-button span {
+                position: absolute;
+                left: 0;
+                top: 0;
+                border-radius: 100%;
+                width: 26px;
+                height: 26px;
+                background-color: white;
+                float: left;
+                margin: -3px 0 0 -3px;
+                border: 2px solid #D0D0D0;
+                transition: left 0.3s;
+            }
+
+        .toggle-button-selected {
+            background-color: #83B152;
+            border: 2px solid #7DA652;
+        }
+
+            .toggle-button-selected span {
+                left: 26px;
+                top: 0;
+                margin: 0;
+                border: none;
+                width: 24px;
+                height: 24px;
+                box-shadow: 0 0 4px rgba(0,0,0,0.1);
+            }
+
+            .dataTable > thead > tr > th[class*="sort"]:after{
+    content: "" !important;
+}
+    </style>
+
+ 
+    <script>
 
         $('#send').click(function () {
-                var date_ = $(this).closest("tr").find("td").eq(0).text();
-                var membercode_ = $(this).closest("tr").find("td").eq(1).text();
-                var name_ = $(this).closest("tr").find("td").eq(2).text();
-                var from = $(this).closest("tr").find("td").eq(3).text();
-                var to = $(this).closest("tr").find("td").eq(4).text();
-                var amount = $(this).closest("tr").find("td").eq(5).text();
-                var currency = $(this).closest("tr").find("td").eq(6).text();
-                var txid = $(this).closest("tr").find("td").eq(7).text();
-                document.getElementById('dateDetails').innerHTML = '<b> Date : ' + date_ + '</b>';
-                document.getElementById('memcodeDetails').innerHTML = '<b> ID : ' + membercode_ + '</b>';
-                document.getElementById('memnameDetails').innerHTML = '<b> ID : ' + name_ + '</b>';
-                document.getElementById('fromDetails').innerHTML = '<b> From : ' + from + '</b>';
-                document.getElementById('toDetails').innerHTML = '<b> To: ' + to + '</b>';
+            var date_ = $(this).closest("tr").find("td").eq(0).text();
+            var membercode_ = $(this).closest("tr").find("td").eq(1).text();
+            var name_ = $(this).closest("tr").find("td").eq(2).text();
+            var from = $(this).closest("tr").find("td").eq(3).text();
+            var to = $(this).closest("tr").find("td").eq(4).text();
+            var amount = $(this).closest("tr").find("td").eq(5).text();
+            var currency = $(this).closest("tr").find("td").eq(6).text();
+            var txid = $(this).closest("tr").find("td").eq(7).text();
+            document.getElementById('dateDetails').innerHTML = '<b> Date : ' + date_ + '</b>';
+            document.getElementById('memcodeDetails').innerHTML = '<b> ID : ' + membercode_ + '</b>';
+            document.getElementById('memnameDetails').innerHTML = '<b> ID : ' + name_ + '</b>';
+            document.getElementById('fromDetails').innerHTML = '<b> From : ' + from + '</b>';
+            document.getElementById('toDetails').innerHTML = '<b> To: ' + to + '</b>';
 
-                document.getElementById('currencyDetails').innerHTML = '<b> From : ' + currency + '</b>';
-                document.getElementById('amountDetails').innerHTML = '<b> Total Amount : ' + amount + '</b>';
+            document.getElementById('currencyDetails').innerHTML = '<b> From : ' + currency + '</b>';
+            document.getElementById('amountDetails').innerHTML = '<b> Total Amount : ' + amount + '</b>';
 
-                document.getElementById('txidDetails').innerHTML = '<b> TxID : ' + txid + '</b>';
+            document.getElementById('txidDetails').innerHTML = '<b> TxID : ' + txid + '</b>';
 
-            });
-
-
-        //           $('#send').click(function() {
-        //            var date_ = $(this).closest("tr").find("td").eq(0).text();
-        //            var membercode_ = $(this).closest("tr").find("td").eq(1).text();
-        //            var membername_ = $(this).closest("tr").find("td").eq(3).text();
-        //            var total_amount= $(this).closest("tr").find("td").eq(4).text();
-        //            var txid = $(this).closest("tr").find("td").eq(5).text();
-        //            document.getElementById('dateDetails').innerHTML = '<b> Date : ' + date_ + '</b>';
-        //            document.getElementById('memcodeDetails').innerHTML = '<b> Member Code : ' + membercode_ + '</b>';
-        //            document.getElementById('memnameDetails').innerHTML = '<b> Member Name : ' + membername_+ '</b>';
-        //            document.getElementById('amountDetails').innerHTML = '<b> Request Amount  : ' + total_amount  + '</b>';
-        //            document.getElementById('txidDetails').innerHTML = '<b> TxID : ' +  txid+ '</b>';
-
-        //});
+        });
 
 
+        //$('#from').click(function () {
+        //    var currency = $(this).closest("tr").find("td").eq(0).text();
+        //    var balance = $(this).closest("tr").find("td").eq(1).text();
+        //    var available = $(this).closest("tr").find("td").eq(2).text();
+        //    var hot = $(this).closest("tr").find("td").eq(3).text();
+        //    var cold = $(this).closest("tr").find("td").eq(4).text();
+        //    var rate = $(this).closest("tr").find("td").eq(5).text();
+        //    var usd = $(this).closest("tr").find("td").eq(6).text();
+        //    document.getElementById('currencyDetails').innerHTML = '<b> Date : ' + currency + '</b>';
+        //    document.getElementById('balanceDetails').innerHTML = '<b> Balance : ' + balance + '</b>';
+        //    document.getElementById('availableDetails').innerHTML = '<b> Available : ' + available + '</b>';
+        //    document.getElementById('hotDetails').innerHTML = '<b> HOT : ' + hot + '</b>';
+        //    document.getElementById('coldDetails').innerHTML = '<b> COLD : ' + cold + '</b>';
+
+        //    document.getElementById('rateDetails').innerHTML = '<b> RATE  : ' + rate + '</b>';
+        //    document.getElementById('usdDetails').innerHTML = '<b> USD : ' + usd + '</b>';
 
 
-
-
-        //$("#confirm").on("submit", function (event) {
-        //    event.preventDefault();
-
-        //    var formData = {
-        //        'txid': $('input[name=email]').val(),
-        //        'amount': $('input[name=email]').val(),
-        //        'email': $('input[name=email]').val()//for get email
-        //    };
-        //    console.log(formData);
-
-            //$.ajax({
-            //url: "/Withdraw/SendADA",
-            //type: "post",
-            //data: formData,
-            //success: function(d) {
-            //alert("Sent Successfully");
-            //}
-            //});
-            //});</script>
- 
-
-        <script>
-            $(document).ready(function () {
-
-
-                var table = $('#dataTable').DataTable();
-
-
-
-                $.fn.dataTable.ext.search.push(
-                    function (settings, data, dataIndex) {
-                        var min = $('#min').datepicker("getDate");
-                        var max = $('#max').datepicker("getDate");
-                        var startDate = new Date(data[3]);
-                        if (min == null && max == null) { return true; }
-                        if (min == null && startDate <= max) { return true; }
-                        if (max == null && startDate >= min) { return true; }
-                        if (startDate <= max && startDate >= min) { return true; }
-                        return false;
-
-                    });
-
-
-                $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
-                $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
-                var table = $('#dataTable').DataTable();
+        //}); 
 
 
 
 
+        var d = new Date();
 
-                //    $("#confirm").on("submit", function(event) {
-                //    event.preventDefault();
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
 
-                //    var formData = {
-                //        'txid': $('input[name=email]').val(),
-                //        'amount': $('input[name=email]').val(),
-                //        'email': $('input[name=email]').val()//for get email
-                //    };
-                //    console.log(formData);
+        var output = d.getFullYear() + '/' +
+            (month < 10 ? '0' : '') + month + '/' +
+            (day < 10 ? '0' : '') + day;
 
-                //    $.ajax({
-                //        url: "/Withdraw/SendADA",
-                //        type: "post",
-                //        data: formData,
-                //        success: function(d) {
-                //            alert("Sent Successfully");
-                //        }
-                //    });
-                //});
-
-
-
-                $('#min, #max').change(function () {
-                    table.draw();
-                });
-
-
-
-
-
-
-            });
-            var d = new Date();
-
-            var month = d.getMonth() + 1;
-            var day = d.getDate();
-
-            var output = d.getFullYear() + '/' +
-                (month < 10 ? '0' : '') + month + '/' +
-                (day < 10 ? '0' : '') + day;
-            $('#dataTable').DataTable({
-                stateSave: true,
-                autoWidth: true,
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', {
+        
+        $('#property').DataTable({
+            stateSave: true,
+            autoWidth: true,
+            dom: 'lBf<"toolbar">rtip<"clear">', fnInitComplete: function () {
+                $('div.toolbar').html('<div class="dataTables_length" id=" "><label> <select name=" " aria-controls="property" class=""><option value="Withdrawal">Withdrawal</option><option value="Deposit">Deposit</option> </select></label></div><div id="example_filter" class="dataTables_filter input-daterange"><label><input type="text" id="from_date_picker" class="date-range-filter" placeholder="Date Start" data-date-format="mm-dd-yyyy" id="min" placeholder="" aria-controls="example">To<input type="text" id="to_date_picker" class="date-range-filter"  placeholder="Date End" data-date-format="mm-dd-yyyy" id="max" aria-controls="example"></label></div>');
+            },
+            buttons: [
+                    {
+                        extend: 'copy',
+                       
+                         className: 'dt-button btn btn-primary '
+                    }, {
                         extend: 'csv',
                         orientation: 'landscape',
                         title: 'WCC.com',
                         messageTop: 'The information in this table is copyright to WCC.',
-                        messageBottom: output
+                    messageBottom: output,
+                         className: 'dt-button btn btn-primary '
                     }, {
                         extend: 'excel',
                         orientation: 'landscape',
                         extend: 'excelHtml5',
                         title: 'WCC.com',
                         messageTop: 'The information in this table is copyright to WCC.',
-                        messageBottom: output
+                     messageBottom: output,
+                         className: 'dt-button btn btn-primary '
                     }, {
                         extend: 'pdf',
                         orientation: 'landscape',
-                        extend: 'pdfHtml5',
+                    extend: 'pdfHtml5',
+                          pageSize: 'LEGAL',
                         title: 'WCC.com',
                         messageTop: 'The information in this table is copyright to WCC.',
-                        messageBottom: output
+                        messageBottom: output,
+                         className: 'dt-button btn btn-primary '
                     }, {
                         extend: 'print',
                         orientation: 'landscape',
+                         pageSize: 'LEGAL',
                         title: 'WCC.com',
                         messageTop: 'The information in this table is copyright to WCC.',
-                        messageBottom: output
+                        messageBottom: output,
+                         className: 'dt-button btn btn-primary '
                     }
-                ]
+            ]  
+            }); 
+        $(document).ready(function () {
+
+            $('.input-daterange input').each(function () {
+                $(this).datepicker('clearDates');
             });
 
-        </script>
-   
+            // Extend dataTables search
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var min = $('#min').val();
+                    var max = $('#max').val();
+                    var createdAt = data[0] || 1; // Our date column in the table
+
+                    if (
+                        (min == "" || max == "") ||
+                        (moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max))
+                    ) {
+                        return true;
+                    }
+                    return false;
+                }
+            );
+
+            // Re-draw the table when the a date range filter changes
+            $('.date-range-filter').change(function () {
+                var table = $('#property').DataTable();
+                table.draw();
+            });
+
+
+            $('.date-range-filter').datepicker();
+        });
+    </script>
 }

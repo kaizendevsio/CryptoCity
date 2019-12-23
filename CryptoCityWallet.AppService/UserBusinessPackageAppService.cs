@@ -15,7 +15,7 @@ namespace CryptoCityWallet.AppService
             if (db != null)
             {
                 WalletTypeRepository walletTypeRepository = new WalletTypeRepository();
-                TblWalletType walletType = walletTypeRepository.Get(new UserWalletBO { WalletCode = userBusinessPackage.FromWalletCode }, db);
+                TblWalletType walletType = walletTypeRepository.Get(new UserWalletBO { WalletCode = userBusinessPackage.FromWalletCode, WalletTypeId = 0 }, db);
 
                 UserWalletAppService userWalletAppService = new UserWalletAppService();
                 TblUserWallet userWallet = userWalletAppService.GetSingle(new TblUserAuth { Id = userBusinessPackage.Id }, walletType);
@@ -23,13 +23,23 @@ namespace CryptoCityWallet.AppService
                 CurrencyTypeRepository currencyTypeRepository = new CurrencyTypeRepository();
                 TblCurrency currency = currencyTypeRepository.Get(new TblCurrency { CurrencyIsoCode3 = userBusinessPackage.FromCurrencyIso3 }, db);
 
-                if (userWallet.Balance >= userBusinessPackage.AmountPaid)
+                BusinessPackageRepository businessPackageRepository = new BusinessPackageRepository();
+                TblBusinessPackage businessPackage = businessPackageRepository.Get(new TblBusinessPackage { Id = long.Parse(userBusinessPackage.BusinessPackageID) }, db);
+
+                decimal _amountPaid = decimal.Parse(userBusinessPackage.AmountPaid);
+
+                if (_amountPaid < businessPackage.ValueFrom)
+                {
+                    throw new ArgumentException("Payment is below the minimum package requirements");
+                }
+
+                if (userWallet.Balance >= _amountPaid)
                 {
                     UserDepositRequestRepository userDepositRequestRepository = new UserDepositRequestRepository();
                     TblUserDepositRequest userDepositRequest = new TblUserDepositRequest();
 
                     userDepositRequest.Address = userBusinessPackage.PaymentAddress;
-                    userDepositRequest.Amount = userBusinessPackage.AmountPaid;
+                    userDepositRequest.Amount = _amountPaid;
                     userDepositRequest.DepositStatus = (short)DepositStatus.PendingPayment;
                     userDepositRequest.CreatedOn = DateTime.Now;
                     userDepositRequest.SourceCurrencyId = currency.Id;
@@ -42,17 +52,21 @@ namespace CryptoCityWallet.AppService
                     TblUserBusinessPackage tblUserBusinessPackage = new TblUserBusinessPackage();
                     tblUserBusinessPackage.IsEnabled = true;
                     tblUserBusinessPackage.CreatedOn = DateTime.Now;
+                    tblUserBusinessPackage.ActivationDate = DateTime.Now;
                     tblUserBusinessPackage.BusinessPackageId = 1;
                     tblUserBusinessPackage.UserAuthId = userBusinessPackage.Id;
                     tblUserBusinessPackage.PackageStatus = (short)PackageStatus.Activated;
                     tblUserBusinessPackage.UserDepositRequestId = x.Id;
 
                     db.TblUserBusinessPackage.Add(tblUserBusinessPackage);
+
+                    userWalletAppService.Decrement(new UserWalletBO { UserAuthId = userWallet.UserAuthId, WalletCode = userWallet.WalletType.Code, WalletTypeId = userWallet.WalletTypeId }, new WalletTransactionBO { Amount = _amountPaid });
+
                     db.SaveChanges();
 
                     return true;
                 }
-                else { return false; }
+                else { throw new ArgumentException("Insufficient wallet funds"); }
             }
             else
             {
@@ -61,7 +75,7 @@ namespace CryptoCityWallet.AppService
                     using (var transaction = db.Database.BeginTransaction())
                     {
                         WalletTypeRepository walletTypeRepository = new WalletTypeRepository();
-                        TblWalletType walletType = walletTypeRepository.Get(new UserWalletBO { WalletCode = userBusinessPackage.FromWalletCode }, db);
+                        TblWalletType walletType = walletTypeRepository.Get(new UserWalletBO { WalletCode = userBusinessPackage.FromWalletCode, WalletTypeId = 0 }, db);
 
                         UserWalletAppService userWalletAppService = new UserWalletAppService();
                         TblUserWallet userWallet = userWalletAppService.GetSingle(new TblUserAuth { Id = userBusinessPackage.Id }, walletType);
@@ -69,13 +83,23 @@ namespace CryptoCityWallet.AppService
                         CurrencyTypeRepository currencyTypeRepository = new CurrencyTypeRepository();
                         TblCurrency currency = currencyTypeRepository.Get(new TblCurrency { CurrencyIsoCode3 = userBusinessPackage.FromCurrencyIso3 }, db);
 
-                        if (userWallet.Balance >= userBusinessPackage.AmountPaid)
+                        BusinessPackageRepository businessPackageRepository = new BusinessPackageRepository();
+                        TblBusinessPackage businessPackage = businessPackageRepository.Get(new TblBusinessPackage { Id =long.Parse(userBusinessPackage.BusinessPackageID) }, db);
+
+                        decimal _amountPaid = decimal.Parse(userBusinessPackage.AmountPaid);
+
+                        if (_amountPaid < businessPackage.ValueFrom)
+                        {
+                            throw new ArgumentException("Payment is below the minimum package requirements");
+                        }
+
+                        if (userWallet.Balance >= _amountPaid)
                         {
                             UserDepositRequestRepository userDepositRequestRepository = new UserDepositRequestRepository();
                             TblUserDepositRequest userDepositRequest = new TblUserDepositRequest();
 
                             userDepositRequest.Address = userBusinessPackage.PaymentAddress;
-                            userDepositRequest.Amount = userBusinessPackage.AmountPaid;
+                            userDepositRequest.Amount = _amountPaid;
                             userDepositRequest.DepositStatus = (short)DepositStatus.PendingPayment;
                             userDepositRequest.CreatedOn = DateTime.Now;
                             userDepositRequest.SourceCurrencyId = currency.Id;
@@ -88,18 +112,22 @@ namespace CryptoCityWallet.AppService
                             TblUserBusinessPackage tblUserBusinessPackage = new TblUserBusinessPackage();
                             tblUserBusinessPackage.IsEnabled = true;
                             tblUserBusinessPackage.CreatedOn = DateTime.Now;
+                            tblUserBusinessPackage.ActivationDate = DateTime.Now;
                             tblUserBusinessPackage.BusinessPackageId = 1;
                             tblUserBusinessPackage.UserAuthId = userBusinessPackage.Id;
                             tblUserBusinessPackage.PackageStatus = (short)PackageStatus.Activated;
                             tblUserBusinessPackage.UserDepositRequestId = x.Id;
 
                             db.TblUserBusinessPackage.Add(tblUserBusinessPackage);
+
+                            userWalletAppService.Decrement(new UserWalletBO { UserAuthId = userWallet.UserAuthId, WalletCode = userWallet.WalletType.Code, WalletTypeId = userWallet.WalletTypeId }, new WalletTransactionBO { Amount = _amountPaid });
+
                             db.SaveChanges();
 
                             transaction.Commit();
                             return true;
                         }
-                        else { return false; }
+                        else { throw new ArgumentException("Insufficient wallet funds"); }
                     }
                 }
                 return true;
@@ -108,6 +136,27 @@ namespace CryptoCityWallet.AppService
 
 
 
+        }
+
+        public List<TblUserBusinessPackage> GetAll(TblUserAuth userAuth, dbWorldCCityContext db = null)
+        {
+
+            if (db != null)
+            {
+                UserBusinessPackageRepository userBusinessPackageRepository = new UserBusinessPackageRepository();
+                return userBusinessPackageRepository.GetAll(userAuth, db);
+            }
+            else
+            {
+                using (db = new dbWorldCCityContext())
+                {
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                        UserBusinessPackageRepository userBusinessPackageRepository = new UserBusinessPackageRepository();
+                        return userBusinessPackageRepository.GetAll(userAuth, db);
+                    }
+                }
+            }
         }
     }
 }

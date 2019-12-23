@@ -18,6 +18,7 @@ namespace CryptoCityWallet.Entities.DTO
         public DateTime? ExpiryDate { get; set; }
         public long? UserDepositRequestId { get; set; }
         public DateTime? CancellationDate { get; set; }
+        public DateTime? ActivationDate { get; set; }
 
         public virtual TblBusinessPackage BusinessPackage { get; set; }
         public virtual TblUserAuth UserAuth { get; set; }

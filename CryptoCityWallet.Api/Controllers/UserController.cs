@@ -9,6 +9,7 @@ using CryptoCityWallet.AppService;
 using CryptoCityWallet.Entities.BO;
 using CryptoCityWallet.Entities.DTO;
 using System.Dynamic;
+using Newtonsoft.Json;
 using SendGrid;
 
 namespace CryptoCityWallet.Api.Controllers
@@ -87,7 +88,7 @@ namespace CryptoCityWallet.Api.Controllers
 
                 return Ok(_apiResponse);
             }
-           
+
 
         }
 
@@ -189,11 +190,40 @@ namespace CryptoCityWallet.Api.Controllers
                 TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
 
                 _apiResponse.UserWallet = userWalletAppService.GetBO(userAuth);
-                
+
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Message = "UserWallet GET";
                 _apiResponse.Status = "Success";
             }
+            catch (Exception ex)
+            {
+                _apiResponse.HttpStatusCode = "500";
+                _apiResponse.Message = ex.Message;
+                _apiResponse.Status = "Error";
+
+            }
+
+            return Ok(_apiResponse);
+        }
+
+        [HttpGet("BusinessPackages")]
+        public ActionResult BusinessPackages()
+        {
+            UserBusinessPackageAppService userBusinessPackageAppService = new UserBusinessPackageAppService();
+            UserResponseBO _apiResponse = new UserResponseBO();
+
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
+
+                _apiResponse.BusinessPackages = userBusinessPackageAppService.GetAll(userAuth);
+
+                _apiResponse.HttpStatusCode = "200";
+                //_apiResponse.Message = "UserWallet GET";
+                _apiResponse.Status = "Success";
+        }
             catch (Exception ex)
             {
                 _apiResponse.HttpStatusCode = "500";

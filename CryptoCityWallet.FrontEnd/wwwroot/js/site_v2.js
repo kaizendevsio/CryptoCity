@@ -13,6 +13,12 @@ function getFormData(form) {
     return JSON.stringify(indexed_array);
 }
 
+function showPreload(e) {
+    e.innerHTML = "Loading...";
+    e.style.opacity = 0.5;
+    e.setAttribute("editable", true);
+}
+
 function sendFormData(url, type, form) {
     $.ajax({
         url: url,
@@ -29,7 +35,7 @@ function sendFormData(url, type, form) {
         },
         error: function (data, textStatus, jqXHR) {
             console.log(data.responseJSON);
-            document.getElementById("myModal").getElementsByClassName("modal-title")[0].innerHTML = data.responseJSON.Status; 
+            document.getElementById("myModal").getElementsByClassName("modal-title")[0].innerHTML = data.responseJSON.Status;
             document.getElementById("myModal").getElementsByClassName("modal-message")[0].innerHTML = data.responseJSON.Message;
             $('#myModal').modal('show');
             //window.location.href = data.responseJSON.RedirectUrl;
@@ -37,4 +43,4 @@ function sendFormData(url, type, form) {
     });
 
     return false
-} 
+}

@@ -5,229 +5,200 @@
 }
 
 @model WalletMVMList
-    <div id="content" class="content">
-        <!-- begin breadcrumb -->
-        <ol class="breadcrumb float-xl-right">
-            <li class="breadcrumb-item"><a href="javascript:;">Wallet</a></li>
-            <li class="breadcrumb-item active">All channels</li>
-        </ol>
-        <!-- end breadcrumb -->
-        <!-- begin page-header -->
-        <h1 class="page-header">Wallet Management  <small> </small></h1>
+<div id="content" class="content">
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb float-xl-right">
+        <li class="breadcrumb-item"><a href="javascript:;">Wallet</a></li>
+        <li class="breadcrumb-item active">All channels</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Wallet Management  <small> </small></h1>
 
-        <div class="row">
+    <div class="row">
 
 
-            <div class="col-md-12">
-                <div class="panel panel-inverse">
-                    <div class="panel-heading">
-                        <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                        </div>
-                        <h4 class="panel-title">Wallet Management</h4>
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
-                    <div class="table-responsive">
-                        <div class="panel-body">
-                            @*<table border="0" cellspacing="5" cellpadding="5">
-                                <tbody>
-                                    <tr>
-                                        <td>Minimum Date:</td>
-                                        <td><input name="min" id="min" type="text"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Maximum Date:</td>
-                                        <td><input name="max" id="max" type="text"></td>
-                                    </tr>
-                                </tbody>
-                            </table>*@
+                    <h4 class="panel-title">Wallet Management</h4>
+                </div>
+                <div class="table-responsive">
+                    <div class="panel-body">
 
 
-                            <table class="table table-bordered" id="dataTable">
-                                <thead>
-                                    <tr>
-                                        <th>Currency</th>
-                                        <th>Total Balance</th>
-                                        <th> Available</th>
-                                        <th>HOT</th>
-                                        <th>COLD  </th>
-                                        <th>Rate/USD </th>
-                                        <th>USD</th>
-                                        <th>Receive</th>
-                                        <th>Send</th>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Currency</th>
+                                    <th>Total Balance</th>
+                                    <th> Available</th>
+                                    <th>HOT</th>
+                                    <th>COLD  </th>
+                                    <th>Rate/USD </th>
+                                    <th>USD</th>
+                                    <th>Receive</th>
+                                    <th>Send</th>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @*@foreach (var item in Model.WalletList)
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @*@foreach (var item in Model.WalletList)
                                     {*@
-                                        <tr>
-                                            <td>
+                                <tr>
+                                    <td>
 
-                                                 Html.DisplayFor(modelItem => item.Currency)
-                                            </td>
-                                            <td>
-                                                 Html.DisplayFor(modelItem => item.TotalBalance)
-                                            </td>
+                                        Html.DisplayFor(modelItem => item.Currency)
+                                    </td>
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.TotalBalance)
+                                    </td>
 
-                                            <td>
+                                    <td>
 
-                                                 Html.DisplayFor(modelItem => item.Available)
-                                            </td>
-                                            <td>
-
-
-                                                 Html.DisplayFor(modelItem => item.HOT)
-                                            </td>
-                                            <td>
-
-                                                 Html.DisplayFor(modelItem => item.COLD)
-                                            </td>
-                                            <td>
-
-                                                 Html.DisplayFor(modelItem => item.Rate)
-                                            </td>
+                                        Html.DisplayFor(modelItem => item.Available)
+                                    </td>
+                                    <td>
 
 
+                                        Html.DisplayFor(modelItem => item.HOT)
+                                    </td>
+                                    <td>
 
-                                            <td>
+                                        Html.DisplayFor(modelItem => item.COLD)
+                                    </td>
+                                    <td>
 
-                                                 Html.DisplayFor(modelItem => item.USD)
-                                            </td>
+                                        Html.DisplayFor(modelItem => item.Rate)
+                                    </td>
 
 
 
+                                    <td>
 
-                                            <td>
-                                                <button class="btn btn-primary btn-block" id="send" data-toggle="modal" data-target="#fromModal">From Cold</button>
-
-                                            </td>
-                                            <td>
-
-                                                <button class="btn btn-primary btn-block " id="send" data-toggle="modal" data-target="#toModal">To Cold</button>
-
-                                            </td>
+                                        Html.DisplayFor(modelItem => item.USD)
+                                    </td>
 
 
 
 
+                                    <td>
+                                        <button class="btn btn-primary btn-block" id="from" data-toggle="modal" data-target="#fromModal">From Cold</button>
 
-                                        </tr>
+                                    </td>
+                                    <td>
 
-                                    }
-                                </tbody>
-                            </table>
+                                        <button class="btn btn-primary btn-block " id="send" data-toggle="modal" data-target="#toModal">To Cold</button>
 
-                        </div>
+                                    </td>
+
+
+
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
                     </div>
                 </div>
             </div>
-
-
-            <div class="col-md-12">
-                <div class="panel panel-inverse">
-                    <div class="panel-heading">
-                        <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                        </div>
-                        <h4 class="panel-title">Transactions</h4>
-                    </div>
-                    <div class="table-responsive">
-                        <div class="panel-body">
-                            @*<table border="0" cellspacing="5" cellpadding="5">
-                                <tbody>
-                                    <tr>
-                                        <td>Minimum Date:</td>
-                                        <td><input name="min" id="min" type="text"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Maximum Date:</td>
-                                        <td><input name="max" id="max" type="text"></td>
-                                    </tr>
-                                </tbody>
-                            </table>*@
-
-
-                            <table class="table table-bordered" id="dataTable">
-                                <thead>
-                                    <tr>
-                                        <th>CreatedOn</th>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Email </th>
-                                        <th>Amount   </th>
-                                        <th>Currency   </th>
-                                        <th>Content   </th>
-                                        <th>From   </th>
-                                        <th>To   </th>
-                                        <th>Txid    </th>
-                                        <th>Status   </th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @*@foreach (var item in Model.TransactionWallet)
-                                    {*@
-                                        <tr>
-                                            <td>
-
-                                                 Html.DisplayFor(modelItem => item.DateTransaction)
-                                            </td>
-                                            <td>
-                                                 Html.DisplayFor(modelItem => item.UserID)
-                                            </td>
-
-                                            <td>
-                                                 Html.DisplayFor(modelItem => item.Fullname)
-                                            </td>
-                                            <td>
-                                                 Html.DisplayFor(modelItem => item.Email)
-                                            </td>
-                                            <td>
-
-                                                 Html.DisplayFor(modelItem => item.Amount)
-                                            </td>
-
-                                            <td>
-
-                                                 Html.DisplayFor(modelItem => item.Currency)
-                                            </td>
-                                            <td>
-                                                 Html.DisplayFor(modelItem => item.Content)
-                                            </td>
-                                            <td>
-                                                 Html.DisplayFor(modelItem => item.From)
-                                            </td>
-                                            <td>
-                                                 Html.DisplayFor(modelItem => item.To)
-                                            </td>
-                                            <td>
-                                                 Html.DisplayFor(modelItem => item.TxID)
-                                            </td>
-                                            <td>
-                                                 Html.DisplayFor(modelItem => item.Status)
-                                            </td>
-                                        </tr>
-
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end panel -->
         </div>
-        <!-- end col-4 -->
 
-        <partial name="PartialsWallet/From.cshtml" />
-        <partial name="PartialsWallet/To.cshtml" />
+
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Transactions</h4>
+                </div>
+                <div class="table-responsive">
+                    <div class="panel-body">
+                     
+
+
+
+
+ 
+                        <table class="display table dataTable table-bordered table-striped" id="property" cellspacing="0" width="100%">
+
+                            <thead>
+                                <tr>
+                                    <th>CreatedOn</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email </th>
+                                    <th>Amount   </th>
+                                    <th>Currency   </th>
+                                    <th>Content   </th>
+                                    <th>From   </th>
+                                    <th>To   </th>
+                                    <th>Txid    </th>
+                                    <th>Status   </th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>CreatedOn</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email </th>
+                                    <th>Amount   </th>
+                                    <th>Currency   </th>
+                                    <th>Content   </th>
+                                    <th>From   </th>
+                                    <th>To   </th>
+                                    <th>Txid    </th>
+                                    <th>Status   </th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    @*@foreach (var item in Model.History)
+                                        {*@
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.CreatedOn)
+                                    </td>
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.ID)
+                                    </td>
+                                    <td> Html.DisplayFor(modelItem => item.Name) </td>
+                                    <td>Html.DisplayFor(modelItem => item.Email) </td>
+                                    <td>Html.DisplayFor(modelItem => item.Amount)   </td>
+                                    <td>Html.DisplayFor(modelItem => item.Currency)    </td>
+                                    <td>Html.DisplayFor(modelItem => item.Content)    </td>
+                                    <td>Html.DisplayFor(modelItem => item.From)    </td>
+                                    <td>Html.DisplayFor(modelItem => item.To)     </td>
+                                    <td>Html.DisplayFor(modelItem => item.Txid)      </td>
+                                    <td>Html.DisplayFor(modelItem => item.Status)     </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
     </div>
+    <!-- end col-4 -->
+
+    <partial name="PartialsWallet/From.cshtml" />
+    <partial name="PartialsWallet/To.cshtml" />
+</div>
 @section Scripts{
     <style>
         .toggle-button {
@@ -272,148 +243,54 @@
                 width: 24px;
                 height: 24px;
                 box-shadow: 0 0 4px rgba(0,0,0,0.1);
-            }
+            }  .dataTable > thead > tr > th[class*="sort"]:after{
+    content: "" !important;
+}
     </style>
     <script>
 
-        $('.toggle').change(function () {
-            debugger;
-            if ($('.toggle').hasClass('off')) {
-                //$('#staticMapImg').hide();
-            } else {
-                //$('#staticMapImg').show();
-            }
-        })
-      
+
+
         $('#send').click(function () {
-                var currency = $(this).closest("tr").find("td").eq(0).text();
-                var balance = $(this).closest("tr").find("td").eq(1).text();
-                var available = $(this).closest("tr").find("td").eq(2).text();
-                var hot = $(this).closest("tr").find("td").eq(3).text();
-                var cold = $(this).closest("tr").find("td").eq(4).text();
-                var rate = $(this).closest("tr").find("td").eq(5).text();
-                var usd = $(this).closest("tr").find("td").eq(6).text(); 
-                document.getElementById('currencyDetails').innerHTML = '<b> Date : ' + currency + '</b>';
-                document.getElementById('balanceDetails').innerHTML = '<b> Balance : ' + balance + '</b>';
-                document.getElementById('availableDetails').innerHTML = '<b> Available : ' + available+ '</b>';
-                document.getElementById('hotDetails').innerHTML = '<b> HOT : ' + hot + '</b>';
-                document.getElementById('coldDetails').innerHTML = '<b> COLD : ' + cold + '</b>';
+            var currency = $(this).closest("tr").find("td").eq(0).text();
+            var balance = $(this).closest("tr").find("td").eq(1).text();
+            var available = $(this).closest("tr").find("td").eq(2).text();
+            var hot = $(this).closest("tr").find("td").eq(3).text();
+            var cold = $(this).closest("tr").find("td").eq(4).text();
+            var rate = $(this).closest("tr").find("td").eq(5).text();
+            var usd = $(this).closest("tr").find("td").eq(6).text();
+            document.getElementById('currencyDetails').innerHTML = '<b> Date : ' + currency + '</b>';
+            document.getElementById('balanceDetails').innerHTML = '<b> Balance : ' + balance + '</b>';
+            document.getElementById('availableDetails').innerHTML = '<b> Available : ' + available + '</b>';
+            document.getElementById('hotDetails').innerHTML = '<b> HOT : ' + hot + '</b>';
+            document.getElementById('coldDetails').innerHTML = '<b> COLD : ' + cold + '</b>';
 
-                document.getElementById('rateDetails').innerHTML = '<b> RATE  : ' + rate + '</b>';
-                document.getElementById('usdDetails').innerHTML = '<b> USD : ' + usd + '</b>';
-             
-
-            });
-
-           $('#from').click(function () {
-                var currency = $(this).closest("tr").find("td").eq(0).text();
-                var balance = $(this).closest("tr").find("td").eq(1).text();
-                var available = $(this).closest("tr").find("td").eq(2).text();
-                var hot = $(this).closest("tr").find("td").eq(3).text();
-                var cold = $(this).closest("tr").find("td").eq(4).text();
-                var rate = $(this).closest("tr").find("td").eq(5).text();
-                var usd = $(this).closest("tr").find("td").eq(6).text(); 
-                document.getElementById('currencyDetails').innerHTML = '<b> Date : ' + currency + '</b>';
-                document.getElementById('balanceDetails').innerHTML = '<b> Balance : ' + balance + '</b>';
-                document.getElementById('availableDetails').innerHTML = '<b> Available : ' + available+ '</b>';
-                document.getElementById('hotDetails').innerHTML = '<b> HOT : ' + hot + '</b>';
-                document.getElementById('coldDetails').innerHTML = '<b> COLD : ' + cold + '</b>';
-
-                document.getElementById('rateDetails').innerHTML = '<b> RATE  : ' + rate + '</b>';
-                document.getElementById('usdDetails').innerHTML = '<b> USD : ' + usd + '</b>';
-             
-
-            });
-        //           $('#send').click(function() {
-        //            var date_ = $(this).closest("tr").find("td").eq(0).text();
-        //            var membercode_ = $(this).closest("tr").find("td").eq(1).text();
-        //            var membername_ = $(this).closest("tr").find("td").eq(3).text();
-        //            var total_amount= $(this).closest("tr").find("td").eq(4).text();
-        //            var txid = $(this).closest("tr").find("td").eq(5).text();
-        //            document.getElementById('dateDetails').innerHTML = '<b> Date : ' + date_ + '</b>';
-        //            document.getElementById('memcodeDetails').innerHTML = '<b> Member Code : ' + membercode_ + '</b>';
-        //            document.getElementById('memnameDetails').innerHTML = '<b> Member Name : ' + membername_+ '</b>';
-        //            document.getElementById('amountDetails').innerHTML = '<b> Request Amount  : ' + total_amount  + '</b>';
-        //            document.getElementById('txidDetails').innerHTML = '<b> TxID : ' +  txid+ '</b>';
-
-        //});
-
-
-
-
-
-
-        //$("#confirm").on("submit", function (event) {
-        //    event.preventDefault();
-
-        //    var formData = {
-        //        'txid': $('input[name=email]').val(),
-        //        'amount': $('input[name=email]').val(),
-        //        'email': $('input[name=email]').val()//for get email
-        //    };
-        //    console.log(formData);
-
-        $(document).ready(function () {
-
-
-            var table = $('#dataTable').DataTable();
-
-
-
-            $.fn.dataTable.ext.search.push(
-                function (settings, data, dataIndex) {
-                    var min = $('#min').datepicker("getDate");
-                    var max = $('#max').datepicker("getDate");
-                    var startDate = new Date(data[3]);
-                    if (min == null && max == null) { return true; }
-                    if (min == null && startDate <= max) { return true; }
-                    if (max == null && startDate >= min) { return true; }
-                    if (startDate <= max && startDate >= min) { return true; }
-                    return false;
-
-                });
-
-
-            $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
-            $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
-            var table = $('#dataTable').DataTable();
-
-
-
-
-
-            //    $("#confirm").on("submit", function(event) {
-            //    event.preventDefault();
-
-            //    var formData = {
-            //        'txid': $('input[name=email]').val(),
-            //        'amount': $('input[name=email]').val(),
-            //        'email': $('input[name=email]').val()//for get email
-            //    };
-            //    console.log(formData);
-
-            //    $.ajax({
-            //        url: "/Withdraw/SendADA",
-            //        type: "post",
-            //        data: formData,
-            //        success: function(d) {
-            //            alert("Sent Successfully");
-            //        }
-            //    });
-            //});
-
-
-
-            $('#min, #max').change(function () {
-                table.draw();
-            });
-
-
-
-
+            document.getElementById('rateDetails').innerHTML = '<b> RATE  : ' + rate + '</b>';
+            document.getElementById('usdDetails').innerHTML = '<b> USD : ' + usd + '</b>';
 
 
         });
+
+        $('#from').click(function () {
+            var currency = $(this).closest("tr").find("td").eq(0).text();
+            var balance = $(this).closest("tr").find("td").eq(1).text();
+            var available = $(this).closest("tr").find("td").eq(2).text();
+            var hot = $(this).closest("tr").find("td").eq(3).text();
+            var cold = $(this).closest("tr").find("td").eq(4).text();
+            var rate = $(this).closest("tr").find("td").eq(5).text();
+            var usd = $(this).closest("tr").find("td").eq(6).text();
+            document.getElementById('currencyDetails').innerHTML = '<b> Date : ' + currency + '</b>';
+            document.getElementById('balanceDetails').innerHTML = '<b> Balance : ' + balance + '</b>';
+            document.getElementById('availableDetails').innerHTML = '<b> Available : ' + available + '</b>';
+            document.getElementById('hotDetails').innerHTML = '<b> HOT : ' + hot + '</b>';
+            document.getElementById('coldDetails').innerHTML = '<b> COLD : ' + cold + '</b>';
+
+            document.getElementById('rateDetails').innerHTML = '<b> RATE  : ' + rate + '</b>';
+            document.getElementById('usdDetails').innerHTML = '<b> USD : ' + usd + '</b>';
+
+
+        });
+   
         var d = new Date();
 
         var month = d.getMonth() + 1;
@@ -423,42 +300,84 @@
             (month < 10 ? '0' : '') + month + '/' +
             (day < 10 ? '0' : '') + day;
 
-        $('#dataTable').DataTable({
+        
+        $('#property').DataTable({
             stateSave: true,
             autoWidth: true,
-            dom: 'Bfrtip',
+            dom: 'lBf<"toolbar">rtip<"clear">', fnInitComplete: function () {
+                $('div.toolbar').html('<div class="dataTables_length" id=" "><label> <select name=" " aria-controls="property" class=""><option value="Withdrawal">Withdrawal</option><option value="Deposit">Deposit</option> </select></label></div><div id="example_filter" class="dataTables_filter input-daterange"><label><input type="text" id="from_date_picker" class="date-range-filter" placeholder="Date Start" data-date-format="mm-dd-yyyy" id="min" placeholder="" aria-controls="example">To<input type="text" id="to_date_picker" class="date-range-filter"  placeholder="Date End" data-date-format="mm-dd-yyyy" id="max" aria-controls="example"></label></div>');
+            },
             buttons: [
-                'copy', {
-                    extend: 'csv',
-                    orientation: 'landscape',
-                    title: 'WCC.com',
-                    messageTop: 'The information in this table is copyright to WCC.',
-                    messageBottom: output
-                }, {
-                    extend: 'excel',
-                    orientation: 'landscape',
-                    extend: 'excelHtml5',
-                    title: 'WCC.com',
-                    messageTop: 'The information in this table is copyright to WCC.',
-                    messageBottom: output
-                }, {
-                    extend: 'pdf',
-                    orientation: 'landscape',
+                    {
+                        extend: 'copy',
+                       
+                         className: 'dt-button btn btn-primary '
+                    }, {
+                        extend: 'csv',
+                        orientation: 'landscape',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                    messageBottom: output,
+                         className: 'dt-button btn btn-primary '
+                    }, {
+                        extend: 'excel',
+                        orientation: 'landscape',
+                        extend: 'excelHtml5',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                     messageBottom: output,
+                         className: 'dt-button btn btn-primary '
+                    }, {
+                        extend: 'pdf',
+                        orientation: 'landscape',
                     extend: 'pdfHtml5',
-                    title: 'WCC.com',
-                    messageTop: 'The information in this table is copyright to WCC.',
-                    messageBottom: output
-                }, {
-                    extend: 'print',
-                    orientation: 'landscape',
+                          pageSize: 'LEGAL',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                        messageBottom: output,
+                         className: 'dt-button btn btn-primary '
+                    }, {
+                        extend: 'print',
+                        orientation: 'landscape',
+                         pageSize: 'LEGAL',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                        messageBottom: output,
+                         className: 'dt-button btn btn-primary '
+                    }
+            ]  
+            }); 
+        $(document).ready(function () {
 
-                    title: 'WCC.com',
-                    messageTop: 'The information in this table is copyright to WCC.',
-                    messageBottom: output
+            $('.input-daterange input').each(function () {
+                $(this).datepicker('clearDates');
+            });
+
+            // Extend dataTables search
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var min = $('#min').val();
+                    var max = $('#max').val();
+                    var createdAt = data[0] || 1; // Our date column in the table
+
+                    if (
+                        (min == "" || max == "") ||
+                        (moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max))
+                    ) {
+                        return true;
+                    }
+                    return false;
                 }
-            ]
+            );
 
+            // Re-draw the table when the a date range filter changes
+            $('.date-range-filter').change(function () {
+                var table = $('#property').DataTable();
+                table.draw();
+            });
+
+
+            $('.date-range-filter').datepicker();
         });
-
     </script>
 }

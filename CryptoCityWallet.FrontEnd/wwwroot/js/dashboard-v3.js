@@ -485,54 +485,7 @@ var handleVisitorsMap = function() {
 		$('#visitors-map').vectorMap(options);
 	}
 }
-
-var handleDateRangeFilter = function() {
-	$('#daterange-filter span').html(moment().subtract('days', 7).format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
-	$('#daterange-prev-date').html(moment().subtract('days', 15).format('D MMMM') + ' - ' + moment().subtract('days', 8).format('D MMMM YYYY'));
-
-	$('#daterange-filter').daterangepicker({
-		format: 'MM/DD/YYYY',
-		startDate: moment().subtract(7, 'days'),
-		endDate: moment(),
-		minDate: '01/06/2019',
-		maxDate: '07/06/2019',
-		dateLimit: { days: 60 },
-		showDropdowns: true,
-		showWeekNumbers: true,
-		timePicker: false,
-		timePickerIncrement: 1,
-		timePicker12Hour: true,
-		ranges: {
-			'Today': [moment(), moment()],
-			'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-			'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-			'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-			'This Month': [moment().startOf('month'), moment().endOf('month')],
-			'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-		},
-		opens: 'right',
-		drops: 'down',
-		buttonClasses: ['btn', 'btn-sm'],
-		applyClass: 'btn-primary',
-		cancelClass: 'btn-default',
-		separator: ' to ',
-		locale: {
-			applyLabel: 'Submit',
-			cancelLabel: 'Cancel',
-			fromLabel: 'From',
-			toLabel: 'To',
-			customRangeLabel: 'Custom',
-			daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
-			monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-			firstDay: 1
-		}
-	}, function(start, end, label) {
-		$('#daterange-filter span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));
-		
-		var gap = end.diff(start, 'days');
-		$('#daterange-prev-date').html(moment(start).subtract('days', gap).format('D MMMM') + ' - ' + moment(start).subtract('days', 1).format('D MMMM YYYY'));
-	});
-};
+ 
 
 var DashboardV3 = function () {
 	"use strict";
@@ -543,8 +496,7 @@ var DashboardV3 = function () {
 			handleConversionRateSparkline();
 			handleStoreSessionSparkline();
 			handleVisitorsAreaChart();
-			handleVisitorsMap();
-			handleDateRangeFilter();
+			handleVisitorsMap(); 
 		}
 	};
 }();

@@ -47,6 +47,7 @@ namespace CryptoCityWallet.DataAccessLayer
         public virtual DbSet<TblWalletType> TblWalletType { get; set; }
         public virtual DbSet<VMember> VMember { get; set; }
         public virtual DbSet<VOrder> VOrder { get; set; }
+        public virtual DbSet<VUserData> VUserData { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -480,6 +481,8 @@ namespace CryptoCityWallet.DataAccessLayer
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
+                entity.Property(e => e.ActivationDate).HasColumnType("timestamp with time zone");
+
                 entity.Property(e => e.BusinessPackageId).HasColumnName("BusinessPackageID");
 
                 entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
@@ -818,7 +821,7 @@ namespace CryptoCityWallet.DataAccessLayer
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Amount).HasColumnType("numeric(18,10)");
 
@@ -831,6 +834,11 @@ namespace CryptoCityWallet.DataAccessLayer
                 entity.Property(e => e.Remarks).HasMaxLength(500);
 
                 entity.Property(e => e.RunningBalance).HasColumnType("numeric(18,10)");
+
+                entity.HasOne(d => d.SourceUserWallet)
+                    .WithMany(p => p.TblUserWalletTransaction)
+                    .HasForeignKey(d => d.SourceUserWalletId)
+                    .HasConstraintName("SourceUserWalletId");
 
                 entity.HasOne(d => d.UserAuth)
                     .WithMany(p => p.TblUserWalletTransaction)
@@ -930,6 +938,10 @@ namespace CryptoCityWallet.DataAccessLayer
 
                 entity.Property(e => e.MemberVolumeUni).HasColumnType("numeric(18,10)");
 
+                entity.Property(e => e.Uid)
+                    .HasColumnName("UID")
+                    .HasMaxLength(50);
+
                 entity.Property(e => e.UserAuthId).HasColumnName("UserAuthID");
             });
 
@@ -952,6 +964,31 @@ namespace CryptoCityWallet.DataAccessLayer
                 entity.Property(e => e.UserDepositRequestId).HasColumnName("UserDepositRequestID");
 
                 entity.Property(e => e.UserInfoId).HasColumnName("UserInfoID");
+            });
+
+            modelBuilder.Entity<VUserData>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("v_UserData", "dbo");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.ResetPasswordCodeExpiration).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.TemporaryPassword).HasMaxLength(256);
+
+                entity.Property(e => e.UserAlias).HasMaxLength(256);
+
+                entity.Property(e => e.UserInfoId).HasColumnName("UserInfoID");
+
+                entity.Property(e => e.UserName).HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);

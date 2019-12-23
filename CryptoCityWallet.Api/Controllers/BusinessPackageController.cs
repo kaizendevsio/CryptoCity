@@ -14,7 +14,7 @@ namespace CryptoCityWallet.Api.Controllers
     public class BusinessPackageController : ControllerBase
     {
         [HttpPost("Buy")]
-        public ActionResult Create([FromBody]  UserBusinessPackageBO userBusinessPackageBO)
+        public ActionResult Create([FromBody] UserBusinessPackageBO userBusinessPackageBO)
         {
             UserBusinessPackageAppService userBusinessPackageAppService = new UserBusinessPackageAppService();
             ApiResponseBO _apiResponse = new ApiResponseBO();
@@ -24,7 +24,7 @@ namespace CryptoCityWallet.Api.Controllers
                 userBusinessPackageAppService.Create(userBusinessPackageBO);
 
                 _apiResponse.HttpStatusCode = "200";
-                _apiResponse.Message = "User successfully created";
+                _apiResponse.Message = "Package successfully purchased";
                 _apiResponse.Status = "Success";
 
                 return Ok(_apiResponse);
@@ -32,7 +32,7 @@ namespace CryptoCityWallet.Api.Controllers
             catch (Exception ex)
             {
                 _apiResponse.HttpStatusCode = "500";
-                _apiResponse.Message = ex.InnerException.Message;
+                _apiResponse.Message = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
                 _apiResponse.Status = "Error";
                 return Ok(_apiResponse);
             }
