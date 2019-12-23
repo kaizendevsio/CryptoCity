@@ -1,0 +1,367 @@
+﻿@{
+
+    ViewBag.Title = "WCC Admin | Trade " ;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content" class="content">
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb float-xl-right">
+        <li class="breadcrumb-item"><a href="javascript:;">Convert</a></li>
+        <li class="breadcrumb-item active">All channels</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Trade  <small> </small></h1>
+
+    <div class="row">
+
+
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Trade</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                       
+                            <div class="col-md-8">
+                                <div class="form-group">
+
+                                    <label>Amount</label>
+                                    <input type="number" name="" class="form-control" readonly="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label><br></label>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Check Deposit</button>
+
+                                </div>
+
+                            </div>
+                  
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Rate Information</label>
+                                <input type="" name="" class="form-control"  >
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label><br></label>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Check Current Rate</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Trade</label>
+                                <input type="number" name="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Set</label>
+                            <div class="form-group">
+                                <input type="number" name="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-inverse">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Trade List</h4>
+                </div>
+                <div class="table-responsive">
+                    <div class="panel-body">
+
+                        <table class="table table-bordered" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Date of Request</th>
+                                    <th>ID (Code)</th>
+                                    <th>Name</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Withdrawal Amount</th>
+                                    <th>Currency</th>
+                                    <th>Txid</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @*@foreach (var item in Model.History)
+                                {*@
+                                <tr>
+                                    <td>
+
+                                        Html.DisplayFor(modelItem => item.RequestedOn)
+                                    </td>
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.ID)
+                                    </td>
+
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.FirstName)   Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td>
+
+                                        Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.From)
+                                    </td>
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.To)
+                                    </td>
+
+                                    <td>
+                                        Html.DisplayFor(modelItem => item.BTCAddress)
+                                    </td>
+                                    <td>
+
+                                        Html.DisplayFor(modelItem => item.Txid)
+                                    </td>
+                                    <td>
+
+                                        Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+
+                                    @*<td>
+                                        @Html.DisplayFor(modelItem => item.Txid)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.WithdrawalStatus)
+                                    </td>*@
+
+                                    <td>
+
+                                        <button class="btn btn-primary btn-block" id="send" data-toggle="modal" data-target="#confirmModal">Process</button>
+                                        <button class="btn btn-primary btn-block " id="send" data-toggle="modal" data-target="#cancelModal">Cancel</button>
+                                    </td>
+
+
+
+
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-4 -->
+
+    <partial name="Partials/Confirm.cshtml" />
+    <partial name="Partials/Cancel.cshtml" />
+</div>
+@section Scripts{
+    <script>
+        <th>Date of Request</th>
+            <th>ID (Code)</th>
+            <th>Name</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Withdrawal Amount</th>
+            <th>Currency</th>
+            <th>Txid</th>
+
+        $('#send').click(function () {
+                var date_ = $(this).closest("tr").find("td").eq(0).text();
+                var membercode_ = $(this).closest("tr").find("td").eq(1).text();
+                var name_ = $(this).closest("tr").find("td").eq(2).text();
+                var from = $(this).closest("tr").find("td").eq(3).text();
+                var to = $(this).closest("tr").find("td").eq(4).text();
+                var amount = $(this).closest("tr").find("td").eq(5).text();
+                var currency = $(this).closest("tr").find("td").eq(6).text();
+                var txid = $(this).closest("tr").find("td").eq(7).text();
+                document.getElementById('dateDetails').innerHTML = '<b> Date : ' + date_ + '</b>';
+                document.getElementById('memcodeDetails').innerHTML = '<b> ID : ' + membercode_ + '</b>';
+                document.getElementById('memnameDetails').innerHTML = '<b> ID : ' + name_ + '</b>';
+                document.getElementById('fromDetails').innerHTML = '<b> From : ' + from + '</b>';
+                document.getElementById('toDetails').innerHTML = '<b> To: ' + to + '</b>';
+
+                document.getElementById('currencyDetails').innerHTML = '<b> From : ' + currency + '</b>';
+                document.getElementById('amountDetails').innerHTML = '<b> Total Amount : ' + amount + '</b>';
+
+                document.getElementById('txidDetails').innerHTML = '<b> TxID : ' + txid + '</b>';
+
+            });
+
+
+        //           $('#send').click(function() {
+        //            var date_ = $(this).closest("tr").find("td").eq(0).text();
+        //            var membercode_ = $(this).closest("tr").find("td").eq(1).text();
+        //            var membername_ = $(this).closest("tr").find("td").eq(3).text();
+        //            var total_amount= $(this).closest("tr").find("td").eq(4).text();
+        //            var txid = $(this).closest("tr").find("td").eq(5).text();
+        //            document.getElementById('dateDetails').innerHTML = '<b> Date : ' + date_ + '</b>';
+        //            document.getElementById('memcodeDetails').innerHTML = '<b> Member Code : ' + membercode_ + '</b>';
+        //            document.getElementById('memnameDetails').innerHTML = '<b> Member Name : ' + membername_+ '</b>';
+        //            document.getElementById('amountDetails').innerHTML = '<b> Request Amount  : ' + total_amount  + '</b>';
+        //            document.getElementById('txidDetails').innerHTML = '<b> TxID : ' +  txid+ '</b>';
+
+        //});
+
+
+
+
+
+
+        $("#confirm").on("submit", function (event) {
+            event.preventDefault();
+
+            var formData = {
+                'txid': $('input[name=email]').val(),
+                'amount': $('input[name=email]').val(),
+                'email': $('input[name=email]').val()//for get email
+            };
+            console.log(formData);
+
+            //$.ajax({
+            //url: "/Withdraw/SendADA",
+            //type: "post",
+            //data: formData,
+            //success: function(d) {
+            //alert("Sent Successfully");
+            //}
+            //});
+            //});</script>
+ 
+
+        <script>
+            $(document).ready(function () {
+
+
+                var table = $('#dataTable').DataTable();
+
+
+
+                $.fn.dataTable.ext.search.push(
+                    function (settings, data, dataIndex) {
+                        var min = $('#min').datepicker("getDate");
+                        var max = $('#max').datepicker("getDate");
+                        var startDate = new Date(data[3]);
+                        if (min == null && max == null) { return true; }
+                        if (min == null && startDate <= max) { return true; }
+                        if (max == null && startDate >= min) { return true; }
+                        if (startDate <= max && startDate >= min) { return true; }
+                        return false;
+
+                    });
+
+
+                $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+                $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+                var table = $('#dataTable').DataTable();
+
+
+
+
+
+                //    $("#confirm").on("submit", function(event) {
+                //    event.preventDefault();
+
+                //    var formData = {
+                //        'txid': $('input[name=email]').val(),
+                //        'amount': $('input[name=email]').val(),
+                //        'email': $('input[name=email]').val()//for get email
+                //    };
+                //    console.log(formData);
+
+                //    $.ajax({
+                //        url: "/Withdraw/SendADA",
+                //        type: "post",
+                //        data: formData,
+                //        success: function(d) {
+                //            alert("Sent Successfully");
+                //        }
+                //    });
+                //});
+
+
+
+                $('#min, #max').change(function () {
+                    table.draw();
+                });
+
+
+
+
+
+
+            });
+            var d = new Date();
+
+            var month = d.getMonth() + 1;
+            var day = d.getDate();
+
+            var output = d.getFullYear() + '/' +
+                (month < 10 ? '0' : '') + month + '/' +
+                (day < 10 ? '0' : '') + day;
+            $('#dataTable').DataTable({
+                stateSave: true,
+                autoWidth: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', {
+                        extend: 'csv',
+                        orientation: 'landscape',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                        messageBottom: output
+                    }, {
+                        extend: 'excel',
+                        orientation: 'landscape',
+                        extend: 'excelHtml5',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                        messageBottom: output
+                    }, {
+                        extend: 'pdf',
+                        orientation: 'landscape',
+                        extend: 'pdfHtml5',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                        messageBottom: output
+                    }, {
+                        extend: 'print',
+                        orientation: 'landscape',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                        messageBottom: output
+                    }
+                ]
+            });
+
+        </script>
+   
+}

@@ -23,6 +23,12 @@ namespace CryptoCityWallet.FrontEnd.Controllers
             return View();
         }
 
+         
+        [Route("Admin/TradeCurrency")] 
+        public IActionResult TradeCurrency()
+        {
+            return View();
+        }
 
         //[Route("Admin/Deposit")]
         //public IActionResult Deposit()
@@ -30,18 +36,14 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         //    return View();
         //}
 
-        //[Route("Admin/Trade")]
-        //public IActionResult Trade()
-        //{
-        //    return View();
-        //}
+        
 
 
-        //[Route("Admin/Ledger")]
-        //public IActionResult Ledger()
-        //{
-        //    return View();
-        //}
+         [Route("Admin/Ledger")]
+        public IActionResult Ledger()
+        {
+            return View();
+         }
 
 
         [Route("Admin/Map")]
