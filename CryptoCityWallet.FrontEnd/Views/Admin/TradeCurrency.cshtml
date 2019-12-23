@@ -1,6 +1,6 @@
 ﻿@{
 
-    ViewBag.Title = "WCC Admin | Convert List";
+    ViewBag.Title = "WCC Admin | Trade " ;
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <div id="content" class="content">
@@ -11,9 +11,10 @@
     </ol>
     <!-- end breadcrumb -->
     <!-- begin page-header -->
-    <h1 class="page-header">Convert List  <small> </small></h1>
+    <h1 class="page-header">Trade  <small> </small></h1>
 
     <div class="row">
+
 
         <div class="col-md-12">
             <div class="panel panel-inverse">
@@ -24,42 +25,59 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
-                    <h4 class="panel-title">Convert List</h4>
+                    <h4 class="panel-title">Trade</h4>
                 </div>
                 <div class="panel-body">
-                    <div class="form-group">
-                        <!-- inline -->
-                        <label>SORT :</label> &nbsp;
-                        <div>
-                            <input type="radio" id="inlineCssRadio1" name="sort">
-                            <label for="inlineCssRadio1">DESC</label>
-                            </br>
+                    <div class="row">
+                       
+                            <div class="col-md-8">
+                                <div class="form-group">
 
-                            <input type="radio" id="inlineCssRadio1" name="sort" />
-                            <label for="inlineCssRadio1">ASC</label>
+                                    <label>Amount</label>
+                                    <input type="number" name="" class="form-control" readonly="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label><br></label>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Check Deposit</button>
+
+                                </div>
+
+                            </div>
+                  
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Rate Information</label>
+                                <input type="" name="" class="form-control"  >
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label><br></label>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Check Current Rate</button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Keyword</label>
-                        <input type="" name="" class="form-control">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Trade</label>
+                                <input type="number" name="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Set</label>
+                            <div class="form-group">
+                                <input type="number" name="" class="form-control">
+                            </div>
+                        </div>
                     </div>
-                    @*<div class="form-group">
-                            <div class="checkbox checkbox-css checkbox-inline">
-                                <input type="checkbox" id="inlineCssCheckbox1" />
-                                <label for="inlineCssCheckbox1">Incomplete Profile</label>
-                            </div>
-                            <div class="checkbox checkbox-css checkbox-inline">
-                                <input type="checkbox" id="inlineCssCheckbox1" />
-                                <label for="inlineCssCheckbox1">Incomplete Profile</label>
-                            </div>
-                            <div class="checkbox checkbox-css checkbox-inline">
-                                <input type="checkbox" id="inlineCssCheckbox1" />
-                                <label for="inlineCssCheckbox1">Deposit</label>
-                            </div>
-                        </div>*@
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-inverse">Submit</button>
                     </div>
                 </div>
             </div>
@@ -75,22 +93,11 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
-                    <h4 class="panel-title">Convert lists</h4>
+                    <h4 class="panel-title">Trade List</h4>
                 </div>
                 <div class="table-responsive">
                     <div class="panel-body">
-                        <table border="0" cellspacing="5" cellpadding="5">
-                            <tbody>
-                                <tr>
-                                    <td>Minimum Date:</td>
-                                    <td><input name="min" id="min" type="text"></td>
-                                </tr>
-                                <tr>
-                                    <td>Maximum Date:</td>
-                                    <td><input name="max" id="max" type="text"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+
                         <table class="table table-bordered" id="dataTable">
                             <thead>
                                 <tr>
@@ -108,7 +115,7 @@
                             </thead>
                             <tbody>
                                 @*@foreach (var item in Model.History)
-                                    {*@
+                                {*@
                                 <tr>
                                     <td>
 
@@ -145,11 +152,11 @@
                                     </td>
 
                                     @*<td>
-                                            @Html.DisplayFor(modelItem => item.Txid)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.WithdrawalStatus)
-                                        </td>*@
+                                        @Html.DisplayFor(modelItem => item.Txid)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.WithdrawalStatus)
+                                    </td>*@
 
                                     <td>
 
@@ -177,7 +184,15 @@
     <partial name="Partials/Cancel.cshtml" />
 </div>
 @section Scripts{
-    <script> 
+    <script>
+        <th>Date of Request</th>
+            <th>ID (Code)</th>
+            <th>Name</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Withdrawal Amount</th>
+            <th>Currency</th>
+            <th>Txid</th>
 
         $('#send').click(function () {
                 var date_ = $(this).closest("tr").find("td").eq(0).text();
@@ -221,15 +236,15 @@
 
 
 
-        //$("#confirm").on("submit", function (event) {
-        //    event.preventDefault();
+        $("#confirm").on("submit", function (event) {
+            event.preventDefault();
 
-        //    var formData = {
-        //        'txid': $('input[name=email]').val(),
-        //        'amount': $('input[name=email]').val(),
-        //        'email': $('input[name=email]').val()//for get email
-        //    };
-        //    console.log(formData);
+            var formData = {
+                'txid': $('input[name=email]').val(),
+                'amount': $('input[name=email]').val(),
+                'email': $('input[name=email]').val()//for get email
+            };
+            console.log(formData);
 
             //$.ajax({
             //url: "/Withdraw/SendADA",

@@ -26,68 +26,47 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
-                    <h4 class="panel-title">Trades</h4>
+                    <h4 class="panel-title">Trade List</h4>
                 </div>
                 <div class="panel-body">
-                    <label>SORT</label>
-                    <div class="container">
+                    <div class="form-group">
+                        <!-- inline -->
+                        <label>SORT :</label> &nbsp;
+                        <div>
+                            <input type="radio" id="inlineCssRadio1" name="sort">
+                            <label for="inlineCssRadio1">DESC</label>
+                            </br>
 
-                        <form>
-                            <label class="radio-inline">
-                                <input type="radio" name="optradio" checked>DESC
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="optradio">ASC
-                            </label>
-
-                        </form>
-                    </div>
-                    <div class="container">
-                        <div class="form-group">
-                            <label>Keyword</label>
-                            <input type="" name="" class="form-control">
+                            <input type="radio" id="inlineCssRadio1" name="sort" />
+                            <label for="inlineCssRadio1">ASC</label>
                         </div>
                     </div>
 
-
-                    <div class="container">
-
-                        <form>
-                            <label class="radio-inline">
-                                <input type="checkbox" id="inlineCssCheckbox1">Incomplete Profile
-                            </label>
-                            <label class="radio-inline">
-                                <input type="checkbox" name="inlineCssCheckbox1">Incomplete Profile
-                            </label>
-                            <label class="radio-inline">
-                                <input type="checkbox" name="inlineCssCheckbox1">Deposit
-                            </label>
-                        </form>
+                    <div class="form-group">
+                        <label>Keyword</label>
+                        <input type="" name="" class="form-control">
                     </div>
                     @*<div class="form-group">
-                            <div class="checkbox checkbox-css checkbox-inline">
-                                <input type="checkbox" id="inlineCssCheckbox1" />
-                                <label for="inlineCssCheckbox1">Incomplete Profile</label>
-                            </div>
-                            <div class="checkbox checkbox-css checkbox-inline">
-                                <input type="checkbox" id="inlineCssCheckbox1" />
-                                <label for="inlineCssCheckbox1">Incomplete Profile</label>
-                            </div>
-                            <div class="checkbox checkbox-css checkbox-inline">
-                                <input type="checkbox" id="inlineCssCheckbox1" />
-                                <label for="inlineCssCheckbox1">Deposit</label>
-                            </div>
+                        <div class="checkbox checkbox-css checkbox-inline">
+                            <input type="checkbox" id="inlineCssCheckbox1" />
+                            <label for="inlineCssCheckbox1">Incomplete Profile</label>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>*@
-                    <div class="container">
-
+                        <div class="checkbox checkbox-css checkbox-inline">
+                            <input type="checkbox" id="inlineCssCheckbox1" />
+                            <label for="inlineCssCheckbox1">Incomplete Profile</label>
+                        </div>
+                        <div class="checkbox checkbox-css checkbox-inline">
+                            <input type="checkbox" id="inlineCssCheckbox1" />
+                            <label for="inlineCssCheckbox1">Deposit</label>
+                        </div>
+                    </div>*@
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
+
 
 
         <div class="col-md-12">
@@ -104,17 +83,17 @@
                 <div class="table-responsive">
                     <div class="panel-body">
                         @*<table border="0" cellspacing="5" cellpadding="5">
-                                <tbody>
-                                    <tr>
-                                        <td>Minimum Date:</td>
-                                        <td><input name="min" id="min" type="text"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Maximum Date:</td>
-                                        <td><input name="max" id="max" type="text"></td>
-                                    </tr>
-                                </tbody>
-                            </table>*@
+                            <tbody>
+                                <tr>
+                                    <td>Minimum Date:</td>
+                                    <td><input name="min" id="min" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td>Maximum Date:</td>
+                                    <td><input name="max" id="max" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>*@
 
 
                         <table class="table table-bordered" id="dataTable">
@@ -133,7 +112,7 @@
                             </thead>
                             <tbody>
                                 @*@foreach (var item in Model.TradeHistory)
-                                    {*@
+                                {*@
                                 <tr>
                                     <td>
 
@@ -171,8 +150,8 @@
 
                                         Html.DisplayFor(modelItem => item.Amount)
                                     </td>
- 
- 
+
+
 
 
 
