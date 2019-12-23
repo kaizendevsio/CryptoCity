@@ -38,8 +38,8 @@ namespace CryptoCityWallet.DataAccessLayer
         public TblUserWallet Get(UserWalletBO userWallet, dbWorldCCityContext db) 
         {
             var _q = from a in db.TblUserWallet
-                     where a.UserAuthId == userWallet.UserAuthId && a.WalletTypeId == userWallet.WalletTypeId && a.IsEnabled == true
                      join b in db.TblWalletType on a.WalletTypeId equals b.Id
+                     where a.UserAuthId == userWallet.UserAuthId && a.WalletTypeId == userWallet.WalletTypeId && a.IsEnabled == true && b.IsEnabled == true
                      select new TblUserWallet
                      {
                          Id = a.Id,
@@ -87,7 +87,7 @@ namespace CryptoCityWallet.DataAccessLayer
             var _qUi = from a in db.TblUserWallet
                        join b in db.TblWalletType on a.WalletTypeId equals b.Id
                        join c in db.TblExchangeRate on a.WalletType.CurrencyId equals c.SourceCurrencyId
-                       where a.UserAuthId == userAuth.Id
+                       where a.UserAuthId == userAuth.Id && b.IsEnabled == true && a.IsEnabled == true
                        select new UserWalletBO
                        {
                            Id = a.Id,

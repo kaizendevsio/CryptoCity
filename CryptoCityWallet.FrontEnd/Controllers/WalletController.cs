@@ -45,7 +45,6 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     walletVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
                     walletVM.Username = userAuth.UserName;
                     walletVM.BTCBalance = (decimal)userWallets.Find(i => i.WalletCode == "BTC").Balance;
-                    walletVM.BCHBalance = (decimal)userWallets.Find(i => i.WalletCode == "BCH").Balance;
                     walletVM.ETHBalance = (decimal)userWallets.Find(i => i.WalletCode == "ETH").Balance;
                     walletVM.TTHBalance = (decimal)userWallets.Find(i => i.WalletCode == "USDT").Balance;
                     

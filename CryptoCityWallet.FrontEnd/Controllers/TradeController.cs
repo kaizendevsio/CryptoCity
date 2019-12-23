@@ -20,7 +20,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         public readonly string Env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
 
-        public async Task<IActionResult> Index() 
+        public async Task<IActionResult> Index()
         {
             try
             {
@@ -49,7 +49,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     tradeVM.WCCPBalance = (double)userWallets.Find(i => i.WalletCode == "WCCP").Balance;
                     tradeVM.YesterdayProfit = 0;
                     tradeVM.History = new List<HistoryVM>();
-                    tradeVM.UserWallets = userWallets.Where<UserWalletBO>(item => item.WalletType.Type == (short)WalletType.CurrencyValue);
+                    tradeVM.UserWallets = userWallets.FindAll(item => item.WalletType.Type == (short)WalletType.CurrencyValue);
 
                     return View(tradeVM);
                 }
@@ -70,7 +70,10 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         [Route("Trade/History")]
         public IActionResult History()
         {
-            return View();
+            TradeVM tradeVM = new TradeVM();
+            tradeVM.History = new List<HistoryVM>();
+
+            return View(tradeVM);
         }
         public IActionResult Privacy()
         {
