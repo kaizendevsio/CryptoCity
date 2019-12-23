@@ -36,10 +36,14 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         //    return View();
         //}
 
-        
+        [Route("Admin/Wallet")]
+        public IActionResult Wallet()
+        {
+            return View();
+        }
 
 
-         [Route("Admin/Ledger")]
+        [Route("Admin/Ledger")]
         public IActionResult Ledger()
         {
             return View();

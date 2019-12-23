@@ -7,5 +7,16 @@ namespace CryptoCityWallet.FrontEnd.Models
         public double TotalInvestment { get; set; }
         public double YesterdayProfit { get; set; }
         public double WCCPBalance { get; set; }
+
+
+
+
+
+
+
+
+
+
+
     }
 }
