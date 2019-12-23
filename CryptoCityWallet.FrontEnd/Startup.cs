@@ -35,6 +35,9 @@ namespace CryptoCityWallet.FrontEnd
             services.AddControllersWithViews();
             //.AddRazorRuntimeCompilation();
             //services.AddRazorPages(); 
+            services.AddRazorPages()
+            .AddRazorRuntimeCompilation();
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddJsonOptions(o =>
@@ -65,6 +68,7 @@ namespace CryptoCityWallet.FrontEnd
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
@@ -79,7 +83,7 @@ namespace CryptoCityWallet.FrontEnd
             app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

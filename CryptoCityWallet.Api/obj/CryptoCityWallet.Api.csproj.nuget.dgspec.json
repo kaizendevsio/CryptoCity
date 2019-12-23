@@ -36,6 +36,9 @@
               },
               "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
                 "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj"
+              },
+              "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.ExternalUtilities\\CryptoCityWallet.ExternalUtilities.csproj": {
+                "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.ExternalUtilities\\CryptoCityWallet.ExternalUtilities.csproj"
               }
             }
           }
@@ -290,6 +293,68 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[3.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.ExternalUtilities\\CryptoCityWallet.ExternalUtilities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.ExternalUtilities\\CryptoCityWallet.ExternalUtilities.csproj",
+        "projectName": "CryptoCityWallet.ExternalUtilities",
+        "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.ExternalUtilities\\CryptoCityWallet.ExternalUtilities.csproj",
+        "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.ExternalUtilities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Xeon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "BlockchainAPI": {
+              "target": "Package",
+              "version": "[4.0.0, )"
             }
           },
           "imports": [

@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoCityWallet.Entities",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoCityWallet.UnitTest", "CryptoCityWallet.UnitTest\CryptoCityWallet.UnitTest.csproj", "{38947E2E-753F-4812-B5C6-77B777330B79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoCityWallet.ExternalUtilities", "CryptoCityWallet.ExternalUtilities\CryptoCityWallet.ExternalUtilities.csproj", "{B0BEECD5-D6CF-4BA9-B742-A6E16D01635C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{38947E2E-753F-4812-B5C6-77B777330B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38947E2E-753F-4812-B5C6-77B777330B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38947E2E-753F-4812-B5C6-77B777330B79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0BEECD5-D6CF-4BA9-B742-A6E16D01635C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0BEECD5-D6CF-4BA9-B742-A6E16D01635C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0BEECD5-D6CF-4BA9-B742-A6E16D01635C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0BEECD5-D6CF-4BA9-B742-A6E16D01635C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

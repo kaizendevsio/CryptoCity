@@ -18,5 +18,7 @@ namespace CryptoCityWallet.Entities.DTO
         public short? AuthStatus { get; set; }
         public string LoginSource { get; set; }
         public string DeviceName { get; set; }
+
+        public virtual TblUserAuth UserAuth { get; set; }
     }
 }

@@ -13,7 +13,9 @@ namespace CryptoCityWallet.FrontEnd.Models
 
         public decimal TTHBalance { get; set; }
 
+        public int GenLink { get; set; }
 
+        public string PaymentAddress { get; set; }
         public List<TransactionVM> TransactionHistory {get;set;}
 
 

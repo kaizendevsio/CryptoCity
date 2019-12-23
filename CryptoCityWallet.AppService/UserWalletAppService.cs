@@ -50,6 +50,33 @@ namespace CryptoCityWallet.AppService
             }
 
         }
+        public TblUserWallet GetSingle(TblUserAuth tblUserAuth,TblWalletType walletType, dbWorldCCityContext db = null)
+        {
+            if (db != null)
+            {
+                UserWalletBO userBO = new UserWalletBO();
+                userBO.UserAuthId = tblUserAuth.Id;
+                userBO.WalletTypeId = walletType.Id;
+
+                UserWalletRepository userWalletRepository = new UserWalletRepository();
+                return userWalletRepository.Get(userBO, db);
+            }
+            else
+            {
+                using (db = new dbWorldCCityContext())
+                {
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                        UserWalletBO userBO = new UserWalletBO();
+                        userBO.UserAuthId = tblUserAuth.Id;
+                        userBO.WalletTypeId = walletType.Id;
+
+                        UserWalletRepository userWalletRepository = new UserWalletRepository();
+                        return userWalletRepository.Get(userBO, db);
+                    }
+                }
+            }
+        }
         public List<UserWalletBO> GetBO(TblUserAuth tblUserAuth, dbWorldCCityContext db = null)
         {
             if (db != null)

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace CryptoCityWallet.Entities.DTO
 {
-    public partial class TblUserRole
+    public partial class TblBusinessPackageType
     {
-        public TblUserRole()
+        public TblBusinessPackageType()
         {
-            TblUserIncomePartition = new HashSet<TblUserIncomePartition>();
+            TblBusinessPackage = new HashSet<TblBusinessPackage>();
         }
 
         public long Id { get; set; }
@@ -17,10 +17,9 @@ namespace CryptoCityWallet.Entities.DTO
         public DateTime? ModifiedOn { get; set; }
         public long? ModifiedBy { get; set; }
         public DateTime? LastChanged { get; set; }
-        public long UserAuthId { get; set; }
-        public string AccessRole { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
-        public virtual TblUserAuth UserAuth { get; set; }
-        public virtual ICollection<TblUserIncomePartition> TblUserIncomePartition { get; set; }
+        public virtual ICollection<TblBusinessPackage> TblBusinessPackage { get; set; }
     }
 }

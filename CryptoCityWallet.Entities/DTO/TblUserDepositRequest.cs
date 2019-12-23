@@ -5,6 +5,11 @@ namespace CryptoCityWallet.Entities.DTO
 {
     public partial class TblUserDepositRequest
     {
+        public TblUserDepositRequest()
+        {
+            TblUserBusinessPackage = new HashSet<TblUserBusinessPackage>();
+        }
+
         public long Id { get; set; }
         public bool? IsEnabled { get; set; }
         public DateTime? CreatedOn { get; set; }
@@ -24,5 +29,6 @@ namespace CryptoCityWallet.Entities.DTO
         public virtual TblCurrency SourceCurrency { get; set; }
         public virtual TblWalletType TargetWalletType { get; set; }
         public virtual TblUserAuth UserAuth { get; set; }
+        public virtual ICollection<TblUserBusinessPackage> TblUserBusinessPackage { get; set; }
     }
 }

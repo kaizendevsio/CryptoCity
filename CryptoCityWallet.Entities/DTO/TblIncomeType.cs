@@ -5,6 +5,12 @@ namespace CryptoCityWallet.Entities.DTO
 {
     public partial class TblIncomeType
     {
+        public TblIncomeType()
+        {
+            TblIncomeDistribution = new HashSet<TblIncomeDistribution>();
+            TblUserIncomePartition = new HashSet<TblUserIncomePartition>();
+        }
+
         public long Id { get; set; }
         public bool? IsEnabled { get; set; }
         public DateTime? CreatedOn { get; set; }
@@ -18,5 +24,8 @@ namespace CryptoCityWallet.Entities.DTO
         public string IncomeTypeDescription { get; set; }
         public decimal? IncomePercentage { get; set; }
         public bool? IsReward { get; set; }
+
+        public virtual ICollection<TblIncomeDistribution> TblIncomeDistribution { get; set; }
+        public virtual ICollection<TblUserIncomePartition> TblUserIncomePartition { get; set; }
     }
 }

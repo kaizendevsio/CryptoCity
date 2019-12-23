@@ -20,7 +20,7 @@ namespace CryptoCityWallet.DataAccessLayer
         public TblWalletType Get(UserWalletBO walletBO,dbWorldCCityContext db)
         {
             var _q = from a in db.TblWalletType
-                     where a.Id == (int)walletBO.WalletTypeId
+                     where a.Id == (int)walletBO.WalletTypeId || a.Code == walletBO.WalletCode
                      select new TblWalletType
                      {
                          Name = a.Name,

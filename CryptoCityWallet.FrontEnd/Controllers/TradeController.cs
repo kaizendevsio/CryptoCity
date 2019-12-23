@@ -46,6 +46,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     tradeVM.TotalInvestment = (double)userWallets.Find(i => i.WalletCode == "TLI").Balance;
                     tradeVM.WCCPBalance = (double)userWallets.Find(i => i.WalletCode == "WCCP").Balance;
                     tradeVM.YesterdayProfit = 0;
+                    tradeVM.History = new List<HistoryVM>();
 
                     return View(tradeVM);
                 }

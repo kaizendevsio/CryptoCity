@@ -1,7 +1,7 @@
 ﻿using System;
+using CryptoCityWallet.Entities.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using CryptoCityWallet.Entities.DTO;
 
 namespace CryptoCityWallet.DataAccessLayer
 {
@@ -20,30 +20,40 @@ namespace CryptoCityWallet.DataAccessLayer
         public virtual DbSet<TblAddressCountry> TblAddressCountry { get; set; }
         public virtual DbSet<TblAppSystem> TblAppSystem { get; set; }
         public virtual DbSet<TblAuditFields> TblAuditFields { get; set; }
+        public virtual DbSet<TblBusinessPackage> TblBusinessPackage { get; set; }
+        public virtual DbSet<TblBusinessPackageType> TblBusinessPackageType { get; set; }
+        public virtual DbSet<TblClosedTransaction> TblClosedTransaction { get; set; }
         public virtual DbSet<TblCurrency> TblCurrency { get; set; }
+        public virtual DbSet<TblDividend> TblDividend { get; set; }
         public virtual DbSet<TblExchangeRate> TblExchangeRate { get; set; }
+        public virtual DbSet<TblIncomeDistribution> TblIncomeDistribution { get; set; }
         public virtual DbSet<TblIncomeType> TblIncomeType { get; set; }
         public virtual DbSet<TblUserAddress> TblUserAddress { get; set; }
         public virtual DbSet<TblUserAuth> TblUserAuth { get; set; }
         public virtual DbSet<TblUserAuthHistory> TblUserAuthHistory { get; set; }
+        public virtual DbSet<TblUserBusinessPackage> TblUserBusinessPackage { get; set; }
         public virtual DbSet<TblUserDepositRequest> TblUserDepositRequest { get; set; }
+        public virtual DbSet<TblUserIncomePartition> TblUserIncomePartition { get; set; }
         public virtual DbSet<TblUserIncomeTransaction> TblUserIncomeTransaction { get; set; }
         public virtual DbSet<TblUserInfo> TblUserInfo { get; set; }
         public virtual DbSet<TblUserMap> TblUserMap { get; set; }
+        public virtual DbSet<TblUserRank> TblUserRank { get; set; }
         public virtual DbSet<TblUserRole> TblUserRole { get; set; }
+        public virtual DbSet<TblUserVolumes> TblUserVolumes { get; set; }
         public virtual DbSet<TblUserWallet> TblUserWallet { get; set; }
         public virtual DbSet<TblUserWalletAddress> TblUserWalletAddress { get; set; }
         public virtual DbSet<TblUserWalletTransaction> TblUserWalletTransaction { get; set; }
         public virtual DbSet<TblUserWithdrawalRequest> TblUserWithdrawalRequest { get; set; }
         public virtual DbSet<TblWalletType> TblWalletType { get; set; }
+        public virtual DbSet<VMember> VMember { get; set; }
+        public virtual DbSet<VOrder> VOrder { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-               optionsBuilder.UseNpgsql("Host=dbworldccity.caxbcdtsfhob.ap-southeast-1.rds.amazonaws.com;Database=dbWorldCCity;Username=dbAdmin;Password=Jr2Ge4FvY!=Z5u!^");
-              //optionsBuilder.UseNpgsql("Host=localhost;Database=dbWorldCCity;Username=dbAdmin;Password=Jr2Ge4FvY!=Z5u!^");
+                optionsBuilder.UseNpgsql("Host=dbworldccity.caxbcdtsfhob.ap-southeast-1.rds.amazonaws.com;Database=dbWorldCCity;Username=dbAdmin;Password=Jr2Ge4FvY!=Z5u!^");
             }
         }
 
@@ -144,6 +154,73 @@ namespace CryptoCityWallet.DataAccessLayer
                 entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
             });
 
+            modelBuilder.Entity<TblBusinessPackage>(entity =>
+            {
+                entity.ToTable("tbl_BusinessPackage", "dbo");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.CurrencyId).HasColumnName("CurrencyID");
+
+                entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.PackageCode).HasMaxLength(16);
+
+                entity.Property(e => e.PackageDescription).HasMaxLength(500);
+
+                entity.Property(e => e.PackageName).HasMaxLength(100);
+
+                entity.Property(e => e.PackageTypeId).HasColumnName("PackageTypeID");
+
+                entity.Property(e => e.ValueFrom).HasColumnType("numeric(18,8)");
+
+                entity.Property(e => e.ValueTo).HasColumnType("numeric(18,8)");
+
+                entity.HasOne(d => d.Currency)
+                    .WithMany(p => p.TblBusinessPackage)
+                    .HasForeignKey(d => d.CurrencyId)
+                    .HasConstraintName("CurrencyID");
+
+                entity.HasOne(d => d.PackageType)
+                    .WithMany(p => p.TblBusinessPackage)
+                    .HasForeignKey(d => d.PackageTypeId)
+                    .HasConstraintName("PackageTypeID");
+            });
+
+            modelBuilder.Entity<TblBusinessPackageType>(entity =>
+            {
+                entity.ToTable("tbl_BusinessPackageType", "dbo");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.Description).HasMaxLength(500);
+
+                entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.Name).HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<TblClosedTransaction>(entity =>
+            {
+                entity.ToTable("tbl_ClosedTransaction", "dbo");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
+            });
+
             modelBuilder.Entity<TblCurrency>(entity =>
             {
                 entity.ToTable("tbl_Currency", "dbo");
@@ -167,6 +244,30 @@ namespace CryptoCityWallet.DataAccessLayer
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<TblDividend>(entity =>
+            {
+                entity.ToTable("tbl_Dividend", "dbo");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.DividendPrice).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.DividendRate).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.DividendUserAuthId).HasColumnName("DividendUserAuthID");
+
+                entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
+
+                entity.HasOne(d => d.DividendUserAuth)
+                    .WithMany(p => p.TblDividend)
+                    .HasForeignKey(d => d.DividendUserAuthId)
+                    .HasConstraintName("tbl_dividend_fk");
             });
 
             modelBuilder.Entity<TblExchangeRate>(entity =>
@@ -206,6 +307,43 @@ namespace CryptoCityWallet.DataAccessLayer
                     .HasForeignKey(d => d.TargetCurrencyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("TargetCurrencyID");
+            });
+
+            modelBuilder.Entity<TblIncomeDistribution>(entity =>
+            {
+                entity.ToTable("tbl_IncomeDistribution", "dbo");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.BusinessPackageId).HasColumnName("BusinessPackageID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.DistributionType)
+                    .IsRequired()
+                    .HasMaxLength(3);
+
+                entity.Property(e => e.IncomeTypeId).HasColumnName("IncomeTypeID");
+
+                entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.Value).HasColumnType("numeric(18,10)");
+
+                entity.HasOne(d => d.BusinessPackage)
+                    .WithMany(p => p.TblIncomeDistribution)
+                    .HasForeignKey(d => d.BusinessPackageId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("BusinessPackageID");
+
+                entity.HasOne(d => d.IncomeType)
+                    .WithMany(p => p.TblIncomeDistribution)
+                    .HasForeignKey(d => d.IncomeTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("IncomeTypeID");
             });
 
             modelBuilder.Entity<TblIncomeType>(entity =>
@@ -328,6 +466,48 @@ namespace CryptoCityWallet.DataAccessLayer
                 entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
 
                 entity.Property(e => e.UserAuthId).HasColumnName("UserAuthID");
+
+                entity.HasOne(d => d.UserAuth)
+                    .WithMany(p => p.TblUserAuthHistory)
+                    .HasForeignKey(d => d.UserAuthId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("tbl_userauthhistory_fk");
+            });
+
+            modelBuilder.Entity<TblUserBusinessPackage>(entity =>
+            {
+                entity.ToTable("tbl_UserBusinessPackage", "dbo");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.BusinessPackageId).HasColumnName("BusinessPackageID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.ExpiryDate).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.UserAuthId).HasColumnName("UserAuthID");
+
+                entity.Property(e => e.UserDepositRequestId).HasColumnName("UserDepositRequestID");
+
+                entity.HasOne(d => d.BusinessPackage)
+                    .WithMany(p => p.TblUserBusinessPackage)
+                    .HasForeignKey(d => d.BusinessPackageId)
+                    .HasConstraintName("BusinessPackageID");
+
+                entity.HasOne(d => d.UserAuth)
+                    .WithMany(p => p.TblUserBusinessPackage)
+                    .HasForeignKey(d => d.UserAuthId)
+                    .HasConstraintName("UserAuthID");
+
+                entity.HasOne(d => d.UserDepositRequest)
+                    .WithMany(p => p.TblUserBusinessPackage)
+                    .HasForeignKey(d => d.UserDepositRequestId)
+                    .HasConstraintName("UserDepositRequestID");
             });
 
             modelBuilder.Entity<TblUserDepositRequest>(entity =>
@@ -368,6 +548,31 @@ namespace CryptoCityWallet.DataAccessLayer
                     .WithMany(p => p.TblUserDepositRequest)
                     .HasForeignKey(d => d.UserAuthId)
                     .HasConstraintName("UserAuthID");
+            });
+
+            modelBuilder.Entity<TblUserIncomePartition>(entity =>
+            {
+                entity.ToTable("tbl_UserIncomePartition", "dbo");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.Percentage).HasColumnType("numeric(18,8)");
+
+                entity.HasOne(d => d.IncomeType)
+                    .WithMany(p => p.TblUserIncomePartition)
+                    .HasForeignKey(d => d.IncomeTypeId)
+                    .HasConstraintName("IncomeTypeId");
+
+                entity.HasOne(d => d.UserRole)
+                    .WithMany(p => p.TblUserIncomePartition)
+                    .HasForeignKey(d => d.UserRoleId)
+                    .HasConstraintName("UserRoleId");
             });
 
             modelBuilder.Entity<TblUserIncomeTransaction>(entity =>
@@ -453,19 +658,51 @@ namespace CryptoCityWallet.DataAccessLayer
 
                 entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
 
-                entity.Property(e => e.SponsorUserId).HasMaxLength(100);
-
-                entity.Property(e => e.UplineUserId).HasMaxLength(100);
-
                 entity.Property(e => e.UserUid)
                     .IsRequired()
                     .HasMaxLength(100);
 
                 entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.TblUserMap)
+                    .WithOne(p => p.TblUserMapIdNavigation)
                     .HasForeignKey<TblUserMap>(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("UserAuthID");
+
+                entity.HasOne(d => d.SponsorUser)
+                    .WithMany(p => p.TblUserMapSponsorUser)
+                    .HasForeignKey(d => d.SponsorUserId)
+                    .HasConstraintName("SponsorUserId");
+
+                entity.HasOne(d => d.UplineUser)
+                    .WithMany(p => p.TblUserMapUplineUser)
+                    .HasForeignKey(d => d.UplineUserId)
+                    .HasConstraintName("UplineUserId");
+            });
+
+            modelBuilder.Entity<TblUserRank>(entity =>
+            {
+                entity.ToTable("tbl_UserRank", "dbo");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.RankName).HasMaxLength(20);
+
+                entity.Property(e => e.RankRateAffiliate).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.RankRateBinary).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.RankRateDaily).HasColumnType("numeric(18,10)");
+
+                entity.HasOne(d => d.UserAuth)
+                    .WithMany(p => p.TblUserRank)
+                    .HasForeignKey(d => d.UserAuthId)
+                    .HasConstraintName("UserAuthId");
             });
 
             modelBuilder.Entity<TblUserRole>(entity =>
@@ -493,6 +730,35 @@ namespace CryptoCityWallet.DataAccessLayer
                     .HasConstraintName("tbl_UserRole_UserAuthID_fkey");
             });
 
+            modelBuilder.Entity<TblUserVolumes>(entity =>
+            {
+                entity.ToTable("tbl_UserVolumes", "dbo");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.LastChanged).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.MemberRankCd).HasColumnName("MemberRankCD");
+
+                entity.Property(e => e.MemberVolumeLeft).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.MemberVolumeOwn).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.MemberVolumeRight).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.MemberVolumeUni).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
+
+                entity.HasOne(d => d.UserAuth)
+                    .WithMany(p => p.TblUserVolumes)
+                    .HasForeignKey(d => d.UserAuthId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("UserAuthId");
+            });
+
             modelBuilder.Entity<TblUserWallet>(entity =>
             {
                 entity.ToTable("tbl_UserWallet", "dbo");
@@ -510,6 +776,7 @@ namespace CryptoCityWallet.DataAccessLayer
                 entity.HasOne(d => d.UserAuth)
                     .WithMany(p => p.TblUserWallet)
                     .HasForeignKey(d => d.UserAuthId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("tbl_UserWallet_UserAuthId_fkey");
 
                 entity.HasOne(d => d.WalletType)
@@ -562,6 +829,8 @@ namespace CryptoCityWallet.DataAccessLayer
                 entity.Property(e => e.ModifiedOn).HasColumnType("timestamp with time zone");
 
                 entity.Property(e => e.Remarks).HasMaxLength(500);
+
+                entity.Property(e => e.RunningBalance).HasColumnType("numeric(18,10)");
 
                 entity.HasOne(d => d.UserAuth)
                     .WithMany(p => p.TblUserWalletTransaction)
@@ -637,6 +906,52 @@ namespace CryptoCityWallet.DataAccessLayer
                     .WithMany(p => p.TblWalletType)
                     .HasForeignKey(d => d.CurrencyId)
                     .HasConstraintName("CurrencyID");
+            });
+
+            modelBuilder.Entity<VMember>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("v_member", "dbo");
+
+                entity.Property(e => e.FirstName).HasMaxLength(50);
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.LastName).HasMaxLength(50);
+
+                entity.Property(e => e.MemberRankCd).HasColumnName("MemberRankCD");
+
+                entity.Property(e => e.MemberVolumeLeft).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.MemberVolumeOwn).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.MemberVolumeRight).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.MemberVolumeUni).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.UserAuthId).HasColumnName("UserAuthID");
+            });
+
+            modelBuilder.Entity<VOrder>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("v_order", "dbo");
+
+                entity.Property(e => e.Amount).HasColumnType("numeric(18,10)");
+
+                entity.Property(e => e.BusinessPackageId).HasColumnName("BusinessPackageID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.FirstName).HasMaxLength(50);
+
+                entity.Property(e => e.LastName).HasMaxLength(50);
+
+                entity.Property(e => e.UserDepositRequestId).HasColumnName("UserDepositRequestID");
+
+                entity.Property(e => e.UserInfoId).HasColumnName("UserInfoID");
             });
 
             OnModelCreatingPartial(modelBuilder);

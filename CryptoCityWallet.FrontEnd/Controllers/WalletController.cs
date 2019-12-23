@@ -66,21 +66,124 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         }
         [Route("/Wallet/MyBitcoin")]
         [HttpGet]
-        public IActionResult MyBitcoin()
+        public async Task<IActionResult> MyBitcoinAsync(int GenLink)
         {
-            return View();
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.GetAsync("Wallet/Address/New", session.SessionCookies);
+                WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
+                
+                TblUserInfo userInfo = apiResponse.UserInfo;
+                TblUserAuth userAuth = apiResponse.UserAuth;
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    WalletVM walletVM = new WalletVM();
+                    walletVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
+                    walletVM.Username = userAuth.UserName;
+                    walletVM.GenLink = GenLink;
+                    walletVM.PaymentAddress = apiResponse.Address;
+
+                    return View(walletVM);
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+
+
+            }
+            catch (System.Exception e)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
+
         }
         [Route("/Wallet/MyEthereum")]
         [HttpGet]
-        public IActionResult MyEthereum()
+        public async Task<IActionResult> MyEthereumAsync(int GenLink)
         {
-            return View();
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.GetAsync("Wallet/Address/New", session.SessionCookies);
+                WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
+
+                TblUserInfo userInfo = apiResponse.UserInfo;
+                TblUserAuth userAuth = apiResponse.UserAuth;
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    WalletVM walletVM = new WalletVM();
+                    walletVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
+                    walletVM.Username = userAuth.UserName;
+                    walletVM.GenLink = GenLink;
+                    walletVM.PaymentAddress = apiResponse.Address;
+
+                    return View(walletVM);
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+
+
+            }
+            catch (System.Exception e)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
         [Route("/Wallet/MyTether")]
         [HttpGet]
-        public IActionResult MyTether()
+        public async Task<IActionResult> MyTetherAsync(int GenLink)
         {
-            return View();
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.GetAsync("Wallet/Address/New", session.SessionCookies);
+                WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
+
+                TblUserInfo userInfo = apiResponse.UserInfo;
+                TblUserAuth userAuth = apiResponse.UserAuth;
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    WalletVM walletVM = new WalletVM();
+                    walletVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
+                    walletVM.Username = userAuth.UserName;
+                    walletVM.GenLink = GenLink;
+                    walletVM.PaymentAddress = apiResponse.Address;
+
+                    return View(walletVM);
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+
+
+            }
+            catch (System.Exception e)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
 
 

@@ -3,13 +3,8 @@ using System.Collections.Generic;
 
 namespace CryptoCityWallet.Entities.DTO
 {
-    public partial class TblUserRole
+    public partial class TblUserIncomePartition
     {
-        public TblUserRole()
-        {
-            TblUserIncomePartition = new HashSet<TblUserIncomePartition>();
-        }
-
         public long Id { get; set; }
         public bool? IsEnabled { get; set; }
         public DateTime? CreatedOn { get; set; }
@@ -17,10 +12,11 @@ namespace CryptoCityWallet.Entities.DTO
         public DateTime? ModifiedOn { get; set; }
         public long? ModifiedBy { get; set; }
         public DateTime? LastChanged { get; set; }
-        public long UserAuthId { get; set; }
-        public string AccessRole { get; set; }
+        public long? UserRoleId { get; set; }
+        public long? IncomeTypeId { get; set; }
+        public decimal? Percentage { get; set; }
 
-        public virtual TblUserAuth UserAuth { get; set; }
-        public virtual ICollection<TblUserIncomePartition> TblUserIncomePartition { get; set; }
+        public virtual TblIncomeType IncomeType { get; set; }
+        public virtual TblUserRole UserRole { get; set; }
     }
 }

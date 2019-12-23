@@ -8,6 +8,7 @@ namespace CryptoCityWallet.Entities.DTO
         public TblCurrency()
         {
             TblAddressCountry = new HashSet<TblAddressCountry>();
+            TblBusinessPackage = new HashSet<TblBusinessPackage>();
             TblExchangeRateSourceCurrency = new HashSet<TblExchangeRate>();
             TblExchangeRateTargetCurrency = new HashSet<TblExchangeRate>();
             TblUserDepositRequest = new HashSet<TblUserDepositRequest>();
@@ -28,6 +29,7 @@ namespace CryptoCityWallet.Entities.DTO
         public short? CurrencyType { get; set; }
 
         public virtual ICollection<TblAddressCountry> TblAddressCountry { get; set; }
+        public virtual ICollection<TblBusinessPackage> TblBusinessPackage { get; set; }
         public virtual ICollection<TblExchangeRate> TblExchangeRateSourceCurrency { get; set; }
         public virtual ICollection<TblExchangeRate> TblExchangeRateTargetCurrency { get; set; }
         public virtual ICollection<TblUserDepositRequest> TblUserDepositRequest { get; set; }

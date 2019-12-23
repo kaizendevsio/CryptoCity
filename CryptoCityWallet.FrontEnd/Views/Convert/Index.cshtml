@@ -16,20 +16,29 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
+                        <label>From</label>
                         <select class="mdb-select md-form" style="display: none;">
                             @*<option value="" disabled="" selected="">BTC</option>
-                            <option value="BITCOIN">BITCOIN</option>
-                            <option value="TETHER">TETHER</option>
-                            <option value="BITCOINCASH">BITCOINCASH</option>*@
+                    <option value="BITCOIN">BITCOIN</option>
+                    <option value="TETHER">TETHER</option>
+                    <option value="BITCOINCASH">BITCOINCASH</option>*@
                             @*<option value="ETHERIUM">ETHERIUM</option>*@
                             <option value="WCCP">WCCP</option>
-                        </select> 
+                        </select>
                     </div>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-4">
+                    <label>User BTC Address</label>
                     <div class="input-wrap">
-                        <input type="text" name="" class="" placeholder="Amount">
+                        <input type="text" name="" class="" placeholder="BTC Addess" value="1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY" readonly>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Amount</label>
+                    <div class="input-wrap">
+                        <input type="text" name="" class="" placeholder="Amount to convert">
                     </div>
                 </div>
                 <h4 style="color:red; margin-left:17px;">Minimum 30 WCCP or more Fee 3%</h4>

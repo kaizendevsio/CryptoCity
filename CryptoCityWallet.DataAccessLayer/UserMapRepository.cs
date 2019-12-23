@@ -66,7 +66,7 @@ namespace CryptoCityWallet.DataAccessLayer
                          name = userAuth.UserName,
                          //title = mapUserInfoCenter.Email,
                          UserAuth = userAuth,
-                         children = new List<UserMapBO> { new UserMapBO { name = mapUserLeft.UserName, title = mapUserInfoLeft.Email, relationship = "101", UserAuth = new TblUserAuth { Id = mapUserLeft.Id, UserName = mapUserLeft.UserName } }, new UserMapBO { name = mapUserRight.UserName, title = mapUserInfoRight.Email, relationship = "101", UserAuth = new TblUserAuth { Id = mapUserRight.Id, UserName = mapUserRight.UserName } } },
+                         children = new List<UserMapBO> { new UserMapBO { name = mapUserLeft.UserName, title = mapUserInfoLeft.Uid, relationship = "101", UserAuth = new TblUserAuth { Id = mapUserLeft.Id, UserName = mapUserLeft.UserName } }, new UserMapBO { name = mapUserRight.UserName, title = mapUserInfoRight.Uid, relationship = "101", UserAuth = new TblUserAuth { Id = mapUserRight.Id, UserName = mapUserRight.UserName } } },
                          relationship = "101"
                      };
 

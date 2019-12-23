@@ -7,10 +7,17 @@ namespace CryptoCityWallet.Entities.DTO
     {
         public TblUserAuth()
         {
+            TblDividend = new HashSet<TblDividend>();
             TblUserAddress = new HashSet<TblUserAddress>();
+            TblUserAuthHistory = new HashSet<TblUserAuthHistory>();
+            TblUserBusinessPackage = new HashSet<TblUserBusinessPackage>();
             TblUserDepositRequest = new HashSet<TblUserDepositRequest>();
             TblUserIncomeTransaction = new HashSet<TblUserIncomeTransaction>();
+            TblUserMapSponsorUser = new HashSet<TblUserMap>();
+            TblUserMapUplineUser = new HashSet<TblUserMap>();
+            TblUserRank = new HashSet<TblUserRank>();
             TblUserRole = new HashSet<TblUserRole>();
+            TblUserVolumes = new HashSet<TblUserVolumes>();
             TblUserWallet = new HashSet<TblUserWallet>();
             TblUserWalletAddress = new HashSet<TblUserWalletAddress>();
             TblUserWalletTransaction = new HashSet<TblUserWalletTransaction>();
@@ -37,11 +44,18 @@ namespace CryptoCityWallet.Entities.DTO
         public byte[] PasswordByte { get; set; }
 
         public virtual TblUserInfo UserInfo { get; set; }
-        public virtual TblUserMap TblUserMap { get; set; }
+        public virtual TblUserMap TblUserMapIdNavigation { get; set; }
+        public virtual ICollection<TblDividend> TblDividend { get; set; }
         public virtual ICollection<TblUserAddress> TblUserAddress { get; set; }
+        public virtual ICollection<TblUserAuthHistory> TblUserAuthHistory { get; set; }
+        public virtual ICollection<TblUserBusinessPackage> TblUserBusinessPackage { get; set; }
         public virtual ICollection<TblUserDepositRequest> TblUserDepositRequest { get; set; }
         public virtual ICollection<TblUserIncomeTransaction> TblUserIncomeTransaction { get; set; }
+        public virtual ICollection<TblUserMap> TblUserMapSponsorUser { get; set; }
+        public virtual ICollection<TblUserMap> TblUserMapUplineUser { get; set; }
+        public virtual ICollection<TblUserRank> TblUserRank { get; set; }
         public virtual ICollection<TblUserRole> TblUserRole { get; set; }
+        public virtual ICollection<TblUserVolumes> TblUserVolumes { get; set; }
         public virtual ICollection<TblUserWallet> TblUserWallet { get; set; }
         public virtual ICollection<TblUserWalletAddress> TblUserWalletAddress { get; set; }
         public virtual ICollection<TblUserWalletTransaction> TblUserWalletTransaction { get; set; }

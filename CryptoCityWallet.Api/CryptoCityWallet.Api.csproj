@@ -24,10 +24,11 @@
   <ItemGroup>
     <ProjectReference Include="..\CryptoCityWallet.AppService\CryptoCityWallet.AppService.csproj" />
     <ProjectReference Include="..\CryptoCityWallet.Entities\CryptoCityWallet.Entities.csproj" />
+    <ProjectReference Include="..\CryptoCityWallet.ExternalUtilities\CryptoCityWallet.ExternalUtilities.csproj" />
   </ItemGroup>
 
  <ItemGroup>
-    <Content Include="Resources\**" CopyToPublishDirectory="PreserveNewest"/>
+    <Content Include="Resources\**" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

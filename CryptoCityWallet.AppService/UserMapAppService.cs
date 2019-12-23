@@ -56,7 +56,7 @@ namespace CryptoCityWallet.AppService
                         UserInfoRepository userInfoRepository = new UserInfoRepository();
 
                         UserMapBO userMap = userMapRepository.GetMap(userAuth);
-                        userMap.title = userInfoRepository.Get(userAuth, db).Email;
+                        userMap.title = userInfoRepository.Get(userAuth, db).Uid;
                         return userMap;
                     }
                 }
