@@ -141,40 +141,44 @@
 
             </div>
 
+            <form onsubmit="GetAffliateLink('@Url.Action("GetAffiliateLink", "Genealogy")','POST',this); return false">
 
-            <div class="panel-body">
-                <label for="name">Introducer ID</label>
-                <div class="input-icon">
-                    <i class="mdi mdi-user"></i>
-                    <input type="text" class="form-control" id="DirectSponsorID" name="DirectSponsorID" placeholder="Introducer ID" required>
 
+                <div class="panel-body">
+                    <label for="name">Introducer</label>
+                    <div class="input-icon">
+                        <i class="mdi mdi-user"></i>
+                        <input type="text" class="form-control" id="DirectSponsorID" name="DirectSponsorID" placeholder="Introducer User ID" required>
+
+                    </div>
                 </div>
-            </div>
 
-            <div class="panel-body">
-                <label for="name">Binary Sponsor ID</label>
-                <div class="input-icon">
-                    <i class="mdi mdi-user"></i>
-                    <input type="text" class="form-control" id="BinarySponsorID" name="BinarySponsorID" placeholder="Binary Sponsor ID" required>
+                <div class="panel-body">
+                    <label for="name">Binary Sponsor</label>
+                    <div class="input-icon">
+                        <i class="mdi mdi-user"></i>
+                        <input type="text" class="form-control" id="BinarySponsorID" name="BinarySponsorID" placeholder="Binary Sponsor User ID" required>
 
+                    </div>
                 </div>
-            </div>
 
-            <div class="panel-body">
-                <label for="name">Binary Position</label>
-                <div class="input-icon">
-                    <i class="mdi mdi-user"></i>
+                <div class="panel-body">
+                    <label for="name">Binary Position</label>
+                    <div class="input-icon">
+                        <i class="mdi mdi-user"></i>
 
-                    <select class="form-control" id="BinaryPosition" name="BinaryPosition">
-                        <option value=1>Left</option>
-                        <option value=2>Right</option>
-                    </select>
+                        <select class="form-control" id="BinaryPosition" name="BinaryPosition">
+                            <option value=1>Left</option>
+                            <option value=2>Right</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
+                <div class="panel-body">
+                    <button type="submit" class="btn btn-primary">Create Link</button>
+                </div>
+            </form>
 
-            <div class="panel-body">
-                <button onclick="GenerateURL();" class="btn btn-primary">Create Link</button>
-            </div>
+
 
             <div class="panel-body">
                 <label for="name">Binary Position</label>
@@ -194,16 +198,6 @@
     </div>
 
 
-
-
-        @*<script src="../ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="~/js/jquery-2.2.4.min.js"><\/script>')</script>
-        <script src="~/js/jquery-2.2.4.min.js"></script>
-
-        <script src="~/js/scripts.min.js"></script>
-
-        <script type="text/javascript" src="~/js/jquery.min-1.js"></script>
-        <script type="text/javascript" src="~/js/jquery.orgchart.js"></script>*@
         @section Scripts{
 
             <script type="text/javascript">
@@ -222,18 +216,6 @@
                     /* Alert the copied text */
                     alert("Link Copied to clipboard.");
                 }
-
-                function GenerateURL() {
-                    document.getElementById('genlink').value = "http://wallet.world-ccity.com/SignUp?dsi=" + document.getElementById("DirectSponsorID").value + "&bsi=" + document.getElementById("BinarySponsorID").value + "&bp=" + document.getElementById("BinaryPosition").value;
-                }
-                //var datascource = {
-                //    'name': 'You',
-                //    'title': 'Admin',
-                //    'children': [
-                //        { 'name': 'Left', 'title': 'Vacant Position' },
-                //        { 'name': 'Right', 'title': 'Vacant Position' }
-                //    ]
-                //};
 
                 $.ajax({
                     url: '@Url.Action("GetMap", "Genealogy")',
@@ -279,12 +261,38 @@
                     },
                 });
 
-                //$('#chart-container').orgchart({
-                //    'data': datascource,
-                //    'nodeContent': 'title',
-                //    'toggleSiblingsResp': true
-                //});
+                function getFormData(form) {
+                    var unindexed_array = $(form).serializeArray();
+                    var indexed_array = {};
 
+                    $.map(unindexed_array, function (n, i) {
+                        indexed_array[n['name']] = n['value'];
+                    });
+
+                    return JSON.stringify(indexed_array);
+                }
+
+                function GetAffliateLink(url, type, form) {
+                    $.ajax({
+                        url: url,
+                        type: type,
+                        data: getFormData(form),
+                        contentType: 'application/json',
+                        success: function (data) {
+                            if (data.Message != undefined) {
+                                alert(data.Message);
+                            }
+                            document.getElementById('genlink').value = "http://wallet.world-ccity.com/SignUp?dsi=" + data.AffiliateMapBO.DirectSponsorID + "&bsi=" + data.AffiliateMapBO.BinarySponsorID + "&bp=" + document.getElementById("BinaryPosition").value;
+                        },
+                        error: function (data, textStatus, jqXHR) {
+                            console.log(data.responseJSON);
+                            alert(data.responseJSON.Message);
+
+                        },
+                    });
+
+                    return false
+                }
 
             </script>
         }

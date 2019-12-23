@@ -3,7 +3,9 @@
     Layout = "~/Views/Shared/_PartialView.cshtml";
 
     ViewBag.Title = "World CryptoCity | Trade";
-} <main class="main-content">
+}
+@model ConvertVM
+ <main class="main-content">
 
     <div class="buy">
         <div class="buy__header">
@@ -18,12 +20,11 @@
                     <div class="form-group">
                         <label>From</label>
                         <select class="mdb-select md-form" style="display: none;">
-                            @*<option value="" disabled="" selected="">BTC</option>
-                    <option value="BITCOIN">BITCOIN</option>
-                    <option value="TETHER">TETHER</option>
-                    <option value="BITCOINCASH">BITCOINCASH</option>*@
-                            @*<option value="ETHERIUM">ETHERIUM</option>*@
-                            <option value="WCCP">WCCP</option>
+                            @foreach (var modelItem in Model.UserWallets)
+                            {
+                                <option value="@Html.ValueFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance) @Html.DisplayFor(modelList => modelItem.WalletCode))</option>
+                                @Html.DisplayFor(modelList => modelItem.WalletCode)
+                            }
                         </select>
                     </div>
                 </div>

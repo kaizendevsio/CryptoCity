@@ -1,4 +1,4 @@
-﻿@{    
+﻿@{
     ViewBag.Title = "World CryptoCity | Sign Up";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -75,7 +75,7 @@
                                 <hr />
 
                                 <div class="form-group">
-                                    <label for="name">Introducer ID</label>
+                                    <label for="name">Introducer Username</label>
                                     <div class="input-icon">
                                         <i class="mdi mdi-user"></i>
                                         <input type="text" class="form-control" id="username" asp-for="DirectSponsorID" name="DirectSponsorID" placeholder="Introducer ID" autofocus required readonly>
@@ -84,7 +84,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="name">Binary Sponsor ID</label>
+                                    <label for="name">Binary Sponsor Username</label>
                                     <div class="input-icon">
                                         <i class="mdi mdi-user"></i>
                                         <input type="text" class="form-control" id="username" asp-for="BinarySponsorID" name="BinarySponsorID" placeholder="Binary Sponsor ID" autofocus required readonly>
@@ -109,7 +109,7 @@
                                     <!--          	<input type="checkbox"> <p>I aggree with  <a href="#">Term of Service</a> -->
 
                                 </div>
-                                <button class="btn btn-primary btn-block btn-c mt-4 mb-4">Submit</button>
+                                <button onclick="showPreload(this);" class="btn btn-primary btn-block btn-c mt-4 mb-4">Submit</button>
                             </form>
                             <div class="btn-social mb-4">
                             </div>
@@ -127,5 +127,5 @@
         </div>
     </section>
 
-   
-   
+
+

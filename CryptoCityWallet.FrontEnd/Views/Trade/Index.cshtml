@@ -16,37 +16,58 @@
 
         </div>
 
-        <div class="buy__body">
+        <div class="buy__body" style="padding-bottom:0px">
 
             <div class="exchange">
-                <div class="exchange__col row">
-                    <label class="form__label" style="margin-left:12px">Select currency to participate in WCC Trade:</label>
-                    <div class="panel-body col-6">
-                        <label class="form__label">Currency</label>
-
-                        <select class="custom-select">
-                            @foreach (var modelItem in Model.UserWallets)
-                            {
-                                <option value="@Html.DisplayFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance))</option>
-                                @Html.DisplayFor(modelList => modelItem.WalletCode)
-                            }
-                        </select>
+                <div class="row">
+                    <div class="row" style="padding-left:15px">
+                        <h3 class="form__label" style="margin-left:12px; font-size:17px">Select currency to participate in WCC Trade:</h3>
                     </div>
-                    <div class="panel-body col-6">
-                        <label class="form__label">Amount</label>
-                        <div class="input-wrap">
-                            <input type="text" value="0.00">
+
+                    <div class="row">
+                        <div class="col-6">
+
+                            <form onsubmit="SendPackagePurchase('@Url.Action("BuyPackage", "Trade")','POST',this); return false">
+                                <div class="panel-body col-6" style="display:inline-block">
+                                    <label class="form__label">Currency (Available Balance)</label>
+
+                                    <select class="custom-select" Name="FromWalletCode">
+                                        @foreach (var modelItem in Model.UserWallets)
+                                        {
+                                            <option value="@Html.ValueFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance) @Html.DisplayFor(modelList => modelItem.WalletCode))</option>
+                                            @Html.DisplayFor(modelList => modelItem.WalletCode)
+                                        }
+                                    </select>
+                                </div>
+                                <div class="panel-body col-5" style="display:inline-block">
+                                    <label class="form__label">Amount</label>
+                                    <div class="input-wrap">
+                                        <input type="text" Name="AmountPaid" value="0.00">
+                                    </div>
+                                </div>
+                                <input style="display:none" type="text" Name="FromCurrencyIso3" value="USD">
+                                <input style="display:none" type="text" Name="PaymentAddress" value="">
+                                <input style="display:none" type="text" Name="BusinessPackageID" value="1">
+                                <p style="color:red; margin-top: 10px; margin-left:16px;">Note : *100 USD Minimum</p>
+
+                                <div class="form-group" style="margin-left: 15px;margin-top: 20px;">
+                                    <button onclick="showPreload(this);" type="submit" class="btn btn--blue" value="Purchase Trade Package">Purchase Trade Package</button>
+                                </div>
+                            </form>
+
+
+
+
                         </div>
                     </div>
 
-                    <p style="color:red; margin-top: 10px; margin-left:16px;">Note : *100 USD Minimum</p>
+
                 </div>
 
+
             </div>
 
-            <div class="form-group">
-                <a href="#" class="btn btn--blue">Join Trade</a>
-            </div>
+
 
             <div class="d-none">
 
@@ -67,8 +88,8 @@
 
 
                                 @*<option value="Bitcoin">Bitcoin</option>
-                                <option value="Ethereum">Ethereum</option>
-                                <option value="Litecoin">Litecoin</option>*@
+                                    <option value="Ethereum">Ethereum</option>
+                                    <option value="Litecoin">Litecoin</option>*@
                             </select><div class="custom-select">
                                 <button class="custom-select__option custom-select__option--value" type="button">Bitcoin</button>
                                 <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Ethereum</button><button class="custom-select__option" type="button">Litecoin</button></div>
@@ -93,41 +114,46 @@
         </div>
 
         <div style="margin-top: 20px; background-color:white">
-            <table class="table table-bordered table-hover" id="datatable_trade" style="width:90%; margin-left:30px;">
+            <table class="table table-bordered table-hover" id="datatable_trade" style="width:95%; margin-left:30px;">
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>USD Rate Amount</th>
-                        <th>Total Profit</th>
-                        <th>WCCP Details</th>
-                        <th>Cancel</th>
+                        <th>Package Name</th>
+                        <th>Type</th>
+                        <th>Package Amount</th>
+                        <th>Activation Date</th>
+                        <th>Expiration Date</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.History)
+                    @foreach (var item in Model.UserBusinessPackages)
                     {
                         <tr>
                             <td>
 
-                                @Html.DisplayFor(modelItem => item.Date)
+                                @Html.DisplayFor(modelItem => item.CreatedOn)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.In)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Out)
+                                @Html.DisplayFor(modelItem => item.BusinessPackage.PackageName)
                             </td>
 
                             <td>
-                                <button class="btn btn-primary btn-block  " onclick="location.href='@Url.Action("History", "Trade")'">History</button>
+                                @Html.DisplayFor(modelItem => item.BusinessPackage.PackageType.Name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserDepositRequest.Amount)
 
                             </td>
                             <td>
-
-                                <a class="btn btn-primary" data-toggle="modal" data-target="#" href="#">Cancel</a>
-
-
+                                @Html.DisplayFor(modelItem => item.ActivationDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ExpiryDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PackageStatus)
                             </td>
                         </tr>
                     }
@@ -146,7 +172,7 @@
 
 @section Scripts{
     <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
             $('#datatable_trade').DataTable({
                 initComplete: function () {
                     this.api().columns().every(function () {
@@ -170,5 +196,68 @@
                 }
             });
         });</script>
+
+    <script type="text/javascript">
+        var p, q;
+
+        function showPreload(e) {
+            q = e.innerHTML;
+            e.innerHTML = "Loading...";
+            e.style.opacity = 0.5;
+            p = e;
+        }
+        function CopyText() {
+            /* Get the text field */
+            var copyText = document.getElementById("genlink");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            /* Alert the copied text */
+            alert("Link Copied to clipboard.");
+        }
+
+
+        function getFormData(form) {
+            var unindexed_array = $(form).serializeArray();
+            var indexed_array = {};
+
+            $.map(unindexed_array, function (n, i) {
+                indexed_array[n['name']] = n['value'];
+            });
+
+            return JSON.stringify(indexed_array);
+        }
+
+        function SendPackagePurchase(url, type, form) {
+            $.ajax({
+                url: url,
+                type: type,
+                data: getFormData(form),
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data.Message != undefined) {
+                        alert(data.Message);
+                        window.location.reload();
+                    }
+                    p.style.opacity = 1;
+                    p.innerHTML = q;
+                },
+                error: function (data, textStatus, jqXHR) {
+                    console.log(data.responseJSON);
+                    alert(data.responseJSON.Message);
+                    p.style.opacity = 1;
+                    p.innerHTML = q;
+                },
+            });
+
+            return false
+        }
+
+    </script>
 
 }

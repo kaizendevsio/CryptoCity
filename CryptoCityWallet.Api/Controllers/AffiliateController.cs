@@ -11,20 +11,19 @@ namespace CryptoCityWallet.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BusinessPackageController : ControllerBase
+    public class AffiliateController : ControllerBase
     {
-        [HttpPost("Buy")]
-        public ActionResult Create([FromBody] UserBusinessPackageBO userBusinessPackageBO)
+        [HttpPost("InvitationLink")]
+        public ActionResult InvitationLink([FromBody] AffiliateMapBO affiliateMapBO)
         {
-            UserBusinessPackageAppService userBusinessPackageAppService = new UserBusinessPackageAppService();
-            ApiResponseBO _apiResponse = new ApiResponseBO();
+            AffiliateAppService affiliateAppService = new AffiliateAppService();
+            AffiliateLinkResponseBO _apiResponse = new AffiliateLinkResponseBO();
 
             try
             {
-                userBusinessPackageAppService.Create(userBusinessPackageBO);
+                _apiResponse.AffiliateMapBO = affiliateAppService.GetAffiliateLink(affiliateMapBO);
 
                 _apiResponse.HttpStatusCode = "200";
-                _apiResponse.Message = "Package successfully purchased";
                 _apiResponse.Status = "Success";
 
                 return Ok(_apiResponse);

@@ -17,5 +17,6 @@ namespace CryptoCityWallet.Entities.DTO
         public decimal? MemberVolumeRight { get; set; }
         public long? MemberRankCd { get; set; }
         public long? UserAuthId { get; set; }
+        public string Uid { get; set; }
     }
 }

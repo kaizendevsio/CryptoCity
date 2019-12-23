@@ -86,7 +86,40 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     apiResponse.RedirectUrl = "/User/Login/Failed";
                     return BadRequest(apiResponse);
                 }
-                
+
+            }
+            catch (System.Exception e)
+            {
+                UserResponseBO apiResponse = new UserResponseBO();
+                apiResponse.RedirectUrl = "/User/Login/Failed";
+                apiResponse.Message = e.Message;
+                return BadRequest(apiResponse);
+            }
+        }
+
+        [HttpPost("GetAffiliateLink")]
+        public async Task<IActionResult> GetAffiliateLink([FromBody] AffiliateMapBO affiliateMapBO)
+        {
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.PostAsync(Env, "Affiliate/InvitationLink",affiliateMapBO, session.SessionCookies);
+                AffiliateLinkResponseBO apiResponse = JsonConvert.DeserializeObject<AffiliateLinkResponseBO>(_res.ResponseResult);
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    return Ok(apiResponse);
+                }
+                else
+                {
+                    apiResponse.RedirectUrl = "/User/Login/Failed";
+                    return BadRequest(apiResponse);
+                }
+
             }
             catch (System.Exception e)
             {

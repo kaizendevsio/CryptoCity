@@ -1,4 +1,5 @@
 ﻿using CryptoCityWallet.Entities.BO;
+using CryptoCityWallet.Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace CryptoCityWallet.FrontEnd.Models
         public double WCCPBalance { get; set; }
         public List<UserWalletBO> UserWallets { get; set; }
         public List<HistoryVM> History { get; set; }
-           
+        public List<TblUserBusinessPackage> UserBusinessPackages{ get; set; }
+        public UserBusinessPackageBO UserBusinessPackageBuy { get; set; }
     }
 }

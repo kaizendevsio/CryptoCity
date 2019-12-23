@@ -40,6 +40,11 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 
                 List<UserWalletBO> userWallets = apiResponse.UserWallet;
 
+                _res = await apiRequest.GetAsync(Env, "User/BusinessPackages", session.SessionCookies);
+                apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+                List<TblUserBusinessPackage> UserBusinessPackages = apiResponse.BusinessPackages;
+
                 if (apiResponse.HttpStatusCode == "200")
                 {
                     TradeVM tradeVM = new TradeVM();
@@ -50,6 +55,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     tradeVM.YesterdayProfit = 0;
                     tradeVM.History = new List<HistoryVM>();
                     tradeVM.UserWallets = userWallets.FindAll(item => item.WalletType.Type == (short)WalletType.CurrencyValue);
+                    tradeVM.UserBusinessPackages = UserBusinessPackages;
 
                     return View(tradeVM);
                 }
@@ -63,6 +69,50 @@ namespace CryptoCityWallet.FrontEnd.Controllers
             catch (System.Exception e)
             {
                 return RedirectToAction("Login", "Home");
+
+            }
+        }
+
+        [HttpPost("Trade/BuyPackage")]
+        public async Task<IActionResult> BuyPackage([FromBody] UserBusinessPackageBO userBusinessPackage)
+        {
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.GetAsync(Env, "User/Profile", session.SessionCookies);
+                UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+                TblUserAuth userAuth = apiResponse.UserAuth;
+                userBusinessPackage.Id = userAuth.Id;
+
+                _res = await apiRequest.PostAsync(Env, "BusinessPackage/Buy", userBusinessPackage, session.SessionCookies);
+                apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+
+                    //apiResponse.RedirectUrl = "/Wallet/";
+                    apiResponse.Message = apiResponse.Message;
+                    return Ok(apiResponse);
+                }
+                else
+                {
+                    apiResponse.RedirectUrl = "/User/Login/Failed";
+                    return BadRequest(apiResponse);
+                }
+            }
+            catch (System.Exception e)
+            {
+                UserResponseBO apiResponse = new UserResponseBO();
+                apiResponse.RedirectUrl = "/User/Login/Failed";
+                apiResponse.Message = e.Message;
+                return BadRequest(apiResponse);
+                //return Redirect("~/User/Login/Failed");
 
             }
         }
