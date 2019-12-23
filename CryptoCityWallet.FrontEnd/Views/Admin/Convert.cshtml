@@ -177,15 +177,7 @@
     <partial name="Partials/Cancel.cshtml" />
 </div>
 @section Scripts{
-    <script>
-        <th>Date of Request</th>
-            <th>ID (Code)</th>
-            <th>Name</th>
-            <th>From</th>
-            <th>To</th>
-            <th>Withdrawal Amount</th>
-            <th>Currency</th>
-            <th>Txid</th>
+    <script> 
 
         $('#send').click(function () {
                 var date_ = $(this).closest("tr").find("td").eq(0).text();
@@ -229,15 +221,15 @@
 
 
 
-        $("#confirm").on("submit", function (event) {
-            event.preventDefault();
+        //$("#confirm").on("submit", function (event) {
+        //    event.preventDefault();
 
-            var formData = {
-                'txid': $('input[name=email]').val(),
-                'amount': $('input[name=email]').val(),
-                'email': $('input[name=email]').val()//for get email
-            };
-            console.log(formData);
+        //    var formData = {
+        //        'txid': $('input[name=email]').val(),
+        //        'amount': $('input[name=email]').val(),
+        //        'email': $('input[name=email]').val()//for get email
+        //    };
+        //    console.log(formData);
 
             //$.ajax({
             //url: "/Withdraw/SendADA",

@@ -1,0 +1,29 @@
+﻿@model ConvertVM
+<div class="modal fade" id="toModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1600;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Send to Cold Wallet </h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Make sure to double check the details.</div>
+            <div class="modal-body">
+                <div id="currencyDetails" class="modal-body"></div>
+                <div id="balanceDetails" class="modal-body"></div>
+                <div id="availableDetails" class="modal-body"></div>
+                <div id="hotDetails" class="modal-body"></div>
+                <div id="coldDetails" class="modal-body"></div>
+                <div id="rateDetails" class="modal-body"></div>
+                <div id="usdDetails" class="modal-body"></div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" onclick="location.href='@Url.Action("Convert", "Admin")'">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>
