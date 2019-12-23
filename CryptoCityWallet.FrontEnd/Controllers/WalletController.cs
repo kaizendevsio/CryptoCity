@@ -16,6 +16,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 {
     public class WalletController : Controller
     {
+        public readonly string Env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -27,13 +28,13 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 SessionBO session = sessionController.GetSession(HttpContext.Session);
 
                 ApiRequest apiRequest = new ApiRequest();
-                ResponseBO _res = await apiRequest.GetAsync("User/Profile", session.SessionCookies);
+                ResponseBO _res = await apiRequest.GetAsync(Env,"User/Profile", session.SessionCookies);
                 UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 
                 TblUserInfo userInfo = apiResponse.UserInfo;
                 TblUserAuth userAuth = apiResponse.UserAuth;
 
-                _res = await apiRequest.GetAsync("User/Wallet", session.SessionCookies);
+                _res = await apiRequest.GetAsync(Env,"User/Wallet", session.SessionCookies);
                 apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 
                 List<UserWalletBO> userWallets = apiResponse.UserWallet;
@@ -75,7 +76,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 SessionBO session = sessionController.GetSession(HttpContext.Session);
 
                 ApiRequest apiRequest = new ApiRequest();
-                ResponseBO _res = await apiRequest.GetAsync("Wallet/Address/New", session.SessionCookies);
+                ResponseBO _res = await apiRequest.GetAsync(Env,"Wallet/Address/New", session.SessionCookies);
                 WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
                 
                 TblUserInfo userInfo = apiResponse.UserInfo;
@@ -116,7 +117,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 SessionBO session = sessionController.GetSession(HttpContext.Session);
 
                 ApiRequest apiRequest = new ApiRequest();
-                ResponseBO _res = await apiRequest.GetAsync("Wallet/Address/New", session.SessionCookies);
+                ResponseBO _res = await apiRequest.GetAsync(Env,"Wallet/Address/New", session.SessionCookies);
                 WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
 
                 TblUserInfo userInfo = apiResponse.UserInfo;
@@ -156,7 +157,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 SessionBO session = sessionController.GetSession(HttpContext.Session);
 
                 ApiRequest apiRequest = new ApiRequest();
-                ResponseBO _res = await apiRequest.GetAsync("Wallet/Address/New", session.SessionCookies);
+                ResponseBO _res = await apiRequest.GetAsync(Env,"Wallet/Address/New", session.SessionCookies);
                 WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
 
                 TblUserInfo userInfo = apiResponse.UserInfo;

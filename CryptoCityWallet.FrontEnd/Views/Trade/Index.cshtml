@@ -25,9 +25,11 @@
                         <label class="form__label">Currency</label>
 
                         <select class="custom-select">
-                            <option value="BTC">BTC</option>
-                            <option value="ETC">ETC</option>
-                            <option value="USDT">USDT</option>
+                            @foreach (var modelItem in Model.UserWallets)
+                            {
+                            <option value="@Html.DisplayFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance))</option>
+                                @Html.DisplayFor(modelList => modelItem.WalletCode)
+                            }
                         </select>
                     </div>
                     <div class="panel-body col-6">
@@ -62,9 +64,11 @@
                             </div>
 
                             <select class="custom-select" style="display: none;">
-                                <option value="Bitcoin">Bitcoin</option>
+
+                               
+                                @*<option value="Bitcoin">Bitcoin</option>
                                 <option value="Ethereum">Ethereum</option>
-                                <option value="Litecoin">Litecoin</option>
+                                <option value="Litecoin">Litecoin</option>*@
                             </select><div class="custom-select">
                                 <button class="custom-select__option custom-select__option--value" type="button">Bitcoin</button>
                                 <div class="custom-select__dropdown" style="display: none;"><button class="custom-select__option" type="button">Ethereum</button><button class="custom-select__option" type="button">Litecoin</button></div>

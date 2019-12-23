@@ -16,7 +16,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 {
     public class HomeController : Controller
     {
-
+        public readonly string Env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         private readonly ILogger<HomeController> _logger;
 
         //public HomeController(ILogger<TransactionController> logger)
@@ -59,12 +59,12 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         //        SessionBO session = sessionController.GetSession(HttpContext.Session);
 
         //        ApiRequest apiRequest = new ApiRequest();
-        //        ResponseBO _res = await apiRequest.GetAsync("User/Profile", session.SessionCookies);
+        //        ResponseBO _res = await apiRequest.GetAsync(Env,"User/Profile", session.SessionCookies);
         //        UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 
         //        if (apiResponse.HttpStatusCode == "200")
         //        {
-        //            _res = await apiRequest.GetAsync("User/Wallet", session.SessionCookies);
+        //            _res = await apiRequest.GetAsync(Env,"User/Wallet", session.SessionCookies);
         //            UserResponseBO apiResponse_userWallet = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 
         //            TblUserInfo tblUserInfo = apiResponse.UserInfo;
@@ -99,7 +99,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
             try
             {
                 ApiRequest apiRequest = new ApiRequest();
-                ResponseBO _res = await apiRequest.PostAsync("User/Authenticate", userBO);
+                ResponseBO _res = await apiRequest.PostAsync(Env,"User/Authenticate", userBO);
 
                 UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 
@@ -142,8 +142,10 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
+                
+
                 ApiRequest apiRequest = new ApiRequest();
-                ResponseBO _res = await apiRequest.PostAsync("User/Create", userBO);
+                ResponseBO _res = await apiRequest.PostAsync(Env, "User/Create", userBO);
 
                 UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 

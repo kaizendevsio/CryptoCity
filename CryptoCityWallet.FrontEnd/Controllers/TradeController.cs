@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using CryptoCityWallet.FrontEnd.Models;
 using CryptoCityWallet.Wrapper.Models;
 using CryptoCityWallet.Entities.BO;
+using CryptoCityWallet.Entities.Enums;
 using Newtonsoft.Json;
 using CryptoCityWallet.Entities.DTO;
 using CryptoCityWallet.Wrapper;
@@ -16,7 +17,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 {
     public class TradeController : Controller
     {
-         
+        public readonly string Env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
 
         public async Task<IActionResult> Index() 
         {
@@ -27,13 +29,13 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 SessionBO session = sessionController.GetSession(HttpContext.Session);
 
                 ApiRequest apiRequest = new ApiRequest();
-                ResponseBO _res = await apiRequest.GetAsync("User/Profile", session.SessionCookies);
+                ResponseBO _res = await apiRequest.GetAsync(Env,"User/Profile", session.SessionCookies);
                 UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 
                 TblUserInfo userInfo = apiResponse.UserInfo;
                 TblUserAuth userAuth = apiResponse.UserAuth;
 
-                _res = await apiRequest.GetAsync("User/Wallet", session.SessionCookies);
+                _res = await apiRequest.GetAsync(Env,"User/Wallet", session.SessionCookies);
                 apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 
                 List<UserWalletBO> userWallets = apiResponse.UserWallet;
@@ -47,6 +49,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     tradeVM.WCCPBalance = (double)userWallets.Find(i => i.WalletCode == "WCCP").Balance;
                     tradeVM.YesterdayProfit = 0;
                     tradeVM.History = new List<HistoryVM>();
+                    tradeVM.UserWallets = userWallets.Where<UserWalletBO>(item => item.WalletType.Type == (short)WalletType.CurrencyValue);
 
                     return View(tradeVM);
                 }

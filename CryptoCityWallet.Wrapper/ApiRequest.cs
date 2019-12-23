@@ -7,18 +7,37 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CryptoCityWallet.Wrapper.Models;
+using System.IO;
 
 namespace CryptoCityWallet.Wrapper
 {
     public class ApiRequest
     {
-        private Uri ApiUri { get; set; } = new Uri("http://13.251.181.208:8096/");
-       // private Uri ApiUri { get; set; } = new Uri("https://localhost:55007/");
-        public async Task<ResponseBO> PostAsync(string url, object param, CookieCollection requestCookies = null, string contentType = "application/json")
+        private Uri ApiUri_Live { get; set; } = new Uri("http://13.251.181.208:8096/");
+        private Uri ApiUri_Local { get; set; } = new Uri("https://localhost:55007/");
+        public Uri ApiUri { get; set; }
+
+        public Uri ApiUriInit(string Environment)
+        {
+            if (Environment == "Development")
+            {
+                ApiUri = ApiUri_Local;
+            }
+            else
+            {
+                ApiUri = ApiUri_Live;
+            }
+            //string Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            return ApiUri;
+
+        }
+
+        public async Task<ResponseBO> PostAsync(string env, string url, object param,  CookieCollection requestCookies = null, string contentType = "application/json")
         {
             CookieContainer cookies = new CookieContainer();
             HttpClientHandler handler = new HttpClientHandler();
             handler.CookieContainer = cookies;
+            ApiUriInit(env);
 
             if (requestCookies != null)
             {
@@ -28,7 +47,7 @@ namespace CryptoCityWallet.Wrapper
                     handler.CookieContainer.Add(ApiUri, new Cookie(requestCookies.ElementAt(i).Name, requestCookies.ElementAt(i).Value));
                 }
             }
-
+            
             using (HttpClient _client = new HttpClient(handler) { BaseAddress = ApiUri, Timeout = TimeSpan.FromHours(2) })
             {
                 //_client.DefaultRequestHeaders.Clear();
@@ -51,11 +70,12 @@ namespace CryptoCityWallet.Wrapper
             }
         }
 
-        public async Task<ResponseBO> GetAsync(string url, CookieCollection requestCookies = null, string contentType = "application/json")
+        public async Task<ResponseBO> GetAsync(string env, string url, CookieCollection requestCookies = null, string contentType = "application/json")
         {
             CookieContainer cookies = new CookieContainer();
             HttpClientHandler handler = new HttpClientHandler();
             handler.CookieContainer = cookies;
+            ApiUriInit(env);
 
             if (requestCookies != null)
             {
@@ -65,7 +85,7 @@ namespace CryptoCityWallet.Wrapper
                     handler.CookieContainer.Add(ApiUri, new Cookie(requestCookies.ElementAt(i).Name, requestCookies.ElementAt(i).Value));
                 }
             }
-
+            
             using (HttpClient _client = new HttpClient(handler) { BaseAddress = ApiUri, Timeout = TimeSpan.FromHours(2) })
             {
                 //_client.DefaultRequestHeaders.Clear();

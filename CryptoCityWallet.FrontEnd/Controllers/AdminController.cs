@@ -11,7 +11,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 {
     public class AdminController : Controller
     {
-     
+        public readonly string Env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
 
         public IActionResult Index()
         {
