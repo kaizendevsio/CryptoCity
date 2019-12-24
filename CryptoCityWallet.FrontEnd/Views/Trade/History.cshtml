@@ -17,8 +17,22 @@
         <div style="margin-top: 20px; padding-left:40px;padding-right:40px; background-color:white">
 
 
-            <table id ="datatable_history "class="table table-hover">
+            <table id="datatable_history " class="table table-hover">
                 <thead>
+                    <tr>
+
+                        <th colspan="1"><div class="dataTables_length" id=" "><label> <select name=" " aria-controls="property" onchange="myFunction()" id="mylist" class=""><option value="Withdrawal">Withdrawal</option><option value="Deposit">Deposit</option> </select></label></div></th>
+                        <th colspan="1"><div id="example_filter" class="dataTables_filter input-daterange"><label><input type="text"  class="date-range-filter" placeholder="Date Start" data-date-format="mm-dd-yyyy" id="min from_date_picker"   aria-controls="example">To<input type="text"   class="date-range-filter" placeholder="Date End" data-date-format="mm-dd-yyyy" id="to_date_picker max" aria-controls="example"></label></div></th>
+                    </tr>
+
+
+                    <tr>
+
+                        <th colspan="1">WCCP Balance : </th>
+                        <th colspan="1">Total Daily Profit:</th>
+                        <th colspan="1">Total Affiliate: </th>
+                        <th colspan="1">Total Binary Bonus :</th>
+                    </tr>
                     <tr>
                         <th>Date</th>
                         <th>Investment ID</th>
@@ -60,29 +74,160 @@
 
 
 @section Scripts{
-<script>  $(document).ready(function() {
-    $('#datatable_history').DataTable( {
-    initComplete: function () {
-    this.api().columns().every( function () {
-    var column = this;
-    var select = $('<select><option value=""></option></select>')
-    .appendTo( $(column.footer()).empty() )
-    .on( 'change', function () {
-    var val = $.fn.dataTable.util.escapeRegex(
-    $(this).val()
-    );
+    <script>
+    $(document).ready(function () {
+            $('#datatable_history').DataTable({
+                initComplete: function () {
+                    this.api().columns().every(function () {
+                        var column = this;
+                        var select = $('<select><option value=""></option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
 
-    column
-    .search( val ? '^'+val+'$' : '', true, false )
-    .draw();
-    } );
+                                column
+                                    .search(val ? '^' + val + '$' : '', true, false)
+                                    .draw();
+                            });
 
-    column.data().unique().sort().each( function ( d, j ) {
-    select.append( '<option value="'+d+'">'+d+'</option>' )
-    } );
-    } );
+                        column.data().unique().sort().each(function (d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>')
+                        });
+                    });
+                }
+            });
+        }); 
+
+    function myFunction() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("mylist");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("datatable_history");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+    tr[i].style.display = "";
+    } else {
+    tr[i].style.display = "none";
     }
-    } );
-    } );</script>
+    }
+}
+}
 
+        //$('#from').click(function () {
+        //    var currency = $(this).closest("tr").find("td").eq(0).text();
+        //    var balance = $(this).closest("tr").find("td").eq(1).text();
+        //    var available = $(this).closest("tr").find("td").eq(2).text();
+        //    var hot = $(this).closest("tr").find("td").eq(3).text();
+        //    var cold = $(this).closest("tr").find("td").eq(4).text();
+        //    var rate = $(this).closest("tr").find("td").eq(5).text();
+        //    var usd = $(this).closest("tr").find("td").eq(6).text();
+        //    document.getElementById('currencyDetails').innerHTML = '<b> Date : ' + currency + '</b>';
+        //    document.getElementById('balanceDetails').innerHTML = '<b> Balance : ' + balance + '</b>';
+        //    document.getElementById('availableDetails').innerHTML = '<b> Available : ' + available + '</b>';
+        //    document.getElementById('hotDetails').innerHTML = '<b> HOT : ' + hot + '</b>';
+        //    document.getElementById('coldDetails').innerHTML = '<b> COLD : ' + cold + '</b>';
+
+        //    document.getElementById('rateDetails').innerHTML = '<b> RATE  : ' + rate + '</b>';
+        //    document.getElementById('usdDetails').innerHTML = '<b> USD : ' + usd + '</b>';
+
+
+        //});
+
+
+
+
+        var d = new Date();
+
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+
+        var output = d.getFullYear() + '/' +
+            (month < 10 ? '0' : '') + month + '/' +
+            (day < 10 ? '0' : '') + day;
+
+
+        $('#datatable_history').DataTable({
+            stateSave: true,
+            autoWidth: true,
+            dom: 'lBf<"toolbar">rtip<"clear">', fnInitComplete: function () {
+                $('div.toolbar').html('<div class="dataTables_length" id=" "><label> <select name=" " aria-controls="property" onchange="myFunction()" id="mylist" class=""><option value="Withdrawal">Withdrawal</option><option value="Deposit">Deposit</option> </select></label></div><div id="example_filter" class="dataTables_filter input-daterange"><label><input type="text" id="from_date_picker" class="date-range-filter" placeholder="Date Start" data-date-format="mm-dd-yyyy" id="min" placeholder="" aria-controls="example">To<input type="text" id="to_date_picker" class="date-range-filter" placeholder="Date End" data-date-format="mm-dd-yyyy" id="max" aria-controls="example"></label></div>');
+            },
+            buttons: [
+                    {
+                        extend: 'copy',
+
+                         className: 'dt-button btn btn-primary '
+                    }, {
+                        extend: 'csv',
+                        orientation: 'landscape',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                    messageBottom: output,
+                         className: 'dt-button btn btn-primary '
+                    }, {
+                        extend: 'excel',
+                        orientation: 'landscape',
+                        extend: 'excelHtml5',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                     messageBottom: output,
+                         className: 'dt-button btn btn-primary '
+                    }, {
+                        extend: 'pdf',
+                        orientation: 'landscape',
+                    extend: 'pdfHtml5',
+                          pageSize: 'LEGAL',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                        messageBottom: output,
+                         className: 'dt-button btn btn-primary '
+                    }, {
+                        extend: 'print',
+                        orientation: 'landscape',
+                         pageSize: 'LEGAL',
+                        title: 'WCC.com',
+                        messageTop: 'The information in this table is copyright to WCC.',
+                        messageBottom: output,
+                         className: 'dt-button btn btn-primary '
+                    }
+            ]
+            });
+        $(document).ready(function () {
+
+            $('.input-daterange input').each(function () {
+                $(this).datepicker('clearDates');
+            });
+
+            // Extend dataTables search
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var min = $('#min').val();
+                    var max = $('#max').val();
+                    var createdAt = data[0] || 1; // Our date column in the table
+
+                    if (
+                        (min == "" || max == "") ||
+                        (moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max))
+                    ) {
+                        return true;
+                    }
+                    return false;
+                }
+            );
+
+            // Re-draw the table when the a date range filter changes
+            $('.date-range-filter').change(function () {
+                var table = $('#datatable_history').DataTable();
+                table.draw();
+            });
+
+
+            $('.date-range-filter').datepicker();
+        });
+    </script>
 }

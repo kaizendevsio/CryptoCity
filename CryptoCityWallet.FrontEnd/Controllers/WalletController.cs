@@ -129,8 +129,14 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 SessionBO session = sessionController.GetSession(HttpContext.Session);
 
                 ApiRequest apiRequest = new ApiRequest();
-                ResponseBO _res = await apiRequest.GetAsync(Env,"Wallet/Address/New", session.SessionCookies);
+                ResponseBO _res = await apiRequest.GetAsync(Env, "User/Profile", session.SessionCookies);
                 WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
+                if (GenLink != 0)
+                {
+                    _res = await apiRequest.GetAsync(Env, "Wallet/Address/New", session.SessionCookies);
+                    WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
+                    apiResponse.Address = walletApiResponse.Address;
+                }
 
                 TblUserInfo userInfo = apiResponse.UserInfo;
                 TblUserAuth userAuth = apiResponse.UserAuth;
@@ -169,8 +175,14 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 SessionBO session = sessionController.GetSession(HttpContext.Session);
 
                 ApiRequest apiRequest = new ApiRequest();
-                ResponseBO _res = await apiRequest.GetAsync(Env,"Wallet/Address/New", session.SessionCookies);
+                ResponseBO _res = await apiRequest.GetAsync(Env, "User/Profile", session.SessionCookies);
                 WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
+                if (GenLink != 0)
+                {
+                    _res = await apiRequest.GetAsync(Env, "Wallet/Address/New", session.SessionCookies);
+                    WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
+                    apiResponse.Address = walletApiResponse.Address;
+                }
 
                 TblUserInfo userInfo = apiResponse.UserInfo;
                 TblUserAuth userAuth = apiResponse.UserAuth;
