@@ -22,7 +22,7 @@
                         <select class="mdb-select md-form" style="display: none;">
                             @foreach (var modelItem in Model.UserWallets)
                             {
-                                <option value="@Html.ValueFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance) @Html.DisplayFor(modelList => modelItem.WalletCode))</option>
+                            <option value="@Html.ValueFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance) @Html.DisplayFor(modelList => modelItem.WalletCode)  | @String.Format("{0:#,##0.00}", modelItem.BalanceFiat).ToString() USD)</option>
                                 @Html.DisplayFor(modelList => modelItem.WalletCode)
                             }
                         </select>
