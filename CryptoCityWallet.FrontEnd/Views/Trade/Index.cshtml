@@ -122,7 +122,7 @@
                         <th>Date</th>
                         <th>Package Name</th>
                         <th>Type</th>
-                        <th>Package Amount</th>
+                        <th>Package Amount</th> 
                         <th>Expiration Date</th>
                         <th>Total Profits</th>
                         <th>Status</th>
@@ -147,15 +147,14 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.UserDepositRequest.Amount)
 
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ActivationDate)
-                            </td>
+                            </td> 
                             <td>
                                 @Html.DisplayFor(modelItem => item.ExpiryDate)
                             </td>
-                            <td>
-                               @Html.DisplayFor(modelItem => item.PackageStatus)
+ 
+                            <td>  
+                                @Html.DisplayFor(modelItem => item.PackageStatus)
+ 
                             </td>
                         </tr>
                     }
