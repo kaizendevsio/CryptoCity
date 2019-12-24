@@ -148,45 +148,72 @@
 
                 <div class="transactions__list">
 
-                    <h4 style="color: #949292;padding-left: 40px;">You have no recent transactions so far.</h4>
 
-                    @*<div class="transaction ">
 
-                            <div class="transaction__header transaction__header--three-cols">
-                                <div class="transaction__data">
-                                    June 26, 2017
+                    @if (Model.TransactionHistory.UserWalletTransactions.Count == 0)
+                    {
+                        <h4 style="color: #949292;padding-left: 40px;">You have no recent transactions so far.</h4>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.TransactionHistory.UserWalletTransactions)
+                        {
+                            <div class="transaction ">
+
+                                <div class="transaction__header transaction__header--three-cols">
+                                    <div class="transaction__data">
+                                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                                    </div>
+
+                                    <div class="transaction__info">
+                                        <img src="~/img/transaction-icon-sent.svg" alt="">
+                                        @if (item.Amount > 0)
+                                        {
+                                            <p>Sent from @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Name)</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Received from @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Name)</p>
+                                        }
+
+                                    </div>
+
+                                    <div class="transaction__course">
+                                        <span class="rate rate--minus">- @Html.DisplayFor(modelItem => item.Amount) @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Code)</span>
+                                        <span class="rate rate--normal">- 0 USD</span>
+                                    </div>
                                 </div>
 
-                                <div class="transaction__info">
-                                    <img src="~/img/transaction-icon-sent.svg" alt="">
-                                    <p>Sent to 3Bhe5sbhSTNxcDpYyy</p>
+                                <div class="transaction__body">
+                                    <ul class="transaction__details">
+                                        <li>
+                                            <span>Address:</span>
+                                        </li>
+                                        <li>
+                                            <span>Balance:</span> @Html.DisplayFor(modelItem => item.RunningBalance)
+                                        </li>
+                                        <li>
+                                            <span>Condition:</span> @Html.DisplayFor(modelItem => item.Remarks)
+                                        </li>
+                                    </ul>
                                 </div>
 
-                                <div class="transaction__course">
-                                    <span class="rate rate--minus">- 0 BTC</span>
-                                    <span class="rate rate--normal">- 0 USD</span>
-                                </div>
                             </div>
 
-                            <div class="transaction__body">
-                                <ul class="transaction__details">
-                                    <li>
-                                        <span>Sender name:</span> Andrew Smith
-                                    </li>
-                                    <li>
-                                        <span>Sender adress:</span> 3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
-                                    </li>
-                                    <li>
-                                        <span>Condition:</span> Pending
-                                    </li>
-                                </ul>
-                            </div>
 
-                        </div>*@
+
+                        }
+                    }
+
+
+
+
+
+
 
 
                 </div>
-                <a href="#" class="btn btn--green">All transactions</a>
+                <a href="@Url.Action("Index", "Transactions")" class="btn btn--green">All transactions</a>
             </section>
         </div>
     </div>

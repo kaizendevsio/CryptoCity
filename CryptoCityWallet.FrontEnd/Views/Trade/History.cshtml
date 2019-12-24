@@ -8,22 +8,23 @@
 <main class="main-content">
 
     <div class="buy">
-        <div class="buy__header">
+        <div class="buy__header" style="padding-bottom:20px">
 
             <h2>Affiliates History</h2>
         </div>
 
 
-        <div style="margin-top: 20px; margin-left:40px;  width:90%">
+        <div style="margin-top: 20px; padding-left:40px;padding-right:40px; background-color:white">
 
 
-            <table id ="datatable_history "class="table table-bordered table-hover">
+            <table id ="datatable_history "class="table table-hover">
                 <thead>
                     <tr>
                         <th>Date</th>
                         <th>Investment ID</th>
                         <th>USDT Rate Amount</th>
                         <th>Profit</th>
+                        <th>Bonus Type</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,8 +43,10 @@
                                 @Html.DisplayFor(modelItem => item.DividendRate)
                             </td>
                             <td>
-
                                 @Html.DisplayFor(modelItem => item.DividendPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DividendBonusCd)
                             </td>
                         </tr>
                     }

@@ -122,8 +122,9 @@
                         <th>Date</th>
                         <th>Package Name</th>
                         <th>Type</th>
-                        <th>Package Amount</th> 
-                        <th>Expiration Date</th>
+                        <th>Package Amount</th>
+                        <th>Daily Profits</th>
+                        <th>Cancellation Date</th>
                         <th>Total Profits</th>
                         <th>Status</th>
                     </tr>
@@ -131,32 +132,43 @@
                 <tbody>
                     @foreach (var item in Model.UserBusinessPackages)
                     {
-                        <tr>
-                            <td>
+                    <tr>
+                        <td>
 
-                                @Html.DisplayFor(modelItem => item.CreatedOn)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BusinessPackage.PackageName)
-                            </td>
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BusinessPackage.PackageName)
+                        </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BusinessPackage.PackageType.Name)
-                            </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BusinessPackage.PackageType.Name)
+                        </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UserDepositRequest.Amount)
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserDepositRequest.Amount)
 
-                            </td> 
-                            <td>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+                            @if (item.ExpiryDate == null)
+                            {
+                                <a href="@Url.Action("Index", "Transactions")" class="btn btn-warning" style="height:25px; line-height:25px">Cancel</a>
+                            }
+                            else
+                            {
                                 @Html.DisplayFor(modelItem => item.ExpiryDate)
-                            </td>
- 
-                            <td>  
-                                @Html.DisplayFor(modelItem => item.PackageStatus)
- 
-                            </td>
-                        </tr>
+                            }
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PackageStatus)
+
+                        </td>
+                    </tr>
                     }
 
 

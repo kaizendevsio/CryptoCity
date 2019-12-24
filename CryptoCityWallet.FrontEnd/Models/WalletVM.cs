@@ -1,3 +1,4 @@
+using CryptoCityWallet.Entities.DTO;
 using System;
 using System.Collections.Generic;
 
@@ -16,8 +17,7 @@ namespace CryptoCityWallet.FrontEnd.Models
         public int GenLink { get; set; }
 
         public string PaymentAddress { get; set; }
-        public List<TransactionVM> TransactionHistory {get;set;}
-
+        public TransactionVM TransactionHistory {get;set;}
 
     }
 }
