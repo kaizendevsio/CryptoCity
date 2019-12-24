@@ -6,28 +6,64 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CryptoCityWallet.FrontEnd.Models;
+using CryptoCityWallet.Entities.BO;
 
 namespace CryptoCityWallet.FrontEnd.Controllers
 {
     public class AdminController : Controller
     {
         public readonly string Env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        public BaseController SessionHelper = new BaseController();
 
-
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                return View(userVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
+
         }
-        public IActionResult Account()
+        public async Task<IActionResult> AccountAsync()
         {
-            return View();
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                return View(userVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
 
-         
-        [Route("Admin/TradeCurrency")] 
-        public IActionResult TradeCurrency()
+
+        [Route("Admin/TradeCurrency")]
+        public async Task<IActionResult> TradeCurrencyAsync()
         {
-            return View();
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                ConvertVM convertVM = new ConvertVM();
+                convertVM.UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName };
+
+                return View(convertVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
 
         //[Route("Admin/Deposit")]
@@ -37,43 +73,113 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         //}
 
         [Route("Admin/Wallet")]
-        public IActionResult Wallet()
+        public async Task<IActionResult> WalletAsync()
         {
-            return View();
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                WalletMVMList userVM = new WalletMVMList { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                return View(userVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
 
 
         [Route("Admin/Ledger")]
-        public IActionResult Ledger()
+        public async Task<IActionResult> LedgerAsync()
         {
-            return View();
-         }
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                return View(userVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
+        }
 
 
         [Route("Admin/Map")]
-        public IActionResult Map()
+        public async Task<IActionResult> MapAsync()
         {
-            return View();
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                return View(userVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
-         
+
 
 
 
         [Route("Admin/Members")]
-        public IActionResult Members()
+        public async Task<IActionResult> MembersAsync()
         {
-            return View();
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                MembersVM userVM = new MembersVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                return View(userVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
+
         [Route("Admin/Convert")]
-        public IActionResult Convert()
+        public async Task<IActionResult> ConvertAsync()
         {
-            return View();
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                ConvertVM convertVM = new ConvertVM();
+                convertVM.UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName };
+
+                return View(convertVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
 
         [Route("Admin/MemberRegistration")]
-        public IActionResult MemberRegistration()
+        public async Task<IActionResult> MemberRegistrationAsync()
         {
-            return View();
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                return View(userVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
 
 
@@ -100,20 +206,53 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         //    return View();
         //}
         [Route("Admin/Trade")]
-        public IActionResult Trade()
+        public async Task<IActionResult> TradeAsync()
         {
-            return View();
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                return View(userVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
         [Route("Admin/Close")]
-        public IActionResult Close()
+        public async Task<IActionResult> CloseAsync()
         {
-            return View();
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                return View(userVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
-   
+
         [Route("Admin/Settings")]
-        public IActionResult Settings()
+        public async Task<IActionResult> SettingsAsync()
         {
-            return View();
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                return View(userVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

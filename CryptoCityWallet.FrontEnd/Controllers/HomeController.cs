@@ -11,6 +11,7 @@ using CryptoCityWallet.Wrapper;
 using CryptoCityWallet.Wrapper.Models;
 using Newtonsoft.Json;
 using CryptoCityWallet.Entities.DTO;
+using CryptoCityWallet.Entities.Enums;
 
 namespace CryptoCityWallet.FrontEnd.Controllers
 {
@@ -112,7 +113,16 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     TblUserAuth tblUserAuth = apiResponse.UserAuth;
                     TblUserRole tblUserRole = apiResponse.UserRole;
 
-                    apiResponse.RedirectUrl = "/Wallet/";
+                    if (tblUserRole.AccessRole == AccessRole.Admin.ToString())
+                    {
+                        apiResponse.RedirectUrl = "/Admin/";
+                    }
+                    else if (tblUserRole.AccessRole == AccessRole.Client.ToString())
+                    {
+                        apiResponse.RedirectUrl = "/Wallet/";
+                    }
+
+
                     apiResponse.Message = null;
                     return Ok(apiResponse);
                 }
@@ -142,7 +152,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                
+
 
                 ApiRequest apiRequest = new ApiRequest();
                 ResponseBO _res = await apiRequest.PostAsync(Env, "User/Create", userBO);

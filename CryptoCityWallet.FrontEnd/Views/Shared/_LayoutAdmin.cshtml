@@ -1,4 +1,4 @@
-﻿
+﻿@model UserVM
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -110,7 +110,7 @@
             <li class="dropdown navbar-user">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="~/img/user-512.png" alt="" />
-                    <span class="d-none d-md-inline">Jake</span> <b class="caret"></b>
+                    <span class="d-none d-md-inline">@Html.DisplayFor(model => model.UserInfo.UserName)</span> <b class="caret"></b>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- <a href="javascript:;" class="dropdown-item">Edit Profile</a>
@@ -121,7 +121,7 @@
                             document.getElementById('logout-form').submit();" class="dropdown-item">
                         Logout
                     </a>
-                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                    <form id="logout-form" action="/logout" method="get" style="display: none;">
                     </form>
                 </div>
             </li>
@@ -142,8 +142,8 @@
 
                         </div>
                         <div class="info">
-                            Jake
-                            <small>Programmer</small>
+                            @Html.DisplayFor(model => model.Fullname_init)
+                            <small>@Html.DisplayFor(model => model.UserInfo.UserName)</small>
                         </div>
                     </a>
                 </li>

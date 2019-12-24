@@ -6,8 +6,8 @@ using CryptoCityWallet.Entities.BO;
 
 namespace CryptoCityWallet.FrontEnd.Models
 {
-    public class MembersVM : UserBO
-    { 
+    public class MembersVM  : UserVM
+    {
         public List<UsersVM> UserDetails { get; set; }
 
 

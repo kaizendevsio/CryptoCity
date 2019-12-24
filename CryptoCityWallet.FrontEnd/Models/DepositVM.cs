@@ -2,7 +2,7 @@ using System;
 
 namespace CryptoCityWallet.FrontEnd.Models
 {
-    public class DepositVM
+    public class DepositVM : UserVM
     { 
         public decimal DepositAmount { get; set; }
 

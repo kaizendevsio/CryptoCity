@@ -2,7 +2,7 @@ using System;
 
 namespace CryptoCityWallet.FrontEnd.Models
 {
-    public class ErrorViewModel
+    public class ErrorViewModel : UserVM
     {
         public string RequestId { get; set; }
 

@@ -6,7 +6,7 @@ using CryptoCityWallet.Entities.BO;
 
 namespace CryptoCityWallet.FrontEnd.Models
 {
-    public class ConvertListVM
+    public class ConvertListVM : UserVM
     {
         public string Fullname { get; set; }
         public string Username { get; set; }

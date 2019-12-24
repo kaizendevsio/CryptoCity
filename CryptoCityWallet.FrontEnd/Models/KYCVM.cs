@@ -2,7 +2,7 @@ using System;
 
 namespace CryptoCityWallet.FrontEnd.Models
 {
-    public class KycVM
+    public class KycVM : UserVM
     {
 
 
