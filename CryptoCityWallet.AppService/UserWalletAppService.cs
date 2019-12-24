@@ -97,6 +97,26 @@ namespace CryptoCityWallet.AppService
             }
 
         }
+        public List<TblUserWalletTransaction> GetAllTransactions(TblUserAuth tblUserAuth, dbWorldCCityContext db = null)
+        {
+            if (db != null)
+            {
+                UserWalletTransactionRepository userWalletTransactionRepository = new UserWalletTransactionRepository();
+                return userWalletTransactionRepository.GetAll(tblUserAuth, db);
+            }
+            else
+            {
+                using (db = new dbWorldCCityContext())
+                {
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                        UserWalletTransactionRepository userWalletTransactionRepository = new UserWalletTransactionRepository();
+                        return userWalletTransactionRepository.GetAll(tblUserAuth, db);
+                    }
+                }
+            }
+
+        }
         public bool Increment(UserWalletBO userWallet, WalletTransactionBO walletTransaction, dbWorldCCityContext db = null)
         {
             UserWalletRepository userWalletRepository = new UserWalletRepository();
@@ -235,7 +255,7 @@ namespace CryptoCityWallet.AppService
                 else
                 {
                     fee = 0m;
-                }                
+                }
                 topUpValue = topUpValue - fee;
 
                 UserWalletBO sourceUserWalletUpdate = new UserWalletBO();

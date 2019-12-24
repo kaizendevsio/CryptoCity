@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using CryptoCityWallet.Entities.DTO;
 
 namespace CryptoCityWallet.FrontEnd.Models
 {
@@ -7,16 +9,6 @@ namespace CryptoCityWallet.FrontEnd.Models
         public double TotalInvestment { get; set; }
         public double YesterdayProfit { get; set; }
         public double WCCPBalance { get; set; }
-
-
-
-
-
-
-
-
-
-
-
+        public List<TblUserWalletTransaction> UserWalletTransactions{ get; set; }
     }
 }

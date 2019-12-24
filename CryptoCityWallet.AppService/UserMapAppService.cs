@@ -56,7 +56,8 @@ namespace CryptoCityWallet.AppService
                         UserInfoRepository userInfoRepository = new UserInfoRepository();
 
                         UserMapBO userMap = userMapRepository.GetMap(userAuth);
-                        userMap.title = userInfoRepository.Get(userAuth, db).Uid;
+                        var _i = userInfoRepository.Get(userAuth, db);
+                        userMap.title = String.Format("{0} {1}", _i.FirstName, _i.LastName);
                         return userMap;
                     }
                 }
@@ -84,7 +85,7 @@ namespace CryptoCityWallet.AppService
                 if (directSponsorUser == null)
                 {
                     throw new ArgumentException("Introducer ID is invalid");
-                }                
+                }
             }
             return true;
 

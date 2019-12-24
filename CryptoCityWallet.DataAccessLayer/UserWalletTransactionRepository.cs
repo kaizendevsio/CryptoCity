@@ -35,5 +35,28 @@ namespace CryptoCityWallet.DataAccessLayer
             db.SaveChanges();
             return true;
         }
+
+        public List<TblUserWalletTransaction> GetAll(TblUserAuth userAuth, dbWorldCCityContext db)
+        {
+            var _q = from a in db.TblUserWalletTransaction
+                     join b in db.TblUserWallet on a.SourceUserWalletId equals b.Id
+                     join c in db.TblWalletType on b.WalletTypeId equals c.Id
+                     where a.UserAuthId == userAuth.Id
+                     select new TblUserWalletTransaction
+                     {
+                        Id = a.Id,
+                        CreatedOn = a.CreatedOn,
+                        Amount = a.Amount,
+                        IsEnabled = a.IsEnabled,
+                        ModifiedOn = a.ModifiedOn,
+                        Remarks = a.Remarks,
+                        RunningBalance = a.RunningBalance,
+                        SourceUserWallet = new TblUserWallet { Id = b.Id, Balance = b.Balance, WalletType = c, IsEnabled = b.IsEnabled, CreatedOn = b.CreatedOn}
+                     };
+
+            List<TblUserWalletTransaction> userWalletTransactions = _q.ToList<TblUserWalletTransaction>();
+
+            return userWalletTransactions;
+        }
     }
 }
