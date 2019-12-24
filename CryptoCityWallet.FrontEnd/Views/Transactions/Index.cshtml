@@ -3,230 +3,202 @@
     Layout = "~/Views/Shared/_PartialView.cshtml";
     ViewBag.Title = "World CryptoCity | Transactions";
 
-} 
+}
 @model TransactionVM
-<main class="main-content">
-    <section class="">
-
+    <main class="main-content">
+         
         <div class="transactions__header">
-            <h2>Transaction</h2>
+            <h2>Transaction</h2> 
+        <div class="buy">
+            <div class="buy__header" style="padding-bottom:20px">
+                 
 
-            <!-- <a href="" class="btn btn--blue">Send currency</a> -->
+
+            </div>
+
+
+            <div style="margin-top: 20px; padding-left:40px;padding-right:40px; background-color:white">
+
+
+                <table id="datatable_history " class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Wallet</th>
+                            <th>Amount </th>
+                            <th>Remarks</th>
+                            <th>Running Balance</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.UserWalletTransactions)
+                        {
+                        <tr>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.CreatedOn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Name)
+                            </td>
+
+
+                            @if (item.Amount < 0)
+                            {
+                                <td style="color:red">
+                                    @String.Format("{0:#,##0.00}", item.Amount).ToString()
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="color:#0bbd0b">
+                                    @String.Format("{0:#,##0.00}", item.Amount).ToString()
+                                </td>
+                            }
+
+
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.Remarks)
+                            </td>
+
+                            <td>
+                                @String.Format("{0:#,##0.00}", item.RunningBalance).ToString()
+                            </td>
+
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <div class="transactions__filters">
-
-            <div class="transactions__filters-col">
-                <!--
-
-                                            <div class="custom-select--grey custom-select--actions">
-                                                <select class="custom-select">
-                                                    <option value="All transactions">All transactions</option>
-                                                    <option value="Sent">Sent</option>
-                                                    <option value="Pending">Pending</option>
-                                                    <option value="Recieved">Recieved</option>
-                                                    <option value="Decline">Decline</option>
-                                                </select>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="transactions__filters-col transactions__filters-col--align-right">
-                                            <div class="datapickers">
-                                                <div class="datapicker-range">
-                                                    <img src="img/calendar.svg" alt="">
-                                                    <input type="text" placeholder="2017-04-01" class="datepicker-input datepicker-here" data-date-format="yyyy-mm-dd">
-                                                </div>
-                                                <div class="separator"></div>
-                                                <div class="datapicker-range">
-                                                    <img src="img/calendar.svg" alt="">
-                                                    <input type="text" placeholder="2017-04-01" class="datepicker-input datepicker-here" data-date-format="yyyy-mm-dd">
-                                                </div>
-                                            </div>
-
-                                            </div>
-
-
-                                            <div class="custom-select--grey custom-select--currency">
-                                                <select class="custom-select">
-                                                    <option value="Currency">Currency</option>
-                                                    <option value="Ethereum">Ethereum</option>
-                                                    <option value="Litecoin">Bitcoincash</option>
-                                                </select>
-                                            </div>
-                 -->
-
-                <div class="input-wrap search-input" style="margin-left: -15px;">
-                    <img src="img/search.svg" alt="">
-                    <input type="text" placeholder="Search">
-                </div>
-
-            </div>
-
+    </main>
+@*<div align="left" style="margin-left: 30px;">
+    <div class="panel panel-default" style="width: 90%;" align="left">
+        <div class="panel-heading">
+            <strong>Wcc Trade History</strong>
         </div>
 
-    </section>
+        <div class="panel-body">
+            <div class="wallets__list">
 
-    <!-- 	<div align="right" style="margin-right: 50px;">
-            <div class="panel panel-default" style="width: 1055px;" align="left">
-                <div class = "panel-heading">
-                    <strong >Transaction History</strong>
-                    </div>
+                <a href="#" class="wallet" style="background-color: #de8262;">
+                    <span class="wallet__header">
+                        <span class="wallet__currency">
+                            <span class="wallet__currency-icon">
 
-                <div class = "panel-body">
-                    <div class="wallets__list">
+                            </span>
+                            <span class="wallet__currency-info">
+                                <span>Total Investment</span>
+
+                            </span>
+                        </span>
+
+                        <span class="wallet__course">
+                            <span> </span>
+                            <span>@Html.DisplayFor(model => model.TotalInvestment) USD Rate</span>
+                        </span>
+                    </span>
+
+                    <span class="wallet__bg-img">
+
+                    </span>
+                </a>
+
+                <a href="#" class="wallet" style="background-color: #de8262;">
+
+                    <span class="wallet__header">
+                        <span class="wallet__currency">
+                            <span class="wallet__currency-icon">
+
+                            </span>
+                            <span class="wallet__currency-info">
+                                <span>Yesterday's Profit</span>
+
+                            </span>
+                        </span>
+
+                        <span class="wallet__course">
+                            <span> </span>
+                            <span>@Html.DisplayFor(model => model.YesterdayProfit) WCCP</span>
+                        </span>
+                    </span>
+
+                    <span class="wallet__bg-img">
+
+                    </span>
+                </a>
+                <a href="#" class="wallet" style="background-color: #de8262;">
+
+                    <span class="wallet__header">
+                        <span class="wallet__currency">
+                            <span class="wallet__currency-icon">
+
+                            </span>
+                            <span class="wallet__currency-info">
+                                <span>WCCP Balance</span>
+
+                            </span>
+                        </span>
+
+                        <span class="wallet__course">
+                            <span> </span>
+                            <span>@Html.DisplayFor(model => model.WCCPBalance) WCCP</span>
+                        </span>
+                    </span>
+
+                    <span class="wallet__bg-img">
+
+                    </span>
+                </a>
+
             </div>
-        </div> -->
-    <div align="left" style="margin-left: 30px;">
-        <div class="panel panel-default" style="width: 90%;" align="left">
-            <div class="panel-heading">
-                <strong>Wcc Trade History</strong>
-            </div>
+            <div style="margin-top: 20px;">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>USD Rate Amount</th>
+                            <th>Total Profit</th>
+                            <th>WCCP Details</th>
+                            <th>Cancel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <div class="panel-body">
-                <div class="wallets__list">
-
-                    <a href="#" class="wallet" style="background-color: #de8262;">
-                        <span class="wallet__header">
-                            <span class="wallet__currency">
-                                <span class="wallet__currency-icon">
-
-                                </span>
-                                <span class="wallet__currency-info">
-                                    <span>Total Investment</span>
-
-                                </span>
-                            </span>
-
-                            <span class="wallet__course">
-                                <span> </span>
-                                <span>@Html.DisplayFor(model => model.TotalInvestment) USD Rate</span>
-                            </span>
-                        </span>
-
-                        <span class="wallet__bg-img">
-
-                        </span>
-                    </a>
-
-                    <a href="#" class="wallet" style="background-color: #de8262;">
-
-                        <span class="wallet__header">
-                            <span class="wallet__currency">
-                                <span class="wallet__currency-icon">
-
-                                </span>
-                                <span class="wallet__currency-info">
-                                    <span>Yesterday's Profit</span>
-
-                                </span>
-                            </span>
-
-                            <span class="wallet__course">
-                                <span> </span>
-                                <span>@Html.DisplayFor(model => model.YesterdayProfit) WCCP</span>
-                            </span>
-                        </span>
-
-                        <span class="wallet__bg-img">
-
-                        </span>
-                    </a>
-                    <a href="#" class="wallet" style="background-color: #de8262;">
-
-                        <span class="wallet__header">
-                            <span class="wallet__currency">
-                                <span class="wallet__currency-icon">
-
-                                </span>
-                                <span class="wallet__currency-info">
-                                    <span>WCCP Balance</span>
-
-                                </span>
-                            </span>
-
-                            <span class="wallet__course">
-                                <span> </span>
-                                <span>@Html.DisplayFor(model => model.WCCPBalance) WCCP</span>
-                            </span>
-                        </span>
-
-                        <span class="wallet__bg-img">
-
-                        </span>
-                    </a>
-
-                </div>
-                <div style="margin-top: 20px;">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>USD Rate Amount</th>
-                                <th>Total Profit</th>
-                                <th>WCCP Details</th>
-                                <th>Cancel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Details</th>
-                                <th>In </th>
-                                <th>Out</th>
-                                <th>Balance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Details</th>
+                            <th>In </th>
+                            <th>Out</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</main>
-  <div class="d-none">
-
-
-      <form class="popup popup-add-wallet zoom-anim-dialog" id="add-wallet">
-          <div class="popup__content">
-
-
-
-              <img class="popup-add-wallet__img" src="img/popup-add-wallet-icon.png" alt="">
-              <h3>Add new wallet</h3>
-
-              <div class="popup-add-wallet__row">
-
-                  <input type="text" placeholder="Name wallet">
-
-              </div>
-
-              <button class="btn btn--blue btn--full">Add new wallet</button>
-          </div>
-          <div class="popup__thanks">
-              <img src="img/popup-success.png" alt="">
-              <h3>Your wallet added successful!</h3>
-          </div>
-      </form>
-
-  </div>
+</div>*@
