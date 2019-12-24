@@ -150,16 +150,16 @@
 
                         </td>
                         <td>
-
+                            <a href="@Url.Action("Index", "Transactions")" class="btn btn-primary" style="height:25px; line-height:25px">Profit History</a>
                         </td>
                         <td>
-                            @if (item.ExpiryDate == null)
+                            @if (item.CancellationDate == null)
                             {
                                 <a href="@Url.Action("Index", "Transactions")" class="btn btn-warning" style="height:25px; line-height:25px">Cancel</a>
                             }
                             else
                             {
-                                @Html.DisplayFor(modelItem => item.ExpiryDate)
+                                @Html.DisplayFor(modelItem => item.CancellationDate)
                             }
                         </td>
                         <td>

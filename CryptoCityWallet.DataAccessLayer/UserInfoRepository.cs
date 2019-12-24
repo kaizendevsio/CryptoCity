@@ -3,6 +3,7 @@ using CryptoCityWallet.Entities.DTO;
 using CryptoCityWallet.Entities.BO;
 using CryptoCityWallet.Entities.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace CryptoCityWallet.DataAccessLayer
 {
@@ -53,6 +54,31 @@ namespace CryptoCityWallet.DataAccessLayer
 
             TblUserInfo _tblUserInfo = _qUi.FirstOrDefault();
             return _tblUserInfo;
+        }
+
+        public List<UserBO> GetAll(dbWorldCCityContext db)
+        {
+            var _qUi = from a in db.TblUserInfo
+                       join b in db.TblUserAuth on a.Id equals b.UserInfoId
+                       //where a.Id == userAuth.UserInfoId || b.UserName == userAuth.UserName
+                       select new UserBO
+                       {
+                           FirstName = a.FirstName,
+                           LastName = a.LastName,
+                           Dob = a.Dob,
+                           Email = a.Email,
+                           PhoneNumber = a.PhoneNumber,
+                           Gender = a.Gender,
+                           Uid = a.Uid,
+                           EmailStatus = a.EmailStatus,
+                           CreatedOn = a.CreatedOn,
+                           CountryIsoCode2 = a.CountryIsoCode2,
+                           CompanyName = a.CompanyName,
+                           UserName = b.UserName
+                       };
+
+            List<UserBO> _users = _qUi.ToList();
+            return _users;
         }
     }
 }

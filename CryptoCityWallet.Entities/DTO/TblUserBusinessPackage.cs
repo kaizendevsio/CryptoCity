@@ -1,6 +1,6 @@
-﻿using System;
+﻿using CryptoCityWallet.Entities.Enums;
+using System;
 using System.Collections.Generic;
-using CryptoCityWallet.Entities.Enums;
 
 namespace CryptoCityWallet.Entities.DTO
 {

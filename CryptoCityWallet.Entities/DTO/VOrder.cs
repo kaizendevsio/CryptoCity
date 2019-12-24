@@ -14,5 +14,6 @@ namespace CryptoCityWallet.Entities.DTO
         public long? BusinessPackageId { get; set; }
         public short? PackageStatus { get; set; }
         public DateTime? CancellationDate { get; set; }
+        public long? UserAuthId { get; set; }
     }
 }

@@ -319,5 +319,35 @@ namespace CryptoCityWallet.Api.Controllers
 
             return Ok(_apiResponse);
         }
+
+        [HttpGet("Affiliate/Counters")]
+        public ActionResult AffiliateCounters()
+        {
+            ExternalRecordsAppService externalRecordsAppService = new ExternalRecordsAppService();
+            AffiliateCountersBO _apiResponse = new AffiliateCountersBO();
+
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
+
+                _apiResponse.DirectPartners = externalRecordsAppService.GetDirectPartners(userAuth);
+                _apiResponse.InvestmentSum = externalRecordsAppService.GetInvestmentSum(userAuth);
+
+                _apiResponse.HttpStatusCode = "200";
+                //_apiResponse.Message = "UserWallet GET";
+                _apiResponse.Status = "Success";
+            }
+            catch (Exception ex)
+            {
+                _apiResponse.HttpStatusCode = "500";
+                _apiResponse.Message = ex.Message;
+                _apiResponse.Status = "Error";
+
+            }
+
+            return Ok(_apiResponse);
+        }
     }
 }
