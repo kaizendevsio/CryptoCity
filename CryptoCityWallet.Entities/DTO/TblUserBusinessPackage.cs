@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CryptoCityWallet.Entities.Enums;
 
 namespace CryptoCityWallet.Entities.DTO
 {
@@ -14,7 +15,7 @@ namespace CryptoCityWallet.Entities.DTO
         public DateTime? LastChanged { get; set; }
         public long? UserAuthId { get; set; }
         public long? BusinessPackageId { get; set; }
-        public short? PackageStatus { get; set; }
+        public PackageStatus PackageStatus { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public long? UserDepositRequestId { get; set; }
         public DateTime? CancellationDate { get; set; }

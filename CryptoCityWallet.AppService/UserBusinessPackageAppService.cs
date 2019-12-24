@@ -55,7 +55,7 @@ namespace CryptoCityWallet.AppService
                     tblUserBusinessPackage.ActivationDate = DateTime.Now;
                     tblUserBusinessPackage.BusinessPackageId = 1;
                     tblUserBusinessPackage.UserAuthId = userBusinessPackage.Id;
-                    tblUserBusinessPackage.PackageStatus = (short)PackageStatus.Activated;
+                    tblUserBusinessPackage.PackageStatus =PackageStatus.Activated;
                     tblUserBusinessPackage.UserDepositRequestId = x.Id;
 
                     db.TblUserBusinessPackage.Add(tblUserBusinessPackage);
@@ -115,7 +115,7 @@ namespace CryptoCityWallet.AppService
                             tblUserBusinessPackage.ActivationDate = DateTime.Now;
                             tblUserBusinessPackage.BusinessPackageId = 1;
                             tblUserBusinessPackage.UserAuthId = userBusinessPackage.Id;
-                            tblUserBusinessPackage.PackageStatus = (short)PackageStatus.Activated;
+                            tblUserBusinessPackage.PackageStatus = PackageStatus.Activated;
                             tblUserBusinessPackage.UserDepositRequestId = x.Id;
 
                             db.TblUserBusinessPackage.Add(tblUserBusinessPackage);

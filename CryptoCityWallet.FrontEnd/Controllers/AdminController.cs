@@ -77,11 +77,11 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         }
 
 
-        [Route("Admin/Withdrawal")]
-        public IActionResult WithdrawalList()
-        {
-            return View();
-        }
+        //[Route("Admin/Withdrawal")]
+        //public IActionResult WithdrawalList()
+        //{
+        //    return View();
+        //}
         [Route("Admin/Trade")]
         public IActionResult Trade()
         {
