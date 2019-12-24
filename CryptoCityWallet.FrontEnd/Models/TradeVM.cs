@@ -13,7 +13,7 @@ namespace CryptoCityWallet.FrontEnd.Models
         public double YesterdayProfit { get; set; }
         public double WCCPBalance { get; set; }
         public List<UserWalletBO> UserWallets { get; set; }
-        public List<HistoryVM> History { get; set; }
+        public List<TblDividend> TradeTransactions { get; set; }
         public List<TblUserBusinessPackage> UserBusinessPackages{ get; set; }
         public UserBusinessPackageBO UserBusinessPackageBuy { get; set; }
     }

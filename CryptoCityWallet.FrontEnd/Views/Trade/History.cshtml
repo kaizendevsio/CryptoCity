@@ -10,10 +10,7 @@
     <div class="buy">
         <div class="buy__header">
 
-            <h2>Trades History</h2>
-
-
-
+            <h2>Affiliates History</h2>
         </div>
 
 
@@ -24,43 +21,30 @@
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Details</th>
-                        <th>In </th>
-                        <th>Out</th>
-                        <th>Balance</th>
-
+                        <th>Investment ID</th>
+                        <th>USDT Rate Amount</th>
+                        <th>Profit</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.History)
+                    @foreach (var item in Model.TradeTransactions)
                     {
                         <tr>
                             <td>
 
-                                @Html.DisplayFor(modelItem => item.Date)
+                                @Html.DisplayFor(modelItem => item.DividendDate)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Details)
+                                @*@Html.DisplayFor(modelItem => item.InvestmentID)*@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.In)
+                                @Html.DisplayFor(modelItem => item.DividendRate)
                             </td>
                             <td>
 
-                                @Html.DisplayFor(modelItem => item.Out)
+                                @Html.DisplayFor(modelItem => item.DividendPrice)
                             </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Balance)
-                            </td>
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.Txid)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.WithdrawalStatus)
-                                </td>*@
-
                         </tr>
                     }
 

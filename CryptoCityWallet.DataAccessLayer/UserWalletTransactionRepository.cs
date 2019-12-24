@@ -42,6 +42,8 @@ namespace CryptoCityWallet.DataAccessLayer
                      join b in db.TblUserWallet on a.SourceUserWalletId equals b.Id
                      join c in db.TblWalletType on b.WalletTypeId equals c.Id
                      where a.UserAuthId == userAuth.Id
+
+                     orderby a.CreatedOn descending
                      select new TblUserWalletTransaction
                      {
                         Id = a.Id,

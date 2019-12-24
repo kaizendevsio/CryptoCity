@@ -53,7 +53,6 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     tradeVM.TotalInvestment = (double)userWallets.Find(i => i.WalletCode == "TLI").Balance;
                     tradeVM.WCCPBalance = (double)userWallets.Find(i => i.WalletCode == "WCCP").Balance;
                     tradeVM.YesterdayProfit = 0;
-                    tradeVM.History = new List<HistoryVM>();
                     tradeVM.UserWallets = userWallets.FindAll(item => item.WalletType.Type == (short)WalletType.CurrencyValue);
                     tradeVM.UserBusinessPackages = UserBusinessPackages;
 
@@ -118,12 +117,49 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         }
 
         [Route("Trade/History")]
-        public IActionResult History()
+        public async Task<IActionResult> HistoryAsync()
         {
-            TradeVM tradeVM = new TradeVM();
-            tradeVM.History = new List<HistoryVM>();
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
 
-            return View(tradeVM);
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.GetAsync(Env, "User/Profile", session.SessionCookies);
+                UserAffiliateProfitsResponseBO apiResponse = JsonConvert.DeserializeObject<UserAffiliateProfitsResponseBO>(_res.ResponseResult);
+
+                TblUserInfo userInfo = apiResponse.UserInfo;
+                TblUserAuth userAuth = apiResponse.UserAuth;
+
+                _res = await apiRequest.GetAsync(Env, "User/Affiliate/TradeTransactions", session.SessionCookies);
+                apiResponse = JsonConvert.DeserializeObject<UserAffiliateProfitsResponseBO>(_res.ResponseResult);
+
+                List<TblDividend> dividends = apiResponse.TradeTransactions;
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    TradeVM tradeVM = new TradeVM();
+                    tradeVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
+                    tradeVM.Username = userAuth.UserName;
+                    tradeVM.YesterdayProfit = 0;
+                    tradeVM.TradeTransactions = dividends;
+
+                    return View(tradeVM);
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+
+
+            }
+            catch (System.Exception e)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
+
         }
         public IActionResult Privacy()
         {
