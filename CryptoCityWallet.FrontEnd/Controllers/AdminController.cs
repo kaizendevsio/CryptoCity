@@ -77,6 +77,23 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         }
 
 
+        //[HttpPost]
+        //[Route("Admin/MemberRegistration")]
+        //public IActionResult MemberRegistration(SignUpVM data)
+        //{
+            //List<byte[]> files = new List<byte[]>();
+            //List<string> filenames = new List<string>();
+            //if (file_.ContentType == "application/pdf" || file_.ContentType == "image/jpeg" || file_.ContentType == "application/msword" || file_.ContentType == "text/csv" || file_.ContentType == "application/vnd.ms-excel" || file_.ContentType == "image/png" || file_.ContentType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || file_.ContentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+            //{
+            //    var b = file_.ContentType;
+
+            //    files.Add(ConvertToByte(file_));
+            //    filenames.Add(file_.FileName);
+            //}
+        //    return View();
+        //}
+
+
         //[Route("Admin/Withdrawal")]
         //public IActionResult WithdrawalList()
         //{
@@ -103,5 +120,13 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //public byte[] ConvertToByte(HttpPostedFileBase file_)
+        //{
+        //    byte[] fileByte = null;
+        //    BinaryReader rdr = new BinaryReader(file_.InputStream);
+        //    fileByte = rdr.ReadBytes((int)file_.ContentLength);
+        //    return fileByte;
+        //}
     }
 }

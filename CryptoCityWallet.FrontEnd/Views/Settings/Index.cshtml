@@ -4,6 +4,7 @@
 
     ViewBag.Title = "World CryptoCity | Settings";
 }
+@model SignUpVM
 <main class="main-content">
     <section class="settings">
 
@@ -16,48 +17,48 @@
         </div>
 
         <div class="settings__content">
+            <form class="form settings-form" onsubmit="sendFormData('@Url.Action("SignUp", "Home")','POST',this); return false">
 
-            <div id="tab-1" class="settings__content-item settings__profile active">
+                <div id="tab-1" class="settings__content-item settings__profile active">
 
-                <div class="settings__row">
-                    <div class="settings__col">
+                    <div class="settings__row">
+                        <div class="settings__col">
 
-                        <div class="upload-image">
+                            <div class="upload-image">
 
-                            <div class="upload-image__area"></div>
+                                <div class="upload-image__area"></div>
 
-                            <div class="settings__text">
-                                <h4>
-                                    Proof of Address and Identity
-                                </h4>
+                                <div class="settings__text">
+                                    <h4>
+                                        Proof of Address and Identity
+                                    </h4>
+                                </div>
+
                             </div>
+
+                            <button class="btn btn--green" value="Upload" onclick="thisFileUpload();">Upload</button>
 
                         </div>
 
-                        <button class="btn btn--green" value="Upload" onclick="thisFileUpload();">Upload</button>
-
                     </div>
 
-                </div>
 
 
 
 
 
-                 
 
-                <form class="form settings-form">
                     <h5>
                         In accordance with our policies and procedures as well as our KYC obligations , we require each client to fill and accept all information here on this "sign-up" application.  We are here on required to collect and store this information for various compliance requirements. By signing this application you accept our  service terms and conditions with acceptance of your role as Client and/or Partner in this relationship and also certify that all information provided is true and accurate and agress to abide with all goverment laws, regulation and regulatory dictates.
-                    </h5><br />
-                    <br/>
+                    </h5> 
+                    <br />
                     <div class="form__row">
                         <div class="form__col-lg">
                             <label class="form__label">
                                 Firstname
                             </label>
                             <div class="input-wrap">
-                                <input type="text" placeholder="Enter Firstname">
+                                <input type="text" asp-for="FirstName" placeholder="Enter Firstname">
                             </div>
                         </div>
                         <div class="form__col-lg">
@@ -65,7 +66,7 @@
                                 Lastname
                             </label>
                             <div class="input-wrap">
-                                <input type="text" placeholder="Enter Lastname">
+                                <input type="text" asp-for="LastName" placeholder="Enter Lastname">
                             </div>
                         </div>
                         <div class="form__col-lg">
@@ -73,7 +74,7 @@
                                 Username
                             </label>
                             <div class="input-wrap">
-                                <input type="text" placeholder="Enter Desired Username">
+                                <input type="text" asp-for="Username" placeholder="Enter Desired Username">
                             </div>
                         </div>
 
@@ -86,7 +87,7 @@
                                 Email
                             </label>
                             <div class="input-wrap">
-                                <input type="email" placeholder="Enter Email">
+                                <input type="email" asp-for="Email" placeholder="Enter Email">
                             </div>
                         </div>
                         <div class="form__col-lg">
@@ -94,88 +95,21 @@
                                 Password
                             </label>
                             <div class="input-wrap">
-                                <input type="password" placeholder="Password">
+                                <input type="password" asp-for="Password" placeholder="Password">
                             </div>
                         </div>
 
-                        <div class="form__col-lg">
-                            <label class="form__label">Currency  </label>
-                            <div class="input-wrap">
-                                <input type="text" name="" value="USD" readonly="" class="">
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="form__row">
-
-
-
-                        <div class="form__col-lg">
-                            <label class="form__label">Contact </label>
-                            <div class="input-wrap">
-
-                                <input class="form-control" type="tel" name="phone1" id="phone1" value="<?php echo $phone1;?>">
-                                <input type="tel" class="hide" id="hiden">
-                            </div>
-                        </div>
-
-
-                        <div class="form__col-lg">
-                            <label class="form__label">Address</label>
-                            <div class="input-wrap">
-                                <input type="text" placeholder="Address Line 1">
-                            </div>
-                        </div>
-                        <div class="form__col-lg">
-                            <label class="form__label">Address</label>
-                            <div class="input-wrap">
-                                <input type="text" placeholder="Address Line 2">
-                            </div>
-                        </div>
-
-
-                    </div>
-
-
-
-
-                    <div class="form__row">
-
-                        <div class="form__col-lg">
-                            <label class="form__label">
-                                City | Town
-                            </label>
-                            <div class="input-wrap">
-                                <input type="text" name="">
-                            </div>
-                        </div>
-                        <div class="form__col-lg">
-                            <label class="form__label">
-                                State | Province
-                            </label>
-                            <div class="input-wrap">
-                                <input type="text" name="">
-                            </div>
-                        </div>
-                        <div class="form__col-lg">
-                            <label class="form__label">
-                                Postal Code
-                            </label>
-                            <div class="input-wrap">
-                                <input type="number" name="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form__row">
+                        @*<div class="form__col-lg">
+            <label class="form__label">Currency  </label>
+            <div class="input-wrap">
+                <input type="text" name="" value="USD" readonly="" class="">
+            </div>
+        </div>*@
 
                         <div class="form__col-lg">
                             <label class="form__label">Country</label>
                             <div class="input-wrap">
-                                <select class="form-control">
+                                <select asp-for="Country" class="form-control">
 
                                     <option>Select Country</option>
                                     <option value="AFG">Afghanistan</option>
@@ -431,8 +365,77 @@
                             </div>
 
                         </div>
+                    </div>
+
+
+
+                    <div class="form__row">
+
+
+
+                        <div class="form__col-lg">
+                            <label class="form__label">Contact </label>
+                            <div class="input-wrap">
+
+                                <input class="form-control" type="tel" name="phone1" id="phone1" value="<?php echo $phone1;?>">
+                                <input type="tel" class="hide" id="hiden">
+                            </div>
+                        </div>
+
+
+                        <div class="form__col-lg">
+                            <label class="form__label">Address</label>
+                            <div class="input-wrap">
+                                <input type="text" asp-for="Address1" placeholder="Address Line 1">
+                            </div>
+                        </div>
+                        <div class="form__col-lg">
+                            <label class="form__label">Address</label>
+                            <div class="input-wrap">
+                                <input type="text" asp-for="Address2" placeholder="Address Line 2">
+                            </div>
+                        </div>
+
 
                     </div>
+
+
+
+
+                    <div class="form__row">
+
+                        <div class="form__col-lg">
+                            <label class="form__label">
+                                City | Town
+                            </label>
+                            <div class="input-wrap">
+                                <input asp-for="CityOrTown" type="text" name="">
+                            </div>
+                        </div>
+                        <div class="form__col-lg">
+                            <label class="form__label">
+                                State | Province
+                            </label>
+                            <div class="input-wrap">
+                                <input type="text" asp-for="StateOrProvince" name="">
+                            </div>
+                        </div>
+                        <div class="form__col-lg">
+                            <label class="form__label">
+                                Postal Code
+                            </label>
+                            <div class="input-wrap">
+                                <input asp-for="PostalCode" type="number" name="">
+                            </div>
+                        </div>
+                    </div>
+                     
+
+
+
+
+
+
 
                     <button class="btn btn--green">Submit</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -444,9 +447,9 @@
                     <br>
                     @*<p style="color:grey;">Enable 2 factor authentication <br>on the security page.</p>*@
 
-                </form>
+            </form>
 
-            </div>
+        </div>
             @*<div id="tab-2" class="settings__content-item settings__security">
 
                     <form class="security">
