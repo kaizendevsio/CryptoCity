@@ -10,6 +10,7 @@ namespace CryptoCityWallet.Entities.DTO
             TblDividend = new HashSet<TblDividend>();
             TblUserAddress = new HashSet<TblUserAddress>();
             TblUserAuthHistory = new HashSet<TblUserAuthHistory>();
+            TblUserBonus = new HashSet<TblUserBonus>();
             TblUserBusinessPackage = new HashSet<TblUserBusinessPackage>();
             TblUserDepositRequest = new HashSet<TblUserDepositRequest>();
             TblUserIncomeTransaction = new HashSet<TblUserIncomeTransaction>();
@@ -48,6 +49,7 @@ namespace CryptoCityWallet.Entities.DTO
         public virtual ICollection<TblDividend> TblDividend { get; set; }
         public virtual ICollection<TblUserAddress> TblUserAddress { get; set; }
         public virtual ICollection<TblUserAuthHistory> TblUserAuthHistory { get; set; }
+        public virtual ICollection<TblUserBonus> TblUserBonus { get; set; }
         public virtual ICollection<TblUserBusinessPackage> TblUserBusinessPackage { get; set; }
         public virtual ICollection<TblUserDepositRequest> TblUserDepositRequest { get; set; }
         public virtual ICollection<TblUserIncomeTransaction> TblUserIncomeTransaction { get; set; }

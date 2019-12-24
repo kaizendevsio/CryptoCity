@@ -1,5 +1,4 @@
-﻿using CryptoCityWallet.Entities.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace CryptoCityWallet.Entities.DTO
@@ -17,7 +16,7 @@ namespace CryptoCityWallet.Entities.DTO
         public decimal? DividendPrice { get; set; }
         public DateTime? DividendDateRegistered { get; set; }
         public long? DividendUserCd { get; set; }
-        public AffiliateBonusType? DividendBonusCd { get; set; }
+        public long? DividendBonusCd { get; set; }
         public long? DividendOrderCd { get; set; }
         public long? DividendRankCd { get; set; }
         public decimal? DividendRate { get; set; }
