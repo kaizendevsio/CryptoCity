@@ -34,7 +34,12 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 TblUserInfo userInfo = apiResponse.UserInfo;
                 TblUserAuth userAuth = apiResponse.UserAuth;
 
-                _res = await apiRequest.GetAsync(Env,"User/Wallet", session.SessionCookies);
+                _res = await apiRequest.GetAsync(Env, "User/Wallet/Transactions", session.SessionCookies);
+                apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+                List<TblUserWalletTransaction> userWalletTransactions = apiResponse.UserWalletTransactions;
+
+                _res = await apiRequest.GetAsync(Env, "User/Wallet", session.SessionCookies);
                 apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 
                 List<UserWalletBO> userWallets = apiResponse.UserWallet;
@@ -47,7 +52,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     transactionVM.TotalInvestment = (double)userWallets.Find(i => i.WalletCode == "TLI").Balance;
                     transactionVM.WCCPBalance = (double)userWallets.Find(i => i.WalletCode == "WCCP").Balance;
                     transactionVM.YesterdayProfit = 0;
-                    
+                    transactionVM.UserWalletTransactions = userWalletTransactions;
+
                     return View(transactionVM);
                 }
                 else
@@ -62,7 +68,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 return RedirectToAction("Login", "Home");
 
             }
-            
+
         }
 
         public IActionResult Privacy()

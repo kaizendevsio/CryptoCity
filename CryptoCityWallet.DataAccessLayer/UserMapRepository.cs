@@ -66,7 +66,7 @@ namespace CryptoCityWallet.DataAccessLayer
                          name = userAuth.UserName,
                          //title = mapUserInfoCenter.Email,
                          UserAuth = userAuth,
-                         children = new List<UserMapBO> { new UserMapBO { name = mapUserLeft.UserName, title = mapUserInfoLeft.Uid, relationship = "101", UserAuth = new TblUserAuth { Id = mapUserLeft.Id, UserName = mapUserLeft.UserName } }, new UserMapBO { name = mapUserRight.UserName, title = mapUserInfoRight.Uid, relationship = "101", UserAuth = new TblUserAuth { Id = mapUserRight.Id, UserName = mapUserRight.UserName } } },
+                         children = new List<UserMapBO> { new UserMapBO { name = mapUserLeft.UserName, title = String.Format("{0} {1}", mapUserInfoRight.FirstName, mapUserInfoRight.LastName), relationship = "101", UserAuth = new TblUserAuth { Id = mapUserLeft.Id, UserName = mapUserLeft.UserName } }, new UserMapBO { name = mapUserRight.UserName, title = String.Format("{0} {1}", mapUserInfoRight.FirstName, mapUserInfoRight.LastName), relationship = "101", UserAuth = new TblUserAuth { Id = mapUserRight.Id, UserName = mapUserRight.UserName } } },
                          relationship = "101"
                      };
 
@@ -78,7 +78,7 @@ namespace CryptoCityWallet.DataAccessLayer
                 UserMapBO _y = GetMap(_qRes.children[1].UserAuth);
                 _qRes.children[0].children = _x == null ? new List<UserMapBO>() : _x.children;
                 _qRes.children[1].children = _y == null ? new List<UserMapBO>() : _y.children;
-            }           
+            }
 
             return _qRes;
         }

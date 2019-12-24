@@ -11,5 +11,6 @@ namespace CryptoCityWallet.Entities.BO
         public UserMapBO UserMap { get; set; }
         public List<TblUserBusinessPackage> BusinessPackages { get; set; }
         public List<UserWalletBO> UserWallet { get; set;}
+        public List<TblUserWalletTransaction> UserWalletTransactions { get; set; }
     }
 }
