@@ -17,7 +17,7 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        @*<div class="col-md-12">
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <!-- inline -->
+                         inline
                         <label>SORT :</label> &nbsp;
                         <div>
                             <input type="radio" id="inlineCssRadio1" name="sort">
@@ -45,27 +45,27 @@
                     <div class="form-group">
                         <label>Keyword</label>
                         <input type="" name="" class="form-control">
-                    </div>
-                    @*<div class="form-group">
-                        <div class="checkbox checkbox-css checkbox-inline">
-                            <input type="checkbox" id="inlineCssCheckbox1" />
-                            <label for="inlineCssCheckbox1">Incomplete Profile</label>
-                        </div>
-                        <div class="checkbox checkbox-css checkbox-inline">
-                            <input type="checkbox" id="inlineCssCheckbox1" />
-                            <label for="inlineCssCheckbox1">Incomplete Profile</label>
-                        </div>
-                        <div class="checkbox checkbox-css checkbox-inline">
-                            <input type="checkbox" id="inlineCssCheckbox1" />
-                            <label for="inlineCssCheckbox1">Deposit</label>
-                        </div>
                     </div>*@
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+        @*<div class="form-group">
+                <div class="checkbox checkbox-css checkbox-inline">
+                    <input type="checkbox" id="inlineCssCheckbox1" />
+                    <label for="inlineCssCheckbox1">Incomplete Profile</label>
+                </div>
+                <div class="checkbox checkbox-css checkbox-inline">
+                    <input type="checkbox" id="inlineCssCheckbox1" />
+                    <label for="inlineCssCheckbox1">Incomplete Profile</label>
+                </div>
+                <div class="checkbox checkbox-css checkbox-inline">
+                    <input type="checkbox" id="inlineCssCheckbox1" />
+                    <label for="inlineCssCheckbox1">Deposit</label>
+                </div>
+            </div>*@
+        @*<div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>*@
 
 
 
@@ -83,21 +83,31 @@
                 <div class="table-responsive">
                     <div class="panel-body">
                         @*<table border="0" cellspacing="5" cellpadding="5">
-                            <tbody>
-                                <tr>
-                                    <td>Minimum Date:</td>
-                                    <td><input name="min" id="min" type="text"></td>
-                                </tr>
-                                <tr>
-                                    <td>Maximum Date:</td>
-                                    <td><input name="max" id="max" type="text"></td>
-                                </tr>
-                            </tbody>
-                        </table>*@
+                                <tbody>
+                                    <tr>
+                                        <td>Minimum Date:</td>
+                                        <td><input name="min" id="min" type="text"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maximum Date:</td>
+                                        <td><input name="max" id="max" type="text"></td>
+                                    </tr>
+                                </tbody>
+                            </table>*@
 
 
-                        <table class="table table-bordered" id="dataTable">
+                        <table class="table table-bordered" id="property">
                             <thead>
+                                <tr>
+
+                                    <th colspan="2">Total Trade Balance : </th>
+                                    <th colspan="2">Profit (WCCP):</th>
+
+                                    <th colspan="2">Affiliate (WCCP): </th>
+                                    <th colspan="2">Binary Bonus (WCCP) :</th>
+                                </tr>
+
+
                                 <tr>
                                     <th>CreatedOn</th>
                                     <th>ID</th>
@@ -112,7 +122,7 @@
                             </thead>
                             <tbody>
                                 @*@foreach (var item in Model.TradeHistory)
-                                {*@
+                                    {*@
                                 <tr>
                                     <td>
 
@@ -178,6 +188,7 @@
     <!-- end col-4 -->
 
 </div>
+
 @section Scripts{
     <style>
         .toggle-button {
@@ -223,80 +234,77 @@
                 height: 24px;
                 box-shadow: 0 0 4px rgba(0,0,0,0.1);
             }
+
+        .dataTable > thead > tr > th[class*="sort"]:after {
+            content: "" !important;
+        }
     </style>
+
+
     <script>
 
-        $('.toggle').change(function () {
-            debugger;
-            if ($('.toggle').hasClass('off')) {
-                //$('#staticMapImg').hide();
-            } else {
-                //$('#staticMapImg').show();
-            }
-        })
+        $('#send').click(function () {
+            var date_ = $(this).closest("tr").find("td").eq(0).text();
+            var membercode_ = $(this).closest("tr").find("td").eq(1).text();
+            var name_ = $(this).closest("tr").find("td").eq(2).text();
+            var from = $(this).closest("tr").find("td").eq(3).text();
+            var to = $(this).closest("tr").find("td").eq(4).text();
+            var amount = $(this).closest("tr").find("td").eq(5).text();
+            var currency = $(this).closest("tr").find("td").eq(6).text();
+            var txid = $(this).closest("tr").find("td").eq(7).text();
+            document.getElementById('dateDetails').innerHTML = '<b> Date : ' + date_ + '</b>';
+            document.getElementById('memcodeDetails').innerHTML = '<b> ID : ' + membercode_ + '</b>';
+            document.getElementById('memnameDetails').innerHTML = '<b> ID : ' + name_ + '</b>';
+            document.getElementById('fromDetails').innerHTML = '<b> From : ' + from + '</b>';
+            document.getElementById('toDetails').innerHTML = '<b> To: ' + to + '</b>';
 
+            document.getElementById('currencyDetails').innerHTML = '<b> From : ' + currency + '</b>';
+            document.getElementById('amountDetails').innerHTML = '<b> Total Amount : ' + amount + '</b>';
 
-        $(document).ready(function () {
-
-
-            var table = $('#dataTable').DataTable();
-
-
-
-            $.fn.dataTable.ext.search.push(
-                function (settings, data, dataIndex) {
-                    var min = $('#min').datepicker("getDate");
-                    var max = $('#max').datepicker("getDate");
-                    var startDate = new Date(data[3]);
-                    if (min == null && max == null) { return true; }
-                    if (min == null && startDate <= max) { return true; }
-                    if (max == null && startDate >= min) { return true; }
-                    if (startDate <= max && startDate >= min) { return true; }
-                    return false;
-
-                });
-
-
-            $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
-            $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
-            var table = $('#dataTable').DataTable();
-
-
-
-
-
-            //    $("#confirm").on("submit", function(event) {
-            //    event.preventDefault();
-
-            //    var formData = {
-            //        'txid': $('input[name=email]').val(),
-            //        'amount': $('input[name=email]').val(),
-            //        'email': $('input[name=email]').val()//for get email
-            //    };
-            //    console.log(formData);
-
-            //    $.ajax({
-            //        url: "/Withdraw/SendADA",
-            //        type: "post",
-            //        data: formData,
-            //        success: function(d) {
-            //            alert("Sent Successfully");
-            //        }
-            //    });
-            //});
-
-
-
-            $('#min, #max').change(function () {
-                table.draw();
-            });
-
-
-
-
-
+            document.getElementById('txidDetails').innerHTML = '<b> TxID : ' + txid + '</b>';
 
         });
+        function myFunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("mylist");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("property");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        //$('#from').click(function () {
+        //    var currency = $(this).closest("tr").find("td").eq(0).text();
+        //    var balance = $(this).closest("tr").find("td").eq(1).text();
+        //    var available = $(this).closest("tr").find("td").eq(2).text();
+        //    var hot = $(this).closest("tr").find("td").eq(3).text();
+        //    var cold = $(this).closest("tr").find("td").eq(4).text();
+        //    var rate = $(this).closest("tr").find("td").eq(5).text();
+        //    var usd = $(this).closest("tr").find("td").eq(6).text();
+        //    document.getElementById('currencyDetails').innerHTML = '<b> Date : ' + currency + '</b>';
+        //    document.getElementById('balanceDetails').innerHTML = '<b> Balance : ' + balance + '</b>';
+        //    document.getElementById('availableDetails').innerHTML = '<b> Available : ' + available + '</b>';
+        //    document.getElementById('hotDetails').innerHTML = '<b> HOT : ' + hot + '</b>';
+        //    document.getElementById('coldDetails').innerHTML = '<b> COLD : ' + cold + '</b>';
+
+        //    document.getElementById('rateDetails').innerHTML = '<b> RATE  : ' + rate + '</b>';
+        //    document.getElementById('usdDetails').innerHTML = '<b> USD : ' + usd + '</b>';
+
+
+        //});
+
+
+
+
         var d = new Date();
 
         var month = d.getMonth() + 1;
@@ -306,42 +314,84 @@
             (month < 10 ? '0' : '') + month + '/' +
             (day < 10 ? '0' : '') + day;
 
-        $('#dataTable').DataTable({
+
+        $('#property').DataTable({
             stateSave: true,
             autoWidth: true,
-            dom: 'Bfrtip',
+            dom: 'lBf<"toolbar">rtip<"clear">', fnInitComplete: function () {
+                $('div.toolbar').html('<div id="example_filter" class="dataTables_filter input-daterange"><label><input type="text" id="from_date_picker" class="date-range-filter" placeholder="Date Start" data-date-format="mm-dd-yyyy" id="min" placeholder="" aria-controls="example">To<input type="text" id="to_date_picker" class="date-range-filter"  placeholder="Date End" data-date-format="mm-dd-yyyy" id="max" aria-controls="example"></label></div>');
+            },
             buttons: [
-                'copy', {
+                {
+                    extend: 'copy',
+
+                    className: 'dt-button btn btn-primary '
+                }, {
                     extend: 'csv',
                     orientation: 'landscape',
                     title: 'WCC.com',
                     messageTop: 'The information in this table is copyright to WCC.',
-                    messageBottom: output
+                    messageBottom: output,
+                    className: 'dt-button btn btn-primary '
                 }, {
                     extend: 'excel',
                     orientation: 'landscape',
                     extend: 'excelHtml5',
                     title: 'WCC.com',
                     messageTop: 'The information in this table is copyright to WCC.',
-                    messageBottom: output
+                    messageBottom: output,
+                    className: 'dt-button btn btn-primary '
                 }, {
                     extend: 'pdf',
                     orientation: 'landscape',
                     extend: 'pdfHtml5',
+                    pageSize: 'LEGAL',
                     title: 'WCC.com',
                     messageTop: 'The information in this table is copyright to WCC.',
-                    messageBottom: output
+                    messageBottom: output,
+                    className: 'dt-button btn btn-primary '
                 }, {
                     extend: 'print',
                     orientation: 'landscape',
-
+                    pageSize: 'LEGAL',
                     title: 'WCC.com',
                     messageTop: 'The information in this table is copyright to WCC.',
-                    messageBottom: output
+                    messageBottom: output,
+                    className: 'dt-button btn btn-primary '
                 }
             ]
-
         });
+        $(document).ready(function () {
 
+            $('.input-daterange input').each(function () {
+                $(this).datepicker('clearDates');
+            });
+
+            // Extend dataTables search
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var min = $('#min').val();
+                    var max = $('#max').val();
+                    var createdAt = data[0] || 1; // Our date column in the table
+
+                    if (
+                        (min == "" || max == "") ||
+                        (moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max))
+                    ) {
+                        return true;
+                    }
+                    return false;
+                }
+            );
+
+            // Re-draw the table when the a date range filter changes
+            $('.date-range-filter').change(function () {
+                var table = $('#property').DataTable();
+                table.draw();
+            });
+
+
+            $('.date-range-filter').datepicker();
+        });
     </script>
 }
