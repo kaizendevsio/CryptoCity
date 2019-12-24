@@ -55,6 +55,11 @@
 
                             <thead>
                                 <tr>
+                                    
+                                    <th colspan="2">Total Convert Amount: </th>
+                                    <th colspan="3">Pending Convert Amount:</th>
+                                </tr>
+                                <tr>
                                     <th>Date of Request</th>
                                     <th>ID (Code)</th>
                                     <th>Name</th>
@@ -211,7 +216,23 @@
             document.getElementById('txidDetails').innerHTML = '<b> TxID : ' + txid + '</b>';
 
         });
-
+        function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("mylist");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("property");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
 
         //$('#from').click(function () {
         //    var currency = $(this).closest("tr").find("td").eq(0).text();
@@ -250,7 +271,7 @@
             stateSave: true,
             autoWidth: true,
             dom: 'lBf<"toolbar">rtip<"clear">', fnInitComplete: function () {
-                $('div.toolbar').html('<div class="dataTables_length" id=" "><label> <select name=" " aria-controls="property" class=""><option value="Withdrawal">Withdrawal</option><option value="Deposit">Deposit</option> </select></label></div><div id="example_filter" class="dataTables_filter input-daterange"><label><input type="text" id="from_date_picker" class="date-range-filter" placeholder="Date Start" data-date-format="mm-dd-yyyy" id="min" placeholder="" aria-controls="example">To<input type="text" id="to_date_picker" class="date-range-filter"  placeholder="Date End" data-date-format="mm-dd-yyyy" id="max" aria-controls="example"></label></div>');
+                $('div.toolbar').html('<div class="dataTables_length" id=" "><label> <select name=" " aria-controls="property" onchange="myFunction()" id="mylist"class=""><option value="Withdrawal">Withdrawal</option><option value="Deposit">Deposit</option> </select></label></div><div id="example_filter" class="dataTables_filter input-daterange"><label><input type="text" id="from_date_picker" class="date-range-filter" placeholder="Date Start" data-date-format="mm-dd-yyyy" id="min" placeholder="" aria-controls="example">To<input type="text" id="to_date_picker" class="date-range-filter"  placeholder="Date End" data-date-format="mm-dd-yyyy" id="max" aria-controls="example"></label></div>');
             },
             buttons: [
                     {
