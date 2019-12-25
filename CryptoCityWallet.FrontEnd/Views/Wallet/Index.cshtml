@@ -34,8 +34,8 @@
                     </span>
 
                     <span class="wallet__course">
-                        <span> @Html.DisplayFor(model => model.BTCBalance) BTC</span>
-                        <span>0 USD</span>
+                        <span> @Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletType.Code == "BTC").Balance) BTC</span>
+                        <span> @Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletType.Code == "BTC").BalanceFiat) USD</span>
                     </span>
                 </span>
 
@@ -69,8 +69,8 @@
                     </span>
 
                     <span class="wallet__course">
-                        <span>@Html.DisplayFor(model => model.TTHBalance) USDT</span>
-                        <span>0 USD</span>
+                        <span> @Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletType.Code == "USDT").Balance) USDT</span>
+                        <span>@Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletType.Code == "BTC").BalanceFiat) USD</span>
                     </span>
                 </span>
 
@@ -117,8 +117,8 @@
                     </span>
 
                     <span class="wallet__course">
-                        <span>@Html.DisplayFor(model => model.ETHBalance) ETH</span>
-                        <span>0 USD</span>
+                        <span>@Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletType.Code == "ETH").Balance) ETH</span>
+                        <span>@Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletType.Code == "ETH").BalanceFiat) USD</span>
                     </span>
                 </span>
 

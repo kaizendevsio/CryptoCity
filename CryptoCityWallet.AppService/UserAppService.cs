@@ -62,6 +62,9 @@ namespace CryptoCityWallet.AppService
                 UserMapAppService userMapAppService = new UserMapAppService();
                 userMapAppService.Validate(userBO, db);
 
+                ExternalRecordsRepository externalRecordsRepository = new ExternalRecordsRepository();
+                externalRecordsRepository.CreateUserVolume(userAuth,db);
+
                 userMapAppService.Create(userBO, userAuth, db);
 
                 return true;
@@ -91,6 +94,9 @@ namespace CryptoCityWallet.AppService
                         // CREATE USER MAP
                         UserMapAppService userMapAppService = new UserMapAppService();
                         userMapAppService.Validate(userBO,db);
+
+                        ExternalRecordsRepository externalRecordsRepository = new ExternalRecordsRepository();
+                        externalRecordsRepository.CreateUserVolume(userAuth, db);
 
                         userMapAppService.Create(userBO, userAuth, db);
 
