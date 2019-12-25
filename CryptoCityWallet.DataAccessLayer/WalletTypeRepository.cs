@@ -27,7 +27,8 @@ namespace CryptoCityWallet.DataAccessLayer
                          Desc = a.Desc,
                          Type = a.Type,
                          Code = a.Code,
-                         Id = a.Id
+                         Id = a.Id,
+                         CurrencyId = a.CurrencyId
                      };
 
             TblWalletType _qWalletTypeRes = _q.FirstOrDefault<TblWalletType>();
@@ -44,7 +45,8 @@ namespace CryptoCityWallet.DataAccessLayer
                          Desc = a.Desc,
                          Type = a.Type,
                          Code = a.Code,
-                         Id = a.Id
+                         Id = a.Id,
+                         CurrencyId = a.CurrencyId
                      };
 
             List<TblWalletType> _qWalletTypeRes = _q.ToList<TblWalletType>();

@@ -43,13 +43,13 @@
                             @if (item.Amount < 0)
                             {
                                 <td style="color:red">
-                                    @String.Format("{0:#,##0.00}", item.Amount).ToString()
+                                    @String.Format("{0:#,##0.00000}", item.Amount).ToString()
                                 </td>
                             }
                             else
                             {
                                 <td style="color:#0bbd0b">
-                                    @String.Format("{0:#,##0.00}", item.Amount).ToString()
+                                    @String.Format("{0:#,##0.00000}", item.Amount).ToString()
                                 </td>
                             }
 
@@ -60,7 +60,7 @@
                             </td>
 
                             <td>
-                                @String.Format("{0:#,##0.00}", item.RunningBalance).ToString()
+                                @String.Format("{0:#,##0.00000}", item.RunningBalance).ToString()
                             </td>
 
                         </tr>

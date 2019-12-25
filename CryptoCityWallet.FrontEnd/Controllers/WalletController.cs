@@ -52,7 +52,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     walletVM.BTCBalance = (decimal)userWallets.Find(i => i.WalletCode == "BTC").Balance;
                     walletVM.ETHBalance = (decimal)userWallets.Find(i => i.WalletCode == "ETH").Balance;
                     walletVM.TTHBalance = (decimal)userWallets.Find(i => i.WalletCode == "USDT").Balance;
-                    walletVM.TransactionHistory = new TransactionVM { UserWalletTransactions = userWalletTransactions.FindAll(i => i.CreatedOn >= DateTime.Today)};
+                    walletVM.TransactionHistory = new TransactionVM { UserWalletTransactions = userWalletTransactions };
+                    //walletVM.TransactionHistory = new TransactionVM { UserWalletTransactions = userWalletTransactions.FindAll(i => i.CreatedOn >= DateTime.Today)};
 
                     return View(walletVM);
                 }
@@ -86,7 +87,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 
                 if (GenLink != 0)
                 {
-                    _res = await apiRequest.GetAsync(Env, "Wallet/Address/New", session.SessionCookies);
+                    _res = await apiRequest.GetAsync(Env, "Wallet/Address/Btc/New", session.SessionCookies);
                     WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
                     apiResponse.Address = walletApiResponse.Address;
                 }
@@ -133,7 +134,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
                 if (GenLink != 0)
                 {
-                    _res = await apiRequest.GetAsync(Env, "Wallet/Address/New", session.SessionCookies);
+                    _res = await apiRequest.GetAsync(Env, "Wallet/Address/Eth/New", session.SessionCookies);
                     WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
                     apiResponse.Address = walletApiResponse.Address;
                 }
@@ -179,7 +180,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
                 if (GenLink != 0)
                 {
-                    _res = await apiRequest.GetAsync(Env, "Wallet/Address/New", session.SessionCookies);
+                    _res = await apiRequest.GetAsync(Env, "Wallet/Address/Usdt/New", session.SessionCookies);
                     WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
                     apiResponse.Address = walletApiResponse.Address;
                 }

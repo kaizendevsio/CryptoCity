@@ -35,7 +35,7 @@ namespace CryptoCityWallet.DataAccessLayer
             return true;
         }
 
-        public TblUserWallet Get(UserWalletBO userWallet, dbWorldCCityContext db) 
+        public TblUserWallet Get(UserWalletBO userWallet, dbWorldCCityContext db)
         {
             var _q = from a in db.TblUserWallet
                      join b in db.TblWalletType on a.WalletTypeId equals b.Id
@@ -82,6 +82,31 @@ namespace CryptoCityWallet.DataAccessLayer
             return userWallet;
         }
 
+        public UserWalletBO GetBO(UserWalletBO userWallet, dbWorldCCityContext db)
+        {
+            var _qUi = from a in db.TblUserWallet
+                       join b in db.TblWalletType on a.WalletTypeId equals b.Id
+                       join c in db.TblExchangeRate on a.WalletType.CurrencyId equals c.SourceCurrencyId
+                       where a.UserAuthId == userWallet.UserAuthId && a.WalletTypeId == userWallet.WalletTypeId && a.IsEnabled == true && b.IsEnabled == true
+                       select new UserWalletBO
+                       {
+                           Id = a.Id,
+                           UserAuthId = a.UserAuthId,
+                           WalletTypeId = a.WalletTypeId,
+                           IsEnabled = a.IsEnabled,
+                           Balance = a.Balance,
+                           BalanceFiat = a.Balance * c.Value,
+                           CreatedOn = a.CreatedOn,
+                           ModifiedOn = a.ModifiedOn,
+                           WalletType = a.WalletType,
+                           WalletName = a.WalletType.Name,
+                           WalletCode = a.WalletType.Code
+                       };
+
+            UserWalletBO _userWalletResult = _qUi.FirstOrDefault<UserWalletBO>();
+
+            return _userWalletResult;
+        }
         public List<UserWalletBO> GetAllBO(TblUserAuth userAuth, dbWorldCCityContext db)
         {
             var _qUi = from a in db.TblUserWallet
@@ -112,7 +137,7 @@ namespace CryptoCityWallet.DataAccessLayer
         {
             UserWalletTransactionRepository userWalletTransactionRepository = new UserWalletTransactionRepository();
             TblUserWallet tblUserWallet = db.TblUserWallet.FirstOrDefault(item => item.UserAuthId == userWallet.UserAuthId && item.WalletTypeId == userWallet.WalletTypeId);
-            
+
             UserWalletBO UWT_entry = new UserWalletBO();
             UWT_entry.Id = tblUserWallet.Id;
             UWT_entry.Balance = tblUserWallet.Balance;
@@ -121,7 +146,7 @@ namespace CryptoCityWallet.DataAccessLayer
 
             WalletTransactionBO walletTransaction = new WalletTransactionBO();
             walletTransaction.Amount = userWallet.Balance - UWT_entry.Balance;
-            
+
             bool y = userWalletTransactionRepository.Create(UWT_entry, walletTransaction, db);
 
             if (y == false)
@@ -140,7 +165,7 @@ namespace CryptoCityWallet.DataAccessLayer
                 db.TblUserWallet.Update(tblUserWallet);
                 db.SaveChanges();
                 return true;
-            }            
+            }
         }
     }
 }

@@ -16,24 +16,25 @@ namespace CryptoCityWallet.DataAccessLayer
         {
             return true;
         }
-        public TblExchangeRate Get(TblExchangeRate exchangeRate,dbWorldCCityContext db)
+        public ExchangeRateBO Get(TblExchangeRate exchangeRate,dbWorldCCityContext db)
         {
             var _q = from a in db.TblExchangeRate
                      where a.SourceCurrencyId == exchangeRate.SourceCurrencyId && a.TargetCurrencyId == exchangeRate.TargetCurrencyId && a.IsEnabled == true
                      join b in db.TblCurrency on a.SourceCurrencyId equals b.Id
                      join c in db.TblCurrency on a.TargetCurrencyId equals c.Id
-                     select new TblExchangeRate
+                     select new ExchangeRateBO
                      {
                          Id = a.Id,
                          SourceCurrency = b,
                          SourceCurrencyId = b.Id,
                          TargetCurrency = c,
-                         TargetCurrencyId = c.Id                         
+                         TargetCurrencyId = c.Id,
+                         Value = a.Value
                      };
 
-            TblExchangeRate _qRes = _q.FirstOrDefault<TblExchangeRate>();
+            ExchangeRateBO _qRes = _q.FirstOrDefault<ExchangeRateBO>();
 
-            if (_qRes.Value == null)
+            if (_qRes == null)
             {
                 throw new System.ArgumentException("Exchange Rate Not Available");
             }

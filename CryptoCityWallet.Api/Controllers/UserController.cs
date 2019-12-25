@@ -128,7 +128,7 @@ namespace CryptoCityWallet.Api.Controllers
                 SessionController sessionController = new SessionController();
                 TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
 
-                _apiResponse.UserWallet = userWalletAppService.GetBO(userAuth);
+                _apiResponse.UserWallet = userWalletAppService.GetAllBO(userAuth);
 
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Message = "UserWallet GET";
@@ -159,8 +159,12 @@ namespace CryptoCityWallet.Api.Controllers
                 UserAppService userAppService = new UserAppService();
                 TblUserInfo userInfo = userAppService.Get(userAuth);
 
+                TblUserRole userRole= new TblUserRole();
+                userRole = userAppService.GetUserRole(userAuth);
+
                 _apiResponse.UserInfo = userInfo;
                 _apiResponse.UserAuth = userAuth;
+                _apiResponse.UserRole = userRole;
 
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Message = "UserProfile GET";
@@ -189,7 +193,7 @@ namespace CryptoCityWallet.Api.Controllers
                 SessionController sessionController = new SessionController();
                 TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
 
-                _apiResponse.UserWallet = userWalletAppService.GetBO(userAuth);
+                _apiResponse.UserWallet = userWalletAppService.GetAllBO(userAuth);
 
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Message = "UserWallet GET";

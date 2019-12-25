@@ -93,7 +93,7 @@ namespace CryptoCityWallet.AppService
                         userMapAppService.Validate(userBO,db);
 
                         userMapAppService.Create(userBO, userAuth, db);
-                       
+
                         transaction.Commit();
                         return true;
                     }
@@ -117,6 +117,20 @@ namespace CryptoCityWallet.AppService
             }
         }
 
+        public TblUserRole GetUserRole(TblUserAuth userAuth)
+        {
+            using (var db = new dbWorldCCityContext())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+
+                    UserRoleRepository userRoleRepository = new UserRoleRepository();
+                    TblUserRole userRole = userRoleRepository.Get(userAuth, db);
+
+                    return userRole;
+                }
+            }
+        }
         public bool Activate()
         {
             return true;
@@ -174,7 +188,7 @@ namespace CryptoCityWallet.AppService
                 }
             }
 
-          
+
 
             return true;
         }

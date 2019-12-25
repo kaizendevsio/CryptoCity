@@ -18,7 +18,8 @@ namespace CryptoCityWallet.ExternalUtilities
         {
             BlockchainApiSettings blockchainApiSettings = new BlockchainApiSettings();
             blockchainApiSettings.ApiKey = "9004fe40-5fd0-411a-ac42-4e820562c673";
-            blockchainApiSettings.XpubKey = "xpub6Chiu7mVhgUjBcaT9YemJtuPBdvHy5bWEN8vK4RunXnP4BTRcUWbf4VT8pAUFDcDCvZLsBzKYR9ngSZDyoq9P3BF73QNE3MEywSrLe9eU18";
+            blockchainApiSettings.XpubKey = "xpub6Chiu7mVhgUjF5V7FDB1ni8YCjDyhG7ib5p8iKVMssRDsSLU1qSi5U511DoK9TDBM8YezTJrarmvBRciHPo4E6LDt6omoEfshhyrH3niT6C";
+            blockchainApiSettings.CallbackURL = "https%3A%2F%2Fwww.urlencoder.org%2F";
 
             return blockchainApiSettings;
         }
@@ -27,7 +28,7 @@ namespace CryptoCityWallet.ExternalUtilities
 
         {
             BlockchainApiSettings blockchainApiSettings = GetSettings();
-            ResponseBO _res = await GetAsync("receive", new { xpub = blockchainApiSettings.XpubKey, callback = "https%3A%2F%2Fwww.urlencoder.org%2F", key = blockchainApiSettings.ApiKey });
+            ResponseBO _res = await GetAsync("receive", new { xpub = blockchainApiSettings.XpubKey, callback = blockchainApiSettings.CallbackURL, key = blockchainApiSettings.ApiKey });
             ReceivePaymentResponse receivePayment = JsonConvert.DeserializeObject<ReceivePaymentResponse>(_res.ResponseResult);
 
             return receivePayment.Address;

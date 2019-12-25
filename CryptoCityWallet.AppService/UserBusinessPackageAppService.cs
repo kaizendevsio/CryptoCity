@@ -18,13 +18,16 @@ namespace CryptoCityWallet.AppService
                 TblWalletType walletType = walletTypeRepository.Get(new UserWalletBO { WalletCode = userBusinessPackage.FromWalletCode, WalletTypeId = 0 }, db);
 
                 UserWalletAppService userWalletAppService = new UserWalletAppService();
-                TblUserWallet userWallet = userWalletAppService.GetSingle(new TblUserAuth { Id = userBusinessPackage.Id }, walletType);
+                UserWalletBO userWallet = userWalletAppService.GetBO(new UserWalletBO { UserAuthId = userBusinessPackage.Id, WalletTypeId = walletType.Id }, db);
 
                 CurrencyTypeRepository currencyTypeRepository = new CurrencyTypeRepository();
                 TblCurrency currency = currencyTypeRepository.Get(new TblCurrency { CurrencyIsoCode3 = userBusinessPackage.FromCurrencyIso3 }, db);
 
                 BusinessPackageRepository businessPackageRepository = new BusinessPackageRepository();
                 TblBusinessPackage businessPackage = businessPackageRepository.Get(new TblBusinessPackage { Id = long.Parse(userBusinessPackage.BusinessPackageID) }, db);
+
+                ExchangeRateRepository exchangeRateRepository = new ExchangeRateRepository();
+                ExchangeRateBO exchangeRateBO = exchangeRateRepository.Get(new TblExchangeRate { SourceCurrencyId = (long)walletType.CurrencyId, TargetCurrencyId = (long)businessPackage.CurrencyId }, db);
 
                 decimal _amountPaid = decimal.Parse(userBusinessPackage.AmountPaid);
 
@@ -33,7 +36,7 @@ namespace CryptoCityWallet.AppService
                     throw new ArgumentException("Payment is below the minimum package requirements");
                 }
 
-                if (userWallet.Balance >= _amountPaid)
+                if (userWallet.BalanceFiat >= _amountPaid)
                 {
                     UserDepositRequestRepository userDepositRequestRepository = new UserDepositRequestRepository();
                     TblUserDepositRequest userDepositRequest = new TblUserDepositRequest();
@@ -55,12 +58,12 @@ namespace CryptoCityWallet.AppService
                     tblUserBusinessPackage.ActivationDate = DateTime.Now;
                     tblUserBusinessPackage.BusinessPackageId = 1;
                     tblUserBusinessPackage.UserAuthId = userBusinessPackage.Id;
-                    tblUserBusinessPackage.PackageStatus =PackageStatus.Activated;
+                    tblUserBusinessPackage.PackageStatus = PackageStatus.Activated;
                     tblUserBusinessPackage.UserDepositRequestId = x.Id;
 
                     db.TblUserBusinessPackage.Add(tblUserBusinessPackage);
 
-                    userWalletAppService.Decrement(new UserWalletBO { UserAuthId = userWallet.UserAuthId, WalletCode = userWallet.WalletType.Code, WalletTypeId = userWallet.WalletTypeId }, new WalletTransactionBO { Amount = _amountPaid });
+                    userWalletAppService.Decrement(new UserWalletBO { UserAuthId = userWallet.UserAuthId, WalletCode = userWallet.WalletType.Code, WalletTypeId = userWallet.WalletTypeId }, new WalletTransactionBO { Amount = (_amountPaid * exchangeRateBO.OppositeValue) });
 
                     db.SaveChanges();
 
@@ -78,13 +81,16 @@ namespace CryptoCityWallet.AppService
                         TblWalletType walletType = walletTypeRepository.Get(new UserWalletBO { WalletCode = userBusinessPackage.FromWalletCode, WalletTypeId = 0 }, db);
 
                         UserWalletAppService userWalletAppService = new UserWalletAppService();
-                        TblUserWallet userWallet = userWalletAppService.GetSingle(new TblUserAuth { Id = userBusinessPackage.Id }, walletType);
+                        UserWalletBO userWallet = userWalletAppService.GetBO(new UserWalletBO { UserAuthId = userBusinessPackage.Id, WalletTypeId = walletType.Id }, db);
 
                         CurrencyTypeRepository currencyTypeRepository = new CurrencyTypeRepository();
                         TblCurrency currency = currencyTypeRepository.Get(new TblCurrency { CurrencyIsoCode3 = userBusinessPackage.FromCurrencyIso3 }, db);
 
                         BusinessPackageRepository businessPackageRepository = new BusinessPackageRepository();
-                        TblBusinessPackage businessPackage = businessPackageRepository.Get(new TblBusinessPackage { Id =long.Parse(userBusinessPackage.BusinessPackageID) }, db);
+                        TblBusinessPackage businessPackage = businessPackageRepository.Get(new TblBusinessPackage { Id = long.Parse(userBusinessPackage.BusinessPackageID) }, db);
+
+                        ExchangeRateRepository exchangeRateRepository = new ExchangeRateRepository();
+                        ExchangeRateBO exchangeRateBO = exchangeRateRepository.Get(new TblExchangeRate { SourceCurrencyId = (long)walletType.CurrencyId, TargetCurrencyId = (long)businessPackage.CurrencyId},db);
 
                         decimal _amountPaid = decimal.Parse(userBusinessPackage.AmountPaid);
 
@@ -93,7 +99,7 @@ namespace CryptoCityWallet.AppService
                             throw new ArgumentException("Payment is below the minimum package requirements");
                         }
 
-                        if (userWallet.Balance >= _amountPaid)
+                        if (userWallet.BalanceFiat >= _amountPaid)
                         {
                             UserDepositRequestRepository userDepositRequestRepository = new UserDepositRequestRepository();
                             TblUserDepositRequest userDepositRequest = new TblUserDepositRequest();
@@ -120,7 +126,7 @@ namespace CryptoCityWallet.AppService
 
                             db.TblUserBusinessPackage.Add(tblUserBusinessPackage);
 
-                            userWalletAppService.Decrement(new UserWalletBO { UserAuthId = userWallet.UserAuthId, WalletCode = userWallet.WalletType.Code, WalletTypeId = userWallet.WalletTypeId }, new WalletTransactionBO { Amount = _amountPaid });
+                            userWalletAppService.Decrement(new UserWalletBO { UserAuthId = userWallet.UserAuthId, WalletCode = userWallet.WalletType.Code, WalletTypeId = userWallet.WalletTypeId }, new WalletTransactionBO { Amount = (_amountPaid * exchangeRateBO.OppositeValue) });
 
                             db.SaveChanges();
 

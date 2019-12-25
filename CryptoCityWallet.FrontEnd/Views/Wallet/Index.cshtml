@@ -11,9 +11,9 @@
 
         <div class="wallets__list">
 
-            <a class="wallet" style="background-color: #FF0800;">
+            <a class="wallet" style="background-color: #FF0800;" onclick="window.location.href='@Url.Action("MyBitcoin", "Wallet")'">
 
-                <span class="wallet__header" onclick="window.location.href='@Url.Action("MyBitcoin", "Wallet")'">
+                <span class="wallet__header" >
                     <span class="wallet__currency">
                         <span class="wallet__currency-icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -47,9 +47,9 @@
                     <img src="~/img/wallet-bg-img-1.png" alt="">
                 </span>
             </a>
-            <a class="wallet" style="background-color: #03A57F;">
+            <a class="wallet" style="background-color: #03A57F;" onclick="location.href='@Url.Action("MyTether", "Wallet")'">
 
-                <span class="wallet__header" onclick="location.href='@Url.Action("MyTether", "Wallet")'" >
+                <span class="wallet__header"  >
                     <span class="wallet__currency">
                         <span class="wallet__currency-icon">
                             <!-- 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -95,9 +95,9 @@
         </div>
         <br>
         <div class="wallets__list">
-            <a  class="wallet" style="background-color: #6082B6;">
+            <a  class="wallet" style="background-color: #6082B6;" onclick="location.href='@Url.Action("MyEthereum", "Wallet")'">
 
-                <span class="wallet__header" onclick="location.href='@Url.Action("MyEthereum", "Wallet")'">
+                <span class="wallet__header" >
                     <span class="wallet__currency">
                         <span class="wallet__currency-icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -167,7 +167,7 @@
 
                                     <div class="transaction__info">
                                         <img src="~/img/transaction-icon-sent.svg" alt="">
-                                        @if (item.Amount > 0)
+                                        @if (item.Amount < 0)
                                         {
                                             <p>Sent from @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Name)</p>
                                         }
@@ -179,8 +179,8 @@
                                     </div>
 
                                     <div class="transaction__course">
-                                        <span class="rate rate--minus">- @Html.DisplayFor(modelItem => item.Amount) @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Code)</span>
-                                        <span class="rate rate--normal">- 0 USD</span>
+                                        <span class="rate rate--minus"> @Html.DisplayFor(modelItem => item.Amount) @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Code)</span>
+                                        @*<span class="rate rate--normal"> 0 USD</span>*@
                                     </div>
                                 </div>
 
@@ -218,15 +218,7 @@
         </div>
     </div>
 
-    <div class="d-none" style="
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background-color: #0023475e;
-">
-
+    <div class="d-none" style="position: fixed;top: 0px;left: 0px;width: 100vw;height: 100vh;background-color: #0023475e;">
         <form class="popup popup-sent-currency zoom-anim-dialog form animated bounceIn" id="sent-currency" style="margin-top: 15vh;">
             <div class="popup__content">
 

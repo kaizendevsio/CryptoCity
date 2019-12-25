@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CryptoCityWallet.FrontEnd.Models;
 using CryptoCityWallet.Entities.BO;
+using CryptoCityWallet.Entities.Enums;
 
 namespace CryptoCityWallet.FrontEnd.Controllers
 {
@@ -19,7 +20,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
 
                 return View(userVM);
@@ -35,7 +36,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
 
                 return View(userVM);
@@ -53,7 +54,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 ConvertVM convertVM = new ConvertVM();
                 convertVM.UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName };
 
@@ -77,7 +78,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 WalletMVMList userVM = new WalletMVMList { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
 
                 return View(userVM);
@@ -95,7 +96,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
 
                 return View(userVM);
@@ -113,7 +114,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
 
                 return View(userVM);
@@ -133,7 +134,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 MembersVM userVM = new MembersVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
 
                 return View(userVM);
@@ -150,7 +151,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
 
                 ConvertVM convertVM = new ConvertVM();
@@ -170,7 +171,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
 
                 return View(userVM);
@@ -210,7 +211,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
 
                 return View(userVM);
@@ -226,7 +227,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
 
                 return View(userVM);
@@ -243,7 +244,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             try
             {
-                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session);
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session,AccessRole.Admin);
                 UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
 
                 return View(userVM);

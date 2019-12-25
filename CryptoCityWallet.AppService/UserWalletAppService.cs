@@ -77,7 +77,7 @@ namespace CryptoCityWallet.AppService
                 }
             }
         }
-        public List<UserWalletBO> GetBO(TblUserAuth tblUserAuth, dbWorldCCityContext db = null)
+        public List<UserWalletBO> GetAllBO(TblUserAuth tblUserAuth, dbWorldCCityContext db = null)
         {
             if (db != null)
             {
@@ -92,6 +92,26 @@ namespace CryptoCityWallet.AppService
                     {
                         UserWalletRepository userWalletRepository = new UserWalletRepository();
                         return userWalletRepository.GetAllBO(tblUserAuth, db);
+                    }
+                }
+            }
+
+        }
+        public UserWalletBO GetBO(UserWalletBO userWallet, dbWorldCCityContext db = null)
+        {
+            if (db != null)
+            {
+                UserWalletRepository userWalletRepository = new UserWalletRepository();
+                return userWalletRepository.GetBO(userWallet, db);
+            }
+            else
+            {
+                using (db = new dbWorldCCityContext())
+                {
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                        UserWalletRepository userWalletRepository = new UserWalletRepository();
+                        return userWalletRepository.GetBO(userWallet, db);
                     }
                 }
             }
