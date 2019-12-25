@@ -56,7 +56,7 @@ namespace CryptoCityWallet.ExternalUtilities
             //}";
 
             //string message = JsonConvert.SerializeObject(changellyMessage);
-            string message = @"{""jsonrpc"":""2.0"",""id"":""test"",""method"":""createTransaction"",""params"":{""from"":""" + SourceCurrency + @""",""to"":""" + TargetCurrency + @""",""address"":""1DbHRB5aSng6owoUiQN7NgMFRwXbRdRzrV"",""extraId"":null,""amount"":" + Amount + @"}}";
+            string message = @"{""jsonrpc"":""2.0"",""id"":""test"",""method"":""createTransaction"",""params"":{""from"":""" + SourceCurrency + @""",""to"":""" + TargetCurrency + @""",""address"":""16wUekRU1UTr7YZCdxmuGuBKrxLxMZHCdB"",""extraId"":null,""amount"":" + Amount + @"}}";
 
             HMACSHA512 hmac = new HMACSHA512(U8.GetBytes(changellyApiSettings.ApiSecret));
             byte[] hashmessage = hmac.ComputeHash(U8.GetBytes(message));

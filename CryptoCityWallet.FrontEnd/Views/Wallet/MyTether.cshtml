@@ -91,7 +91,7 @@
             </div>
             <div class="wallet-inner__btns">
                 <a href="#confirmation" class="btn btn--green popup-link">Send</a>
-                <a href="@Url.Action("MyTether", "Wallet", new { GenLink = 1 })" class="btn btn--green popup-link">Receive</a>
+                <a onclick="location.href='@Url.Action("MyTether", "Wallet", new { GenLink = 1 })'" class="btn btn--green popup-link">Receive</a>
             </div>
 
         </div>

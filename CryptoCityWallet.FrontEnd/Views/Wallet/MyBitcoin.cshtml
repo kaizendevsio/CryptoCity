@@ -101,9 +101,9 @@
 
             </div>
 
-            <div class="wallet-inner__btns">
-                <button onclick="ShowSendModal();" class="btn btn--green popup-link">Send</button>
-                <a href="@Url.Action("MyBitcoin", "Wallet", new { GenLink = 1 })" class="btn btn--green popup-link">Receive</a>
+            <div class="" style="padding-left:40px">
+                <a onclick="ShowSendModal();" id="sendBtn" class="btn btn--green popup-link">Send</a>
+                <a onclick="location.href='@Url.Action("MyBitcoin", "Wallet", new { GenLink = 1 })'" class="btn btn--green popup-link">Receive</a>
             </div>
         </div>
         <div class="wallet-inner__col">
@@ -248,6 +248,10 @@
 
 @section scripts {
     <script type="text/javascript">
+        document.getElementById("sendBtn").addEventListener("click", function () {
+            ShowSendModal();
+        });
+
         window.addEventListener('click', function(e){
             if (document.getElementById('deposit-currency').contains(e.target)) {
                 // Clicked in box
@@ -281,7 +285,7 @@
             document.getElementById("DepositModal").style.display = "none";
         }
 
-       function ShowSendModal() {
+        function ShowSendModal() {
             document.getElementById("SendModal").style.display = "block";
         }
        function HideSendModal() {
