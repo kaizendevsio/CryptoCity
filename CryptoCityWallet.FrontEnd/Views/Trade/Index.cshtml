@@ -36,7 +36,7 @@
                                     <select class="custom-select" Name="FromWalletCode">
                                         @foreach (var modelItem in Model.UserWallets)
                                         {
-                                        <option value="@Html.ValueFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance) @Html.DisplayFor(modelList => modelItem.WalletCode) | @String.Format("{0:#,##0.00}", modelItem.BalanceFiat).ToString() USD)</option>
+                                            <option value="@Html.ValueFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance) @Html.DisplayFor(modelList => modelItem.WalletCode) | @String.Format("{0:#,##0.00}", modelItem.BalanceFiat).ToString() USD)</option>
                                             @Html.DisplayFor(modelList => modelItem.WalletCode)
                                         }
                                     </select>
@@ -118,6 +118,16 @@
         <div style="margin-top: 20px; background-color:white">
             <table class="table table-hover" id="datatable_trade" style="width:95%; margin-left:30px;">
                 <thead>
+
+
+                    <tr>
+
+                        <th>
+                            Total Investment:
+                            @Html.DisplayFor(model => model.TotalInvestment)
+                        </th>
+
+                    </tr>
                     <tr>
                         <th>Date</th>
                         <th>Package Name</th>
@@ -132,43 +142,43 @@
                 <tbody>
                     @foreach (var item in Model.UserBusinessPackages)
                     {
-                    <tr>
-                        <td>
+                        <tr>
+                            <td>
 
-                            @Html.DisplayFor(modelItem => item.CreatedOn)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BusinessPackage.PackageName)
-                        </td>
+                                @Html.DisplayFor(modelItem => item.CreatedOn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BusinessPackage.PackageName)
+                            </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BusinessPackage.PackageType.Name)
-                        </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BusinessPackage.PackageType.Name)
+                            </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UserDepositRequest.Amount) USD
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserDepositRequest.Amount) USD
 
-                        </td>
-                        <td>
-                            <a href="@Url.Action("Index", "Transactions")" class="btn btn-primary" style="height:25px; line-height:25px">Profit History</a>
-                        </td>
-                        <td>
-                            @if (item.CancellationDate == null)
-                            {
-                                <a href="@Url.Action("Index", "Transactions")" class="btn btn-warning" style="height:25px; line-height:25px">Cancel</a>
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => item.CancellationDate)
-                            }
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PackageStatus)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Index", "Transactions")" class="btn btn-primary" style="height:25px; line-height:25px">Profit History</a>
+                            </td>
+                            <td>
+                                @if (item.CancellationDate == null)
+                                {
+                                    <a class="btn btn-warning"  onclick="ShowCancelModal();" style="height:25px; line-height:25px">Cancel</a>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.CancellationDate)
+                                }
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PackageStatus)
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     }
 
 
@@ -177,100 +187,153 @@
                 </tbody>
             </table>
 
+            <partial name="Partials/Cancel.cshtml" />
 
         </div>
     </div>
 </main>
+ 
 
 
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            $('#datatable_trade').DataTable({
-                initComplete: function () {
-                    this.api().columns().every(function () {
-                        var column = this;
-                        var select = $('<select><option value=""></option></select>')
-                            .appendTo($(column.footer()).empty())
-                            .on('change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex(
-                                    $(this).val()
-                                );
+    <div class="d-none" id="SendModal" style="position: fixed;top: 0px;left: 0px;width: 100vw;height: 100vh;background-color: #0023475e;">
+        <form class="popup popup-sent-currency zoom-anim-dialog form animated bounceIn" id="sent-currency" style="margin-top: 15vh;">
+            <div class="popup__content">
 
-                                column
-                                    .search(val ? '^' + val + '$' : '', true, false)
-                                    .draw();
+                <img class="popup-add-wallet__img" src="~/img/popup-add-wallet-icon.png" alt="">
+                <h3 class="form__title">Send</h3>
+
+                <div class="form__row">
+                    <div class="input-wrap">
+                        <input type="text" placeholder="Enter recipient username">
+                    </div>
+                </div> 
+
+                <label class="form__label">Amount</label>
+                <div class="form__row">
+                    <div class="input-wrap input-wrap--50">
+                        <input type="text" value="0.00">
+                        <label class="input-wrap__label">USD</label>
+                    </div>
+                    <div class="input-wrap input-wrap--50">
+                        <input type="text" value="0.00">
+                        <label class="input-wrap__label">BTC</label>
+                    </div>
+                </div>
+
+                <label class="form__label">Note</label>
+                <div class="form__row">
+                    <div class="input-wrap">
+                        <input type="text" placeholder="Write an optional message">
+                    </div>
+                </div>
+
+                <button class="btn btn--blue btn--full">Continue</button>
+            </div>
+            <div class="popup__thanks">
+                <img src="~/img/popup-success.png" alt="">
+                <h3>Your wallet added successful!</h3>
+            </div>
+        </form>
+
+
+    </div>
+
+
+    @section Scripts{
+
+
+
+
+
+
+
+        <script>
+            $(document).ready(function () {
+                $('#datatable_trade').DataTable({
+                    initComplete: function () {
+                        this.api().columns().every(function () {
+                            var column = this;
+                            var select = $('<select><option value=""></option></select>')
+                                .appendTo($(column.footer()).empty())
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
                             });
-
-                        column.data().unique().sort().each(function (d, j) {
-                            select.append('<option value="' + d + '">' + d + '</option>')
                         });
-                    });
-                }
-            });
-        });</script>
-
-    <script type="text/javascript">
-        var p, q;
-
-        function showPreload(e) {
-            q = e.innerHTML;
-            e.innerHTML = "Loading...";
-            e.style.opacity = 0.5;
-            p = e;
-        }
-        function CopyText() {
-            /* Get the text field */
-            var copyText = document.getElementById("genlink");
-
-            /* Select the text field */
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-
-            /* Copy the text inside the text field */
-            document.execCommand("copy");
-
-            /* Alert the copied text */
-            alert("Link Copied to clipboard.");
-        }
-
-
-        function getFormData(form) {
-            var unindexed_array = $(form).serializeArray();
-            var indexed_array = {};
-
-            $.map(unindexed_array, function (n, i) {
-                indexed_array[n['name']] = n['value'];
-            });
-
-            return JSON.stringify(indexed_array);
-        }
-
-        function SendPackagePurchase(url, type, form) {
-            $.ajax({
-                url: url,
-                type: type,
-                data: getFormData(form),
-                contentType: 'application/json',
-                success: function (data) {
-                    if (data.Message != undefined) {
-                        alert(data.Message);
-                        window.location.reload();
                     }
-                    p.style.opacity = 1;
-                    p.innerHTML = q;
-                },
-                error: function (data, textStatus, jqXHR) {
-                    console.log(data.responseJSON);
-                    alert(data.responseJSON.Message);
-                    p.style.opacity = 1;
-                    p.innerHTML = q;
-                },
-            });
+                });
+            });</script>
 
-            return false
-        }
+        <script type="text/javascript">
+            var p, q;
 
-    </script>
+            function showPreload(e) {
+                q = e.innerHTML;
+                e.innerHTML = "Loading...";
+                e.style.opacity = 0.5;
+                p = e;
+            }
+            function CopyText() {
+                /* Get the text field */
+                var copyText = document.getElementById("genlink");
 
-}
+                /* Select the text field */
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+                /* Copy the text inside the text field */
+                document.execCommand("copy");
+
+                /* Alert the copied text */
+                alert("Link Copied to clipboard.");
+            }
+
+
+            function getFormData(form) {
+                var unindexed_array = $(form).serializeArray();
+                var indexed_array = {};
+
+                $.map(unindexed_array, function (n, i) {
+                    indexed_array[n['name']] = n['value'];
+                });
+
+                return JSON.stringify(indexed_array);
+            }
+
+            function SendPackagePurchase(url, type, form) {
+                $.ajax({
+                    url: url,
+                    type: type,
+                    data: getFormData(form),
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data.Message != undefined) {
+                            alert(data.Message);
+                            window.location.reload();
+                        }
+                        p.style.opacity = 1;
+                        p.innerHTML = q;
+                    },
+                    error: function (data, textStatus, jqXHR) {
+                        console.log(data.responseJSON);
+                        alert(data.responseJSON.Message);
+                        p.style.opacity = 1;
+                        p.innerHTML = q;
+                    },
+                });
+
+                return false
+            }
+
+        </script>
+
+    }
