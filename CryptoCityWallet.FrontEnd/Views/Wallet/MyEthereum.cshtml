@@ -16301,9 +16301,9 @@
 
 
             </div>
-           <div class="wallet-inner__btns">
+           <div class="wallet-inner__btns" style="padding-left:40px">
                <a href="#confirmation" class="btn btn--green popup-link">Send</a>
-               <a href="@Url.Action("MyEthereum", "Wallet", new { GenLink = 1 })" class="btn btn--green popup-link">Receive</a>
+               <a onclick="location.href='@Url.Action("MyEthereum", "Wallet", new { GenLink = 1 })'"  class="btn btn--green popup-link">Receive</a>
            </div>
 
         </div>
