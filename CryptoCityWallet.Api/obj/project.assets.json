@@ -10601,23 +10601,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Xeon\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\loria\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Api\\CryptoCityWallet.Api.csproj",
+      "projectUniqueName": "D:\\Codes\\CryptoCity\\CryptoCityWallet.Api\\CryptoCityWallet.Api.csproj",
       "projectName": "CryptoCityWallet.Api",
-      "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Api\\CryptoCityWallet.Api.csproj",
-      "packagesPath": "C:\\Users\\Xeon\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Api\\obj\\",
+      "projectPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.Api\\CryptoCityWallet.Api.csproj",
+      "packagesPath": "C:\\Users\\loria\\.nuget\\packages\\",
+      "outputPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Xeon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\loria\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -10631,14 +10633,14 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj": {
-              "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj"
+            "D:\\Codes\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj": {
+              "projectPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.AppService\\CryptoCityWallet.AppService.csproj"
             },
-            "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
-              "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj"
+            "D:\\Codes\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj": {
+              "projectPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.Entities\\CryptoCityWallet.Entities.csproj"
             },
-            "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.ExternalUtilities\\CryptoCityWallet.ExternalUtilities.csproj": {
-              "projectPath": "C:\\Projects\\Net Core\\CryptoCityWallet\\CryptoCityWallet.ExternalUtilities\\CryptoCityWallet.ExternalUtilities.csproj"
+            "D:\\Codes\\CryptoCity\\CryptoCityWallet.ExternalUtilities\\CryptoCityWallet.ExternalUtilities.csproj": {
+              "projectPath": "D:\\Codes\\CryptoCity\\CryptoCityWallet.ExternalUtilities\\CryptoCityWallet.ExternalUtilities.csproj"
             }
           }
         }
@@ -10691,6 +10693,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.0.1, 3.0.1]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.0.1, 3.0.1]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[3.0.0, 3.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[3.0.0, 3.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -10699,7 +10719,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
