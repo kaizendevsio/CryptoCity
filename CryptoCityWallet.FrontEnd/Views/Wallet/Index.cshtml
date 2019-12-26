@@ -339,7 +339,7 @@
                                 <!-- begin col-6 -->
                                 <div class="col-6">
                                     <div class="f-s-12 text-white">BTC</div>
-                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00"> @Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletCode == "BTC"))</font></span></div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00"> @Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletCode == "BTC").Balance)</font></span></div>
                                     <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
                                         <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
                                     </div>
@@ -418,7 +418,7 @@
                                     <!-- begin col-6 -->
                                     <div class="col-6">
                                         <div class="f-s-12 text-white">USDT</div>
-                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00"> @Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletCode == "USDT"))</font></span></div>
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00"> @Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletCode == "USDT").Balance)</font></span></div>
                                         <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
                                             <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
                                         </div>
@@ -507,7 +507,7 @@
                                     <!-- begin col-6 -->
                                     <div class="col-6">
                                         <div class="f-s-12 text-white">ETH</div>
-                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00">@Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletCode == "ETH"))</font></span></div>
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00">@Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletCode == "ETH").Balance)</font></span></div>
                                         <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
                                             <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
                                         </div>
