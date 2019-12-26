@@ -89,7 +89,9 @@
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="~/js/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
-
+    <style>        .pace-progress { position:sticky!important;
+        }
+    </style>
 
 </head>
 <body>
@@ -159,8 +161,8 @@
                     <a onclick="location.href='@Url.Action("Index", "Admin")'">
 
                         <i class="fa fa-home"></i>
-                        <span>Dashboard</span>
-                    </a>
+                        <span style ="cursor:pointer">Dashboard</span>
+</a>
 
                     @*<a onclick="location.href='@Url.Action("Deposit", "Admin")'">
 
@@ -171,18 +173,18 @@
                     <a onclick="location.href='@Url.Action("TradeCurrency", "Admin")'" >
 
                         <i class="fa fa-exchange-alt"></i>
-                        <span style="cursor:default">Trade</span>
+                        <span style="cursor:pointer">Trade</span>
                     </a>
                     <a onclick="location.href='@Url.Action("Wallet", "Admin")'">
 
                         <i class="fa fa-wallet"></i>
-                        <span>Wallet Management</span>
+                        <span  style ="cursor:pointer">Wallet Management</span>
                     </a>
 
                     <a onclick="location.href='@Url.Action("Ledger", "Admin")'">
 
                         <i class="fa fa-history"></i>
-                        <span>Ledger</span>
+                        <span  style ="cursor:pointer">Ledger</span>
                     </a>
 
                     <a onclick="location.href='@Url.Action("Account", "Admin")'">
@@ -199,8 +201,8 @@
                         <span>Group Network </span>
                     </a>
                     <ul class="sub-menu">
-                        <li class=""><a onclick="location.href='@Url.Action("Map", "Admin")'">Binary Map </a></li>
-                        <li class=""><a onclick="location.href='@Url.Action("UniLevelMap", "Admin")'">Uni-level Map </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("Map", "Admin")'" style ="cursor:pointer">Binary Map </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("UniLevelMap", "Admin")'" style ="cursor:pointer">Uni-level Map </a></li>
                        
 
                     </ul>
@@ -213,13 +215,13 @@
                         <span>Files</span>
                     </a>
                     <ul class="sub-menu">
-                        <li class=""><a onclick="location.href='@Url.Action("Members", "Admin")'">Member List </a></li>
-                        <li class=""><a onclick="location.href='@Url.Action("MemberRegistration", "Admin")'">Member Registration </a></li>
-                        <li class=""><a onclick="location.href='@Url.Action("Trade", "Admin")'">Trade List </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("Members", "Admin")'" style ="cursor:pointer">Member List </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("MemberRegistration", "Admin")'" style ="cursor:pointer">Member Registration </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("Trade", "Admin")'" style ="cursor:pointer">Trade List </a></li>
 
-                        <li class=""><a onclick="location.href='@Url.Action("Convert", "Admin")'">Convert List </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("Convert", "Admin")'" style ="cursor:pointer">Convert List </a></li>
                         @*<li class=""><a onclick="location.href='@Url.Action("Withdrawal", "Admin")'">Withdrawal List </a></li>*@
-                        <li class=""><a onclick="location.href='@Url.Action("Close", "Admin")'">Close </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("Close", "Admin")'" style ="cursor:pointer">Close </a></li>
 
                     </ul>
                 </li>

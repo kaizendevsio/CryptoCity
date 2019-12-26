@@ -1,0 +1,33 @@
+﻿ 
+<div class="modal fade" id="cancelTradeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1600;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">WCC</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Make sure to double check the details</div>
+
+            <div class="modal-body">Make sure to double check the details</div>
+
+            <div class="modal-body">Make sure to double check the details</div>
+            <div class="modal-body">
+                <div id="dateDetails" class="modal-body"></div>
+                <div id="memcodeDetails" class="modal-body"></div>
+                <div id="memnameDetails" class="modal-body"></div>
+                <div id="toDetails" class="modal-body"></div>
+                <div id="fromDetails" class="modal-body"></div>
+                <div id="currencyDetails" class="modal-body"></div>
+                <div id="amountDetails" class="modal-body"></div>
+                <div id="txidDetails" class="modal-body"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Back</button>
+                <a class="btn btn-primary" onclick="location.href='@Url.Action("Cancel", "Trade")'">Apply</a>
+            </div>
+        </div>
+    </div>
+</div>

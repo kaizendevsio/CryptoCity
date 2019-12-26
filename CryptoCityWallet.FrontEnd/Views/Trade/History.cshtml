@@ -275,32 +275,39 @@
                                 </tr>
                                 <tr>
                                     <th>Date</th>
-                                    <th>USDT Rate Amount</th>
-                                    <th>Profit</th>
+
                                     <th>Bonus Type</th>
+                                    <th>In</th>
+
+                                    <th>Out</th>
+                                    <th>Balance</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 @foreach (var item in Model.TradeTransactions)
                                 {
-                                    <tr>
-                                        <td>
+                                <tr>
+                                    <td>
 
-                                            @Html.DisplayFor(modelItem => item.DividendDate)
-                                        </td>
+                                        @Html.DisplayFor(modelItem => item.DividendDate)
+                                    </td>
 
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DividendRate)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DividendPrice)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DividendBonusCd)
-                                        </td>
-                                    </tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DividendBonusCd)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DividendPrice)
+                                    </td>
+                                   
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DividendRate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DividendBonusCd)
+                                    </td>
+                                </tr>
                                 }
 
                             </tbody>

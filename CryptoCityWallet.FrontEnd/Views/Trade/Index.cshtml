@@ -372,36 +372,38 @@
                             <div class="form-group">
                                 <h4>Select currency to participate in WCC Trade: </h4>
                             </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group">
+                        
 
-                                <label>Currency (Available Balance)</label>
-                                <select class="form-control" Name="FromWalletCode">
-                                    @foreach (var modelItem in Model.UserWallets)
-                                    {
-                                        <option value="@Html.ValueFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance) @Html.DisplayFor(modelList => modelItem.WalletCode) | @String.Format("{0:#,##0.00}", modelItem.BalanceFiat).ToString() USD)</option>
-                                        @Html.DisplayFor(modelList => modelItem.WalletCode)
-                                    }
-                                </select>
+                        <form onsubmit="SendPackagePurchase('@Url.Action("BuyPackage", "Trade")','POST',this); return false">
+                            <div class="col-md-8">
+                                <div class="form-group">
+
+                                    <label>Currency (Available Balance)</label>
+                                    <select class="form-control" Name="FromWalletCode">
+                                        @foreach (var modelItem in Model.UserWallets)
+                                        {
+                                            <option value="@Html.ValueFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance) @Html.DisplayFor(modelList => modelItem.WalletCode) | @String.Format("{0:#,##0.00}", modelItem.BalanceFiat).ToString() USD)</option>
+                                            @Html.DisplayFor(modelList => modelItem.WalletCode)
+                                        }
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label>Amount (USD)</label>
-                                <input type="number" name="" class="form-control">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>Amount (USD)</label>
+                                    <input type="number" name="" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-8">
-                            <label><br></label>
-                            <div class="form-group">
-                                <h6 style="color:red;">Note : *100 USD Minimum</h6>
-                                <button type="submit" class="btn btn-primary">PURCHASE TRADE PACKAGE</button>
+                            <div class="col-md-8">
+                                <label><br></label>
+                                <div class="form-group">
+                                    <h6 style="color:red;">Note : *100 USD Minimum</h6>
+                                    <button type="submit" class="btn btn-primary">PURCHASE TRADE PACKAGE</button>
+
+                                </div>
 
                             </div>
-
-                        </div>
-
+                        </form>
                     </div>
 
                 </div>
@@ -473,7 +475,7 @@
                                             @if (item.CancellationDate == null)
                                             {
 
-                                            <button id="send" data-toggle="modal" data-target="#sendModal" class="btn btn-warning">CANCEL </button>  
+                                            <button id="send" data-toggle="modal" data-target="#cancelModal" class="btn btn-warning">CANCEL </button>  
                                             }
                                             else
                                             {
@@ -615,4 +617,5 @@
 
     </script>
 
+   
 }
