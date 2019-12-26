@@ -1,0 +1,253 @@
+﻿@model UserVM
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+
+    <link rel="icon" href="~/img/favicon/fav.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/favicon/fav.png">
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+       <script src="~/js/jquery.slimscroll.min.js"></script>
+    <script src="~/js/js.cookie.js"></script>
+    <script src="~/js/default.min.js"></script>
+    <script src="~/js/apps.min.js"></script>
+    <script src="~/js/jquery.gritter.js"></script>
+    <script src="~/js/moment.js"></script>
+    <script src="~/js/form-plugins.demo.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+            console.log($().jquery); // This prints v1.4.2
+
+        });
+    </script>
+
+    <script src="~/js/d3.min.js"></script>
+    <script src="~/js/nv.d3.min.js"></script>
+    <script src="~/js/jquery-jvectormap.min.js"></script>
+    <script src="~/js/jquery-jvectormap-world-mill.js"></script>
+    <script src="~/js/apexcharts.min.js"></script>
+    <script src="~/js/dashboard-v3.js"></script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-53034621-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <link href="~/css/orgchart.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.9/js/jquery.orgchart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.9/js/jquery.orgchart.min.js.map"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/animate.min.css" rel="stylesheet" />
+    <link href="~/css/style.min.css" rel="stylesheet" />
+    <link href="~/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/jquery.gritter.css" rel="stylesheet" />
+    <link href="~/css/defaults.css" rel="stylesheet" id="theme" />
+    <link href="~/css/nv.d3.css" rel="stylesheet" id="theme" />
+    <link href="~/css/jquery-jvectormap.css" rel="stylesheet" id="theme" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    <link href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/js/pace.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
+
+
+</head>
+<body>
+
+    <div id="header" class="header navbar-inverse">
+        <!-- begin navbar-header -->
+        <div class="navbar-header">
+            <a href="" class="navbar-brand">
+                <span class=""><img src="~/img/logo.png"> </span>
+            </a>
+            @*<button type="button" class="navbar-toggle" data-click="nav">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>*@
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
+                    aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent15">
+
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                </ul>
+                <!-- Links -->
+
+            </div>
+        </div>
+
+        <ul class="navbar-nav navbar-right">
+            <li class="dropdown navbar-user">
+ 
+                
+
+
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="~/img/user-512.png" alt="" />
+                    <span class="d-none d-md-inline">@Html.DisplayFor(model => model.UserInfo.UserName)</span> <b class="caret"></b>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <!-- <a href="javascript:;" class="dropdown-item">Edit Profile</a>
+        <a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
+        <a href="javascript:;" class="dropdown-item">Calendar</a> -->
+                    <a onclick="location.href='@Url.Action("Index", "Settings")'" class="dropdown-item">
+                        Settings
+                    </a>
+
+                    <div class="dropdown-divider"></div>
+
+
+
+                    <a href="#" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" class="dropdown-item">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="/logout" method="get" style="display: none;">
+                    </form>
+                </div>
+            </li>
+        </ul>
+        <!-- end header navigation right -->
+    </div>
+    <!-- end #header -->
+    <div id="sidebar" class="sidebar">
+        <!-- begin sidebar scrollbar -->
+        <div data-scrollbar="true" data-height="100%">
+            <!-- begin sidebar user -->
+            <ul class="nav">
+                <li class="nav-profile">
+                    <a href="javascript:;" data-toggle="nav-profile">
+                        <div class="cover with-shadow"></div>
+                        <div class="image">
+                            <img src="~/img/user-512.png" alt="" />
+
+                        </div>
+                        <div class="info">
+                            @Html.DisplayFor(model => model.Fullname)
+                            <small>@Html.DisplayFor(model => model.UserInfo.UserName)</small>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- end sidebar user -->
+            <!-- begin sidebar nav -->
+            <ul class="nav">
+                <li class="nav-header">Navigation</li>
+
+                <li class="has-sub " style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                    <a onclick="location.href='@Url.Action("Index", "Wallet")'">
+
+                        <i class="fa fa-wallet"></i>
+                        <span>Wallet</span>
+                    </a>
+
+
+                    <a onclick="location.href='@Url.Action("Index", "Trade")'">
+
+                        <i class="fa fa-exchange-alt"></i>
+                        <span>WCC Trade</span>
+                    </a>
+
+                    <a onclick="location.href='@Url.Action("History", "Trade")'">
+
+                        <i class="fa fa-history"></i>
+                        <span>WCCP History</span>
+                    </a>
+                    <a onclick="location.href='@Url.Action("Index", "Convert")'">
+
+                        <i class="fa fa-coins"></i>
+                        <span>WCCP Convert</span>
+                    </a>
+                  
+<li class="has-sub " style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fa fa-network-wired"></i>
+                        <span>Group Network </span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class=""><a onclick="location.href='@Url.Action("Index", "Genealogy")'">Binary Map </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("Index", "Genealogy")'">Uni-level Map </a></li>
+
+
+                    </ul>
+
+                    <a onclick="location.href='@Url.Action("Index", "Settings")'">
+
+
+                        <i class="fa fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+
+
+                </li>
+              
+                
+            </ul>
+
+        
+
+            <!-- end sidebar nav -->
+        </div>
+        <!-- end sidebar scrollbar -->
+    </div>
+
+    <div class="sidebar-bg"></div>
+
+    @RenderBody()
+    @RenderSection("Scripts", required: false)
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+

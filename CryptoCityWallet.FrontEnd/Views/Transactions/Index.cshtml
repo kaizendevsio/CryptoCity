@@ -1,5 +1,5 @@
 ﻿
-@{
+@*{
     Layout = "~/Views/Shared/_PartialView.cshtml";
     ViewBag.Title = "World CryptoCity | Transactions";
 
@@ -69,130 +69,301 @@
                 </tbody>
             </table>
         </div>
-    </main>
-@*<div align="left" style="margin-left: 30px;">
-    <div class="panel panel-default" style="width: 90%;" align="left">
-        <div class="panel-heading">
-            <strong>Wcc Trade History</strong>
-        </div>
+        @section Scripts{ 
+        }*@
 
-        <div class="panel-body">
-            <div class="wallets__list">
+        @{
 
-                <a href="#" class="wallet" style="background-color: #de8262;">
-                    <span class="wallet__header">
-                        <span class="wallet__currency">
-                            <span class="wallet__currency-icon">
+            ViewBag.Title = "World Crypto City | Transaction";
+            Layout = "~/Views/Shared/_LayoutUser.cshtml";
+        }
+        @model TransactionVM
+        <div id="content" class="content">
+            <!-- begin breadcrumb -->
+            <ol class="breadcrumb float-xl-right">
+                <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Transactions")'">Transaction</a></li>
+                <li class="breadcrumb-item active">All channels</li>
+            </ol>
+            <!-- end breadcrumb -->
+            <!-- begin page-header -->
+            <h1 class="page-header">Transaction <small> </small></h1>
 
-                            </span>
-                            <span class="wallet__currency-info">
-                                <span>Total Investment</span>
+            <div class="row">
 
-                            </span>
-                        </span>
 
-                        <span class="wallet__course">
-                            <span> </span>
-                            <span>@Html.DisplayFor(model => model.TotalInvestment) USD Rate</span>
-                        </span>
-                    </span>
 
-                    <span class="wallet__bg-img">
 
-                    </span>
-                </a>
+                <div class="col-md-12">
+                    <div class="panel panel-inverse">
+                        <div class="panel-heading">
+                            <div class="panel-heading-btn">
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                            </div>
+                            <h4 class="panel-title">History</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="panel-body">
+                                @* <table border="0" cellspacing="5" cellpadding="5">
 
-                <a href="#" class="wallet" style="background-color: #de8262;">
 
-                    <span class="wallet__header">
-                        <span class="wallet__currency">
-                            <span class="wallet__currency-icon">
 
-                            </span>
-                            <span class="wallet__currency-info">
-                                <span>Yesterday's Profit</span>
 
-                            </span>
-                        </span>
 
-                        <span class="wallet__course">
-                            <span> </span>
-                            <span>@Html.DisplayFor(model => model.YesterdayProfit) WCCP</span>
-                        </span>
-                    </span>
+                                    <tbody>
+                                        <tr>
+                                            <td>Minimum Date:</td>
+                                            <td><input name="min" id="min" type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Maximum Date:</td>
+                                            <td><input name="max" id="max" type="text"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>*@
 
-                    <span class="wallet__bg-img">
+                                <table class="display table dataTable table-bordered table-striped" id="property" cellspacing="0" width="100%">
 
-                    </span>
-                </a>
-                <a href="#" class="wallet" style="background-color: #de8262;">
+                                    <thead>
 
-                    <span class="wallet__header">
-                        <span class="wallet__currency">
-                            <span class="wallet__currency-icon">
 
-                            </span>
-                            <span class="wallet__currency-info">
-                                <span>WCCP Balance</span>
 
-                            </span>
-                        </span>
+                                      
+                                        <tr>
 
-                        <span class="wallet__course">
-                            <span> </span>
-                            <span>@Html.DisplayFor(model => model.WCCPBalance) WCCP</span>
-                        </span>
-                    </span>
+                                            <th>Date</th>
+                                            <th>Wallet</th>
+                                            <th>Amount </th>
+                                            <th>Remarks</th>
+                                            <th>Running Balance</th>
+                                        </tr>
+                                    </thead>
 
-                    <span class="wallet__bg-img">
+                                    <tbody>
+                                        @foreach (var item in Model.UserWalletTransactions)
+                                        {
+                                            <tr>
+                                                <td>
 
-                    </span>
-                </a>
+                                                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Name)
+                                                </td>
 
+
+                                                @if (item.Amount < 0)
+                                                {
+                                                    <td style="color:red">
+                                                        @String.Format("{0:#,##0.00000}", item.Amount).ToString()
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td style="color:#0bbd0b">
+                                                        @String.Format("{0:#,##0.00000}", item.Amount).ToString()
+                                                    </td>
+                                                }
+
+
+                                                <td>
+
+                                                    @Html.DisplayFor(modelItem => item.Remarks)
+                                                </td>
+
+                                                <td>
+                                                    @String.Format("{0:#,##0.00000}", item.RunningBalance).ToString()
+                                                </td>
+
+                                            </tr>
+                                        }
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end panel -->
             </div>
-            <div style="margin-top: 20px;">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>USD Rate Amount</th>
-                            <th>Total Profit</th>
-                            <th>WCCP Details</th>
-                            <th>Cancel</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- end col-4 -->
 
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Details</th>
-                            <th>In </th>
-                            <th>Out</th>
-                            <th>Balance</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
-    </div>
-</div>*@
+        @section Scripts{
+
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+            <link href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+            <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.js"></script>
+            <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+            <link href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+            <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
+
+            <script>
+
+                $('#send').click(function () {
+                    var date_ = $(this).closest("tr").find("td").eq(0).text();
+                    var membercode_ = $(this).closest("tr").find("td").eq(1).text();
+                    var name_ = $(this).closest("tr").find("td").eq(2).text();
+                    var from = $(this).closest("tr").find("td").eq(3).text();
+                    var to = $(this).closest("tr").find("td").eq(4).text();
+                    var amount = $(this).closest("tr").find("td").eq(5).text();
+                    var currency = $(this).closest("tr").find("td").eq(6).text();
+                    var txid = $(this).closest("tr").find("td").eq(7).text();
+                    document.getElementById('dateDetails').innerHTML = '<b> Date : ' + date_ + '</b>';
+                    document.getElementById('memcodeDetails').innerHTML = '<b> ID : ' + membercode_ + '</b>';
+                    document.getElementById('memnameDetails').innerHTML = '<b> ID : ' + name_ + '</b>';
+                    document.getElementById('fromDetails').innerHTML = '<b> From : ' + from + '</b>';
+                    document.getElementById('toDetails').innerHTML = '<b> To: ' + to + '</b>';
+
+                    document.getElementById('currencyDetails').innerHTML = '<b> From : ' + currency + '</b>';
+                    document.getElementById('amountDetails').innerHTML = '<b> Total Amount : ' + amount + '</b>';
+
+                    document.getElementById('txidDetails').innerHTML = '<b> TxID : ' + txid + '</b>';
+
+                });
+                function myFunction() {
+                    var input, filter, table, tr, td, i;
+                    input = document.getElementById("mylist");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("property");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+
+                //$('#from').click(function () {
+                //    var currency = $(this).closest("tr").find("td").eq(0).text();
+                //    var balance = $(this).closest("tr").find("td").eq(1).text();
+                //    var available = $(this).closest("tr").find("td").eq(2).text();
+                //    var hot = $(this).closest("tr").find("td").eq(3).text();
+                //    var cold = $(this).closest("tr").find("td").eq(4).text();
+                //    var rate = $(this).closest("tr").find("td").eq(5).text();
+                //    var usd = $(this).closest("tr").find("td").eq(6).text();
+                //    document.getElementById('currencyDetails').innerHTML = '<b> Date : ' + currency + '</b>';
+                //    document.getElementById('balanceDetails').innerHTML = '<b> Balance : ' + balance + '</b>';
+                //    document.getElementById('availableDetails').innerHTML = '<b> Available : ' + available + '</b>';
+                //    document.getElementById('hotDetails').innerHTML = '<b> HOT : ' + hot + '</b>';
+                //    document.getElementById('coldDetails').innerHTML = '<b> COLD : ' + cold + '</b>';
+
+                //    document.getElementById('rateDetails').innerHTML = '<b> RATE  : ' + rate + '</b>';
+                //    document.getElementById('usdDetails').innerHTML = '<b> USD : ' + usd + '</b>';
+
+
+                //});
+
+
+
+
+                var d = new Date();
+
+                var month = d.getMonth() + 1;
+                var day = d.getDate();
+
+                var output = d.getFullYear() + '/' +
+                    (month < 10 ? '0' : '') + month + '/' +
+                    (day < 10 ? '0' : '') + day;
+
+
+                $('#property').DataTable({
+                    stateSave: true,
+                    autoWidth: true,
+                    dom: 'lBf<"toolbar">rtip<"clear">', fnInitComplete: function () {
+                        $('div.toolbar').html('<div class="dataTables_length" id=" "><label> <select name=" " aria-controls="property" onchange="myFunction()" id="mylist"class=""><option value="Convert">Convert</option><option value="Daily Profit">Daily Profit</option><option value="Affiliate">Affiliate</option><option value="Binary">Binary</option> </select></label></div><div id="example_filter" class="dataTables_filter input-daterange"><label><input type="text" id="from_date_picker" class="date-range-filter" placeholder="Date Start" data-date-format="mm-dd-yyyy" id="min" placeholder="" aria-controls="example">To<input type="text" id="to_date_picker" class="date-range-filter"  placeholder="Date End" data-date-format="mm-dd-yyyy" id="max" aria-controls="example"></label></div>');
+                    },
+                    buttons: [
+                        {
+                            extend: 'copy',
+
+                            className: 'dt-button btn btn-primary '
+                        }, {
+                            extend: 'csv',
+                            orientation: 'landscape',
+                            title: 'WCC.com',
+                            messageTop: 'The information in this table is copyright to WCC.',
+                            messageBottom: output,
+                            className: 'dt-button btn btn-primary '
+                        }, {
+                            extend: 'excel',
+                            orientation: 'landscape',
+                            extend: 'excelHtml5',
+                            title: 'WCC.com',
+                            messageTop: 'The information in this table is copyright to WCC.',
+                            messageBottom: output,
+                            className: 'dt-button btn btn-primary '
+                        }, {
+                            extend: 'pdf',
+                            orientation: 'landscape',
+                            extend: 'pdfHtml5',
+                            pageSize: 'LEGAL',
+                            title: 'WCC.com',
+                            messageTop: 'The information in this table is copyright to WCC.',
+                            messageBottom: output,
+                            className: 'dt-button btn btn-primary '
+                        }, {
+                            extend: 'print',
+                            orientation: 'landscape',
+                            pageSize: 'LEGAL',
+                            title: 'WCC.com',
+                            messageTop: 'The information in this table is copyright to WCC.',
+                            messageBottom: output,
+                            className: 'dt-button btn btn-primary '
+                        }
+                    ]
+                });
+                $(document).ready(function () {
+
+                    $('.input-daterange input').each(function () {
+                        $(this).datepicker('clearDates');
+                    });
+
+                    // Extend dataTables search
+                    $.fn.dataTable.ext.search.push(
+                        function (settings, data, dataIndex) {
+                            var min = $('#min').val();
+                            var max = $('#max').val();
+                            var createdAt = data[0] || 1; // Our date column in the table
+
+                            if (
+                                (min == "" || max == "") ||
+                                (moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max))
+                            ) {
+                                return true;
+                            }
+                            return false;
+                        }
+                    );
+
+                    // Re-draw the table when the a date range filter changes
+                    $('.date-range-filter').change(function () {
+                        var table = $('#property').DataTable();
+                        table.draw();
+                    });
+
+
+                    $('.date-range-filter').datepicker();
+                });
+            </script>
+
+        }
