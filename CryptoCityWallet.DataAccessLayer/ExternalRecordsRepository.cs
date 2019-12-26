@@ -23,5 +23,17 @@ namespace CryptoCityWallet.DataAccessLayer
             int Dp = db.VMember.Count(item => item.SponsorUserId == userAuth.Id);
             return Dp;
         }
+
+        public bool CreateUserVolume(TblUserAuth userAuth, dbWorldCCityContext db)
+        {
+            TblUserVolumes tblUserVolumes = new TblUserVolumes();
+            tblUserVolumes.UserAuthId = userAuth.Id;
+
+            db.TblUserVolumes.Add(tblUserVolumes);
+            db.SaveChanges();
+
+            return true;
+
+        }
     }
 }

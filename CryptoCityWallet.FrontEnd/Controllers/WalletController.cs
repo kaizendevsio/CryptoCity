@@ -49,10 +49,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     WalletVM walletVM = new WalletVM();
                     walletVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
                     walletVM.Username = userAuth.UserName;
-                    walletVM.BTCBalance = (decimal)userWallets.Find(i => i.WalletCode == "BTC").Balance;
-                    walletVM.ETHBalance = (decimal)userWallets.Find(i => i.WalletCode == "ETH").Balance;
-                    walletVM.TTHBalance = (decimal)userWallets.Find(i => i.WalletCode == "USDT").Balance;
                     walletVM.TransactionHistory = new TransactionVM { UserWalletTransactions = userWalletTransactions };
+                    walletVM.UserWallets = userWallets.FindAll(item => item.WalletType.Code == "BTC" || item.WalletType.Code == "ETH" || item.WalletType.Code == "USDT");
                     //walletVM.TransactionHistory = new TransactionVM { UserWalletTransactions = userWalletTransactions.FindAll(i => i.CreatedOn >= DateTime.Today)};
 
                     return View(walletVM);
