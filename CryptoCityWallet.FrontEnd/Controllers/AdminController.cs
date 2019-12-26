@@ -109,8 +109,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         }
 
 
-        [Route("Admin/Map")]
-        public async Task<IActionResult> MapAsync()
+        [Route("Admin/UniLevelMap")]
+        public async Task<IActionResult> UniLevelMapAsync()
         {
             try
             {
@@ -127,6 +127,22 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         }
 
 
+        [Route("Admin/Map")]
+        public async Task<IActionResult> MapAsync()
+        {
+            try
+            {
+                UserResponseBO userResponseBO = await SessionHelper.SessionStartAsync(HttpContext.Session, AccessRole.Admin);
+                UserVM userVM = new UserVM { UserInfo = new UserBO { FirstName = userResponseBO.UserInfo.FirstName, LastName = userResponseBO.UserInfo.LastName, UserName = userResponseBO.UserAuth.UserName } };
+
+                return View(userVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
+        }
 
 
         [Route("Admin/Members")]

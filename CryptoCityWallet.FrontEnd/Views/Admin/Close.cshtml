@@ -1,20 +1,24 @@
-﻿@{
+﻿ 
+@{
 
-    ViewBag.Title = "WCC Admin | Close";
+    ViewBag.Title = "WCC Admin | Members";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
+@model MembersVM
 <div id="content" class="content">
     <!-- begin breadcrumb -->
     <ol class="breadcrumb float-xl-right">
-        <li class="breadcrumb-item"><a href="javascript:;">Close</a></li>
+        <li class="breadcrumb-item"><a href="javascript:;">Members</a></li>
         <li class="breadcrumb-item active">All channels</li>
     </ol>
     <!-- end breadcrumb -->
     <!-- begin page-header -->
-    <h1 class="page-header">Close <small> </small></h1>
-
+    <h1 class="page-header">Member List  <small> </small></h1>
 
     <div class="row">
+
+
 
         <div class="col-md-12">
             <div class="panel panel-inverse">
@@ -28,67 +32,277 @@
                     <h4 class="panel-title">-</h4>
                 </div>
                 <div class="panel-body">
-                
-                    <div class="row">
-                       
-                        <div class="col-md-4">
-                            <label>Closing Date</label>
-                            <div class="form-group">
-                                <input type="date" name="" class="form-control">
-                            </div>
+                    <div class="form-group">
+                        <!-- inline -->
+                        <label>SORT :</label> &nbsp;
+                        <div>
+                            <input type="radio" id="inlineCssRadio1" name="sort">
+                            <label for="inlineCssRadio1">DESC</label>
+                            </br>
+
+                            <input type="radio" id="inlineCssRadio1" name="sort" />
+                            <label for="inlineCssRadio1">ASC</label>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <button type="submit" class="btn btn-inverse">Submit</button>
+                        <label>Keyword</label>
+                        <input type="" name="" class="form-control">
+                    </div>
+                    @*<div class="form-group">
+                            <div class="checkbox checkbox-css checkbox-inline">
+                                <input type="checkbox" id="inlineCssCheckbox1" />
+                                <label for="inlineCssCheckbox1">Incomplete Profile</label>
+                            </div>
+                            <div class="checkbox checkbox-css checkbox-inline">
+                                <input type="checkbox" id="inlineCssCheckbox1" />
+                                <label for="inlineCssCheckbox1">Incomplete Profile</label>
+                            </div>
+                            <div class="checkbox checkbox-css checkbox-inline">
+                                <input type="checkbox" id="inlineCssCheckbox1" />
+                                <label for="inlineCssCheckbox1">Deposit</label>
+                            </div>
+                        </div>*@
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-12">
-            <div class="panel panel-inverse">
-                <div class="panel-heading">
-                    <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                    </div>
-                    <h4 class="panel-title">History</h4>
+    </div>
+
+
+
+    <div class="col-md-12">
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                 </div>
+                <h4 class="panel-title">History</h4>
+            </div>
+            <div class="table-responsive">
                 <div class="panel-body">
+                    @*<table border="0" cellspacing="5" cellpadding="5">
+                            <tbody>
+                                <tr>
+                                    <td>Minimum Date:</td>
+                                    <td><input name="min" id="min" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td>Maximum Date:</td>
+                                    <td><input name="max" id="max" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>*@
 
-                    <table class="table table-bordered">
+
+                    <table class="table table-bordered" id="dataTable">
                         <thead>
-                              
-                        <th>Closing Date</th>
-                        <th>Dividends</th>
-                        <th>Member Name (ID)</th>
-                         
-                        </thead>
-
-                        <tbody>
                             <tr>
-                                <td colspan="3">
-                                    <div class="alert alert-warning">
-                                        <i class="fa fa-info-circle fa-lg m-r-5 pull-left m-t-2"></i>
-                                        No Data
-                                    </div>
+                                <th>Closing Date</th>
+                                <th>Dividends</th>
+                                <th>Member Name (ID)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*@foreach (var item in Model.UserDetails)
+                                {*@
+                            <tr>
+                                <td>
+
+                                    Html.DisplayFor(modelItem => item.CreatedOn)
+                                </td>
+                                <td>
+                                    Html.DisplayFor(modelItem => item.ID)
                                 </td>
 
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
+                                <td>
+                                    Html.DisplayFor(modelItem => item.FirstName)   Html.DisplayFor(modelItem => item.LastName)
+                                </td>
+                             
+                                
 
+
+                            </tr>
+                            }
+
+                        </tbody>
                     </table>
 
                 </div>
             </div>
         </div>
-
-
-
     </div>
     <!-- end panel -->
 </div>
+<!-- end col-4 -->
+</div>
+@section Scripts{
+    <style>
+        .toggle-button {
+            margin: 5px 0;
+            border-radius: 20px;
+            border: 2px solid #D0D0D0;
+            height: 24px;
+            cursor: pointer;
+            width: 50px;
+            position: relative;
+            display: inline-block;
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+        }
+
+            .toggle-button span {
+                position: absolute;
+                left: 0;
+                top: 0;
+                border-radius: 100%;
+                width: 26px;
+                height: 26px;
+                background-color: white;
+                float: left;
+                margin: -3px 0 0 -3px;
+                border: 2px solid #D0D0D0;
+                transition: left 0.3s;
+            }
+
+        .toggle-button-selected {
+            background-color: #83B152;
+            border: 2px solid #7DA652;
+        }
+
+            .toggle-button-selected span {
+                left: 26px;
+                top: 0;
+                margin: 0;
+                border: none;
+                width: 24px;
+                height: 24px;
+                box-shadow: 0 0 4px rgba(0,0,0,0.1);
+            }
+    </style>
+    <script>
+
+$('.toggle').change(function() {
+     debugger;
+    if($('.toggle').hasClass('off')){
+        //$('#staticMapImg').hide();
+    }else{
+        //$('#staticMapImg').show();
+    }
+})
+
+
+        $(document).ready(function () {
+
+
+        var table = $('#dataTable').DataTable();
+
+
+
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var min = $('#min').datepicker("getDate");
+                    var max = $('#max').datepicker("getDate");
+                    var startDate = new Date(data[3]);
+                    if (min == null && max == null) { return true; }
+                    if (min == null && startDate <= max) { return true; }
+                    if (max == null && startDate >= min) { return true; }
+                    if (startDate <= max && startDate >= min) { return true; }
+                    return false;
+
+                });
+
+
+            $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            var table = $('#dataTable').DataTable();
+
+
+
+
+
+        //    $("#confirm").on("submit", function(event) {
+        //    event.preventDefault();
+
+        //    var formData = {
+        //        'txid': $('input[name=email]').val(),
+        //        'amount': $('input[name=email]').val(),
+        //        'email': $('input[name=email]').val()//for get email
+        //    };
+        //    console.log(formData);
+
+        //    $.ajax({
+        //        url: "/Withdraw/SendADA",
+        //        type: "post",
+        //        data: formData,
+        //        success: function(d) {
+        //            alert("Sent Successfully");
+        //        }
+        //    });
+        //});
+
+
+
+            $('#min, #max').change(function () {
+                table.draw();
+            });
+
+
+
+
+
+
+        });
+    var d = new Date();
+
+var month = d.getMonth()+1;
+var day = d.getDate();
+
+var output = d.getFullYear() + '/' +
+    (month<10 ? '0' : '') + month + '/' +
+    (day<10 ? '0' : '') + day;
+
+         $('#dataTable').DataTable({
+         stateSave: true,
+        autoWidth: true,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy',  { extend: 'csv',
+                orientation: 'landscape',
+                title: 'WCC.com',
+                messageTop: 'The information in this table is copyright to WCC.',
+                messageBottom: output
+          } , { extend: 'excel',
+                orientation: 'landscape',
+                extend: 'excelHtml5',
+                title: 'WCC.com',
+                messageTop: 'The information in this table is copyright to WCC.',
+                messageBottom: output
+          } , {
+            extend: 'pdf',
+                orientation: 'landscape',
+                extend: 'pdfHtml5',
+                title: 'WCC.com',
+             messageTop: 'The information in this table is copyright to WCC.',
+                messageBottom: output
+            }, { extend: 'print',
+                orientation: 'landscape',
+
+                title: 'WCC.com',
+             messageTop: 'The information in this table is copyright to WCC.',
+                messageBottom: output
+          }
+        ]
+
+} );
+
+    </script>
+}

@@ -3,7 +3,7 @@
     ViewBag.Title = "WCC Admin | Account";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-@model AdminVM
+@model UserVM
 <div id="content" class="content">
     <!-- begin breadcrumb -->
     <ol class="breadcrumb float-xl-right">
@@ -33,7 +33,7 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="" name="" asp-for="Username" class="form-control" readonly="">
+                                <input type="text" value="@Html.DisplayFor(model => model.UserInfo.UserName) "   class="form-control" readonly="">  
                             </div>
                         </div>
                     
@@ -42,7 +42,7 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label>Date Joined</label>
-                                <input type="" name="" class="form-control" readonly="">
+                                <input type="date" name=""value="@Html.DisplayFor(model => model.UserInfo.CreatedOn).ToString() " class="form-control" readonly="">
                             </div>
                         </div>
                        

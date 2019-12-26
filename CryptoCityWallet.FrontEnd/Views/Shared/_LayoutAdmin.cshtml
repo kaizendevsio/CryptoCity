@@ -83,6 +83,7 @@
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
 
     <!-- ================== END BASE CSS STYLE ================== -->
     <!-- ================== BEGIN BASE JS ================== -->
@@ -163,24 +164,24 @@
 
                     @*<a onclick="location.href='@Url.Action("Deposit", "Admin")'">
 
-            <i class="fa fa-home"></i>
-            <span>Deposit</span>
-        </a>*@
+                <i class="fa fa-home"></i>
+                <span>Deposit</span>
+            </a>*@
 
-                    <a onclick="location.href='@Url.Action("TradeCurrency", "Admin")'">
+                    <a onclick="location.href='@Url.Action("TradeCurrency", "Admin")'" >
 
-                        <i class="fa fa-home"></i>
-                        <span>Trade</span>
+                        <i class="fa fa-exchange-alt"></i>
+                        <span style="cursor:default">Trade</span>
                     </a>
                     <a onclick="location.href='@Url.Action("Wallet", "Admin")'">
 
-                        <i class="fa fa-home"></i>
+                        <i class="fa fa-wallet"></i>
                         <span>Wallet Management</span>
                     </a>
 
                     <a onclick="location.href='@Url.Action("Ledger", "Admin")'">
 
-                        <i class="fa fa-home"></i>
+                        <i class="fa fa-history"></i>
                         <span>Ledger</span>
                     </a>
 
@@ -190,15 +191,22 @@
                         <i class="fa fa-cog"></i>
                         <span>Account</span>
                     </a>
-
-                    <a onclick="location.href='@Url.Action("Map", "Admin")'">
-
-
-                        <i class="fa fa-book"></i>
-                        <span>Map</span>
+                <li class="has-sub " style="border-bottom: 1px solid #46505a;
+              border-top: 1px solid #46505a;">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fa fa-network-wired"></i>
+                        <span>Group Network </span>
                     </a>
-<li class="has-sub " style="border-bottom: 1px solid #46505a;
-    border-top: 1px solid #46505a;">
+                    <ul class="sub-menu">
+                        <li class=""><a onclick="location.href='@Url.Action("Map", "Admin")'">Binary Map </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("UniLevelMap", "Admin")'">Uni-level Map </a></li>
+                       
+
+                    </ul>
+                </li>
+                <li class="has-sub " style="border-bottom: 1px solid #46505a;
+              border-top: 1px solid #46505a;">
                     <a href="javascript:;">
                         <b class="caret"></b>
                         <i class="fa fa-file"></i>
@@ -220,8 +228,8 @@
 
 
 
-            <!-- end sidebar nav -->
-        </div>
+                    <!-- end sidebar nav -->
+</div>
         <!-- end sidebar scrollbar -->
     </div>
 

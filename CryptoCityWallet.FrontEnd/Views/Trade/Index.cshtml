@@ -467,13 +467,13 @@
 
                                         </td>
                                         <td>
-                                            <button onclick="location.href='@Url.Action("History", "Trade")'"    class="btn btn-primary">Profit History </button>
-</td>
+                                            <button onclick="location.href='@Url.Action("History", "Trade")'" class="btn btn-primary">PROFIT HISTORY </button>
+                                        </td>
                                         <td>
                                             @if (item.CancellationDate == null)
-                                            { 
+                                            {
 
-                                                <button   onclick="ShowCancelModal();"   class="btn btn-warning">Cancel </button>
+                                            <button id="send" data-toggle="modal" data-target="#sendModal" class="btn btn-warning">CANCEL </button>  
                                             }
                                             else
                                             {
@@ -491,6 +491,7 @@
 
 
 
+                                <partial name="PartialsTrade/Cancel.cshtml" />
 
                             </tbody>
                         </table>
