@@ -1,100 +1,297 @@
-﻿
+﻿@*@{
+        Layout = "~/Views/Shared/_PartialView.cshtml";
+
+        ViewBag.Title = "World CryptoCity | Trade";
+    }
+    @model ConvertVM
+    <main class="main-content">
+
+        <div class="buy">
+            <div class="buy__header">
+
+                <h2>WCCP Converter</h2>
+
+            </div>
+            <div class="buy__body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>From</label>
+                            <select class="mdb-select md-form" style="display: none;">
+                                @foreach (var modelItem in Model.UserWallets)
+                                {
+                                    <option value="@Html.ValueFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance) @Html.DisplayFor(modelList => modelItem.WalletCode)  | @String.Format("{0:#,##0.00}", modelItem.BalanceFiat).ToString() USD)</option>
+                                    @Html.DisplayFor(modelList => modelItem.WalletCode)
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>User BTC Address</label>
+                        <div class="input-wrap">
+                            <input type="text" name="" class="" placeholder="BTC Addess" value="1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY" readonly>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Amount</label>
+                        <div class="input-wrap">
+                            <input type="text" name="" class="" placeholder="Amount to convert">
+                        </div>
+                    </div>
+                    <h4 style="color:red; margin-left:17px;">Minimum 30 WCCP or more Fee 3%</h4>
+
+                </div>
+
+                <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <select class="mdb-select md-form" style="display: none;">
+                                    <option value="" disabled="" selected="">BTC</option>
+                                    <option value="BITCOIN">BITCOIN</option>
+                                    <option value="TETHER">TETHER</option>
+                            <option value="BITCOINCASH">BITCOINCASH</option>
+                            <option value="ETHERIUM">ETHERIUM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="input-wrap">
+                                <input type="text" name="middlename" class="" placeholder="Amount">
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="modal-footer" style="border:none">
+                    <button type="button" class="btn btn-primary">Convert</button>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <script src="../ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+                <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
+                <script src="js/jquery-2.2.4.min.js"></script>
+
+                <script src="js/scripts.min.js"></script>
+
+
+
+
+                 Mirrored from frontend.test/wccp-converter by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Dec 2019 01:19:59 GMT
+
+            </div>
+        </div>
+    </main>*@
 @{
-    Layout = "~/Views/Shared/_PartialView.cshtml";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
 
-    ViewBag.Title = "World CryptoCity | Trade";
+    ViewBag.Title = "World Crypto City Plan | Convert";
 }
+
 @model ConvertVM
- <main class="main-content">
+<div id="content" class="content">
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb float-xl-right">
+        <li class="breadcrumb-item"><a onclick="location.href='@Url.Action("Index", "Convert")'">Convert</a></li>
+        <li class="breadcrumb-item active">All channels</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">WCCP Convert  <small> </small></h1>
 
-    <div class="buy">
-        <div class="buy__header">
+    <div class="row">
 
-            <h2>WCCP Converter</h2>
 
-        </div>
-        <div class="buy__body">
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>From</label>
-                        <select class="mdb-select md-form" style="display: none;">
-                            @foreach (var modelItem in Model.UserWallets)
-                            {
-                            <option value="@Html.ValueFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance) @Html.DisplayFor(modelList => modelItem.WalletCode)  | @String.Format("{0:#,##0.00}", modelItem.BalanceFiat).ToString() USD)</option>
-                                @Html.DisplayFor(modelList => modelItem.WalletCode)
-                            }
-                        </select>
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
+                    <h4 class="panel-title">Convert</h4>
                 </div>
+                <div class="panel-body">
+                    <div class="row">
 
-                <div class="col-md-4">
-                    <label>User BTC Address</label>
-                    <div class="input-wrap">
-                        <input type="text" name="" class="" placeholder="BTC Addess" value="1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY" readonly>
+                        <div class="col-md-8">
+                            <div class="form-group">
+
+                                <label>From</label>
+                                <select class="form-control"  >
+                                    @foreach (var modelItem in Model.UserWallets)
+                                    {
+                                        <option value="@Html.ValueFor(modelList => modelItem.WalletCode)">@Html.DisplayFor(modelList => modelItem.WalletName) (@Html.DisplayFor(modelList => modelItem.Balance) @Html.DisplayFor(modelList => modelItem.WalletCode)  | @String.Format("{0:#,##0.00}", modelItem.BalanceFiat).ToString() USD)</option>
+                                        @Html.DisplayFor(modelList => modelItem.WalletCode)
+                                    }
+                                </select>
+                                <br/>
+
+                                <h6 style="color:red;">Minimum 30 WCCP or more Fee 3%</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>User BTC Address</label>
+                                <input type="text" name="" class="form-control" value="1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY" readonly="">   
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Amount (USD)</label>
+                                <input type="number" name="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <label><br></label>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">CONVERT</button>
+
+                            </div>
+
+                        </div>
+
                     </div>
-                </div>
 
-                <div class="col-md-4">
-                    <label>Amount</label>
-                    <div class="input-wrap">
-                        <input type="text" name="" class="" placeholder="Amount to convert">
-                    </div>
                 </div>
-                <h4 style="color:red; margin-left:17px;">Minimum 30 WCCP or more Fee 3%</h4>
-
             </div>
-
-            @*<div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <select class="mdb-select md-form" style="display: none;">
-                            <option value="" disabled="" selected="">BTC</option>
-                            <option value="BITCOIN">BITCOIN</option>
-                            <option value="TETHER">TETHER</option>
-                    <option value="BITCOINCASH">BITCOINCASH</option>
-                    <option value="ETHERIUM">ETHERIUM</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-8">
-                    <div class="input-wrap">
-                        <input type="text" name="middlename" class="" placeholder="Amount">
-                    </div>
-                </div>
-            </div>*@
-
-            <div class="modal-footer" style="border:none">
-                <button type="button" class="btn btn-primary">Convert</button>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <script src="../ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-            <script>window.jQuery || document.write('<script src="js/jquery-2.2.4.min.js"><\/script>')</script>
-            <script src="js/jquery-2.2.4.min.js"></script>
-
-            <script src="js/scripts.min.js"></script>
-
-
-
-
-            <!-- Mirrored from frontend.test/wccp-converter by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Dec 2019 01:19:59 GMT -->
-
         </div>
+
+
+     
+        <!-- end panel -->
     </div>
-</main>
+    <!-- end col-4 -->
+    @*<partial name="Partials/Confirm.cshtml" />
+        <partial name="Partials/Cancel.cshtml" />*@
+</div>
+@section Scripts{
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.js"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#datatable_trade').DataTable({
+                initComplete: function () {
+                    this.api().columns().every(function () {
+                        var column = this;
+                        var select = $('<select><option value=""></option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+
+                                column
+                                    .search(val ? '^' + val + '$' : '', true, false)
+                                    .draw();
+                            });
+
+                        column.data().unique().sort().each(function (d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>')
+                        });
+                    });
+                }
+            });
+        });</script>
+
+    <script type="text/javascript">
+        var p, q;
+
+        function showPreload(e) {
+            q = e.innerHTML;
+            e.innerHTML = "Loading...";
+            e.style.opacity = 0.5;
+            p = e;
+        }
+        function CopyText() {
+            /* Get the text field */
+            var copyText = document.getElementById("genlink");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            /* Alert the copied text */
+            alert("Link Copied to clipboard.");
+        }
+
+
+        function getFormData(form) {
+            var unindexed_array = $(form).serializeArray();
+            var indexed_array = {};
+
+            $.map(unindexed_array, function (n, i) {
+                indexed_array[n['name']] = n['value'];
+            });
+
+            return JSON.stringify(indexed_array);
+        }
+
+        function SendPackagePurchase(url, type, form) {
+            $.ajax({
+                url: url,
+                type: type,
+                data: getFormData(form),
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data.Message != undefined) {
+                        alert(data.Message);
+                        window.location.reload();
+                    }
+                    p.style.opacity = 1;
+                    p.innerHTML = q;
+                },
+                error: function (data, textStatus, jqXHR) {
+                    console.log(data.responseJSON);
+                    alert(data.responseJSON.Message);
+                    p.style.opacity = 1;
+                    p.innerHTML = q;
+                },
+            });
+
+            return false
+        }
+
+    </script>
+
+}

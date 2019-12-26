@@ -1,274 +1,618 @@
-﻿
+﻿@*@{
+        Layout = "~/Views/Shared/_PartialView.cshtml";
+        ViewBag.Title = "World CryptoCity | My Wallet";
+    }
+    @model WalletVM
+    <main class="main-content">
+        <section class="wallets">
+            <h2>My Wallet</h2>
 
+            <div class="wallets__list">
+
+                <a class="wallet" style="background-color: #FF0800;" onclick="window.location.href='@Url.Action("MyBitcoin", "Wallet")'">
+
+                    <span class="wallet__header" >
+                        <span class="wallet__currency">
+                            <span class="wallet__currency-icon">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve">
+                                <g>
+                                <path d="M20.3,21.4l-1,3.8c1.1,0.3,4.8,1.5,5.3-0.7C25.1,22.2,21.3,21.7,20.3,21.4z" /><path d="M21.5,16.1l-0.9,3.5c1,0.3,4,1.3,4.5-0.7S22.5,16.4,21.5,16.1z" /><path d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M28.5,18.9
+                                                        c-0.2,1.6-1.1,2.3-2.3,2.7c1.6,0.8,2.4,2,1.6,4.2c-0.9,2.6-3.1,2.9-6.1,2.3L21,31l-1.7-0.4l0.7-2.8c-0.5-0.2-0.9-0.3-1.4-0.4
+                                                        l-0.7,2.8l-1.7-0.4l0.7-2.9c-0.4-0.1-0.8-0.2-1.2-0.3L13.4,26l0.9-2l1.3,0.3c0.5,0.1,0.7-0.2,0.8-0.4l1.1-4.5c0.1,0,0.1,0,0.2,0
+                                                        c-0.1-0.1-0.2-0.1-0.2-0.1l0.8-3.2c0-0.4-0.1-0.8-0.8-1l-1.3-0.3l0.5-1.9l2.4,0.6c0.4,0.1,0.7,0.2,1.1,0.3l0.7-2.8l1.7,0.4
+                                                        l-0.7,2.8c0.5,0.1,0.9,0.2,1.4,0.3l0.7-2.8l1.7,0.4L25,14.9C27.2,15.7,28.8,16.8,28.5,18.9z" />
+                                                </g>
+                                           </svg>
+                            </span>
+                            <span class="wallet__currency-info">
+                                <span>Bitcoin</span>
+                                <span>BTC</span>
+                            </span>
+                        </span>
+
+                        <span class="wallet__course">
+                            <span> @Html.DisplayFor(model => model.BTCBalance) BTC</span>
+                            <span>0 USD</span>
+                        </span>
+                    </span>
+
+                    <span class="wallet__footer">
+                        <button type="button" onclick="window.location.href='@Url.Action("MyBitcoin", "Wallet", new { GenLink = 1 })'" style="margin-bottom: -13px;display: block;line-height: 30px;height: 32px;background-color: #ffffff6b;" class="btn btn-primary">Deposit</button>
+                    </span>
+
+                    <span class="wallet__bg-img">
+                        <img src="~/img/wallet-bg-img-1.png" alt="">
+                    </span>
+                </a>
+                <a class="wallet" style="background-color: #03A57F;" onclick="location.href='@Url.Action("MyTether", "Wallet")'">
+
+                    <span class="wallet__header"  >
+                        <span class="wallet__currency">
+                            <span class="wallet__currency-icon">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve">
+                                <img src="~/img/tether.png" width="40">
+                                <path d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M14.831,21.05
+                                               c1.99-3.383,4.08-6.667,6.07-10.05c2.09,3.383,4.08,6.667,6.07,10.05c-0.099,0.099-0.199,0.099-0.298,0.199
+                                               c-1.891,1.094-3.781,2.189-5.572,3.284c-0.199,0.099-0.398,0.099-0.597,0c-1.791-1.095-3.932-2.304-5.723-3.398L14.831,21.05z
+                                                M20.901,31c-1.99-3.085-4.08-5.97-6.169-8.856c0.199,0.099,0.298,0.199,0.497,0.298c1.791,1.095,3.483,2.09,5.274,3.184
+                                               c0.298,0.199,0.497,0.199,0.796,0c1.891-1.094,3.781-2.189,5.672-3.284l0.249-0.139C25.13,25.089,23.09,28.114,20.901,31z" />
+                                </svg>
+                            </span>
+                            <span class="wallet__currency-info">
+                                <span>Tether</span>
+                                <span>USDT</span>
+                            </span>
+                        </span>
+
+                        <span class="wallet__course">
+                            <span>@Html.DisplayFor(model => model.TTHBalance) USDT</span>
+                            <span>0 USD</span>
+                        </span>
+                    </span>
+
+                    <span class="wallet__footer">
+                        <button onclick="window.location.href='@Url.Action("MyTether", "Wallet", new { GenLink = 1 })'" type="button" style="margin-bottom: -13px;display: block;line-height: 30px;height: 32px;background-color: #ffffff6b;" class="btn btn-primary">Deposit</button>
+                    </span>
+
+                    <span class="wallet__bg-img">
+                        <img src="~/img/tether.png" alt="" width="25">
+                    </span>
+                </a>
+
+                <a href="#add-wallet" class="add-wallet popup-link">
+                        <span class="add-wallet__icon">
+                            <img src="~/img/add-wallet-icon.png" alt="">
+                        </span>
+                        <span class="add-wallet__text">
+                            Add New Wallet
+                        </span>
+                    </a>
+
+            </div>
+            <br>
+            <div class="wallets__list">
+                <a  class="wallet" style="background-color: #6082B6;" onclick="location.href='@Url.Action("MyEthereum", "Wallet")'">
+
+                    <span class="wallet__header" >
+                        <span class="wallet__currency">
+                            <span class="wallet__currency-icon">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve">
+                                <path d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M14.831,21.05
+                                               c1.99-3.383,4.08-6.667,6.07-10.05c2.09,3.383,4.08,6.667,6.07,10.05c-0.099,0.099-0.199,0.099-0.298,0.199
+                                               c-1.891,1.094-3.781,2.189-5.572,3.284c-0.199,0.099-0.398,0.099-0.597,0c-1.791-1.095-3.932-2.304-5.723-3.398L14.831,21.05z
+                                                M20.901,31c-1.99-3.085-4.08-5.97-6.169-8.856c0.199,0.099,0.298,0.199,0.497,0.298c1.791,1.095,3.483,2.09,5.274,3.184
+                                               c0.298,0.199,0.497,0.199,0.796,0c1.891-1.094,3.781-2.189,5.672-3.284l0.249-0.139C25.13,25.089,23.09,28.114,20.901,31z" />
+
+    </svg>
+                            </span>
+                            <span class="wallet__currency-info">
+                                <span>Ethereum</span>
+                                <span>ETH</span>
+                            </span>
+                        </span>
+
+                        <span class="wallet__course">
+                            <span>@Html.DisplayFor(model => model.ETHBalance) ETH</span>
+                            <span>0 USD</span>
+                        </span>
+                    </span>
+
+                    <span class="wallet__footer">
+                        <button type="button" onclick="window.location.href='@Url.Action("MyEthereum", "Wallet", new { GenLink = 1 })'" style="margin-bottom: -13px;display: block;line-height: 30px;height: 32px;background-color: #ffffff6b;" class="btn btn-primary">Deposit</button>
+                    </span>
+
+                    <span class="wallet__bg-img">
+                        <img src="~/img/wallet-bg-img-2.png" alt="">
+                    </span>
+                </a>
+
+                <a href="#add-wallet" class="add-wallet popup-link">
+                        <span class="add-wallet__icon">
+                            <img src="~/img/add-wallet-icon.png" alt="">
+                        </span>
+                        <span class="add-wallet__text">
+                            Add New Wallet
+                        </span>
+                    </a>
+            </div>
+        </section>
+        <div align="center">
+            <div class="" style="width: 100%;" align="left">
+                <section class="transactions">
+                    <h3>Recent transactions</h3>
+
+                    <div class="transactions__list">
+
+
+
+                        @if (Model.TransactionHistory.UserWalletTransactions.Count == 0)
+                        {
+                            <h4 style="color: #949292;padding-left: 40px;">You have no recent transactions so far.</h4>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model.TransactionHistory.UserWalletTransactions)
+                            {
+                                <div class="transaction ">
+
+                                    <div class="transaction__header transaction__header--three-cols">
+                                        <div class="transaction__data">
+                                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                                        </div>
+
+                                        <div class="transaction__info">
+                                            <img src="~/img/transaction-icon-sent.svg" alt="">
+                                            @if (item.Amount < 0)
+                                            {
+                                                <p>Sent from @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Name)</p>
+                                            }
+                                            else
+                                            {
+                                                <p>Received from @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Name)</p>
+                                            }
+
+                                        </div>
+
+                                        <div class="transaction__course">
+                                            <span class="rate rate--minus"> @Html.DisplayFor(modelItem => item.Amount) @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Code)</span>
+                                            <span class="rate rate--normal"> 0 USD</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="transaction__body">
+                                        <ul class="transaction__details">
+                                            <li>
+                                                <span>Address:</span>
+                                            </li>
+                                            <li>
+                                                <span>Balance:</span> @Html.DisplayFor(modelItem => item.RunningBalance)
+                                            </li>
+                                            <li>
+                                                <span>Condition:</span> @Html.DisplayFor(modelItem => item.Remarks)
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+
+
+                            }
+                        }
+
+
+
+
+
+
+
+
+                    </div>
+                    <a href="@Url.Action("Index", "Transactions")" class="btn btn--green">All transactions</a>
+                </section>
+            </div>
+        </div>
+
+        <div class="d-none" style="position: fixed;top: 0px;left: 0px;width: 100vw;height: 100vh;background-color: #0023475e;">
+            <form class="popup popup-sent-currency zoom-anim-dialog form animated bounceIn" id="sent-currency" style="margin-top: 15vh;">
+                <div class="popup__content">
+
+                    <img class="popup-add-wallet__img" src="~/img/popup-add-wallet-icon.png" alt="">
+                    <h3 class="form__title">Send</h3>
+
+                    <div class="form__row">
+                        <div class="input-wrap">
+                            <input type="text" placeholder="Enter a BTC adress">
+                        </div>
+                    </div>
+
+                    <label class="form__label">Withdraw From</label>
+                    <div class="form__row">
+                        <select class="custom-select">
+                            <option value="Bitcoin">Bitcoin wallet</option>
+                            <option value="Ethereum">Ethereum wallet</option>
+                            <option value="Litecoin">Litecoin wallet</option>
+                        </select>
+                    </div>
+
+                    <label class="form__label">Amount</label>
+                    <div class="form__row">
+                        <div class="input-wrap input-wrap--50">
+                            <input type="text" value="0.00">
+                            <label class="input-wrap__label">USD</label>
+                        </div>
+                        <div class="input-wrap input-wrap--50">
+                            <input type="text" value="0.00">
+                            <label class="input-wrap__label">BTC</label>
+                        </div>
+                    </div>
+
+                    <label class="form__label">Note</label>
+                    <div class="form__row">
+                        <div class="input-wrap">
+                            <input type="text" placeholder="Write an optional message">
+                        </div>
+                    </div>
+
+                    <button class="btn btn--blue btn--full">Continue</button>
+                </div>
+                <div class="popup__thanks">
+                    <img src="~/img/popup-success.png" alt="">
+                    <h3>Your wallet added successful!</h3>
+                </div>
+            </form>
+
+
+        </div>
+
+
+    </main>*@
 @{
-    Layout = "~/Views/Shared/_PartialView.cshtml";
-    ViewBag.Title = "World CryptoCity | My Wallet";
+
+    ViewBag.Title = "WCC  | My Wallet";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 @model WalletVM
-<main class="main-content">
-    <section class="wallets">
-        <h2>My Wallet</h2>
+<div id="content" class="content">
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb float-xl-right">
+        <li class="breadcrumb-item"><a href="javascript:;">Wallet</a></li>
+        <li class="breadcrumb-item active">All channels</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">My Wallet <small> </small></h1>
 
-        <div class="wallets__list">
-
-            <a class="wallet" style="background-color: #FF0800;" onclick="window.location.href='@Url.Action("MyBitcoin", "Wallet")'">
-
-                <span class="wallet__header" >
-                    <span class="wallet__currency">
-                        <span class="wallet__currency-icon">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                 width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve">
-                            <g>
-                            <path d="M20.3,21.4l-1,3.8c1.1,0.3,4.8,1.5,5.3-0.7C25.1,22.2,21.3,21.7,20.3,21.4z" /><path d="M21.5,16.1l-0.9,3.5c1,0.3,4,1.3,4.5-0.7S22.5,16.4,21.5,16.1z" /><path d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M28.5,18.9
-													c-0.2,1.6-1.1,2.3-2.3,2.7c1.6,0.8,2.4,2,1.6,4.2c-0.9,2.6-3.1,2.9-6.1,2.3L21,31l-1.7-0.4l0.7-2.8c-0.5-0.2-0.9-0.3-1.4-0.4
-													l-0.7,2.8l-1.7-0.4l0.7-2.9c-0.4-0.1-0.8-0.2-1.2-0.3L13.4,26l0.9-2l1.3,0.3c0.5,0.1,0.7-0.2,0.8-0.4l1.1-4.5c0.1,0,0.1,0,0.2,0
-													c-0.1-0.1-0.2-0.1-0.2-0.1l0.8-3.2c0-0.4-0.1-0.8-0.8-1l-1.3-0.3l0.5-1.9l2.4,0.6c0.4,0.1,0.7,0.2,1.1,0.3l0.7-2.8l1.7,0.4
-													l-0.7,2.8c0.5,0.1,0.9,0.2,1.4,0.3l0.7-2.8l1.7,0.4L25,14.9C27.2,15.7,28.8,16.8,28.5,18.9z" />
-											</g>
-									   </svg>
-                        </span>
-                        <span class="wallet__currency-info">
-                            <span>Bitcoin</span>
-                            <span>BTC</span>
-                        </span>
-                    </span>
-
-                    <span class="wallet__course">
-                        <span> @Html.DisplayFor(model => model.BTCBalance) BTC</span>
-                        <span>0 USD</span>
-                    </span>
-                </span>
-
-                @*<span class="wallet__footer">
-                    <button type="button" onclick="window.location.href='@Url.Action("MyBitcoin", "Wallet", new { GenLink = 1 })'" style="margin-bottom: -13px;display: block;line-height: 30px;height: 32px;background-color: #ffffff6b;" class="btn btn-primary">Deposit</button>
-                </span>*@
-
-                <span class="wallet__bg-img">
-                    <img src="~/img/wallet-bg-img-1.png" alt="">
-                </span>
-            </a>
-            <a class="wallet" style="background-color: #03A57F;" onclick="location.href='@Url.Action("MyTether", "Wallet")'">
-
-                <span class="wallet__header"  >
-                    <span class="wallet__currency">
-                        <span class="wallet__currency-icon">
-                            <!-- 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve"> -->
-                            <img src="~/img/tether.png" width="40">
-                            <path d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M14.831,21.05
-										   c1.99-3.383,4.08-6.667,6.07-10.05c2.09,3.383,4.08,6.667,6.07,10.05c-0.099,0.099-0.199,0.099-0.298,0.199
-										   c-1.891,1.094-3.781,2.189-5.572,3.284c-0.199,0.099-0.398,0.099-0.597,0c-1.791-1.095-3.932-2.304-5.723-3.398L14.831,21.05z
-											M20.901,31c-1.99-3.085-4.08-5.97-6.169-8.856c0.199,0.099,0.298,0.199,0.497,0.298c1.791,1.095,3.483,2.09,5.274,3.184
-										   c0.298,0.199,0.497,0.199,0.796,0c1.891-1.094,3.781-2.189,5.672-3.284l0.249-0.139C25.13,25.089,23.09,28.114,20.901,31z" />
-                            </svg>
-                        </span>
-                        <span class="wallet__currency-info">
-                            <span>Tether</span>
-                            <span>USDT</span>
-                        </span>
-                    </span>
-
-                    <span class="wallet__course">
-                        <span>@Html.DisplayFor(model => model.TTHBalance) USDT</span>
-                        <span>0 USD</span>
-                    </span>
-                </span>
-
-                @*<span class="wallet__footer">
-                    <button onclick="window.location.href='@Url.Action("MyTether", "Wallet", new { GenLink = 1 })'" type="button" style="margin-bottom: -13px;display: block;line-height: 30px;height: 32px;background-color: #ffffff6b;" class="btn btn-primary">Deposit</button>
-                </span>*@
-
-                <span class="wallet__bg-img">
-                    <img src="~/img/tether.png" alt="" width="25">
-                </span>
-            </a>
-
-            @*<a href="#add-wallet" class="add-wallet popup-link">
-                    <span class="add-wallet__icon">
-                        <img src="~/img/add-wallet-icon.png" alt="">
-                    </span>
-                    <span class="add-wallet__text">
-                        Add New Wallet
-                    </span>
-                </a>*@
-
-        </div>
-        <br>
-        <div class="wallets__list">
-            <a  class="wallet" style="background-color: #6082B6;" onclick="location.href='@Url.Action("MyEthereum", "Wallet")'">
-
-                <span class="wallet__header" >
-                    <span class="wallet__currency">
-                        <span class="wallet__currency-icon">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                 width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve">
-                            <path d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M14.831,21.05
-										   c1.99-3.383,4.08-6.667,6.07-10.05c2.09,3.383,4.08,6.667,6.07,10.05c-0.099,0.099-0.199,0.099-0.298,0.199
-										   c-1.891,1.094-3.781,2.189-5.572,3.284c-0.199,0.099-0.398,0.099-0.597,0c-1.791-1.095-3.932-2.304-5.723-3.398L14.831,21.05z
-											M20.901,31c-1.99-3.085-4.08-5.97-6.169-8.856c0.199,0.099,0.298,0.199,0.497,0.298c1.791,1.095,3.483,2.09,5.274,3.184
-										   c0.298,0.199,0.497,0.199,0.796,0c1.891-1.094,3.781-2.189,5.672-3.284l0.249-0.139C25.13,25.089,23.09,28.114,20.901,31z" />
-
-</svg>
-                        </span>
-                        <span class="wallet__currency-info">
-                            <span>Ethereum</span>
-                            <span>ETH</span>
-                        </span>
-                    </span>
-
-                    <span class="wallet__course">
-                        <span>@Html.DisplayFor(model => model.ETHBalance) ETH</span>
-                        <span>0 USD</span>
-                    </span>
-                </span>
-
-                @*<span class="wallet__footer">
-                    <button type="button" onclick="window.location.href='@Url.Action("MyEthereum", "Wallet", new { GenLink = 1 })'" style="margin-bottom: -13px;display: block;line-height: 30px;height: 32px;background-color: #ffffff6b;" class="btn btn-primary">Deposit</button>
-                </span>*@
-
-                <span class="wallet__bg-img">
-                    <img src="~/img/wallet-bg-img-2.png" alt="">
-                </span>
-            </a>
-
-            @*<a href="#add-wallet" class="add-wallet popup-link">
-                    <span class="add-wallet__icon">
-                        <img src="~/img/add-wallet-icon.png" alt="">
-                    </span>
-                    <span class="add-wallet__text">
-                        Add New Wallet
-                    </span>
-                </a>*@
-        </div>
-    </section>
-    <div align="center">
-        <div class="" style="width: 100%;" align="left">
-            <section class="transactions">
-                <h3>Recent transactions</h3>
-
-                <div class="transactions__list">
+    <div class="row">
+        <!-- begin col-6 -->
+        <div class="col-xl-6"onclick="location.href='@Url.Action("MyBitcoin", "Wallet")'">
+            <!-- begin card -->
+            <div class="card border-0 bg-danger text-white mb-3 overflow-hidden">
+                <!-- begin card-body -->
+                <div class="card-body">
+                    <!-- begin row -->
+                    <div class="row">
+                        <!-- begin col-7 -->
+                        <div class="col-xl-7 col-lg-8">
+                            <!-- begin title -->
+                            <div class="mb-3 text-white ">
+                                <b>
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;color: #fff!important;" xml:space="preserve">
+                                    <g>
+                                    <path fill="#fff" d="M20.3,21.4l-1,3.8c1.1,0.3,4.8,1.5,5.3-0.7C25.1,22.2,21.3,21.7,20.3,21.4z" />
 
 
+                                         
+                                
 
-                    @if (Model.TransactionHistory.UserWalletTransactions.Count == 0)
-                    {
-                        <h4 style="color: #949292;padding-left: 40px;">You have no recent transactions so far.</h4>
-                    }
-                    else
-                    {
-                        @foreach (var item in Model.TransactionHistory.UserWalletTransactions)
-                        {
-                            <div class="transaction ">
+                                    <path fill="#fff" d="M21.5,16.1l-0.9,3.5c1,0.3,4,1.3,4.5-0.7S22.5,16.4,21.5,16.1z" /><path fill="#fff" d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M28.5,18.9
+                                                        c-0.2,1.6-1.1,2.3-2.3,2.7c1.6,0.8,2.4,2,1.6,4.2c-0.9,2.6-3.1,2.9-6.1,2.3L21,31l-1.7-0.4l0.7-2.8c-0.5-0.2-0.9-0.3-1.4-0.4
+                                                        l-0.7,2.8l-1.7-0.4l0.7-2.9c-0.4-0.1-0.8-0.2-1.2-0.3L13.4,26l0.9-2l1.3,0.3c0.5,0.1,0.7-0.2,0.8-0.4l1.1-4.5c0.1,0,0.1,0,0.2,0
+                                                        c-0.1-0.1-0.2-0.1-0.2-0.1l0.8-3.2c0-0.4-0.1-0.8-0.8-1l-1.3-0.3l0.5-1.9l2.4,0.6c0.4,0.1,0.7,0.2,1.1,0.3l0.7-2.8l1.7,0.4
+                                                        l-0.7,2.8c0.5,0.1,0.9,0.2,1.4,0.3l0.7-2.8l1.7,0.4L25,14.9C27.2,15.7,28.8,16.8,28.5,18.9z" />
+                                         
 
-                                <div class="transaction__header transaction__header--three-cols">
-                                    <div class="transaction__data">
-                                        @Html.DisplayFor(modelItem => item.CreatedOn)
-                                    </div>
-
-                                    <div class="transaction__info">
-                                        <img src="~/img/transaction-icon-sent.svg" alt="">
-                                        @if (item.Amount < 0)
-                                        {
-                                            <p>Sent from @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Name)</p>
-                                        }
-                                        else
-                                        {
-                                            <p>Received from @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Name)</p>
-                                        }
-
-                                    </div>
-
-                                    <div class="transaction__course">
-                                        <span class="rate rate--minus"> @Html.DisplayFor(modelItem => item.Amount) @Html.DisplayFor(modelItem => item.SourceUserWallet.WalletType.Code)</span>
-                                        @*<span class="rate rate--normal"> 0 USD</span>*@
-                                    </div>
-                                </div>
-
-                                <div class="transaction__body">
-                                    <ul class="transaction__details">
-                                        <li>
-                                            <span>Address:</span>
-                                        </li>
-                                        <li>
-                                            <span>Balance:</span> @Html.DisplayFor(modelItem => item.RunningBalance)
-                                        </li>
-                                        <li>
-                                            <span>Condition:</span> @Html.DisplayFor(modelItem => item.Remarks)
-                                        </li>
-                                    </ul>
-                                </div>
-
+                                         
+                                                </g>
+                                           </svg>
+                                </b>
+                                @*<span class="ml-2">
+                                    <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
+                                </span>*@
                             </div>
-
-
-
-                        }
-                    }
-
-
-
-
-
-
-
-
+                            <!-- end title -->
+                            <!-- begin total-sales -->
+                            <div class="row text-truncate">
+                                <!-- begin col-6 -->
+                                <div class="col-6">
+                                    <div class="f-s-12 text-white">BITCOIN</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="-">-</div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                                <!-- begin col-6 -->
+                                <div class="col-6">
+                                    <div class="f-s-12 text-white">BTC</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00"> @Html.DisplayFor(model => model.BTCBalance)</font></span></div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                            </div>
+                            <!-- end total-sales -->
+                            <!-- begin percentage -->
+                            @*<div class="mb-3 text-grey">
+                                <i class="fa fa-caret-up"></i> <span data-animation="number" data-value="00.00">0.00</span>New Visits
+                            </div>*@
+                            <!-- end percentage -->
+                            <hr class="bg-white-transparent-2" />
+                            <!-- begin row -->
+                            <div class="row text-truncate">
+                                <!-- begin col-6 -->
+                                <div class="col-6">
+                                    <div class="f-s-12 text-white">USDT</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="0">0.0</div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                                <!-- begin col-6 -->
+                                <div class="col-6">
+                                    <div class="f-s-12 text-white">USD</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00">0.00</font></span></div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                            </div>
+                            <!-- end row -->
+                        </div> <div class="col-xl-5 col-lg-4 align-items-d d-flex justify-content-end">
+                            <img src="~/img/wallet-bg-img-1.png" height="150px" class="d-none d-lg-block" />
+                        </div>
+                        <!-- end col-7 -->
+                        <!-- begin col-5 -->
+                        <!-- end col-5 -->
+                    </div>
+                    <!-- end row -->
                 </div>
-                <a href="@Url.Action("Index", "Transactions")" class="btn btn--green">All transactions</a>
-            </section>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+        </div>
+        <div class="col-xl-6" onclick="location.href='@Url.Action("MyTether", "Wallet")'">
+            <!-- begin card -->
+            <div class="card border-0 bg-green text-white mb-3 overflow-hidden">
+                <!-- begin card-body -->
+                <div class="card-body">
+                    <!-- begin row -->
+                    <div class="row">
+                        <!-- begin col-7 -->
+                        <div class="col-xl-7 col-lg-8">
+                            <!-- begin title -->
+                            <div class="mb-3 text-white ">
+                                <b> 
+                                    <img src="~/img/tether.png" width="40">
+
+                                   
+
+                                </b>
+                                <div class="row text-truncate">
+                                    <!-- begin col-6 -->
+                                    <div class="col-6">
+                                        <div class="f-s-12 text-white">USD</div>
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="-">-</div>
+                                        <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                            <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- end col-6 -->
+                                    <!-- begin col-6 -->
+                                    <div class="col-6">
+                                        <div class="f-s-12 text-white">USDT</div>
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00"> @Html.DisplayFor(model => model.TTHBalance)</font></span></div>
+                                        <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                            <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- end col-6 -->
+                                </div>
+                                <!-- end total-sales -->
+                                <!-- begin percentage -->
+                                @*<div class="mb-3 text-grey">
+                                    <i class="fa fa-caret-up"></i> <span data-animation="number" data-value="00.00">0.00</span>New Visits
+                                </div>*@
+                                <!-- end percentage -->
+                                <hr class="bg-white-transparent-2" />
+                                <!-- begin row -->
+                                <div class="row text-truncate">
+                                    <!-- begin col-6 -->
+                                    <div class="col-6">
+                                        <div class="f-s-12 text-white">USDT</div>
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="0">0.0</div>
+                                        <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                            <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- end col-6 -->
+                                    <!-- begin col-6 -->
+                                    <div class="col-6">
+                                        <div class="f-s-12 text-white">USD</div>
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00">0.00</font></span></div>
+                                        <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                            <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- end col-6 -->
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <!-- end col-7 -->
+                            <!-- begin col-5 -->
+                            <!-- end col-5 -->
+                        </div>  <div class="col-xl-5 col-lg-4 align-items-d d-flex justify-content-end">
+                                    @*<img src="~/img/tether.png" width="40" height="150px" class="d-none d-lg-block" />*@
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+            </div>
+        </div>
+        <!-- begin col-8 -->
+        <div class="col-xl-6"onclick="location.href='@Url.Action("MyEthereum", "Wallet")'">
+            <!-- begin card -->
+            <div class="card border-0  text-white mb-3 overflow-hidden" style="background-color: #563d7c">
+                <!-- begin card-body -->
+                <div class="card-body">
+                    <!-- begin row -->
+                    <div class="row">
+                        <!-- begin col-7 -->
+                        <div class="col-xl-7 col-lg-8">
+                            <!-- begin title -->
+                            <div class="mb-3 text-white ">
+                                <b>
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve">
+                                    <path fill="#fff" d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M14.831,21.05
+                                               c1.99-3.383,4.08-6.667,6.07-10.05c2.09,3.383,4.08,6.667,6.07,10.05c-0.099,0.099-0.199,0.099-0.298,0.199
+                                               c-1.891,1.094-3.781,2.189-5.572,3.284c-0.199,0.099-0.398,0.099-0.597,0c-1.791-1.095-3.932-2.304-5.723-3.398L14.831,21.05z
+                                                M20.901,31c-1.99-3.085-4.08-5.97-6.169-8.856c0.199,0.099,0.298,0.199,0.497,0.298c1.791,1.095,3.483,2.09,5.274,3.184
+                                               c0.298,0.199,0.497,0.199,0.796,0c1.891-1.094,3.781-2.189,5.672-3.284l0.249-0.139C25.13,25.089,23.09,28.114,20.901,31z" />
+
+
+
+    </svg>
+
+                                </b>
+                                <div class="row text-truncate">
+                                    <!-- begin col-6 -->
+                                    <div class="col-6">
+                                        <div class="f-s-12 text-white">ETHEREUM</div>
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number"  data-value="-">-</div>  
+                                        <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                            <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- end col-6 -->
+                                    <!-- begin col-6 -->
+                                    <div class="col-6">
+                                        <div class="f-s-12 text-white">ETH</div>
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00">@Html.DisplayFor(model => model.ETHBalance)</font></span></div>
+                                        <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                            <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- end col-6 -->
+                                </div>
+                                <!-- end total-sales -->
+                                <!-- begin percentage -->
+                                @*<div class="mb-3 text-grey">
+                                    <i class="fa fa-caret-up"></i> <span data-animation="number" data-value="00.00">0.00</span>New Visits
+                                </div>*@
+                                <!-- end percentage -->
+                                <hr class="bg-white-transparent-2" />
+                                <!-- begin row -->
+                                <div class="row text-truncate">
+                                    <!-- begin col-6 -->
+                                    <div class="col-6">
+                                        <div class="f-s-12 text-white">ETH</div>
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="0">0</div>
+                                        <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                            <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- end col-6 -->
+                                    <!-- begin col-6 -->
+                                    <div class="col-6">
+                                        <div class="f-s-12 text-white">USD</div>
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00">0.00</font></span></div>
+                                        <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                            <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- end col-6 -->
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <!-- end col-7 -->
+                            <!-- begin col-5 -->
+                            <!-- end col-5 -->
+                        </div>  <div class="col-xl-5 col-lg-4 align-items-d d-flex justify-content-end">
+                            <img src="~/img/wallet-bg-img-2.png" height="150px" class="d-none d-lg-block" />
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <!-- begin card -->
+            <div class="card border-0 bg-primary text-white mb-3 overflow-hidden">
+                <!-- begin card-body -->
+                <div class="card-body">
+                    <!-- begin row -->
+                    <div class="row">
+                        <!-- begin col-7 -->
+                        <div class="col-xl-7 col-lg-8">
+                            <!-- begin title -->
+                            <div class="mb-3 text-white ">
+                                <b>
+                                     
+
+                                </b>
+                                <div class="row text-truncate">
+                                    <!-- begin col-6 -->
+                                    <div class="col-6">
+
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="0">MY TRANSACTIONS</div>
+                                        <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                            <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="60%" style="width: 0%"></div>
+                                        </div>
+                                        <div class="f-s-12 text-white"> Click this card to check your transactions </div>
+                                    </div>
+                                    <!-- end col-6 -->
+                                    <!-- begin col-6 -->
+                                    @*<div class="col-6">
+                                        <div class="f-s-12 text-white">USD</div>
+                                        <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00">0.00</font></span></div>
+                                        <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                            <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                        </div>
+                                    </div>*@
+                                    <!-- end col-6 -->
+                                </div>
+                                <!-- end total-sales -->
+                                <!-- begin percentage -->
+                                @*<div class="mb-3 text-grey">
+                                    <i class="fa fa-caret-up"></i> <span data-animation="number" data-value="00.00">0.00</span>New Visits
+                                </div>*@
+                                <!-- end percentage -->
+                                 
+                                <!-- end row -->
+                            </div>
+                            <!-- end col-7 -->
+                            <!-- begin col-5 -->
+                            <!-- end col-5 -->
+                        
+                        <!-- end row -->
+                    </div>
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+            </div>
         </div>
     </div>
+</div>    
 
-    <div class="d-none" style="position: fixed;top: 0px;left: 0px;width: 100vw;height: 100vh;background-color: #0023475e;">
-        <form class="popup popup-sent-currency zoom-anim-dialog form animated bounceIn" id="sent-currency" style="margin-top: 15vh;">
-            <div class="popup__content">
-
-                <img class="popup-add-wallet__img" src="~/img/popup-add-wallet-icon.png" alt="">
-                <h3 class="form__title">Send</h3>
-
-                <div class="form__row">
-                    <div class="input-wrap">
-                        <input type="text" placeholder="Enter a BTC adress">
-                    </div>
-                </div>
-
-                <label class="form__label">Withdraw From</label>
-                <div class="form__row">
-                    <select class="custom-select">
-                        <option value="Bitcoin">Bitcoin wallet</option>
-                        <option value="Ethereum">Ethereum wallet</option>
-                        <option value="Litecoin">Litecoin wallet</option>
-                    </select>
-                </div>
-
-                <label class="form__label">Amount</label>
-                <div class="form__row">
-                    <div class="input-wrap input-wrap--50">
-                        <input type="text" value="0.00">
-                        <label class="input-wrap__label">USD</label>
-                    </div>
-                    <div class="input-wrap input-wrap--50">
-                        <input type="text" value="0.00">
-                        <label class="input-wrap__label">BTC</label>
-                    </div>
-                </div>
-
-                <label class="form__label">Note</label>
-                <div class="form__row">
-                    <div class="input-wrap">
-                        <input type="text" placeholder="Write an optional message">
-                    </div>
-                </div>
-
-                <button class="btn btn--blue btn--full">Continue</button>
-            </div>
-            <div class="popup__thanks">
-                <img src="~/img/popup-success.png" alt="">
-                <h3>Your wallet added successful!</h3>
-            </div>
-        </form>
-
-
-    </div>
-
-
-</main>

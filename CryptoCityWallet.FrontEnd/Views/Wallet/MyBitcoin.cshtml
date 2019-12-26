@@ -1,300 +1,679 @@
-﻿
+﻿@*@{
+        Layout = "~/Views/Shared/_PartialView.cshtml";
+    }
+    @model WalletVM
 
+
+
+    <main class="main-content">
+        <div class="wallet-inner">
+            <div class="wallet-inner__header">
+                <h2>Bitcoin wallet</h2>
+            </div>
+        </div>
+
+        <div class="wallet-inner__row">
+            <div class="wallet-inner__col" style="max-width:655px">
+                <div class="wallet wallet--full-width" style="background-color: #FF0800;">
+
+                    <span class="wallet__header">
+                        <span class="wallet__currency">
+                            <span class="wallet__currency-icon">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve">
+                                <g>
+                                <path d="M20.3,21.4l-1,3.8c1.1,0.3,4.8,1.5,5.3-0.7C25.1,22.2,21.3,21.7,20.3,21.4z" />
+                              <path d="M21.5,16.1l-0.9,3.5c1,0.3,4,1.3,4.5-0.7S22.5,16.4,21.5,16.1z" />
+
+
+
+
+
+                                <path d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M28.5,18.9
+                                                        c-0.2,1.6-1.1,2.3-2.3,2.7c1.6,0.8,2.4,2,1.6,4.2c-0.9,2.6-3.1,2.9-6.1,2.3L21,31l-1.7-0.4l0.7-2.8c-0.5-0.2-0.9-0.3-1.4-0.4
+                                                        l-0.7,2.8l-1.7-0.4l0.7-2.9c-0.4-0.1-0.8-0.2-1.2-0.3L13.4,26l0.9-2l1.3,0.3c0.5,0.1,0.7-0.2,0.8-0.4l1.1-4.5c0.1,0,0.1,0,0.2,0
+                                                        c-0.1-0.1-0.2-0.1-0.2-0.1l0.8-3.2c0-0.4-0.1-0.8-0.8-1l-1.3-0.3l0.5-1.9l2.4,0.6c0.4,0.1,0.7,0.2,1.1,0.3l0.7-2.8l1.7,0.4
+                                                        l-0.7,2.8c0.5,0.1,0.9,0.2,1.4,0.3l0.7-2.8l1.7,0.4L25,14.9C27.2,15.7,28.8,16.8,28.5,18.9z" />
+
+
+
+
+
+
+                                                </g>
+                                            </svg>
+                            </span>
+                            <span class="wallet__currency-info">
+                                <span>Bitcoin Wallet</span>
+                                <span>BTC</span>
+                            </span>
+                        </span>
+
+                        <span class="wallet__last-transactions">
+                            <span>+ 0$</span>
+                            <span>Last day</span>
+                        </span>
+
+                        <span class="wallet__currency-course">
+                            <span> 0BTC</span>
+                            <span> 0USD </span>
+                        </span>
+
+                        <span class="wallet__course">
+                            <span>0BTC</span>
+                            <span>0USD</span>
+                        </span>
+                    </span>
+
+                    <span class="wallet__footer">
+                        <a href="#" class="small-btn">Edit</a>
+
+                        <span><b>Wallet number:</b> 0x45e1D2D3C1d001aC30E9C0B10e3a9cdD35018Bf0</span>
+                    </span>
+
+                    <span class="wallet__bg-img">
+                        <img src="~/img/wallet-bg-img-1.png" alt="">
+                    </span>
+                </div>
+
+                <div class="wallet-inner__chart">
+                    <h3>Bitcoin Chart</h3>
+
+                    <script type="text/javascript">
+                        baseUrl = "https://widgets.cryptocompare.com/";
+                        var scripts = document.getElementsByTagName("script");
+                        var embedder = scripts[scripts.length - 1];
+                        (function () {
+                            var appName = encodeURIComponent(window.location.hostname);
+                            if (appName == "") { appName = "local"; }
+                            var s = document.createElement("script");
+                            s.type = "text/javascript";
+                            s.async = true;
+                            var theUrl = baseUrl + 'serve/v1/coin/chart?fsym=BTC&tsym=USD';
+                            s.src = theUrl + (theUrl.indexOf("?") >= 0 ? "&" : "?") + "app=" + appName;
+                            embedder.parentNode.appendChild(s);
+                        })();
+                    </script>
+
+
+
+                </div>
+
+                <div class="" style="padding-left:40px">
+                    <a onclick="ShowSendModal();" id="sendBtn" class="btn btn--green popup-link">Send</a>
+                    <a onclick="location.href='@Url.Action("MyBitcoin", "Wallet", new { GenLink = 1 })'" class="btn btn--green popup-link">Receive</a>
+                </div>
+            </div>
+            <div class="wallet-inner__col">
+                <section class="transactions">
+                    <h3>Bitcoin wallet transactions</h3>
+
+                    <div class="transactions__list">
+
+                        <h4 style="color: #949292;padding-left: 40px;">You have no transactions so far.</h4>
+
+                        <div class="transaction ">
+
+                                <div class="transaction__header transaction__header--three-cols">
+                                    <div class="transaction__data">
+                                        June 26, 2017
+                                    </div>
+
+                                    <div class="transaction__info">
+                                        <img src="~/img/transaction-icon-sent.svg" alt="">
+                                        <p>Sent to 3Bhe5sbhSTNxcDpYyy</p>
+                                    </div>
+
+                                    <div class="transaction__course">
+                                        <span class="rate rate--minus">- 0 BTC</span>
+                                        <span class="rate rate--normal">- 0 USD</span>
+                                    </div>
+                                </div>
+
+                                <div class="transaction__body">
+                                    <ul class="transaction__details">
+                                        <li>
+                                            <span>Sender name:</span> Andrew Smith
+                                        </li>
+                                        <li>
+                                            <span>Sender adress:</span> 3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
+                                        </li>
+                                        <li>
+                                            <span>Condition:</span> Pending
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+
+                    </div>
+                    <a class="btn btn--green" onclick="location.href='@Url.Action("Index", "Transactions")'">All transactions</a>
+                </section>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="d-none" id="DepositModal" style="
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        background-color: #0023475e;
+    ">
+
+        <form class="popup popup-sent-currency zoom-anim-dialog form animated bounceIn" id="deposit-currency" style="margin-top: 15vh;">
+            <div class="popup__content" style="padding-bottom:20px">
+
+                <img class="popup-add-wallet__img animated fadeIn" style="margin-top15px" src="https://api.qrserver.com/v1/create-qr-code/?size=192x192&data=@Html.DisplayFor(model => model.PaymentAddress)" alt="">
+                <h3 class="form__title" style="margin-top:10px;margin-bottom:10px;">Receive | Bitcoin</h3>
+                <p style="margin-bottom:25px;">Scan Qr code to deposit payment</p>
+
+                <div class="form__row">
+                    <div class="input-wrap">
+                        <input type="text" asp-for="PaymentAddress" placeholder="Loading Payment Address..">
+                    </div>
+                </div>
+
+                <button class="btn btn--blue btn--full" onclick="CopyText();" style="margin-bottom:20px">Copy Address</button>
+
+                <a href="#" style="text-align:center; text-decoration:underline">Not working?</a>
+
+            </div>
+            <div class="popup__thanks">
+                <img src="~/img/popup-success.png" alt="">
+                <h3>Your wallet added successful!</h3>
+            </div>
+        </form>
+
+
+    </div>
+
+
+    <div class="d-none" id="SendModal" style="position: fixed;top: 0px;left: 0px;width: 100vw;height: 100vh;background-color: #0023475e;">
+        <form class="popup popup-sent-currency zoom-anim-dialog form animated bounceIn" id="sent-currency" style="margin-top: 15vh;">
+            <div class="popup__content">
+
+                <img class="popup-add-wallet__img" src="~/img/popup-add-wallet-icon.png" alt="">
+                <h3 class="form__title">Send</h3>
+
+                <div class="form__row">
+                    <div class="input-wrap">
+                        <input type="text" placeholder="Enter recipient username">
+                    </div>
+                </div>
+
+                <label class="form__label">Withdraw From</label>
+                <div class="form__row">
+                    <select class="custom-select">
+                        <option value="Bitcoin">Bitcoin wallet</option>
+                        <option value="Ethereum">Ethereum wallet</option>
+                        <option value="Litecoin">Litecoin wallet</option>
+                    </select>
+                </div>
+
+                <label class="form__label">Amount</label>
+                <div class="form__row">
+                    <div class="input-wrap input-wrap--50">
+                        <input type="text" value="0.00">
+                        <label class="input-wrap__label">USD</label>
+                    </div>
+                    <div class="input-wrap input-wrap--50">
+                        <input type="text" value="0.00">
+                        <label class="input-wrap__label">BTC</label>
+                    </div>
+                </div>
+
+                <label class="form__label">Note</label>
+                <div class="form__row">
+                    <div class="input-wrap">
+                        <input type="text" placeholder="Write an optional message">
+                    </div>
+                </div>
+
+                <button class="btn btn--blue btn--full">Continue</button>
+            </div>
+            <div class="popup__thanks">
+                <img src="~/img/popup-success.png" alt="">
+                <h3>Your wallet added successful!</h3>
+            </div>
+        </form>
+
+
+    </div>
+
+    @section scripts {
+        <script type="text/javascript">
+            document.getElementById("sendBtn").addEventListener("click", function () {
+                ShowSendModal();
+            });
+
+            window.addEventListener('click', function(e){
+                if (document.getElementById('deposit-currency').contains(e.target)) {
+                    // Clicked in box
+                } else {
+                    HideDepositModal();
+                }
+                if (document.getElementById('sent-currency').contains(e.target)) {
+                    // Clicked in box
+                } else {
+                    HideSendModal();
+                }
+    });
+           function CopyText() {
+                        /* Get the text field */
+                        var copyText = document.getElementsByClassName("PaymentAddress")[0];
+
+                        /* Select the text field */
+                        copyText.select();
+                        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+                        /* Copy the text inside the text field */
+                        document.execCommand("copy");
+
+                        /* Alert the copied text */
+                        alert("Link Copied to clipboard.");
+                    }
+           function ShowDepositModal() {
+                document.getElementById("DepositModal").style.display = "block";
+            }
+           function HideDepositModal() {
+                document.getElementById("DepositModal").style.display = "none";
+            }
+
+            function ShowSendModal() {
+                document.getElementById("SendModal").style.display = "block";
+            }
+           function HideSendModal() {
+                document.getElementById("SendModal").style.display = "none";
+            }
+
+         @if (Model.GenLink == 1)
+            {
+                @:ShowDepositModal();
+            }
+        </script>
+    }*@
 @{
-    Layout = "~/Views/Shared/_PartialView.cshtml";
+
+    ViewBag.Title = "WCC  | My Bitcoin";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 @model WalletVM
+<div id="content" class="content">
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb float-xl-right">
+        <li class="breadcrumb-item"><a href="javascript:;">Wallet</a></li>
+        <li class="breadcrumb-item active">All channels</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header"> Bitcoin wallet <small> </small></h1>
 
-
-
-<main class="main-content">
-    <div class="wallet-inner">
-        <div class="wallet-inner__header">
-            <h2>Bitcoin wallet</h2>
-        </div>
-    </div>
-
-    <div class="wallet-inner__row">
-        <div class="wallet-inner__col" style="max-width:655px">
-            <div class="wallet wallet--full-width" style="background-color: #FF0800;">
-
-                <span class="wallet__header">
-                    <span class="wallet__currency">
-                        <span class="wallet__currency-icon">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                 width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve">
-                            <g>
-                            <path d="M20.3,21.4l-1,3.8c1.1,0.3,4.8,1.5,5.3-0.7C25.1,22.2,21.3,21.7,20.3,21.4z" />
-                          <path d="M21.5,16.1l-0.9,3.5c1,0.3,4,1.3,4.5-0.7S22.5,16.4,21.5,16.1z" />
-
-
-
-
-                                 
-                            <path d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M28.5,18.9
-													c-0.2,1.6-1.1,2.3-2.3,2.7c1.6,0.8,2.4,2,1.6,4.2c-0.9,2.6-3.1,2.9-6.1,2.3L21,31l-1.7-0.4l0.7-2.8c-0.5-0.2-0.9-0.3-1.4-0.4
-													l-0.7,2.8l-1.7-0.4l0.7-2.9c-0.4-0.1-0.8-0.2-1.2-0.3L13.4,26l0.9-2l1.3,0.3c0.5,0.1,0.7-0.2,0.8-0.4l1.1-4.5c0.1,0,0.1,0,0.2,0
-													c-0.1-0.1-0.2-0.1-0.2-0.1l0.8-3.2c0-0.4-0.1-0.8-0.8-1l-1.3-0.3l0.5-1.9l2.4,0.6c0.4,0.1,0.7,0.2,1.1,0.3l0.7-2.8l1.7,0.4
-													l-0.7,2.8c0.5,0.1,0.9,0.2,1.4,0.3l0.7-2.8l1.7,0.4L25,14.9C27.2,15.7,28.8,16.8,28.5,18.9z" />
+    <div class="row">
+        <!-- begin col-6 -->
+        <div class="col-xl-6" onclick="location.href='@Url.Action("MyBitcoin", "Wallet")'">
+            <!-- begin card -->
+            <div class="card border-0 bg-danger text-white mb-3 overflow-hidden">
+                <!-- begin card-body -->
+                <div class="card-body">
+                    <!-- begin row -->
+                    <div class="row">
+                        <!-- begin col-7 -->
+                        <div class="col-xl-7 col-lg-8">
+                            <!-- begin title -->
+                            <div class="mb-3 text-white ">
+                                <b>
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;color: #fff!important;" xml:space="preserve">
+                                    <g>
+                                    <path fill="#fff" d="M20.3,21.4l-1,3.8c1.1,0.3,4.8,1.5,5.3-0.7C25.1,22.2,21.3,21.7,20.3,21.4z" />
 
 
 
 
 
-                                 
-											</g>
-										</svg>
-                        </span>
-                        <span class="wallet__currency-info">
-                            <span>Bitcoin Wallet</span>
-                            <span>BTC</span>
-                        </span>
-                    </span>
 
-                    <span class="wallet__last-transactions">
-                        <span>+ 0$</span>
-                        <span>Last day</span>
-                    </span>
 
-                    <span class="wallet__currency-course">
-                        <span> 0BTC</span>
-                        <span> 0USD </span>
-                    </span>
 
-                    <span class="wallet__course">
-                        <span>0BTC</span>
-                        <span>0USD</span>
-                    </span>
-                </span>
 
-                <span class="wallet__footer">
-                    @*<a href="#" class="small-btn">Edit</a>*@
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+
+                                    <path fill="#fff" d="M21.5,16.1l-0.9,3.5c1,0.3,4,1.3,4.5-0.7S22.5,16.4,21.5,16.1z" /><path fill="#fff" d="M32,0H10C4.5,0,0,4.5,0,10v22c0,5.5,4.5,10,10,10h22c5.5,0,10-4.5,10-10V10C42,4.5,37.5,0,32,0z M28.5,18.9
+                                                        c-0.2,1.6-1.1,2.3-2.3,2.7c1.6,0.8,2.4,2,1.6,4.2c-0.9,2.6-3.1,2.9-6.1,2.3L21,31l-1.7-0.4l0.7-2.8c-0.5-0.2-0.9-0.3-1.4-0.4
+                                                        l-0.7,2.8l-1.7-0.4l0.7-2.9c-0.4-0.1-0.8-0.2-1.2-0.3L13.4,26l0.9-2l1.3,0.3c0.5,0.1,0.7-0.2,0.8-0.4l1.1-4.5c0.1,0,0.1,0,0.2,0
+                                                        c-0.1-0.1-0.2-0.1-0.2-0.1l0.8-3.2c0-0.4-0.1-0.8-0.8-1l-1.3-0.3l0.5-1.9l2.4,0.6c0.4,0.1,0.7,0.2,1.1,0.3l0.7-2.8l1.7,0.4
+                                                        l-0.7,2.8c0.5,0.1,0.9,0.2,1.4,0.3l0.7-2.8l1.7,0.4L25,14.9C27.2,15.7,28.8,16.8,28.5,18.9z" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                </g>
+                                           </svg>
+                                </b>
+                                @*<span class="ml-2">
+                                    <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
+                                </span>*@
+                            </div>
+                            <!-- end title -->
+                            <!-- begin total-sales -->
+                            <div class="row text-truncate">
+                                <!-- begin col-6 -->
+                                <div class="col-6">
+                                    <div class="f-s-12 text-white">BITCOIN WALLET</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="-">BTC</div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                                <!-- begin col-6 -->
+                                <div class="col-6">
+                                    <div class="f-s-12 text-white">Balance:</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00"> @Html.DisplayFor(model => model.BTCBalance) BTC </font></span></div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                            </div>
+                            <!-- end total-sales -->
+                            <!-- begin percentage -->
+                            @*<div class="mb-3 text-grey">
+                                <i class="fa fa-caret-up"></i> <span data-animation="number" data-value="00.00">0.00</span>New Visits
+                            </div>*@
+                            <!-- end percentage -->
+                            <!-- begin row -->
+                            <div class="row text-truncate">
+                                <!-- begin col-6 -->
+                                <div class="col-6">
+                                    <div class="f-s-12 text-white">Last day</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="0">+ 0$</div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                                <!-- begin col-6 -->
+                                <div class="col-6">
+                                    <div class="f-s-12 text-white">0 BTC</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00">0 USD</font></span></div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                            </div>
+                            <!-- end row -->
+                        </div> <div class="col-xl-5 col-lg-4 align-items-d d-flex justify-content-end">
+                            <img src="~/img/wallet-bg-img-1.png" height="150px" class="d-none d-lg-block" />
+                        </div>
+                        <!-- end col-7 -->
+                        <!-- begin col-5 -->
+                        <!-- end col-5 -->
+                    </div>
                     <span><b>Wallet number:</b> 0x45e1D2D3C1d001aC30E9C0B10e3a9cdD35018Bf0</span>
-                </span>
-
-                <span class="wallet__bg-img">
-                    <img src="~/img/wallet-bg-img-1.png" alt="">
-                </span>
-            </div>
-
-            <div class="wallet-inner__chart">
-                <h3>Bitcoin Chart</h3>
-
-                <script type="text/javascript">
-                    baseUrl = "https://widgets.cryptocompare.com/";
-                    var scripts = document.getElementsByTagName("script");
-                    var embedder = scripts[scripts.length - 1];
-                    (function () {
-                        var appName = encodeURIComponent(window.location.hostname);
-                        if (appName == "") { appName = "local"; }
-                        var s = document.createElement("script");
-                        s.type = "text/javascript";
-                        s.async = true;
-                        var theUrl = baseUrl + 'serve/v1/coin/chart?fsym=BTC&tsym=USD';
-                        s.src = theUrl + (theUrl.indexOf("?") >= 0 ? "&" : "?") + "app=" + appName;
-                        embedder.parentNode.appendChild(s);
-                    })();
-                </script>
-
-
-
-            </div>
-
-            <div class="" style="padding-left:40px">
-                <a onclick="ShowSendModal();" id="sendBtn" class="btn btn--green popup-link">Send</a>
-                <a onclick="location.href='@Url.Action("MyBitcoin", "Wallet", new { GenLink = 1 })'" class="btn btn--green popup-link">Receive</a>
-            </div>
-        </div>
-        <div class="wallet-inner__col">
-            <section class="transactions">
-                <h3>Bitcoin wallet transactions</h3>
-
-                <div class="transactions__list">
-
-                    <h4 style="color: #949292;padding-left: 40px;">You have no transactions so far.</h4>
-
-                    @*<div class="transaction ">
-
-                            <div class="transaction__header transaction__header--three-cols">
-                                <div class="transaction__data">
-                                    June 26, 2017
-                                </div>
-
-                                <div class="transaction__info">
-                                    <img src="~/img/transaction-icon-sent.svg" alt="">
-                                    <p>Sent to 3Bhe5sbhSTNxcDpYyy</p>
-                                </div>
-
-                                <div class="transaction__course">
-                                    <span class="rate rate--minus">- 0 BTC</span>
-                                    <span class="rate rate--normal">- 0 USD</span>
-                                </div>
-                            </div>
-
-                            <div class="transaction__body">
-                                <ul class="transaction__details">
-                                    <li>
-                                        <span>Sender name:</span> Andrew Smith
-                                    </li>
-                                    <li>
-                                        <span>Sender adress:</span> 3Bhe5sbhSTNxcDpYyyWkyN76YReDs8wFv8
-                                    </li>
-                                    <li>
-                                        <span>Condition:</span> Pending
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>*@
-
-
+                    <!-- end row -->
                 </div>
-                <a class="btn btn--green" onclick="location.href='@Url.Action("Index", "Transactions")'">All transactions</a>
-            </section>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
         </div>
+
+ 
+
+        <div class="col-xl-2" >
+            <!-- begin card -->
+            <div class="card border-0   text-white mb-3 overflow-hidden" style="background-color:#d9e0e7">
+                <!-- begin card-body -->
+                <div class="card-body">
+                    <!-- begin row -->
+
+
+
+                    <span>
+                        <button id="send" data-toggle="modal" data-target="#sendModal" class="btn btn-primary">SEND  </button>
+                    </span> 
+                    <!-- end row -->
+                </div>
+                <div class="card-body">
+                    <!-- begin row -->
+
+
+                     
+                        <button id="receive" data-toggle="modal" data-target="#receiveModal" class="btn btn-primary popup-link">RECEIVE </button> 
+                    
+                    <!-- end row -->
+                </div>
+                <div class="card-body">
+                    <!-- begin row -->
+
+
+
+                    <button onclick="location.href='@Url.Action("Index", "Transactions")'" class="btn btn-primary">ALL TRANSACTIONS </button>
+                    <!-- end row -->
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+        </div>
+
+    
+
+
+
+        <partial name="PartialsWallet/Send.cshtml" />
+        <partial name="PartialsWallet/Receive.cshtml" />
+        <!-- end card -->
     </div>
-
-</main>
-
-<div class="d-none" id="DepositModal" style="
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background-color: #0023475e;
-">
-
-    <form class="popup popup-sent-currency zoom-anim-dialog form animated bounceIn" id="deposit-currency" style="margin-top: 15vh;">
-        <div class="popup__content" style="padding-bottom:20px">
-
-            <img class="popup-add-wallet__img animated fadeIn" style="margin-top15px" src="https://api.qrserver.com/v1/create-qr-code/?size=192x192&data=@Html.DisplayFor(model => model.PaymentAddress)" alt="">
-            <h3 class="form__title" style="margin-top:10px;margin-bottom:10px;">Receive | Bitcoin</h3>
-            <p style="margin-bottom:25px;">Scan Qr code to deposit payment</p>
-
-            <div class="form__row">
-                <div class="input-wrap">
-                    <input type="text" asp-for="PaymentAddress" placeholder="Loading Payment Address..">
-                </div>
             </div>
-
-            <button class="btn btn--blue btn--full" onclick="CopyText();" style="margin-bottom:20px">Copy Address</button>
-
-            <a href="#" style="text-align:center; text-decoration:underline">Not working?</a>
-
-        </div>
-        <div class="popup__thanks">
-            <img src="~/img/popup-success.png" alt="">
-            <h3>Your wallet added successful!</h3>
-        </div>
-    </form>
-
-
-</div>
-
-
-<div class="d-none" id="SendModal" style="position: fixed;top: 0px;left: 0px;width: 100vw;height: 100vh;background-color: #0023475e;">
-    <form class="popup popup-sent-currency zoom-anim-dialog form animated bounceIn" id="sent-currency" style="margin-top: 15vh;">
-        <div class="popup__content">
-
-            <img class="popup-add-wallet__img" src="~/img/popup-add-wallet-icon.png" alt="">
-            <h3 class="form__title">Send</h3>
-
-            <div class="form__row">
-                <div class="input-wrap">
-                    <input type="text" placeholder="Enter recipient username">
-                </div>
-            </div>
-
-            <label class="form__label">Withdraw From</label>
-            <div class="form__row">
-                <select class="custom-select">
-                    <option value="Bitcoin">Bitcoin wallet</option>
-                    <option value="Ethereum">Ethereum wallet</option>
-                    <option value="Litecoin">Litecoin wallet</option>
-                </select>
-            </div>
-
-            <label class="form__label">Amount</label>
-            <div class="form__row">
-                <div class="input-wrap input-wrap--50">
-                    <input type="text" value="0.00">
-                    <label class="input-wrap__label">USD</label>
-                </div>
-                <div class="input-wrap input-wrap--50">
-                    <input type="text" value="0.00">
-                    <label class="input-wrap__label">BTC</label>
-                </div>
-            </div>
-
-            <label class="form__label">Note</label>
-            <div class="form__row">
-                <div class="input-wrap">
-                    <input type="text" placeholder="Write an optional message">
-                </div>
-            </div>
-
-            <button class="btn btn--blue btn--full">Continue</button>
-        </div>
-        <div class="popup__thanks">
-            <img src="~/img/popup-success.png" alt="">
-            <h3>Your wallet added successful!</h3>
-        </div>
-    </form>
-
-
-</div>
-
-@section scripts {
-    <script type="text/javascript">
-        document.getElementById("sendBtn").addEventListener("click", function () {
-            ShowSendModal();
-        });
-
-        window.addEventListener('click', function(e){
-            if (document.getElementById('deposit-currency').contains(e.target)) {
-                // Clicked in box
-            } else {
-                HideDepositModal();
-            }
-            if (document.getElementById('sent-currency').contains(e.target)) {
-                // Clicked in box
-            } else {
-                HideSendModal();
-            }
-});
-       function CopyText() {
-                    /* Get the text field */
-                    var copyText = document.getElementsByClassName("PaymentAddress")[0];
-
-                    /* Select the text field */
-                    copyText.select();
-                    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-
-                    /* Copy the text inside the text field */
-                    document.execCommand("copy");
-
-                    /* Alert the copied text */
-                    alert("Link Copied to clipboard.");
-                }
-       function ShowDepositModal() {
-            document.getElementById("DepositModal").style.display = "block";
-        }
-       function HideDepositModal() {
-            document.getElementById("DepositModal").style.display = "none";
-        }
-
-        function ShowSendModal() {
-            document.getElementById("SendModal").style.display = "block";
-        }
-       function HideSendModal() {
-            document.getElementById("SendModal").style.display = "none";
-        }
-
-     @if (Model.GenLink == 1)
-        {
-            @:ShowDepositModal();
-        }
-    </script>
-}
+    

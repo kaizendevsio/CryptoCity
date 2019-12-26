@@ -29,6 +29,13 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         {
             return View();
         }
+        [Route("ForgotPassword")]
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+
+            return View();
+        }
 
         [Route("Login")]
         [HttpGet]

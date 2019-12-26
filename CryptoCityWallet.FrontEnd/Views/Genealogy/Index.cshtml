@@ -1,11 +1,340 @@
-﻿
-@{
-    Layout = "~/Views/Shared/_PartialView.cshtml";
+﻿@*@{
+        Layout = "~/Views/Shared/_PartialView.cshtml";
 
-    ViewBag.Title = "World CryptoCity | Genealogy";
+        ViewBag.Title = "World CryptoCity | Genealogy";
+    }
+    @model GenealogyVM
+        <main class="main-content">
+
+
+
+            <div class="buy">
+                <div class="buy__header">
+
+                    <h2>Genealogy Map</h2>
+
+                </div>
+                <div class="buy__body">
+
+                    <div class="exchange">
+                        <div class="exchange__col">
+
+                            <div class="form__col credit-card-name">
+                                <label class="form__label">Search:</label>
+                                <div class="input-wrap">
+                                    <input type="text">
+                                    <br>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wallets__list">
+
+                        <a href="#" class="wallet" style="background-color: #FF0800;">
+
+                            <span class="wallet__header">
+                                <span class="wallet__currency">
+                                    <span class="wallet__currency-icon">
+
+                                    </span>
+                                    <span class="wallet__currency-info">
+                                        <span>Your Investment</span>
+
+                                    </span>
+                                </span>
+
+                                <span class="wallet__course">
+                                    <span> </span>
+                                    <span>@Html.DisplayFor(model => model.TotalInvestment) </span>
+                                </span>
+                            </span>
+
+                            <span class="wallet__bg-img">
+
+                            </span>
+                        </a>
+                        <a href="#" class="wallet" style="background-color: #03A57F;">
+                            <span class="wallet__header">
+                                <span class="wallet__currency">
+
+                                    <span class="wallet__currency-info">
+                                        <span>Direct Partner</span>
+
+                                    </span>
+                                </span>
+
+                                <span class="wallet__course">
+                                    <span>@Html.DisplayFor(model => model.DirectPartners)</span>
+
+                                </span>
+                            </span>
+
+
+                        </a>
+
+
+
+                        <a href="#" class="wallet" style="background-color: #2e6da4;">
+                            <span class="wallet__header">
+                                <span class="wallet__currency">
+
+                                    <span class="wallet__currency-info">
+                                        <span>Direct Volume</span>
+
+                                    </span>
+                                </span>
+
+                                <span class="wallet__course">
+                                    <span>@Html.DisplayFor(model => model.DirectVolume)</span>
+
+                                </span>
+                            </span>
+
+                        </a>
+
+                        <a href="#" class="wallet" style="background-color: green;">
+                            <span class="wallet__header">
+                                <span class="wallet__currency">
+
+                                    <span class="wallet__currency-info">
+                                        <span>Total Group Volume</span>
+
+                                    </span>
+                                </span>
+                                <span class="wallet__course">
+                                    <span>@Html.DisplayFor(model => model.TotalGroupVolume)</span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div align="center" class="row">
+                <div class="panel panel-default col-8" align="left">
+                    <div class="panel-heading">
+                        <strong>Genealogy </strong>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="wallets__list">
+                        </div>
+                        <div style="height:50vh" id="chart-container"></div>
+
+
+                    </div>
+                </div>
+
+                <div class="panel panel-default col-4" style="width: 1055px;" align="left">
+                    <div class="panel-heading">
+                        <strong>Generate URL </strong>
+                    </div>
+
+                    <div class="panel-body">
+                        <label for="name">My Username:</label>
+                        <strong>@Html.DisplayFor(model => model.Username)</strong>
+
+                    </div>
+
+                    <form onsubmit="GetAffliateLink('@Url.Action("GetAffiliateLink", "Genealogy")','POST',this); return false">
+
+
+                        <div class="panel-body">
+                            <label for="name">Introducer</label>
+                            <div class="input-icon">
+                                <i class="mdi mdi-user"></i>
+                                <input type="text" class="form-control" id="DirectSponsorID" name="DirectSponsorID" placeholder="Introducer Username" required>
+
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <label for="name">Binary Sponsor</label>
+                            <div class="input-icon">
+                                <i class="mdi mdi-user"></i>
+                                <input type="text" class="form-control" id="BinarySponsorID" name="BinarySponsorID" placeholder="Binary Sponsor Username" required>
+
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <label for="name">Binary Position</label>
+                            <div class="input-icon">
+                                <i class="mdi mdi-user"></i>
+
+                                <select class="form-control" id="BinaryPosition" name="BinaryPosition">
+                                    <option value=1>Left</option>
+                                    <option value=2>Right</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <button type="submit" class="btn btn-primary">Create Link</button>
+                        </div>
+                    </form>
+
+
+
+                    <div class="panel-body">
+                        <label for="name">Referral Link</label>
+                        <div class="input-icon">
+
+                            <div class="col-8" style="padding: 0px;display: inline-block;">
+                                <input type="text" class="form-control" style="margin:0px" id="genlink" name="Genlink" placeholder="Generated link.." autofocus="">
+                            </div>
+                            <div class="col-3" style="padding: 0px;display: inline-block;">
+                                <button class="btn btn-primary" onclick="CopyText();" style="margin:0px;line-height: 25px;height: 35px;margin-top: -5px;">Copy</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            @section Scripts{
+
+                <script type="text/javascript">
+
+                    function CopyText() {
+                        /* Get the text field */
+                        var copyText = document.getElementById("genlink");
+
+                        /* Select the text field */
+                        copyText.select();
+                        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+                        /* Copy the text inside the text field */
+                        document.execCommand("copy");
+
+                        /* Alert the copied text */
+                        alert("Link Copied to clipboard.");
+                    }
+
+                    $.ajax({
+                        url: '@Url.Action("GetMap", "Genealogy")',
+                        type: 'GET',
+                        success: function (data) {
+                            //console.log(data);
+                            if (data.Message != undefined) {
+                                alert(data.Message);
+                            }
+                            //window.location = data.RedirectUrl;
+                            //window.location.replace(data.RedirectUrl);
+                            datascource = data.UserMap;
+
+                            var oc = $('#chart-container').orgchart({
+                                'data': datascource,
+                                'nodeContent': 'title',
+                                'pan': true,
+                                'zoom': true,
+                                'initCompleted': function ($chart) {
+                                    //oc.setChartScale(oc.$chart, 1.5);
+                                    //document.getElementsByClassName('orgchart')[0].style.transform = "matrix(2, 0, 0, 2, 0, 100)";
+                                }
+                            });
+
+
+                            $('#togglePan').on('click', function () {
+                                // of course, oc.setOptions({ 'pan': this.checked }); is also OK.
+                                oc.setOptions('pan', this.checked);
+                            });
+
+                            $('#toggleZoom').on('click', function () {
+                                // of course, oc.setOptions({ 'zoom': this.checked }); is also OK.
+                                oc.setOptions('zoom', this.checked);
+                            });
+
+                        },
+                        error: function (data, textStatus, jqXHR) {
+                            console.log(data.responseJSON);
+                            document.getElementById("myModal").getElementsByClassName("modal-title")[0].innerHTML = data.responseJSON.Status;
+                            document.getElementById("myModal").getElementsByClassName("modal-message")[0].innerHTML = data.responseJSON.Message;
+                            $('#myModal').modal('show');
+                            //window.location.href = data.responseJSON.RedirectUrl;
+                        },
+                    });
+
+                    function getFormData(form) {
+                        var unindexed_array = $(form).serializeArray();
+                        var indexed_array = {};
+
+                        $.map(unindexed_array, function (n, i) {
+                            indexed_array[n['name']] = n['value'];
+                        });
+
+                        return JSON.stringify(indexed_array);
+                    }
+
+                    function GetAffliateLink(url, type, form) {
+                        $.ajax({
+                            url: url,
+                            type: type,
+                            data: getFormData(form),
+                            contentType: 'application/json',
+                            success: function (data) {
+                                if (data.Message != undefined) {
+                                    alert(data.Message);
+                                }
+                                document.getElementById('genlink').value = "http://wallet.world-ccity.com/SignUp?dsi=" + data.AffiliateMapBO.DirectSponsorID + "&bsi=" + data.AffiliateMapBO.BinarySponsorID + "&bp=" + document.getElementById("BinaryPosition").value;
+                            },
+                            error: function (data, textStatus, jqXHR) {
+                                console.log(data.responseJSON);
+                                alert(data.responseJSON.Message);
+
+                            },
+                        });
+
+                        return false
+                    }
+
+                </script>
+                <style>
+                    .datepickers-container {
+                        display: none !important;
+                    }
+                </style>
+                }
+
+
+
+
+                 Mirrored from frontend.test/group-tree by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Dec 2019 01:19:59 GMT
+                </div>
+            </main>*@
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+    ViewBag.Title = "World Crypto City | Genealogy";
 }
 @model GenealogyVM
-    <main class="main-content">
+    <div id="content" class="content">
+        <!-- begin breadcrumb -->
+        <ol class="breadcrumb float-xl-right">
+            <li class="breadcrumb-item"><a href="javascript:;">Genealogy</a></li>
+            <li class="breadcrumb-item active">All channels</li>
+        </ol>
+
+
+
+
+        <h1 class="page-header">Binary Map<small> </small></h1>
+        @*<main cla
+
+
+
+
+
+
+
+        ss="main-content">
 
 
 
@@ -14,10 +343,10 @@
 
                 <h2>Genealogy Map</h2>
 
-            </div>
-            <div class="buy__body">
+            </div>*@
+        @*<div class="buy__body">
 
-                @*<div class="exchange">
+           <div class="exchange">
                     <div class="exchange__col">
 
                         <div class="form__col credit-card-name">
@@ -31,89 +360,262 @@
 
                         </div>
                     </div>
-                </div>*@
-                <div class="wallets__list">
+            <div class="wallets__list">
 
-                    <a href="#" class="wallet" style="background-color: #FF0800;">
+                        <a href="#" class="wallet" style="background-color: #FF0800;">
 
-                        <span class="wallet__header">
-                            <span class="wallet__currency">
-                                <span class="wallet__currency-icon">
+                            <span class="wallet__header">
+                                <span class="wallet__currency">
+                                    <span class="wallet__currency-icon">
 
+                                    </span>
+                                    <span class="wallet__currency-info">
+                                        <span>Your Investment</span>
+
+                                    </span>
                                 </span>
-                                <span class="wallet__currency-info">
-                                    <span>Your Investment</span>
 
-                                </span>
-                            </span>
-
-                            <span class="wallet__course">
-                                <span> </span>
-                                <span>@Html.DisplayFor(model => model.TotalInvestment) </span>
-                            </span>
-                        </span>
-
-                        <span class="wallet__bg-img">
-
-                        </span>
-                    </a>
-                    <a href="#" class="wallet" style="background-color: #03A57F;">
-                        <span class="wallet__header">
-                            <span class="wallet__currency">
-
-                                <span class="wallet__currency-info">
-                                    <span>Direct Partner</span>
-
+                                <span class="wallet__course">
+                                    <span> </span>
+                                    <span>@Html.DisplayFor(model => model.TotalInvestment) </span>
                                 </span>
                             </span>
 
-                            <span class="wallet__course">
-                                <span>@Html.DisplayFor(model => model.DirectPartners)</span>
+                            <span class="wallet__bg-img">
 
                             </span>
-                        </span>
+                        </a>
+                        <a href="#" class="wallet" style="background-color: #03A57F;">
+                            <span class="wallet__header">
+                                <span class="wallet__currency">
 
+                                    <span class="wallet__currency-info">
+                                        <span>Direct Partner</span>
 
-                    </a>
+                                    </span>
+                                </span>
 
-
-
-                    @*<a href="#" class="wallet" style="background-color: #2e6da4;">
-                        <span class="wallet__header">
-                            <span class="wallet__currency">
-
-                                <span class="wallet__currency-info">
-                                    <span>Direct Volume</span>
+                                <span class="wallet__course">
+                                    <span>@Html.DisplayFor(model => model.DirectPartners)</span>
 
                                 </span>
                             </span>
 
-                            <span class="wallet__course">
-                                <span>@Html.DisplayFor(model => model.DirectVolume)</span>
 
-                            </span>
-                        </span>
+                        </a>
 
-                    </a>
 
-                    <a href="#" class="wallet" style="background-color: green;">
-                        <span class="wallet__header">
-                            <span class="wallet__currency">
 
-                                <span class="wallet__currency-info">
-                                    <span>Total Group Volume</span>
+                        <a href="#" class="wallet" style="background-color: #2e6da4;">
+                            <span class="wallet__header">
+                                <span class="wallet__currency">
+
+                                    <span class="wallet__currency-info">
+                                        <span>Direct Volume</span>
+
+                                    </span>
+                                </span>
+
+                                <span class="wallet__course">
+                                    <span>@Html.DisplayFor(model => model.DirectVolume)</span>
 
                                 </span>
                             </span>
-                            <span class="wallet__course">
-                                <span>@Html.DisplayFor(model => model.TotalGroupVolume)</span>
+
+                        </a>
+
+                        <a href="#" class="wallet" style="background-color: green;">
+                            <span class="wallet__header">
+                                <span class="wallet__currency">
+
+                                    <span class="wallet__currency-info">
+                                        <span>Total Group Volume</span>
+
+                                    </span>
+                                </span>
+                                <span class="wallet__course">
+                                    <span>@Html.DisplayFor(model => model.TotalGroupVolume)</span>
+                                </span>
                             </span>
-                        </span>
-                    </a>*@
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </div>
+        </div>*@
 
+
+    <div class="row">
+        <!-- begin col-6 -->
+        <div class="col-xl-3">
+            <!-- begin card -->
+            <div class="card border-0 bg-danger text-white mb-3 overflow-hidden">
+                <!-- begin card-body -->
+                <div class="card-body">
+                    <!-- begin row -->
+                    <div class="row">
+                        <!-- begin col-7 -->
+                        <div class="col-xl-7 col-lg-8">
+                            <!-- begin title -->
+                            <div class="mb-3 text-white ">
+                                <b>
+
+                                </b>
+                                @*<span class="ml-2">
+                                    <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
+                                </span>*@
+                            </div>
+                            <!-- end title -->
+                            <!-- begin total-sales -->
+                            <div class="row text-truncate">
+                                <!-- begin col-6 -->
+                                <div class="col-4">
+                                    <div class="f-s-12 text-white">Total Investment</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="-">@Html.DisplayFor(model => model.TotalInvestment)</div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                                <!-- begin col-6 -->
+
+                            </div>
+                            <!-- end col-6 -->
+                        </div>
+
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+        </div>
+        <div class="col-xl-3">
+            <!-- begin card -->
+            <div class="card border-0 bg-green text-white mb-3 overflow-hidden">
+                <!-- begin card-body -->
+                <div class="card-body">
+                    <!-- begin row -->
+                    <div class="row">
+                        <!-- begin col-7 -->
+                        <div class="col-xl-7 col-lg-8">
+                            <!-- begin title -->
+                            <div class="mb-3 text-white ">
+                                <b>
+
+                                </b>
+                                @*<span class="ml-2">
+                                    <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
+                                </span>*@
+                            </div>
+                            <!-- end title -->
+                            <!-- begin total-sales -->
+                            <div class="row text-truncate">
+                                <!-- begin col-6 -->
+                                <div class="col-4">
+                                    <div class="f-s-12 text-white">Direct Partners</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="-">@Html.DisplayFor(model => model.DirectPartners)</div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                                <!-- begin col-6 -->
+
+                            </div>
+                            <!-- end col-6 -->
+                        </div>
+
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+        </div> <div class="col-xl-3">
+            <!-- begin card -->
+            <div class="card border-0 bg-primary text-white mb-3 overflow-hidden">
+                <!-- begin card-body -->
+                <div class="card-body">
+                    <!-- begin row -->
+                    <div class="row">
+                        <!-- begin col-7 -->
+                        <div class="col-xl-7 col-lg-8">
+                            <!-- begin title -->
+                            <div class="mb-3 text-white ">
+                                <b>
+
+                                </b>
+                                @*<span class="ml-2">
+                                    <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
+                                </span>*@
+                            </div>
+                            <!-- end title -->
+                            <!-- begin total-sales -->
+                            <div class="row text-truncate">
+                                <!-- begin col-6 -->
+                                <div class="col-4">
+                                    <div class="f-s-12 text-white">Direct Volume</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="-">@Html.DisplayFor(model => model.DirectVolume)</div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                                <!-- begin col-6 -->
+
+                            </div>
+                            <!-- end col-6 -->
+                        </div>
+
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+        </div>
+        <div class="col-xl-3">
+            <!-- begin card -->
+            <div class="card border-0 bg-warning text-white mb-3 overflow-hidden">
+                <!-- begin card-body -->
+                <div class="card-body">
+                    <!-- begin row -->
+                    <div class="row">
+                        <!-- begin col-7 -->
+                        <div class="col-xl-7 col-lg-8">
+                            <!-- begin title -->
+                            <div class="mb-3 text-white ">
+                                <b>
+
+                                </b>
+                                @*<span class="ml-2">
+                                    <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
+                                </span>*@
+                            </div>
+                            <!-- end title -->
+                            <!-- begin total-sales -->
+                            <div class="row text-truncate">
+                                <!-- begin col-6 -->
+                                <div class="col-4">
+                                    <div class="f-s-12 text-white">Total Group Volume</div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="-">@Html.DisplayFor(model => model.TotalGroupVolume)</div>
+                                    <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+                                        <div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <!-- end col-6 -->
+                                <!-- begin col-6 -->
+
+                            </div>
+                            <!-- end col-6 -->
+                        </div>
+
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+        </div>
 
         <div align="center" class="row">
             <div class="panel panel-default col-8" align="left">
@@ -136,52 +638,48 @@
                 </div>
 
                 <div class="panel-body">
-                    <label for="name">My Username:</label>
+                    <label for="name">My ID:</label>
                     <strong>@Html.DisplayFor(model => model.Username)</strong>
 
                 </div>
 
-                <form onsubmit="GetAffliateLink('@Url.Action("GetAffiliateLink", "Genealogy")','POST',this); return false">
-
-
-                    <div class="panel-body">
-                        <label for="name">Introducer</label>
-                        <div class="input-icon">
-                            <i class="mdi mdi-user"></i>
-                            <input type="text" class="form-control" id="DirectSponsorID" name="DirectSponsorID" placeholder="Introducer Username" required>
-
-                        </div>
-                    </div>
-
-                    <div class="panel-body">
-                        <label for="name">Binary Sponsor</label>
-                        <div class="input-icon">
-                            <i class="mdi mdi-user"></i>
-                            <input type="text" class="form-control" id="BinarySponsorID" name="BinarySponsorID" placeholder="Binary Sponsor Username" required>
-
-                        </div>
-                    </div>
-
-                    <div class="panel-body">
-                        <label for="name">Binary Position</label>
-                        <div class="input-icon">
-                            <i class="mdi mdi-user"></i>
-
-                            <select class="form-control" id="BinaryPosition" name="BinaryPosition">
-                                <option value=1>Left</option>
-                                <option value=2>Right</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <button type="submit" class="btn btn-primary">Create Link</button>
-                    </div>
-                </form>
-
-
 
                 <div class="panel-body">
-                    <label for="name">Referral Link</label>
+                    <label for="name">Introducer ID</label>
+                    <div class="input-icon">
+                        <i class="mdi mdi-user"></i>
+                        <input type="text" class="form-control" id="DirectSponsorID" name="DirectSponsorID" placeholder="Introducer ID" required>
+
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <label for="name">Binary Sponsor ID</label>
+                    <div class="input-icon">
+                        <i class="mdi mdi-user"></i>
+                        <input type="text" class="form-control" id="BinarySponsorID" name="BinarySponsorID" placeholder="Binary Sponsor ID" required>
+
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <label for="name">Binary Position</label>
+                    <div class="input-icon">
+                        <i class="mdi mdi-user"></i>
+
+                        <select class="form-control" id="BinaryPosition" name="BinaryPosition">
+                            <option value=1>Left</option>
+                            <option value=2>Right</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <button onclick="GenerateURL();" class="btn btn-primary">Create Link</button>
+                </div>
+
+                <div class="panel-body">
+                    <label for="name">Binary Position</label>
                     <div class="input-icon">
 
                         <div class="col-8" style="padding: 0px;display: inline-block;">
@@ -196,6 +694,15 @@
 
             </div>
         </div>
+
+
+
+
+        </main>
+    </div>
+
+        <!-- Mirrored from frontend.test/group-tree by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Dec 2019 01:19:59 GMT -->
+        <!-- end panel -->
 
 
         @section Scripts{
@@ -216,6 +723,18 @@
                     /* Alert the copied text */
                     alert("Link Copied to clipboard.");
                 }
+
+                function GenerateURL() {
+                    document.getElementById('genlink').value = "http://wallet.world-ccity.com/SignUp?dsi=" + document.getElementById("DirectSponsorID").value + "&bsi=" + document.getElementById("BinarySponsorID").value + "&bp=" + document.getElementById("BinaryPosition").value;
+                }
+                //var datascource = {
+                //    'name': 'You',
+                //    'title': 'Admin',
+                //    'children': [
+                //        { 'name': 'Left', 'title': 'Vacant Position' },
+                //        { 'name': 'Right', 'title': 'Vacant Position' }
+                //    ]
+                //};
 
                 $.ajax({
                     url: '@Url.Action("GetMap", "Genealogy")',
@@ -261,52 +780,23 @@
                     },
                 });
 
-                function getFormData(form) {
-                    var unindexed_array = $(form).serializeArray();
-                    var indexed_array = {};
-
-                    $.map(unindexed_array, function (n, i) {
-                        indexed_array[n['name']] = n['value'];
-                    });
-
-                    return JSON.stringify(indexed_array);
-                }
-
-                function GetAffliateLink(url, type, form) {
-                    $.ajax({
-                        url: url,
-                        type: type,
-                        data: getFormData(form),
-                        contentType: 'application/json',
-                        success: function (data) {
-                            if (data.Message != undefined) {
-                                alert(data.Message);
-                            }
-                            document.getElementById('genlink').value = "http://wallet.world-ccity.com/SignUp?dsi=" + data.AffiliateMapBO.DirectSponsorID + "&bsi=" + data.AffiliateMapBO.BinarySponsorID + "&bp=" + document.getElementById("BinaryPosition").value;
-                        },
-                        error: function (data, textStatus, jqXHR) {
-                            console.log(data.responseJSON);
-                            alert(data.responseJSON.Message);
-
-                        },
-                    });
-
-                    return false
-                }
+                //$('#chart-container').orgchart({
+                //    'data': datascource,
+                //    'nodeContent': 'title',
+                //    'toggleSiblingsResp': true
+                //});
 
             </script>
-            <style>
-                .datepickers-container {
-                    display: none !important;
-                }
-            </style>
-            }
+
+            @*<script src="../ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+            <script>window.jQuery || document.write('<script src="~/js/jquery-2.2.4.min.js"><\/script>')</script>
+            <script src="~/js/jquery-2.2.4.min.js"></script>
+
+            <script src="~/js/scripts.min.js"></script>
+
+            <script type="text/javascript" src="~/js/jquery.min-1.js"></script>
+            <script type="text/javascript" src="~/js/jquery.orgchart.js"></script>*@
 
 
 
-
-            <!-- Mirrored from frontend.test/group-tree by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Dec 2019 01:19:59 GMT -->
-            </div>
-        </main>
-
- 
+        }
