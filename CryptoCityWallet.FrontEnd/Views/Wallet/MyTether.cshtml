@@ -266,7 +266,7 @@
                                 <!-- begin col-6 -->
                                 <div class="col-6">
                                     <div class="f-s-12 text-white">Balance:</div>
-                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00"> @Html.DisplayFor(model => model.TTHBalance) USDT</font></span></div>
+                                    <div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="0.00"> @Html.DisplayFor(model => model.UserWallets.Find(i => i.WalletCode == "USDT")) USDT</font></span></div>
                                     <div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
                                         <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
                                     </div>
