@@ -1,28 +1,48 @@
-﻿ 
+﻿@model WalletVM
 <div class="modal fade" id="receiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1600;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cancel Request</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Deposit</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Make sure to double check the details</div>
-            <div class="modal-body">
-                <div id="dateDetails" class="modal-body"></div>
-                <div id="memcodeDetails" class="modal-body"></div>
-                <div id="memnameDetails" class="modal-body"></div>
-                <div id="toDetails" class="modal-body"></div>
-                <div id="fromDetails" class="modal-body"></div>
-                <div id="currencyDetails" class="modal-body"></div>
-                <div id="amountDetails" class="modal-body"></div>
-                <div id="txidDetails" class="modal-body"></div>
-         
+            <div class="modal-body" style="padding:0 15px">
+
+
+            </div>
+            <div class="modal-body" align="center">
+                <div id="spinner" class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <img class="popup-add-wallet__img animated fadeIn" style="margin-top:15px" id="PaymentAddressImg" src="" alt="">
+                <h3 class="form__title" style="margin-top:10px;margin-bottom:10px;">Receive | @Html.DisplayFor(i => i.WalletName)</h3>
+                <p style="margin-bottom:25px;">Scan Qr code to deposit payment</p>
+
+                <div class="col-md-8" style="padding:0px;">
+                    <div class="form-group">
+                        <label>Payment Address</label>
+                        <input type="text" asp-for="PaymentAddress" style="text-align:center" id="PaymentAddress" placeholder="Loading Payment Address.." class="form-control" readonly>
+                    </div>
+                </div>
+
+                <button onclick="CopyPaymentAddressText();" class="btn btn-primary">Copy Address</button>
+                @*<button class="btn btn--blue btn--full" onclick="CopyText();" style="margin-bottom:20px">Copy Address</button>*@
+
+
+                @*<div id="dateDetails" class="modal-body"></div>
+        <div id="memcodeDetails" class="modal-body"></div>
+        <div id="memnameDetails" class="modal-body"></div>
+        <div id="toDetails" class="modal-body"></div>
+        <div id="fromDetails" class="modal-body"></div>
+        <div id="currencyDetails" class="modal-body"></div>
+        <div id="amountDetails" class="modal-body"></div>
+        <div id="txidDetails" class="modal-body"></div>*@
+
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Back</button>
-                <a class="btn btn-primary" onclick="location.href='@Url.Action("CancelConvert", "Admin")'">Confirm Cancellation</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

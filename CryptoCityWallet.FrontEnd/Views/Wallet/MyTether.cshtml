@@ -334,11 +334,11 @@
                 </div>
                 <div class="card-body">
                     <!-- begin row -->
+                    <form onsubmit="GetNewAddress('@Url.Action("NewAddress", "Wallet")','POST',this); return false">
 
-
-
-                    <button id="receive" data-toggle="modal" data-target="#receiveModal" class="btn btn-primary popup-link">RECEIVE </button>
-
+                        <button type="submit" id="receive" data-toggle="modal" data-target="#receiveModal" class="btn btn-primary popup-link">RECEIVE </button>
+                        <input style="display:none" type="text" Name="WalletCode" value="@Html.DisplayFor(i => i.WalletCode)">
+                    </form>
                     <!-- end row -->
                 </div>
                 <div class="card-body">
@@ -463,3 +463,68 @@
 
 
 </div>
+<script type="text/javascript">
+    var p, q;
+
+    function showPreload(e) {
+        q = e.innerHTML;
+        e.innerHTML = "Loading...";
+        e.style.opacity = 0.5;
+        p = e;
+    }
+
+    function CopyPaymentAddressText() {
+        /* Get the text field */
+        var copyText = document.getElementById("PaymentAddress");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+
+        /* Alert the copied text */
+        alert("Address Copied to clipboard.");
+    }
+
+    function getFormData(form) {
+        var unindexed_array = $(form).serializeArray();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function (n, i) {
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return JSON.stringify(indexed_array);
+    }
+
+    function GetNewAddress(url, type, form) {
+        if (document.getElementById('PaymentAddress').value == "") {
+            $.ajax({
+                url: url,
+                type: type,
+                data: getFormData(form),
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data.Message != undefined) {
+                        alert(data.Message);
+                    }
+                    document.getElementById('spinner').style.display = "none";
+                    document.getElementById('PaymentAddress').value = data.Address;
+                    document.getElementById('PaymentAddressImg').src = "https://api.qrserver.com/v1/create-qr-code/?size=192x192&data=" + data.Address;
+                },
+                error: function (data, textStatus, jqXHR) {
+                    console.log(data.responseJSON);
+                    alert(data.responseJSON.Message);
+                    window.location.replace(data.RedirectUrl);
+                },
+            });
+        }
+
+
+
+        return false
+    }
+
+</script>

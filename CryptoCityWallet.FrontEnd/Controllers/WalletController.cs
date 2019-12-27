@@ -71,7 +71,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
         }
         [Route("/Wallet/MyBitcoin")]
         [HttpGet]
-        public async Task<IActionResult> MyBitcoinAsync(int GenLink)
+        public async Task<IActionResult> MyBitcoinAsync()
         {
             try
             {
@@ -83,13 +83,6 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 ResponseBO _res = await apiRequest.GetAsync(Env, "User/Profile", session.SessionCookies);
                 WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
 
-                if (GenLink != 0)
-                {
-                    _res = await apiRequest.GetAsync(Env, "Wallet/Address/Btc/New", session.SessionCookies);
-                    WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
-                    apiResponse.Address = walletApiResponse.Address;
-                }
-
                 TblUserInfo userInfo = apiResponse.UserInfo;
                 TblUserAuth userAuth = apiResponse.UserAuth;
 
@@ -98,7 +91,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     WalletVM walletVM = new WalletVM();
                     walletVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
                     walletVM.Username = userAuth.UserName;
-                    walletVM.GenLink = GenLink;
+                    walletVM.WalletCode = "BTC";
+                    walletVM.WalletName = "Bitcoin";
                     walletVM.PaymentAddress = apiResponse.Address;
 
                     return View(walletVM);
@@ -130,12 +124,6 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 ApiRequest apiRequest = new ApiRequest();
                 ResponseBO _res = await apiRequest.GetAsync(Env, "User/Profile", session.SessionCookies);
                 WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
-                if (GenLink != 0)
-                {
-                    _res = await apiRequest.GetAsync(Env, "Wallet/Address/Eth/New", session.SessionCookies);
-                    WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
-                    apiResponse.Address = walletApiResponse.Address;
-                }
 
                 TblUserInfo userInfo = apiResponse.UserInfo;
                 TblUserAuth userAuth = apiResponse.UserAuth;
@@ -145,7 +133,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     WalletVM walletVM = new WalletVM();
                     walletVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
                     walletVM.Username = userAuth.UserName;
-                    walletVM.GenLink = GenLink;
+                    walletVM.WalletCode = "ETH";
+                    walletVM.WalletName = "Ethereum";
                     walletVM.PaymentAddress = apiResponse.Address;
 
                     return View(walletVM);
@@ -176,12 +165,6 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 ApiRequest apiRequest = new ApiRequest();
                 ResponseBO _res = await apiRequest.GetAsync(Env, "User/Profile", session.SessionCookies);
                 WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
-                if (GenLink != 0)
-                {
-                    _res = await apiRequest.GetAsync(Env, "Wallet/Address/Usdt/New", session.SessionCookies);
-                    WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
-                    apiResponse.Address = walletApiResponse.Address;
-                }
 
                 TblUserInfo userInfo = apiResponse.UserInfo;
                 TblUserAuth userAuth = apiResponse.UserAuth;
@@ -191,7 +174,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     WalletVM walletVM = new WalletVM();
                     walletVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
                     walletVM.Username = userAuth.UserName;
-                    walletVM.GenLink = GenLink;
+                    walletVM.WalletCode = "USDT";
+                    walletVM.WalletName = "Tether";
                     walletVM.PaymentAddress = apiResponse.Address;
 
                     return View(walletVM);
@@ -210,6 +194,46 @@ namespace CryptoCityWallet.FrontEnd.Controllers
             }
         }
 
+        [HttpPost("/Wallet/NewAddress")]
+        public async Task<IActionResult> NewAddress([FromBody] UserWalletBO walletBO)
+        {
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.GetAsync(Env, "User/Profile", session.SessionCookies);
+                WalletAddressResponseBO apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
+
+                _res = await apiRequest.GetAsync(Env, "Wallet/Address/" + walletBO.WalletCode + "/New", session.SessionCookies);
+                WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
+                apiResponse.Address = walletApiResponse.Address;
+
+                TblUserInfo userInfo = apiResponse.UserInfo;
+                TblUserAuth userAuth = apiResponse.UserAuth;
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    apiResponse.Address = apiResponse.Address;
+                    apiResponse.Message = null;
+                }
+                else
+                {
+                    apiResponse.RedirectUrl = "/User/Login";
+                }
+                return Ok(apiResponse);
+
+            }
+            catch (System.Exception e)
+            {
+                WalletAddressResponseBO apiResponse = new WalletAddressResponseBO();
+                apiResponse.RedirectUrl = "/User/Login";
+                return BadRequest(apiResponse);
+
+            }
+        }
 
 
         public IActionResult Privacy()

@@ -18,7 +18,8 @@ namespace CryptoCityWallet.ExternalUtilities
         {
             BlockchainApiSettings blockchainApiSettings = new BlockchainApiSettings();
             blockchainApiSettings.ApiKey = "9004fe40-5fd0-411a-ac42-4e820562c673";
-            blockchainApiSettings.XpubKey = "xpub6Chiu7mVhgUjF5V7FDB1ni8YCjDyhG7ib5p8iKVMssRDsSLU1qSi5U511DoK9TDBM8YezTJrarmvBRciHPo4E6LDt6omoEfshhyrH3niT6C";
+            blockchainApiSettings.XpubKey = "xpub6Chiu7mVhgUjHGHasTxukV9scfYmm6UvPNa2MVSRjZCST2A9cTd3a6GGtE5NkCzpGHsN9wDJdFufSAGQMB3wGeVMEguhuLUHhS6HUgKgk3r";
+            //blockchainApiSettings.XpubKey = "xpub6Chiu7mVhgUjF5V7FDB1ni8YCjDyhG7ib5p8iKVMssRDsSLU1qSi5U511DoK9TDBM8YezTJrarmvBRciHPo4E6LDt6omoEfshhyrH3niT6C";
             blockchainApiSettings.CallbackURL = "https%3A%2F%2Fwww.urlencoder.org%2F";
 
             return blockchainApiSettings;

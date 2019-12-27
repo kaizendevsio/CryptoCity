@@ -84,25 +84,83 @@
 </head>
 <body>
 
-    <div id="header" class="header navbar-inverse">
+    <div class="header navbar-inverse">
         <!-- begin navbar-header -->
         <div class="navbar-header">
             <a href="" class="navbar-brand">
                 <span class=""><img src="~/img/logo.png"> </span>
             </a>
-            <button type="button" class="navbar-toggle" data-click="nav">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-           
+
+        </div>
+
+        <div class="collapse" id="collapsibleNavbar">
+           <ul class="nav navbar-nav" style="display:flex">
+
+
+                <li class="has-sub " style="border-bottom: 1px solid #46505a;
+    border-top: 1px solid #46505a;">
+                    <a onclick="location.href='@Url.Action("Index", "Wallet")'">
+
+                        <i class="fa fa-wallet"></i>
+                        <span style ="cursor:pointer"> Wallet</span>
+                    </a>
+
+
+                    <a onclick="location.href='@Url.Action("Index", "Trade")'">
+
+                        <i class="fa fa-exchange-alt"></i>
+                        <span style ="cursor:pointer">WCC Trade</span>
+                    </a>
+
+                    <a onclick="location.href='@Url.Action("History", "Trade")'">
+
+                        <i class="fa fa-history"></i>
+                        <span style ="cursor:pointer"> WCCP History</span>
+                    </a>
+                    <a onclick="location.href='@Url.Action("Index", "Convert")'">
+
+                        <i class="fa fa-coins"></i>
+                        <span style ="cursor:pointer"> WCCP Convert</span>
+                    </a>
+
+        <li class="has-sub " style="border-bottom: 1px solid #46505a;
+      border-top: 1px solid #46505a;">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fa fa-network-wired"></i>
+                        <span style ="cursor:pointer">Group Network </span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class=""><a onclick="location.href='@Url.Action("Index", "Genealogy")'"style ="cursor:pointer">Binary Map </a></li>
+                        <li class=""><a onclick="location.href='@Url.Action("Index", "Genealogy")'" style="cursor:pointer">Uni-level Map </a></li>
+
+
+                    </ul>
+
+                    <a onclick="location.href='@Url.Action("Index", "Settings")'">
+
+
+                        <i class="fa fa-cog"></i>
+                        <span style ="cursor:pointer">Settings</span>
+</a>
+
+
+                </li>
+
+
+            </ul>
         </div>
 
         <ul class="navbar-nav navbar-right">
             <li class="dropdown navbar-user">
- 
-                
+
+
 
 
                 <a href="" class="dropdown-toggle" data-toggle="dropdown">
@@ -111,8 +169,8 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- <a href="javascript:;" class="dropdown-item">Edit Profile</a>
-        <a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
-        <a href="javascript:;" class="dropdown-item">Calendar</a> -->
+                <a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
+                <a href="javascript:;" class="dropdown-item">Calendar</a> -->
                     <a onclick="location.href='@Url.Action("Index", "Settings")'" class="dropdown-item">
                         Settings
                     </a>
@@ -182,7 +240,7 @@
                         <i class="fa fa-coins"></i>
                         <span style ="cursor:pointer"> WCCP Convert</span>
                     </a>
-                  
+
         <li class="has-sub " style="border-bottom: 1px solid #46505a;
       border-top: 1px solid #46505a;">
                     <a href="javascript:;">
@@ -206,11 +264,11 @@
 
 
                 </li>
-              
-                
+
+
             </ul>
 
-        
+
 
             <!-- end sidebar nav -->
         </div>
@@ -218,7 +276,7 @@
     </div>
 
     <div class="sidebar-bg"></div>
-    <div class="sidebar-bg"></div> 
+    <div class="sidebar-bg"></div>
 
     @RenderBody()
     @RenderSection("Scripts", required: false)

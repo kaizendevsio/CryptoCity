@@ -1,15 +1,20 @@
-﻿ 
+﻿
 <div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1600;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cancel Request</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Send</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Make sure to double check the details</div>
-            <div class="modal-body">
+            <div class="modal-body" align="center" style="text-align:center">
+                <p>This feature is currently under construction</p>
+                <p>It will be ready soon. Try again later</p>
+                @*<h3 class="form__title" style="margin-top:10px;margin-bottom:10px;">Receive | Bitcoin</h3>
+                    *@
+            </div>
+            @*<div class="modal-body">
                 <div id="dateDetails" class="modal-body"></div>
                 <div id="memcodeDetails" class="modal-body"></div>
                 <div id="memnameDetails" class="modal-body"></div>
@@ -18,11 +23,11 @@
                 <div id="currencyDetails" class="modal-body"></div>
                 <div id="amountDetails" class="modal-body"></div>
                 <div id="txidDetails" class="modal-body"></div>
-         
-            </div>
+
+            </div>*@
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Back</button>
-                <a class="btn btn-primary" onclick="location.href='@Url.Action("CancelConvert", "Admin")'">Confirm Cancellation</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                @*<a class="btn btn-primary" onclick="location.href='@Url.Action("CancelConvert", "Admin")'">Confirm Cancellation</a>*@
             </div>
         </div>
     </div>

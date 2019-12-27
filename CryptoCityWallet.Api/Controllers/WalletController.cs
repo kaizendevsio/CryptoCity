@@ -70,7 +70,6 @@ namespace CryptoCityWallet.Api.Controllers
 
                 _apiResponse.UserAuth = userAuth;
                 _apiResponse.UserInfo = userInfo;
-                _apiResponse.changellyResponse = PaymentAddress;
                 _apiResponse.Address = PaymentAddress.result.payinAddress;
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Status = "Success";
@@ -107,7 +106,6 @@ namespace CryptoCityWallet.Api.Controllers
 
                 _apiResponse.UserAuth = userAuth;
                 _apiResponse.UserInfo = userInfo;
-                _apiResponse.changellyResponse = PaymentAddress;
                 _apiResponse.Address = PaymentAddress.result.payinAddress;
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Status = "Success";
