@@ -233,10 +233,10 @@
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        @*<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>*@
                     </div>
                     <h4 class="panel-title">History</h4>
                 </div>
@@ -263,11 +263,7 @@
                         <table class="display table dataTable table-bordered table-striped" id="property" cellspacing="0" width="100%">
 
                             <thead>
-
-
-
                                 <tr>
-
                                     <th colspan="1">WCCP Balance  @Html.DisplayFor(model => model.WCCPBalance)</th>
                                     <th colspan="1">Total Daily Profit:@Html.DisplayFor(model => model.YesterdayProfit)</th>
                                     <th colspan="1">Total Affiliate: @Html.DisplayFor(model => model.TotalInvestment)</th>
@@ -372,7 +368,7 @@
             table = document.getElementById("property");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
+                td = tr[i].getElementsByTagName("td")[4];
                 if (td) {
                     if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
@@ -496,4 +492,4 @@
         });
     </script>
 
-}
+}  
