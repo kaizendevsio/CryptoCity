@@ -32,11 +32,13 @@ namespace CryptoCityWallet.Api.Controllers
                 TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
                 TblUserInfo userInfo = userAppService.Get(userAuth);
 
-                string PaymentAddress = await blockchain.GenerateNewAddressAsync("").ConfigureAwait(true);
+                BlockchainResponse _br = await blockchain.GenerateNewAddressAsync("").ConfigureAwait(true);
+
 
                 _apiResponse.UserAuth = userAuth;
                 _apiResponse.UserInfo = userInfo;
-                _apiResponse.Address = PaymentAddress;
+                _apiResponse.Address = _br.Address;
+                _apiResponse.XpubKey = _br.XpubKey;
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Status = "Success";
             }

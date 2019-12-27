@@ -8,6 +8,7 @@ namespace CryptoCityWallet.Entities.BO
    public class WalletAddressResponseBO : UserResponseBO
     {
         public string Address { get; set; }
+        public string XpubKey { get; set; }
         public ChangellyResponse changellyResponse { get; set; }
     }
 }

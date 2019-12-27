@@ -210,6 +210,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 _res = await apiRequest.GetAsync(Env, "Wallet/Address/" + walletBO.WalletCode + "/New", session.SessionCookies);
                 WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
                 apiResponse.Address = walletApiResponse.Address;
+                apiResponse.XpubKey = walletApiResponse.XpubKey;
 
                 TblUserInfo userInfo = apiResponse.UserInfo;
                 TblUserAuth userAuth = apiResponse.UserAuth;
@@ -217,6 +218,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 if (apiResponse.HttpStatusCode == "200")
                 {
                     apiResponse.Address = apiResponse.Address;
+                    apiResponse.XpubKey = apiResponse.XpubKey;
                     apiResponse.Message = null;
                 }
                 else

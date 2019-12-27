@@ -678,23 +678,24 @@
     function GetNewAddress(url, type, form) {
         if (document.getElementById('PaymentAddress').value == "") {
             $.ajax({
-            url: url,
-            type: type,
-            data: getFormData(form),
-            contentType: 'application/json',
-            success: function (data) {
-                if (data.Message != undefined) {
-                    alert(data.Message);
-                }
-                document.getElementById('spinner').style.display = "none";
+                url: url,
+                type: type,
+                data: getFormData(form),
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data.Message != undefined) {
+                        alert(data.Message);
+                    }
+                    console.log(data);
+                    document.getElementById('spinner').style.display = "none";
                     document.getElementById('PaymentAddress').value = data.Address;
                     document.getElementById('PaymentAddressImg').src = "https://api.qrserver.com/v1/create-qr-code/?size=192x192&data=" + data.Address;
-            },
-            error: function (data, textStatus, jqXHR) {
-                console.log(data.responseJSON);
-                alert(data.responseJSON.Message);
-                window.location.replace(data.RedirectUrl);
-            },
+                },
+                error: function (data, textStatus, jqXHR) {
+                    console.log(data.responseJSON);
+                    alert(data.responseJSON.Message);
+                    window.location.replace(data.RedirectUrl);
+                },
         });
         }
 

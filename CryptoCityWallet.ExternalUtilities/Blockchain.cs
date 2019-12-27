@@ -25,14 +25,18 @@ namespace CryptoCityWallet.ExternalUtilities
             return blockchainApiSettings;
         }
 
-        public async Task<string> GenerateNewAddressAsync(string CallBackUrl)
+        public async Task<BlockchainResponse> GenerateNewAddressAsync(string CallBackUrl)
 
         {
             BlockchainApiSettings blockchainApiSettings = GetSettings();
             ResponseBO _res = await GetAsync("receive", new { xpub = blockchainApiSettings.XpubKey, callback = blockchainApiSettings.CallbackURL, key = blockchainApiSettings.ApiKey });
             ReceivePaymentResponse receivePayment = JsonConvert.DeserializeObject<ReceivePaymentResponse>(_res.ResponseResult);
 
-            return receivePayment.Address;
+            BlockchainResponse blockchainResponse = new BlockchainResponse();
+            blockchainResponse.Address = receivePayment.Address;
+            blockchainResponse.XpubKey = blockchainApiSettings.XpubKey;
+
+            return blockchainResponse;
             //return "123";
         }
         private Uri ApiUri { get; set; } = new Uri("https://api.blockchain.info/");
