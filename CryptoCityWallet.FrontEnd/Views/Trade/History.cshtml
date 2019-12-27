@@ -263,11 +263,7 @@
                         <table class="display table dataTable table-bordered table-striped" id="property" cellspacing="0" width="100%">
 
                             <thead>
-
-
-
                                 <tr>
-
                                     <th colspan="1">WCCP Balance  @Html.DisplayFor(model => model.WCCPBalance)</th>
                                     <th colspan="1">Total Daily Profit:@Html.DisplayFor(model => model.YesterdayProfit)</th>
                                     <th colspan="1">Total Affiliate: @Html.DisplayFor(model => model.TotalInvestment)</th>
@@ -372,7 +368,7 @@
             table = document.getElementById("property");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
+                td = tr[i].getElementsByTagName("td")[4];
                 if (td) {
                     if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
