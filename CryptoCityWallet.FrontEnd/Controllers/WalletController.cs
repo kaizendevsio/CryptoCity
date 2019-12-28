@@ -210,7 +210,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 _res = await apiRequest.GetAsync(Env, "Wallet/Address/" + walletBO.WalletCode + "/New", session.SessionCookies);
                 WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
                 apiResponse.Address = walletApiResponse.Address;
-                apiResponse.XpubKey = walletApiResponse.XpubKey;
+                //apiResponse.XpubKey = walletApiResponse.XpubKey;
 
                 TblUserInfo userInfo = apiResponse.UserInfo;
                 TblUserAuth userAuth = apiResponse.UserAuth;
