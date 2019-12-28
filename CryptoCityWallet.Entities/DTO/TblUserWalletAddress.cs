@@ -14,10 +14,10 @@ namespace CryptoCityWallet.Entities.DTO
         public DateTime? LastChanged { get; set; }
         public long UserAuthId { get; set; }
         public string Address { get; set; }
-        public string CurrencyIsoCode3 { get; set; }
-        public byte[] AddressByte { get; set; }
         public decimal? Balance { get; set; }
+        public long WalletTypeId { get; set; }
 
         public virtual TblUserAuth UserAuth { get; set; }
+        public virtual TblWalletType WalletType { get; set; }
     }
 }

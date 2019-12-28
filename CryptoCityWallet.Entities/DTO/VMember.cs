@@ -6,6 +6,8 @@ namespace CryptoCityWallet.Entities.DTO
     public partial class VMember
     {
         public long? Id { get; set; }
+        public long? UserAuthId { get; set; }
+        public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public long? SponsorUserId { get; set; }
@@ -16,7 +18,6 @@ namespace CryptoCityWallet.Entities.DTO
         public decimal? MemberVolumeLeft { get; set; }
         public decimal? MemberVolumeRight { get; set; }
         public long? MemberRankCd { get; set; }
-        public long? UserAuthId { get; set; }
         public string Uid { get; set; }
     }
 }

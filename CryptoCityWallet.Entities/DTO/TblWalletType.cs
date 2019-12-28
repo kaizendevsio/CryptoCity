@@ -9,6 +9,7 @@ namespace CryptoCityWallet.Entities.DTO
         {
             TblUserDepositRequest = new HashSet<TblUserDepositRequest>();
             TblUserWallet = new HashSet<TblUserWallet>();
+            TblUserWalletAddress = new HashSet<TblUserWalletAddress>();
             TblUserWithdrawalRequest = new HashSet<TblUserWithdrawalRequest>();
         }
 
@@ -28,6 +29,7 @@ namespace CryptoCityWallet.Entities.DTO
         public virtual TblCurrency Currency { get; set; }
         public virtual ICollection<TblUserDepositRequest> TblUserDepositRequest { get; set; }
         public virtual ICollection<TblUserWallet> TblUserWallet { get; set; }
+        public virtual ICollection<TblUserWalletAddress> TblUserWalletAddress { get; set; }
         public virtual ICollection<TblUserWithdrawalRequest> TblUserWithdrawalRequest { get; set; }
     }
 }

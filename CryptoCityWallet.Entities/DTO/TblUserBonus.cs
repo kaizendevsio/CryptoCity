@@ -15,8 +15,5 @@ namespace CryptoCityWallet.Entities.DTO
         public long BonusCd { get; set; }
         public string BonusName { get; set; }
         public string BonusMemo { get; set; }
-        public long UserAuthId { get; set; }
-
-        public virtual TblUserAuth UserAuth { get; set; }
     }
 }
