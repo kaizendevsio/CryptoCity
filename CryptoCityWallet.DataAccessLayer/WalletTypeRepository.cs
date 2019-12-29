@@ -38,6 +38,7 @@ namespace CryptoCityWallet.DataAccessLayer
         public List<TblWalletType> GetAll(dbWorldCCityContext db)
         {
             var _q = from a in db.TblWalletType
+                     join b in db.TblCurrency on a.CurrencyId equals b.Id
                      //where a.Id == (int)walletBO.WalletTypeId
                      select new TblWalletType
                      {
@@ -46,7 +47,9 @@ namespace CryptoCityWallet.DataAccessLayer
                          Type = a.Type,
                          Code = a.Code,
                          Id = a.Id,
-                         CurrencyId = a.CurrencyId
+                         CurrencyId = a.CurrencyId,
+                         Currency = b
+
                      };
 
             List<TblWalletType> _qWalletTypeRes = _q.ToList<TblWalletType>();

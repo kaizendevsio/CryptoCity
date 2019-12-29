@@ -28,17 +28,29 @@ namespace CryptoCityWallet.Api.Controllers
                 SessionController sessionController = new SessionController();
                 Blockchain blockchain = new Blockchain();
                 UserAppService userAppService = new UserAppService();
+                UserWalletAddressAppService userWalletAddressAppService = new UserWalletAddressAppService();
 
                 TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
                 TblUserInfo userInfo = userAppService.Get(userAuth);
+                List<TblUserWalletAddress> userWalletAddresses = userWalletAddressAppService.GetAll(userAuth);
 
                 BlockchainResponse _br = await blockchain.GenerateNewAddressAsync("").ConfigureAwait(true);
 
+                if (userWalletAddresses.Count != 0)
+                {
+                    _apiResponse.XpubKey = userWalletAddresses.Find(i => i.WalletType.Code == "BTC").Address;
+                }
+                else
+                {
+                    _apiResponse.Address = _br.Address;
+                    _apiResponse.XpubKey = _br.XpubKey;
+
+                    bool _x = await userWalletAddressAppService.Create(userAuth, _br.Address).ConfigureAwait(true);
+                }
 
                 _apiResponse.UserAuth = userAuth;
                 _apiResponse.UserInfo = userInfo;
-                _apiResponse.Address = _br.Address;
-                _apiResponse.XpubKey = _br.XpubKey;
+
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Status = "Success";
             }
@@ -109,6 +121,45 @@ namespace CryptoCityWallet.Api.Controllers
                 _apiResponse.UserAuth = userAuth;
                 _apiResponse.UserInfo = userInfo;
                 _apiResponse.Address = PaymentAddress.result.payinAddress;
+                _apiResponse.HttpStatusCode = "200";
+                _apiResponse.Status = "Success";
+
+                return Ok(_apiResponse);
+            }
+            catch (Exception ex)
+            {
+                _apiResponse.HttpStatusCode = "500";
+                _apiResponse.Message = ex.Message;
+                _apiResponse.Status = "Error";
+
+            }
+
+            return Ok(_apiResponse);
+        }
+
+        [HttpGet("Address/Transactions")]
+        public async Task<ActionResult> GetTransactionsAsync(string currency)
+        {
+            WalletAddressResponseBO _apiResponse = new WalletAddressResponseBO();
+
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                Blockchain blockchain = new Blockchain();
+                UserAppService userAppService = new UserAppService();
+                UserWalletAddressAppService userWalletAddressAppService = new UserWalletAddressAppService();
+
+                TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
+                TblUserInfo userInfo = userAppService.Get(userAuth);
+
+                List<TblUserWalletAddress> userWalletAddresses = userWalletAddressAppService.GetAll(userAuth);
+
+                BlockchainTx _br = await blockchain.GetAddressTransactionsAsync(userWalletAddresses.Find(i => i.WalletType.Code == currency).Address).ConfigureAwait(true);
+
+                _apiResponse.UserAuth = userAuth;
+                _apiResponse.UserInfo = userInfo;
+                _apiResponse.AddressTransactions = _br;
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Status = "Success";
 

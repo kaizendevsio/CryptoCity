@@ -21,6 +21,8 @@ namespace CryptoCityWallet.ExternalUtilities
             blockchainApiSettings.XpubKey = "xpub6Chiu7mVhgUjHGHasTxukV9scfYmm6UvPNa2MVSRjZCST2A9cTd3a6GGtE5NkCzpGHsN9wDJdFufSAGQMB3wGeVMEguhuLUHhS6HUgKgk3r";
             //blockchainApiSettings.XpubKey = "xpub6Chiu7mVhgUjF5V7FDB1ni8YCjDyhG7ib5p8iKVMssRDsSLU1qSi5U511DoK9TDBM8YezTJrarmvBRciHPo4E6LDt6omoEfshhyrH3niT6C";
             blockchainApiSettings.CallbackURL = "https%3A%2F%2Fwww.urlencoder.org%2F";
+            blockchainApiSettings.ApiUri = new Uri("https://api.blockchain.info/");
+            blockchainApiSettings.BlockCypherApiUri = new Uri("https://api.blockcypher.com/");
 
             return blockchainApiSettings;
         }
@@ -28,8 +30,9 @@ namespace CryptoCityWallet.ExternalUtilities
         public async Task<BlockchainResponse> GenerateNewAddressAsync(string CallBackUrl)
 
         {
+            HttpUtilities httpUtilities = new HttpUtilities();
             BlockchainApiSettings blockchainApiSettings = GetSettings();
-            ResponseBO _res = await GetAsync("receive", new { xpub = blockchainApiSettings.XpubKey, callback = blockchainApiSettings.CallbackURL, key = blockchainApiSettings.ApiKey });
+            ResponseBO _res = await httpUtilities.GetAsync(blockchainApiSettings.ApiUri, "v2/receive", new { xpub = blockchainApiSettings.XpubKey, callback = blockchainApiSettings.CallbackURL, key = blockchainApiSettings.ApiKey });
             ReceivePaymentResponse receivePayment = JsonConvert.DeserializeObject<ReceivePaymentResponse>(_res.ResponseResult);
 
             BlockchainResponse blockchainResponse = new BlockchainResponse();
@@ -39,90 +42,15 @@ namespace CryptoCityWallet.ExternalUtilities
             return blockchainResponse;
             //return "123";
         }
-        private Uri ApiUri { get; set; } = new Uri("https://api.blockchain.info/");
-        public async Task<ResponseBO> PostAsync(string url, object param, CookieCollection requestCookies = null, string contentType = "application/json")
+
+        public async Task<BlockchainTx> GetAddressTransactionsAsync(string _walletAddress)
         {
-            CookieContainer cookies = new CookieContainer();
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.CookieContainer = cookies;
+            HttpUtilities httpUtilities = new HttpUtilities();
+            BlockchainApiSettings blockchainApiSettings = GetSettings();
+            ResponseBO _res = await httpUtilities.GetAsync(blockchainApiSettings.BlockCypherApiUri, "v1/btc/main/addrs/" + _walletAddress, new object{});
+            BlockchainTx _blockchainTx = JsonConvert.DeserializeObject<BlockchainTx>(_res.ResponseResult);
 
-            if (requestCookies != null)
-            {
-                int cookieCount = requestCookies.Count();
-                for (int i = 0; i < cookieCount; i++)
-                {
-                    handler.CookieContainer.Add(ApiUri, new Cookie(requestCookies.ElementAt(i).Name, requestCookies.ElementAt(i).Value));
-                }
-            }
-
-            using (HttpClient _client = new HttpClient(handler) { BaseAddress = ApiUri, Timeout = TimeSpan.FromHours(2) })
-            {
-                //_client.DefaultRequestHeaders.Clear();
-                HttpResponseMessage x = await _client.PostAsync(ApiUri.AbsoluteUri + "v2/" + url, new StringContent(JsonConvert.SerializeObject(param), Encoding.UTF8, "application/json"));
-                CookieCollection responseCookies = cookies.GetCookies(ApiUri);
-
-                if (x.IsSuccessStatusCode)
-                {
-                    ResponseBO response = new ResponseBO();
-                    response.ResponseCookies = responseCookies;
-                    response.ResponseResult = await x.Content.ReadAsStringAsync();
-
-                    return response;
-                }
-                else
-                {
-                    throw new System.ArgumentException(String.Format("{0}", x.ReasonPhrase));
-                }
-
-            }
-        }
-
-        public async Task<ResponseBO> GetAsync(string url, object param, CookieCollection requestCookies = null, string contentType = "application/json")
-        {
-            CookieContainer cookies = new CookieContainer();
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.CookieContainer = cookies;
-
-            if (requestCookies != null)
-            {
-                int cookieCount = requestCookies.Count();
-                for (int i = 0; i < cookieCount; i++)
-                {
-                    handler.CookieContainer.Add(ApiUri, new Cookie(requestCookies.ElementAt(i).Name, requestCookies.ElementAt(i).Value));
-                }
-            }
-
-            using (HttpClient _client = new HttpClient(handler) { BaseAddress = ApiUri, Timeout = TimeSpan.FromHours(2) })
-            {
-                //_client.DefaultRequestHeaders.Clear();
-                var requestModelJson = JsonConvert.SerializeObject(param);
-                HttpResponseMessage x = await _client.GetAsync(ApiUri.AbsoluteUri + "v2/" + url + JsonToQuery(requestModelJson));
-                CookieCollection responseCookies = cookies.GetCookies(ApiUri);
-
-                if (x.IsSuccessStatusCode)
-                {
-                    ResponseBO response = new ResponseBO();
-                    response.ResponseCookies = responseCookies;
-                    response.ResponseResult = await x.Content.ReadAsStringAsync();
-                    return response;
-                }
-                else
-                {
-                    throw new System.ArgumentException(String.Format("{0}", x.ReasonPhrase));
-                }
-
-
-
-            }
-        }
-
-        public string JsonToQuery(string jsonQuery)
-        {
-            string str = "?";
-            str += jsonQuery.Replace(":", "=").Replace("{", "").
-                        Replace("}", "").Replace(",", "&").
-                            Replace("\"", "");
-            return str;
+            return _blockchainTx;
         }
 
 

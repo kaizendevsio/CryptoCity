@@ -50,7 +50,7 @@ namespace CryptoCityWallet.AppService
             }
 
         }
-        public TblUserWallet GetSingle(TblUserAuth tblUserAuth,TblWalletType walletType, dbWorldCCityContext db = null)
+        public TblUserWallet GetSingle(TblUserAuth tblUserAuth, TblWalletType walletType, dbWorldCCityContext db = null)
         {
             if (db != null)
             {

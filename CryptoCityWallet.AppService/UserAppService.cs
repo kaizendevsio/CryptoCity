@@ -38,8 +38,7 @@ namespace CryptoCityWallet.AppService
                 return userAuthResponse;
             }
         }
-
-        public bool Create(UserBO userBO, dbWorldCCityContext db = null)
+        public async Task<bool> CreateAsync(UserBO userBO, dbWorldCCityContext db = null)
         {
             if (db != null)
             {
@@ -64,6 +63,9 @@ namespace CryptoCityWallet.AppService
 
                 ExternalRecordsRepository externalRecordsRepository = new ExternalRecordsRepository();
                 externalRecordsRepository.CreateUserVolume(userAuth,db);
+
+                UserWalletAddressAppService userWalletAddressAppService = new UserWalletAddressAppService();
+                bool r = await userWalletAddressAppService.Create(userAuth);
 
                 userMapAppService.Create(userBO, userAuth, db);
 
@@ -98,6 +100,9 @@ namespace CryptoCityWallet.AppService
                         ExternalRecordsRepository externalRecordsRepository = new ExternalRecordsRepository();
                         externalRecordsRepository.CreateUserVolume(userAuth, db);
 
+                        UserWalletAddressAppService userWalletAddressAppService = new UserWalletAddressAppService();
+                        bool r = await userWalletAddressAppService.Create(userAuth);
+
                         userMapAppService.Create(userBO, userAuth, db);
 
                         transaction.Commit();
@@ -107,7 +112,6 @@ namespace CryptoCityWallet.AppService
             }
 
         }
-
         public TblUserInfo Get(TblUserAuth userAuth)
         {
             using (var db = new dbWorldCCityContext())
@@ -122,7 +126,6 @@ namespace CryptoCityWallet.AppService
                 }
             }
         }
-
         public TblUserRole GetUserRole(TblUserAuth userAuth)
         {
             using (var db = new dbWorldCCityContext())
@@ -141,7 +144,6 @@ namespace CryptoCityWallet.AppService
         {
             return true;
         }
-
         public bool StructureMapTesting(StructureMapInjection structureMap)
         {
             UserAppService userAppService = new UserAppService();
@@ -187,7 +189,7 @@ namespace CryptoCityWallet.AppService
                         user.BinarySponsorID = userInfoBinarySponsor.Uid;
                         user.BinaryPosition = structureMap.BinarySponsorDataArray[i].Comments;
 
-                        userAppService.Create(user);
+                        userAppService.CreateAsync(user);
                     }
 
                     transaction.Commit();

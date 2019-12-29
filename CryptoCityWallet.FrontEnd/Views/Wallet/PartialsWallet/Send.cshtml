@@ -12,19 +12,24 @@
                 <p>This feature is currently under construction</p>
                 <p>It will be ready soon. Try again later</p>
                 @*<h3 class="form__title" style="margin-top:10px;margin-bottom:10px;">Receive | Bitcoin</h3>
-                    *@
-            </div>
-            @*<div class="modal-body">
-                <div id="dateDetails" class="modal-body"></div>
-                <div id="memcodeDetails" class="modal-body"></div>
-                <div id="memnameDetails" class="modal-body"></div>
-                <div id="toDetails" class="modal-body"></div>
-                <div id="fromDetails" class="modal-body"></div>
-                <div id="currencyDetails" class="modal-body"></div>
-                <div id="amountDetails" class="modal-body"></div>
-                <div id="txidDetails" class="modal-body"></div>
+                *@
 
-            </div>*@
+                <div class="col-md-8" style="padding:0px;">
+                    <div class="form-group">
+                        <label>Recipient Address</label>
+                        <input type="text" style="text-align:center" id="PaymentAddress" placeholder="BTC Address.." class="form-control" readonly>
+                    </div>
+                </div>
+
+                <div class="col-md-8" style="padding:0px;">
+                    <div class="form-group">
+                        <label>Amount to be sent</label>
+                        <input type="number" style="text-align:center" id="PaymentAddress"  class="form-control" readonly>
+                    </div>
+                </div>
+
+            </div>
+
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 @*<a class="btn btn-primary" onclick="location.href='@Url.Action("CancelConvert", "Admin")'">Confirm Cancellation</a>*@

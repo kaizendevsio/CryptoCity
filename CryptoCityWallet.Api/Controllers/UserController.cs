@@ -27,7 +27,7 @@ namespace CryptoCityWallet.Api.Controllers
 
             try
             {
-                userAppService.Create(userBO);
+                bool _r = await userAppService.CreateAsync(userBO).ConfigureAwait(true);
                 Response response = await mailAppService.SendAsync(userBO).ConfigureAwait(true);
 
                 _apiResponse.HttpStatusCode = "200";
@@ -100,7 +100,7 @@ namespace CryptoCityWallet.Api.Controllers
 
             try
             {
-                userAppService.Create(userBO);
+                userAppService.CreateAsync(userBO);
 
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Message = "User successfully created";
@@ -185,6 +185,7 @@ namespace CryptoCityWallet.Api.Controllers
         public ActionResult Wallet()
         {
             UserWalletAppService userWalletAppService = new UserWalletAppService();
+            UserWalletAddressAppService userWalletAddressAppService = new UserWalletAddressAppService();
             UserResponseBO _apiResponse = new UserResponseBO();
 
             try
@@ -194,6 +195,7 @@ namespace CryptoCityWallet.Api.Controllers
                 TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
 
                 _apiResponse.UserWallet = userWalletAppService.GetAllBO(userAuth);
+                _apiResponse.UserWalletAddress = userWalletAddressAppService.GetAll(userAuth);
 
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Message = "UserWallet GET";
