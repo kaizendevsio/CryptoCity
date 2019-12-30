@@ -68,6 +68,57 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 
             }
         }
+        public async Task<IActionResult> Unilevel()
+        {
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.GetAsync(Env, "User/Profile", session.SessionCookies);
+                UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+                TblUserInfo userInfo = apiResponse.UserInfo;
+                TblUserAuth userAuth = apiResponse.UserAuth;
+
+                _res = await apiRequest.GetAsync(Env, "User/Wallet", session.SessionCookies);
+                apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+                List<UserWalletBO> userWallets = apiResponse.UserWallet;
+
+                _res = await apiRequest.GetAsync(Env, "User/Affiliate/Counters", session.SessionCookies);
+                AffiliateCountersBO apiResponse2 = JsonConvert.DeserializeObject<AffiliateCountersBO>(_res.ResponseResult);
+
+                AffiliateCountersBO affiliateCountersBO = new AffiliateCountersBO { DirectPartners = apiResponse2.DirectPartners, InvestmentSum = apiResponse2.InvestmentSum };
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    GenealogyVM genealogyVM = new GenealogyVM();
+                    genealogyVM.Fullname = String.Format("{0} {1}", userInfo.FirstName, userInfo.LastName);
+                    genealogyVM.Username = userAuth.UserName;
+                    genealogyVM.TotalInvestment = (double)affiliateCountersBO.InvestmentSum;
+                    genealogyVM.DirectPartners = (int)userWallets.Find(i => i.WalletCode == "DLN").Balance;
+                    genealogyVM.DirectVolume = affiliateCountersBO.DirectPartners;
+                    genealogyVM.TotalGroupVolume = (int)userWallets.Find(i => i.WalletCode == "TGV").Balance;
+                    genealogyVM.UserInfo = new UserBO { Uid = userInfo.Uid };
+
+                    return View(genealogyVM);
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+
+
+            }
+            catch (System.Exception e)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
+        }
 
         [HttpGet("GetMap")]
         public async Task<IActionResult> GetMap()

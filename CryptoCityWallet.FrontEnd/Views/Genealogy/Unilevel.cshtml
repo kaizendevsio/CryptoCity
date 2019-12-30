@@ -312,7 +312,7 @@
 @{
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 
-    ViewBag.Title = "World Crypto City | Genealogy";
+    ViewBag.Title = "World Crypto City | Unilevel";
 }
 @model GenealogyVM
 <div id="content" class="content">
@@ -325,7 +325,7 @@
 
 
 
-    <h1 class="page-header">Uni Leve Map<small> </small></h1>
+    <h1 class="page-header">Unilevel Map<small> </small></h1>
 
 
 
@@ -433,7 +433,57 @@
                     <div class="panel-body">
                         <div class="wallets__list">
                         </div>
-                        <div style="height:50vh" id="chart-container"></div>
+                        <ul id="tree1">
+                            <p class="well" style="height:135px;">
+                                <strong>Initialization no parameters</strong>
+
+                                <br /> <code>$('#tree1').treed();</code>
+
+                            </p>
+                            <li>
+                                <a href="#">TECH</a>
+
+                                <ul>
+                                    <li>Company Maintenance</li>
+                                    <li>
+                                        Employees
+                                        <ul>
+                                            <li>
+                                                Reports
+                                                <ul>
+                                                    <li>Report1</li>
+                                                    <li>Report2</li>
+                                                    <li>Report3</li>
+                                                </ul>
+                                            </li>
+                                            <li>Employee Maint.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Human Resources</li>
+                                </ul>
+                            </li>
+                            <li>
+                                XRP
+                                <ul>
+                                    <li>Company Maintenance</li>
+                                    <li>
+                                        Employees
+                                        <ul>
+                                            <li>
+                                                Reports
+                                                <ul>
+                                                    <li>Report1</li>
+                                                    <li>Report2</li>
+                                                    <li>Report3</li>
+                                                </ul>
+                                            </li>
+                                            <li>Employee Maint.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Human Resources</li>
+                                </ul>
+                            </li>
+                        </ul>
 
 
                     </div>
@@ -506,6 +556,70 @@
             </div>
             @section Scripts{
 
+        <style>.tree, .tree ul {
+    margin:0;
+    padding:0;
+    list-style:none
+}
+.tree ul {
+    margin-left:1em;
+    position:relative
+}
+.tree ul ul {
+    margin-left:.5em
+}
+.tree ul:before {
+    content:"";
+    display:block;
+    width:0;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    border-left:1px solid
+}
+.tree li {
+    margin:0;
+    padding:0 1em;
+    line-height:2em;
+    color:#369;
+    font-weight:700;
+    position:relative
+}
+.tree ul li:before {
+    content:"";
+    display:block;
+    width:10px;
+    height:0;
+    border-top:1px solid;
+    margin-top:-1px;
+    position:absolute;
+    top:1em;
+    left:0
+}
+.tree ul li:last-child:before {
+    background:#fff;
+    height:auto;
+    top:1em;
+    bottom:0
+}
+.indicator {
+    margin-right:5px;
+}
+.tree li a {
+    text-decoration: none;
+    color:#369;
+}
+.tree li button, .tree li button:active, .tree li button:focus {
+    text-decoration: none;
+    color:#369;
+    border:none;
+    background:transparent;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    outline: 0;
+}</style>
+
                 <script type="text/javascript">
 
                 function CopyText() {
@@ -522,7 +636,7 @@
                     /* Alert the copied text */
                     alert("Link Copied to clipboard.");
                 }
-
+                    $('#tree1').treed();
                 $.ajax({
                     url: '@Url.Action("GetMap", "Genealogy")',
                     type: 'GET',
@@ -535,16 +649,60 @@
                         //window.location.replace(data.RedirectUrl);
                         datascource = data.UserMap;
 
-                        var oc = $('#chart-container').orgchart({
-                            'data': datascource,
-                            'nodeContent': 'title',
-                            'pan': true,
-                            'zoom': true,
-                            'initCompleted': function ($chart) {
-                                //oc.setChartScale(oc.$chart, 1.5);
-                                //document.getElementsByClassName('orgchart')[0].style.transform = "matrix(2, 0, 0, 2, 0, 100)";
-                            }
-                        });
+                   $.fn.extend({
+    treed: function (o) {
+      
+      var openedClass = 'glyphicon-minus-sign';
+      var closedClass = 'glyphicon-plus-sign';
+      
+      if (typeof o != 'undefined'){
+        if (typeof o.openedClass != 'undefined'){
+        openedClass = o.openedClass;
+        }
+        if (typeof o.closedClass != 'undefined'){
+        closedClass = o.closedClass;
+        }
+      };
+      
+        //initialize each of the top levels
+        var tree = $(this);
+        tree.addClass("tree");
+        tree.find('li').has("ul").each(function () {
+            var branch = $(this); //li with children ul
+            branch.prepend("<i class='indicator glyphicon " + closedClass + "'></i>");
+            branch.addClass('branch');
+            branch.on('click', function (e) {
+                if (this == e.target) {
+                    var icon = $(this).children('i:first');
+                    icon.toggleClass(openedClass + " " + closedClass);
+                    $(this).children().children().toggle();
+                }
+            })
+            branch.children().children().toggle();
+        });
+        //fire event from the dynamically added icon
+      tree.find('.branch .indicator').each(function(){
+        $(this).on('click', function () {
+            $(this).closest('li').click();
+        });
+      });
+        //fire event to open branch if the li contains an anchor instead of text
+        tree.find('.branch>a').each(function () {
+            $(this).on('click', function (e) {
+                $(this).closest('li').click();
+                e.preventDefault();
+            });
+        });
+        //fire event to open branch if the li contains a button instead of text
+        tree.find('.branch>button').each(function () {
+            $(this).on('click', function (e) {
+                $(this).closest('li').click();
+                e.preventDefault();
+            });
+        });
+    }
+});
+
 
 
                         $('#togglePan').on('click', function () {
