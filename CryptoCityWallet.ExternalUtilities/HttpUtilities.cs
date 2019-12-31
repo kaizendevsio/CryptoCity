@@ -12,7 +12,7 @@ namespace CryptoCityWallet.ExternalUtilities
 {
     public class HttpUtilities
     {
-        public async Task<ResponseBO> PostAsync(Uri ApiUri, string url, object param, CookieCollection requestCookies = null, string contentType = "application/json")
+        public async Task<HttpResponseBO> PostAsync(Uri ApiUri, string url, object param, CookieCollection requestCookies = null, string contentType = "application/json")
         {
             CookieContainer cookies = new CookieContainer();
             HttpClientHandler handler = new HttpClientHandler();
@@ -35,7 +35,7 @@ namespace CryptoCityWallet.ExternalUtilities
 
                 if (x.IsSuccessStatusCode)
                 {
-                    ResponseBO response = new ResponseBO();
+                    HttpResponseBO response = new HttpResponseBO();
                     response.ResponseCookies = responseCookies;
                     response.ResponseResult = await x.Content.ReadAsStringAsync();
 
@@ -49,7 +49,7 @@ namespace CryptoCityWallet.ExternalUtilities
             }
         }
 
-        public async Task<ResponseBO> GetAsync(Uri ApiUri, string url, object param, CookieCollection requestCookies = null, string contentType = "application/json")
+        public async Task<HttpResponseBO> GetAsync(Uri ApiUri, string url, object param, CookieCollection requestCookies = null, string contentType = "application/json")
         {
             CookieContainer cookies = new CookieContainer();
             HttpClientHandler handler = new HttpClientHandler();
@@ -73,7 +73,7 @@ namespace CryptoCityWallet.ExternalUtilities
 
                 if (x.IsSuccessStatusCode)
                 {
-                    ResponseBO response = new ResponseBO();
+                    HttpResponseBO response = new HttpResponseBO();
                     response.ResponseCookies = responseCookies;
                     response.ResponseResult = await x.Content.ReadAsStringAsync();
                     return response;

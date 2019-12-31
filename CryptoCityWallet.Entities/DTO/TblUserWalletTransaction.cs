@@ -17,6 +17,7 @@ namespace CryptoCityWallet.Entities.DTO
         public decimal? Amount { get; set; }
         public string Remarks { get; set; }
         public decimal? RunningBalance { get; set; }
+        public string Description { get; set; }
 
         public virtual TblUserWallet SourceUserWallet { get; set; }
         public virtual TblUserAuth UserAuth { get; set; }

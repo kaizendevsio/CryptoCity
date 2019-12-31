@@ -20,7 +20,7 @@ namespace CryptoCityWallet.DataAccessLayer
             return true;
 
         }
-        public TblUserMap Get(TblUserMap userMapQuery, dbWorldCCityContext db)
+        public List<TblUserMap> GetAll(TblUserMap userMapQuery, dbWorldCCityContext db)
         {
             var _q = from a in db.TblUserMap
                      where a.Id == userMapQuery.Id || a.UserUid == userMapQuery.UserUid
@@ -38,11 +38,10 @@ namespace CryptoCityWallet.DataAccessLayer
                          IdNavigation = a.IdNavigation
                      };
 
-            TblUserMap _qRes = _q.FirstOrDefault<TblUserMap>();
+            List<TblUserMap> _qRes = _q.ToList<TblUserMap>();
 
             return _qRes;
         }
-
         public UserMapBO GetMap(TblUserAuth userAuth, int position = 1 )
         {
             UserMapRepository userMapRepository = new UserMapRepository();

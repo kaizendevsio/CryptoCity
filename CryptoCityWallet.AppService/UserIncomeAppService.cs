@@ -19,7 +19,7 @@ namespace CryptoCityWallet.AppService
 
             TblUserMap userMap = new TblUserMap();
             userMap.Id = userAuth.Id;
-            userMap = userMapRepository.Get(userMap, db);
+            //userMap = userMapRepository.Get(userMap, db);
 
             UserWalletBO userWallet = new UserWalletBO();
             WalletTransactionBO walletTransaction = new WalletTransactionBO();

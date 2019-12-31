@@ -10,6 +10,7 @@ using CryptoCityWallet.ExternalUtilities;
 using CryptoCityWallet.ExternalUtilities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CryptoCityWallet.Api.Controllers
 {
@@ -34,18 +35,17 @@ namespace CryptoCityWallet.Api.Controllers
                 TblUserInfo userInfo = userAppService.Get(userAuth);
                 List<TblUserWalletAddress> userWalletAddresses = userWalletAddressAppService.GetAll(userAuth);
 
-                BlockchainResponse _br = await blockchain.GenerateNewAddressAsync("").ConfigureAwait(true);
-
                 if (userWalletAddresses.Count != 0)
                 {
-                    _apiResponse.XpubKey = userWalletAddresses.Find(i => i.WalletType.Code == "BTC").Address;
+                    _apiResponse.Address = userWalletAddresses.Find(i => i.WalletType.Code == "BTC").Address;
                 }
                 else
                 {
+                    BlockchainResponse _br = await blockchain.GenerateNewAddressAsync("").ConfigureAwait(true);
                     _apiResponse.Address = _br.Address;
                     _apiResponse.XpubKey = _br.XpubKey;
 
-                    bool _x = await userWalletAddressAppService.Create(userAuth, _br.Address).ConfigureAwait(true);
+                    bool _x = await userWalletAddressAppService.Create(userAuth,"BTC",_br.Address).ConfigureAwait(true);
                 }
 
                 _apiResponse.UserAuth = userAuth;
@@ -159,7 +159,7 @@ namespace CryptoCityWallet.Api.Controllers
 
                 _apiResponse.UserAuth = userAuth;
                 _apiResponse.UserInfo = userInfo;
-                _apiResponse.AddressTransactions = _br;
+                _apiResponse.AddressTransactions = JsonConvert.SerializeObject(_br);
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Status = "Success";
 

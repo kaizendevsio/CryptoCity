@@ -32,7 +32,7 @@ namespace CryptoCityWallet.ExternalUtilities
         {
             HttpUtilities httpUtilities = new HttpUtilities();
             BlockchainApiSettings blockchainApiSettings = GetSettings();
-            ResponseBO _res = await httpUtilities.GetAsync(blockchainApiSettings.ApiUri, "v2/receive", new { xpub = blockchainApiSettings.XpubKey, callback = blockchainApiSettings.CallbackURL, key = blockchainApiSettings.ApiKey });
+            HttpResponseBO _res = await httpUtilities.GetAsync(blockchainApiSettings.ApiUri, "v2/receive", new { xpub = blockchainApiSettings.XpubKey, callback = blockchainApiSettings.CallbackURL, key = blockchainApiSettings.ApiKey });
             ReceivePaymentResponse receivePayment = JsonConvert.DeserializeObject<ReceivePaymentResponse>(_res.ResponseResult);
 
             BlockchainResponse blockchainResponse = new BlockchainResponse();
@@ -47,7 +47,7 @@ namespace CryptoCityWallet.ExternalUtilities
         {
             HttpUtilities httpUtilities = new HttpUtilities();
             BlockchainApiSettings blockchainApiSettings = GetSettings();
-            ResponseBO _res = await httpUtilities.GetAsync(blockchainApiSettings.BlockCypherApiUri, "v1/btc/main/addrs/" + _walletAddress, new object{});
+            HttpResponseBO _res = await httpUtilities.GetAsync(blockchainApiSettings.BlockCypherApiUri, "v1/btc/main/addrs/" + _walletAddress, new object{});
             BlockchainTx _blockchainTx = JsonConvert.DeserializeObject<BlockchainTx>(_res.ResponseResult);
 
             return _blockchainTx;

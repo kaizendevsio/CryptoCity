@@ -10,6 +10,6 @@ namespace CryptoCityWallet.Entities.BO
         public string Address { get; set; }
         public string XpubKey { get; set; }
         public ChangellyResponse changellyResponse { get; set; }
-        public BlockchainTx AddressTransactions { get; set; }
+        public string AddressTransactions { get; set; }
     }
 }

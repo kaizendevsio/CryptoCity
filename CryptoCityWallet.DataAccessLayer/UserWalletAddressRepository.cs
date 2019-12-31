@@ -31,6 +31,7 @@ namespace CryptoCityWallet.DataAccessLayer
                          CreatedOn = a.CreatedOn,
                          UserAuthId = a.UserAuthId,
                          Balance = a.Balance,
+                         Remarks = a.Remarks,
                          IsEnabled = a.IsEnabled,
                          WalletType = b
                      };

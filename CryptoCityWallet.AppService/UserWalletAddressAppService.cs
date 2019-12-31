@@ -15,12 +15,15 @@ namespace CryptoCityWallet.AppService
 {
    public class UserWalletAddressAppService
     {
-        public async Task<bool> Create(TblUserAuth userAuth, string appendAddress = null, dbWorldCCityContext db = null)
+        public async Task<bool> Create(TblUserAuth userAuth, string walletCode, string appendAddress = null, dbWorldCCityContext db = null)
         {
             if (db != null)
             {
                 UserWalletAddressRepository userWalletAddressRepository = new UserWalletAddressRepository();
+                WalletTypeRepository walletTypeRepository = new WalletTypeRepository();
                 TblUserWalletAddress userWalletAddress = new TblUserWalletAddress();
+
+                TblWalletType walletType = walletTypeRepository.Get(new UserWalletBO { WalletCode = walletCode, WalletTypeId = 0 }, db);
 
                 if (appendAddress == null)
                 {
@@ -34,6 +37,7 @@ namespace CryptoCityWallet.AppService
                 }
                 userWalletAddress.UserAuthId = userAuth.Id;
                 userWalletAddress.Balance = 0m;
+                userWalletAddress.WalletTypeId = walletType.Id;
 
                 userWalletAddressRepository.Create(userWalletAddress, db);
             }
@@ -44,7 +48,10 @@ namespace CryptoCityWallet.AppService
                     using (var transaction = db.Database.BeginTransaction())
                     {
                         UserWalletAddressRepository userWalletAddressRepository = new UserWalletAddressRepository();
+                        WalletTypeRepository walletTypeRepository = new WalletTypeRepository();
                         TblUserWalletAddress userWalletAddress = new TblUserWalletAddress();
+
+                        TblWalletType walletType = walletTypeRepository.Get(new UserWalletBO { WalletCode = walletCode, WalletTypeId = 0 }, db);
 
                         if (appendAddress == null)
                         {
@@ -58,8 +65,11 @@ namespace CryptoCityWallet.AppService
                         }
                         userWalletAddress.UserAuthId = userAuth.Id;
                         userWalletAddress.Balance = 0m;
+                        userWalletAddress.WalletTypeId = walletType.Id;
 
                         userWalletAddressRepository.Create(userWalletAddress, db);
+
+                        transaction.Commit();
                     }
                 }
             }

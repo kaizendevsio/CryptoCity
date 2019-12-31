@@ -11,9 +11,12 @@ using CryptoCityWallet.Wrapper.Models;
 using CryptoCityWallet.Entities.BO;
 using CryptoCityWallet.Entities.DTO;
 using Newtonsoft.Json;
+using CryptoCityWallet.Entities.Enums;
+using CryptoCityWallet.ExternalUtilities.Models;
 
 namespace CryptoCityWallet.FrontEnd.Controllers
 {
+
     public class WalletController : Controller
     {
         public readonly string Env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -86,6 +89,14 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 TblUserInfo userInfo = apiResponse.UserInfo;
                 TblUserAuth userAuth = apiResponse.UserAuth;
 
+                _res = await apiRequest.GetAsync(Env, "User/Wallet", session.SessionCookies);
+                apiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
+                List<TblUserWalletAddress> userWalletAddresses = apiResponse.UserWalletAddress;
+                List<UserWalletBO> userWallets = apiResponse.UserWallet;
+
+                _res = await apiRequest.GetAsync(Env, "Wallet/Address/Transactions/" + "?currency=BTC", session.SessionCookies);
+                WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
+
                 if (apiResponse.HttpStatusCode == "200")
                 {
                     WalletVM walletVM = new WalletVM();
@@ -93,7 +104,11 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     walletVM.Username = userAuth.UserName;
                     walletVM.WalletCode = "BTC";
                     walletVM.WalletName = "Bitcoin";
-                    walletVM.PaymentAddress = apiResponse.Address;
+                    walletVM.PaymentAddress = userWalletAddresses.Find(i => i.WalletType.Code == "BTC").Address;
+                    walletVM.UserWallets = userWallets.FindAll(item => item.WalletType.Type == (short)WalletType.CurrencyValue);
+                    walletVM.UserWalletAddresses = userWalletAddresses;
+                    walletVM.UserWalletAddressTxs = JsonConvert.DeserializeObject<BlockchainTx>(walletApiResponse.AddressTransactions);
+                    walletVM.UserWalletAddressTxs.Txrefs = walletVM.UserWalletAddressTxs.Txrefs == null ? new List<ExternalUtilities.Models.Txref>(): walletVM.UserWalletAddressTxs.Txrefs;
 
                     return View(walletVM);
                 }

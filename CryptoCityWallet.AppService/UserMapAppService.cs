@@ -67,6 +67,7 @@ namespace CryptoCityWallet.AppService
         public bool Validate(UserBO userBO,dbWorldCCityContext db)
         {
             UserAuthRepository userAuthRepository = new UserAuthRepository();
+            UserMapRepository userMapRepository = new UserMapRepository();
 
             if (userBO.BinarySponsorID != null)
             {
@@ -75,6 +76,14 @@ namespace CryptoCityWallet.AppService
                 if (binarySponsorUser == null)
                 {
                     throw new ArgumentException("Binary Sponsor ID is invalid");
+                }
+                else
+                {
+                    List<TblUserMap> _userMapList = userMapRepository.GetAll(new TblUserMap { Id = binarySponsorUser.Id, UserUid = ""}, db).FindAll(i => i.Position == short.Parse(userBO.BinaryPosition));
+                    if (_userMapList.Count > 0)
+                    {
+                        throw new ArgumentException("Binary position is already taken");
+                    }
                 }
             }
 
@@ -87,6 +96,9 @@ namespace CryptoCityWallet.AppService
                     throw new ArgumentException("Introducer ID is invalid");
                 }
             }
+
+
+
             return true;
 
         }
