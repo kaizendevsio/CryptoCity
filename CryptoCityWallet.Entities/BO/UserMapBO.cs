@@ -12,8 +12,6 @@ namespace CryptoCityWallet.Entities.BO
         public string title { get; set; }
         public List<UserMapBO> children { get; set; }
         public string relationship { get; set; }
-        public TblUserAuth MapRightUserAuth { get; set; }
-        public TblUserAuth MapLeftUserAuth { get; set; }
 
     }
 }

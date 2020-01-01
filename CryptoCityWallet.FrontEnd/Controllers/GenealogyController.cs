@@ -17,6 +17,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
     public class GenealogyController : Controller
     {
         public readonly string Env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        
+        [Route("Genealogy")]
         public async Task<IActionResult> Index()
         {
             try
@@ -68,6 +70,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
 
             }
         }
+
+        [Route("Genealogy/Unilevel")]
         public async Task<IActionResult> Unilevel()
         {
             try

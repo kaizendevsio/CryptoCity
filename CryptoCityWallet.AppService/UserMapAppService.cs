@@ -20,23 +20,29 @@ namespace CryptoCityWallet.AppService
 
             if (directSponsorUser == null)
             {
-                directSponsorUser = new TblUserAuth();
-                directSponsorUser.Id = 1;
+                directSponsorUser = new TblUserAuth
+                {
+                    Id = 1
+                };
             }
             if (binarySponsorUser == null)
             {
-                binarySponsorUser = new TblUserAuth();
-                binarySponsorUser.Id = 1;
+                binarySponsorUser = new TblUserAuth
+                {
+                    Id = 1
+                };
             }
 
-            TblUserMap userMap = new TblUserMap();
-            userMap.Id = userAuth.Id;
-            userMap.SponsorUserId = directSponsorUser.Id;
-            userMap.UplineUserId = binarySponsorUser.Id;
-            userMap.Position = (short)Convert.ToInt32(userBO.BinaryPosition);
-            userMap.UserUid = userBO.Uid;
+            TblUserMap userMap = new TblUserMap
+            {
+                Id = userAuth.Id,
+                SponsorUserId = directSponsorUser.Id,
+                UplineUserId = binarySponsorUser.Id,
+                Position = (short)Convert.ToInt32(userBO.BinaryPosition),
+                UserUid = userBO.Uid
+            };
 
-           return userMapRepository.Create(userMap,db);
+            return userMapRepository.Create(userMap,db);
         }
 
         public UserMapBO Get(TblUserAuth userAuth, dbWorldCCityContext db = null)
@@ -50,16 +56,14 @@ namespace CryptoCityWallet.AppService
             {
                 using (db = new dbWorldCCityContext())
                 {
-                    using (var transaction = db.Database.BeginTransaction())
-                    {
-                        UserMapRepository userMapRepository = new UserMapRepository();
-                        UserInfoRepository userInfoRepository = new UserInfoRepository();
+                    using var transaction = db.Database.BeginTransaction();
+                    UserMapRepository userMapRepository = new UserMapRepository();
+                    UserInfoRepository userInfoRepository = new UserInfoRepository();
 
-                        UserMapBO userMap = userMapRepository.GetMap(userAuth);
-                        var _i = userInfoRepository.Get(userAuth, db);
-                        userMap.title = String.Format("{0} {1}", _i.FirstName, _i.LastName);
-                        return userMap;
-                    }
+                    UserMapBO userMap = userMapRepository.GetMap(userAuth);
+                    //var _i = userInfoRepository.Get(userAuth, db);
+                    //userMap.title = String.Format("{0} {1}", _i.FirstName, _i.LastName);
+                    return userMap;
                 }
             }
         }

@@ -351,8 +351,8 @@
 
                                 </b>
                                 @*<span class="ml-2">
-                                    <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
-                                </span>*@
+                                        <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
+                                    </span>*@
                             </div>
                             <!-- end title -->
                             <!-- begin total-sales -->
@@ -394,8 +394,8 @@
 
                                 </b>
                                 @*<span class="ml-2">
-                                    <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
-                                </span>*@
+                                        <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
+                                    </span>*@
                             </div>
                             <!-- end title -->
                             <!-- begin total-sales -->
@@ -433,57 +433,8 @@
                     <div class="panel-body">
                         <div class="wallets__list">
                         </div>
-                        <ul id="tree1">
-                            <p class="well" style="height:135px;">
-                                <strong>Initialization no parameters</strong>
 
-                                <br /> <code>$('#tree1').treed();</code>
-
-                            </p>
-                            <li>
-                                <a href="#">TECH</a>
-
-                                <ul>
-                                    <li>Company Maintenance</li>
-                                    <li>
-                                        Employees
-                                        <ul>
-                                            <li>
-                                                Reports
-                                                <ul>
-                                                    <li>Report1</li>
-                                                    <li>Report2</li>
-                                                    <li>Report3</li>
-                                                </ul>
-                                            </li>
-                                            <li>Employee Maint.</li>
-                                        </ul>
-                                    </li>
-                                    <li>Human Resources</li>
-                                </ul>
-                            </li>
-                            <li>
-                                XRP
-                                <ul>
-                                    <li>Company Maintenance</li>
-                                    <li>
-                                        Employees
-                                        <ul>
-                                            <li>
-                                                Reports
-                                                <ul>
-                                                    <li>Report1</li>
-                                                    <li>Report2</li>
-                                                    <li>Report3</li>
-                                                </ul>
-                                            </li>
-                                            <li>Employee Maint.</li>
-                                        </ul>
-                                    </li>
-                                    <li>Human Resources</li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <div id="treeview"></div>
 
 
                     </div>
@@ -552,91 +503,132 @@
                         </div>
                     </div>
                 </div>
-                </div>
             </div>
-            @section Scripts{
+        </div>
+        @section Scripts{
 
-        <style>.tree, .tree ul {
-    margin:0;
-    padding:0;
-    list-style:none
-}
-.tree ul {
-    margin-left:1em;
-    position:relative
-}
-.tree ul ul {
-    margin-left:.5em
-}
-.tree ul:before {
-    content:"";
-    display:block;
-    width:0;
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    border-left:1px solid
-}
-.tree li {
-    margin:0;
-    padding:0 1em;
-    line-height:2em;
-    color:#369;
-    font-weight:700;
-    position:relative
-}
-.tree ul li:before {
-    content:"";
-    display:block;
-    width:10px;
-    height:0;
-    border-top:1px solid;
-    margin-top:-1px;
-    position:absolute;
-    top:1em;
-    left:0
-}
-.tree ul li:last-child:before {
-    background:#fff;
-    height:auto;
-    top:1em;
-    bottom:0
-}
-.indicator {
-    margin-right:5px;
-}
-.tree li a {
-    text-decoration: none;
-    color:#369;
-}
-.tree li button, .tree li button:active, .tree li button:focus {
-    text-decoration: none;
-    color:#369;
-    border:none;
-    background:transparent;
-    margin:0px 0px 0px 0px;
-    padding:0px 0px 0px 0px;
-    outline: 0;
-}</style>
-
-                <script type="text/javascript">
-
-                function CopyText() {
-                    /* Get the text field */
-                    var copyText = document.getElementById("genlink");
-
-                    /* Select the text field */
-                    copyText.select();
-                    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-
-                    /* Copy the text inside the text field */
-                    document.execCommand("copy");
-
-                    /* Alert the copied text */
-                    alert("Link Copied to clipboard.");
+            <style>
+                .tree, .tree ul {
+                    margin: 0;
+                    padding: 0;
+                    list-style: none
                 }
-                    $('#tree1').treed();
+
+                    .tree ul {
+                        margin-left: 1em;
+                        position: relative
+                    }
+
+                        .tree ul ul {
+                            margin-left: .5em
+                        }
+
+                        .tree ul:before {
+                            content: "";
+                            display: block;
+                            width: 0;
+                            position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            border-left: 1px solid
+                        }
+
+                    .tree li {
+                        margin: 0;
+                        padding: 0 1em;
+                        line-height: 2em;
+                        color: #369;
+                        font-weight: 700;
+                        position: relative
+                    }
+
+                    .tree ul li:before {
+                        content: "";
+                        display: block;
+                        width: 10px;
+                        height: 0;
+                        border-top: 1px solid;
+                        margin-top: -1px;
+                        position: absolute;
+                        top: 1em;
+                        left: 0
+                    }
+
+                    .tree ul li:last-child:before {
+                        background: #fff;
+                        height: auto;
+                        top: 1em;
+                        bottom: 0
+                    }
+
+                .indicator {
+                    margin-right: 5px;
+                }
+
+                .tree li a {
+                    text-decoration: none;
+                    color: #369;
+                }
+
+                .tree li button, .tree li button:active, .tree li button:focus {
+                    text-decoration: none;
+                    color: #369;
+                    border: none;
+                    background: transparent;
+                    margin: 0px 0px 0px 0px;
+                    padding: 0px 0px 0px 0px;
+                    outline: 0;
+                }
+            </style>
+
+            <script type="text/javascript">
+
+                var json = '[' +
+                    '{' +
+                    '"text": "Parent 1",' +
+                    '"nodes": [' +
+                    '{' +
+                    '"text": "Child 1",' +
+                    '"nodes": [' +
+                    '{' +
+                    '"text": "Grandchild 1"' +
+                    '},' +
+                    '{' +
+                    '"text": "Grandchild 2"' +
+                    '}' +
+                    ']' +
+                    '},' +
+                    '{' +
+                    '"text": "Child 2"' +
+                    '}' +
+                    ']' +
+                    '},' +
+                    '{' +
+                    '"text": "Parent 2"' +
+                    '},' +
+                    '{' +
+                    '"text": "Parent 3"' +
+                    '},' +
+                    '{' +
+                    '"text": "Parent 4"' +
+                    '},' +
+                    '{' +
+                    '"text": "Parent 5"' +
+                    '}' +
+                    ']';
+
+                var $tree = $('#treeview').treeview({
+                    color: "#428bca",
+                    expandIcon: "fa fa-user",
+                    collapseIcon: "fa fa-user",
+                    nodeIcon: "glyphicon glyphicon-user",
+                    showTags: true,
+                    showBorder: false,
+                    data: json
+                });
+
+
                 $.ajax({
                     url: '@Url.Action("GetMap", "Genealogy")',
                     type: 'GET',
@@ -651,10 +643,10 @@
 
                    $.fn.extend({
     treed: function (o) {
-      
+
       var openedClass = 'glyphicon-minus-sign';
       var closedClass = 'glyphicon-plus-sign';
-      
+
       if (typeof o != 'undefined'){
         if (typeof o.openedClass != 'undefined'){
         openedClass = o.openedClass;
@@ -663,7 +655,7 @@
         closedClass = o.closedClass;
         }
       };
-      
+
         //initialize each of the top levels
         var tree = $(this);
         tree.addClass("tree");
@@ -758,12 +750,12 @@
                     return false
                 }
 
-                </script>
-            }
+            </script>
+        }
 
-        </div>
+    </div>
 
-        </div>
+</div>
 
 <!-- Mirrored from frontend.test/group-tree by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Dec 2019 01:19:59 GMT -->
 <!-- end panel -->

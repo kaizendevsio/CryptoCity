@@ -42,46 +42,67 @@ namespace CryptoCityWallet.DataAccessLayer
 
             return _qRes;
         }
-        public UserMapBO GetMap(TblUserAuth userAuth, int position = 1 )
+        public List<UserMapBO> GetMapChildren(TblUserAuth userAuth)
         {
             UserMapRepository userMapRepository = new UserMapRepository();
-            dbWorldCCityContext db = new dbWorldCCityContext();
+            UserInfoRepository userInfoRepository = new UserInfoRepository();
+            UserBusinessPackageRepository userBusinessPackageRepository = new UserBusinessPackageRepository();
 
-            var _q = from mapUserAuthLeft in db.TblUserAuth
-                     from mapUserAuthRight in db.TblUserAuth
+            using dbWorldCCityContext db = new dbWorldCCityContext();
+            TblUserInfo userInfo = userInfoRepository.Get(userAuth, db);
 
-                     join mapUserLeft in db.TblUserMap on mapUserAuthLeft.Id equals mapUserLeft.Id
-                     join mapUserInfoLeft in db.TblUserInfo on mapUserAuthLeft.UserInfoId equals mapUserInfoLeft.Id
+            var _q = from a in db.TblUserMap
+                     join b in db.TblUserAuth on a.Id equals b.Id
+                     join c in db.TblUserInfo on b.UserInfoId equals c.Id
 
-                     join mapUserRight in db.TblUserMap on mapUserAuthRight.Id equals mapUserRight.Id
-                     join mapUserInfoRight in db.TblUserInfo on mapUserAuthRight.UserInfoId equals mapUserInfoRight.Id
-
-
-                     where mapUserLeft.UplineUserId == userAuth.Id && mapUserLeft.Position == 1 && mapUserRight.UplineUserId == userAuth.Id && mapUserRight.Position == 2
-
-                     select new UserMapBO
+                     where a.UplineUserId == userAuth.Id
+                     orderby a.Position ascending
+                     select new TblUserMap
                      {
-                         name = userAuth.UserName,
-                         relationship = "101",
-                         children = new List<UserMapBO> { new UserMapBO { title = String.Format("{0} {1}", mapUserInfoLeft.FirstName, mapUserInfoLeft.LastName), name = mapUserAuthLeft.UserName}, new UserMapBO { title = String.Format("{0} {1}", mapUserInfoRight.FirstName, mapUserInfoRight.LastName), name = mapUserAuthRight.UserName } }
-
+                         Id = a.Id,
+                         CreatedOn = a.CreatedOn,
+                         IsEnabled = a.IsEnabled,
+                         Position = a.Position,
+                         UplineUserId = a.UplineUserId,
+                         IdNavigation = new TblUserAuth { Id = b.Id, CreatedOn = b.CreatedOn, IsEnabled = b.IsEnabled, UserName = b.UserName, UserAlias = b.UserAlias, UserInfo = c },
                      };
 
-            UserMapBO _qRes = _q.FirstOrDefault();
+            List<TblUserMap> _qRes = _q.ToList();
+            List<UserMapBO> userMapChildren = new List<UserMapBO>();
 
-            UserMapBO userMapBO = new UserMapBO();
-
-
-
-            if (_qRes != null)
+            for (int i = 0; i < _qRes.Count; i++)
             {
-                //UserMapBO _x = GetMap(_qRes.children[0].UserAuth);
-                //UserMapBO _y = GetMap(_qRes.children[1].UserAuth);
-                //_qRes.children[0].children = _x == null ? new List<UserMapBO>() : _x.children;
-                //_qRes.children[1].children = _y == null ? new List<UserMapBO>() : _y.children;
+                UserMapBO userMap = new UserMapBO();
+                List<TblUserBusinessPackage> userBusinessPackages = userBusinessPackageRepository.GetAll(_qRes[i].IdNavigation, db);
+                userBusinessPackages = userBusinessPackages.FindAll(i => i.UserDepositRequest.DepositStatus == (short)DepositStatus.Paid);
+                userMap.title = userBusinessPackages.Count > 0 ? @String.Format("BP ({0:#,##0.000})", userBusinessPackages.Sum(i => i.UserDepositRequest.Amount)) : "Inactive";
+                userMap.name = _qRes[i].IdNavigation.UserName;
+                userMap.relationship = "101";
+                userMap.children = GetMapChildren(_qRes[i].IdNavigation);
+                userMapChildren.Add(userMap);
             }
 
-            return _qRes;
+            return userMapChildren;
+        }
+        public UserMapBO GetMap(TblUserAuth userAuth)
+        {
+            using dbWorldCCityContext db = new dbWorldCCityContext();
+            UserInfoRepository userInfoRepository = new UserInfoRepository();
+            UserBusinessPackageRepository userBusinessPackageRepository = new UserBusinessPackageRepository();
+
+            TblUserInfo userInfo = userInfoRepository.Get(userAuth, db);
+            List<TblUserBusinessPackage> userBusinessPackages = userBusinessPackageRepository.GetAll(userAuth, db);
+            userBusinessPackages = userBusinessPackages.FindAll(i => i.UserDepositRequest.DepositStatus == (short)DepositStatus.Paid);
+
+            UserMapBO userMapBO = new UserMapBO
+            {
+                title = userBusinessPackages.Count > 0 ? @String.Format("BP ({0:#,##0.000})", userBusinessPackages.Sum(i => i.UserDepositRequest.Amount)) : "Inactive",
+                name = userAuth.UserName,
+                relationship = "101",
+                children = GetMapChildren(userAuth)
+            };
+
+            return userMapBO;
         }
     }
 }
