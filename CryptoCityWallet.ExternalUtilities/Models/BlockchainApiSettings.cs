@@ -11,5 +11,8 @@ namespace CryptoCityWallet.ExternalUtilities.Models
         public string CallbackURL { get; set; }
         public Uri ApiUri { get; set; }
         public Uri BlockCypherApiUri { get; set; }
+        public string ServiceUrl { get; set; }
+        public string WalletID { get; set; }
+        public string WalletPassword { get; set; }
     }
 }

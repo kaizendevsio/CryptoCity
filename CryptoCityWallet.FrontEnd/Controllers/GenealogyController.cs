@@ -17,7 +17,7 @@ namespace CryptoCityWallet.FrontEnd.Controllers
     public class GenealogyController : Controller
     {
         public readonly string Env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-        
+
         [Route("Genealogy")]
         public async Task<IActionResult> Index()
         {
@@ -124,8 +124,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
             }
         }
 
-        [HttpGet("GetMap")]
-        public async Task<IActionResult> GetMap()
+        [HttpGet("GetMapBinary")]
+        public async Task<IActionResult> GetMapBinary()
         {
             try
             {
@@ -134,12 +134,45 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 SessionBO session = sessionController.GetSession(HttpContext.Session);
 
                 ApiRequest apiRequest = new ApiRequest();
-                ResponseBO _res = await apiRequest.GetAsync(Env,"User/Map", session.SessionCookies);
+                ResponseBO _res = await apiRequest.GetAsync(Env, "User/BinaryMap", session.SessionCookies);
                 UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
 
                 if (apiResponse.HttpStatusCode == "200")
                 {
                     return Ok(apiResponse);
+                }
+                else
+                {
+                    apiResponse.RedirectUrl = "/User/Login/Failed";
+                    return BadRequest(apiResponse);
+                }
+
+            }
+            catch (System.Exception e)
+            {
+                UserResponseBO apiResponse = new UserResponseBO();
+                apiResponse.RedirectUrl = "/User/Login/Failed";
+                apiResponse.Message = e.Message;
+                return BadRequest(apiResponse);
+            }
+        }
+
+        [HttpGet("GetMapUnilevel")]
+        public async Task<IActionResult> GetMapUnilevel()
+        {
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.GetAsync(Env, "User/UnilevelMap", session.SessionCookies);
+                UserResponseBO apiResponse = JsonConvert.DeserializeObject<UserResponseBO>(_res.ResponseResult);
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    return Ok(JsonConvert.SerializeObject(apiResponse));
                 }
                 else
                 {

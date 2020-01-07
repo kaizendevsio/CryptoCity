@@ -23,7 +23,7 @@ namespace CryptoCityWallet.DataAccessLayer
         public List<TblUserMap> GetAll(TblUserMap userMapQuery, dbWorldCCityContext db)
         {
             var _q = from a in db.TblUserMap
-                     where a.Id == userMapQuery.Id || a.UserUid == userMapQuery.UserUid
+                     where a.Id == userMapQuery.Id || a.UserUid == userMapQuery.UserUid || a.UplineUserId == userMapQuery.UplineUserId
                      join b in db.TblUserAuth on a.Id equals b.Id
                      select new TblUserMap
                      {
@@ -42,7 +42,7 @@ namespace CryptoCityWallet.DataAccessLayer
 
             return _qRes;
         }
-        public List<UserMapBO> GetMapChildren(TblUserAuth userAuth)
+        private List<UserMapBO> GetMapChildren(TblUserAuth userAuth)
         {
             UserMapRepository userMapRepository = new UserMapRepository();
             UserInfoRepository userInfoRepository = new UserInfoRepository();
@@ -104,5 +104,46 @@ namespace CryptoCityWallet.DataAccessLayer
 
             return userMapBO;
         }
+
+        public List<UnilevelMapBO> GetUnilevelChildren(TblUserAuth userAuth, dbWorldCCityContext db)
+        {
+            var _q = from a in db.TblUserMap
+                     join b in db.TblUserAuth on a.Id equals b.Id
+                     join c in db.TblUserInfo on b.UserInfoId equals c.Id
+
+                     where a.SponsorUserId == userAuth.Id
+                     orderby a.Id ascending
+                     select new UnilevelMapBO
+                     {
+                         Text = b.UserName,
+                         MapBO = a
+                     };
+
+            List<UnilevelMapBO> _qRes = _q.ToList<UnilevelMapBO>();
+
+            if (_qRes.Count != 0)
+            {
+                for (int i = 0; i < _qRes.Count; i++)
+                {
+                    List<UnilevelMapBO> _p = GetUnilevelChildren(new TblUserAuth { Id = (long)_qRes[i].MapBO.Id }, db);
+                    _qRes[i].Nodes = _p.Count > 0 ? _p : null;
+                }
+
+            }
+
+            return _qRes;
+        }
+
+        public UnilevelMapBO GetUnilevel(TblUserAuth userAuth, dbWorldCCityContext db)
+        {
+            List<UnilevelMapBO> _o = GetUnilevelChildren(userAuth, db);
+            UnilevelMapBO unilevelMapBO = new UnilevelMapBO()
+            {
+                Text = userAuth.UserName,
+                Nodes = _o.Count > 0 ? _o : null
+            };
+            return unilevelMapBO;
+        }
+
     }
 }

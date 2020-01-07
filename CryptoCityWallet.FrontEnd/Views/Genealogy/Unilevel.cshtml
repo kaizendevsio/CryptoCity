@@ -351,8 +351,8 @@
 
                                 </b>
                                 @*<span class="ml-2">
-                                        <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
-                                    </span>*@
+                                    <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
+                                </span>*@
                             </div>
                             <!-- end title -->
                             <!-- begin total-sales -->
@@ -394,8 +394,8 @@
 
                                 </b>
                                 @*<span class="ml-2">
-                                        <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
-                                    </span>*@
+                                    <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
+                                </span>*@
                             </div>
                             <!-- end title -->
                             <!-- begin total-sales -->
@@ -426,9 +426,9 @@
         <div class="col-xl-12">
             <div align="center" class="row">
                 <div class="panel panel-default col-12" align="left">
-                    <div class="panel-heading">
-                        <strong>Genealogy </strong>
-                    </div>
+                    @*<div class="panel-heading">
+                        <strong>Unilevel Map</strong>
+                    </div>*@
 
                     <div class="panel-body">
                         <div class="wallets__list">
@@ -505,196 +505,35 @@
                 </div>
             </div>
         </div>
+
         @section Scripts{
-
-            <style>
-                .tree, .tree ul {
-                    margin: 0;
-                    padding: 0;
-                    list-style: none
-                }
-
-                    .tree ul {
-                        margin-left: 1em;
-                        position: relative
-                    }
-
-                        .tree ul ul {
-                            margin-left: .5em
-                        }
-
-                        .tree ul:before {
-                            content: "";
-                            display: block;
-                            width: 0;
-                            position: absolute;
-                            top: 0;
-                            bottom: 0;
-                            left: 0;
-                            border-left: 1px solid
-                        }
-
-                    .tree li {
-                        margin: 0;
-                        padding: 0 1em;
-                        line-height: 2em;
-                        color: #369;
-                        font-weight: 700;
-                        position: relative
-                    }
-
-                    .tree ul li:before {
-                        content: "";
-                        display: block;
-                        width: 10px;
-                        height: 0;
-                        border-top: 1px solid;
-                        margin-top: -1px;
-                        position: absolute;
-                        top: 1em;
-                        left: 0
-                    }
-
-                    .tree ul li:last-child:before {
-                        background: #fff;
-                        height: auto;
-                        top: 1em;
-                        bottom: 0
-                    }
-
-                .indicator {
-                    margin-right: 5px;
-                }
-
-                .tree li a {
-                    text-decoration: none;
-                    color: #369;
-                }
-
-                .tree li button, .tree li button:active, .tree li button:focus {
-                    text-decoration: none;
-                    color: #369;
-                    border: none;
-                    background: transparent;
-                    margin: 0px 0px 0px 0px;
-                    padding: 0px 0px 0px 0px;
-                    outline: 0;
-                }
-            </style>
 
             <script type="text/javascript">
 
-                var json = '[' +
-                    '{' +
-                    '"text": "Parent 1",' +
-                    '"nodes": [' +
-                    '{' +
-                    '"text": "Child 1",' +
-                    '"nodes": [' +
-                    '{' +
-                    '"text": "Grandchild 1"' +
-                    '},' +
-                    '{' +
-                    '"text": "Grandchild 2"' +
-                    '}' +
-                    ']' +
-                    '},' +
-                    '{' +
-                    '"text": "Child 2"' +
-                    '}' +
-                    ']' +
-                    '},' +
-                    '{' +
-                    '"text": "Parent 2"' +
-                    '},' +
-                    '{' +
-                    '"text": "Parent 3"' +
-                    '},' +
-                    '{' +
-                    '"text": "Parent 4"' +
-                    '},' +
-                    '{' +
-                    '"text": "Parent 5"' +
-                    '}' +
-                    ']';
-
-                var $tree = $('#treeview').treeview({
-                    color: "#428bca",
-                    expandIcon: "fa fa-user",
-                    collapseIcon: "fa fa-user",
-                    nodeIcon: "glyphicon glyphicon-user",
-                    showTags: true,
-                    showBorder: false,
-                    data: json
-                });
-
-
-                $.ajax({
-                    url: '@Url.Action("GetMap", "Genealogy")',
-                    type: 'GET',
+                  $.ajax({
+                    url: '@Url.Action("GetMapUnilevel", "Genealogy")',
+                      type: 'GET',
+                    contentType: 'application/json',
                     success: function (data) {
                         //console.log(data);
+                        data = JSON.parse(data);
                         if (data.Message != undefined) {
                             alert(data.Message);
                         }
                         //window.location = data.RedirectUrl;
                         //window.location.replace(data.RedirectUrl);
-                        datascource = data.UserMap;
+                       var datascource = JSON.stringify(data.UserUnilevelMap);
+                        datascource = "[" + datascource + "]";
 
-                   $.fn.extend({
-    treed: function (o) {
-
-      var openedClass = 'glyphicon-minus-sign';
-      var closedClass = 'glyphicon-plus-sign';
-
-      if (typeof o != 'undefined'){
-        if (typeof o.openedClass != 'undefined'){
-        openedClass = o.openedClass;
-        }
-        if (typeof o.closedClass != 'undefined'){
-        closedClass = o.closedClass;
-        }
-      };
-
-        //initialize each of the top levels
-        var tree = $(this);
-        tree.addClass("tree");
-        tree.find('li').has("ul").each(function () {
-            var branch = $(this); //li with children ul
-            branch.prepend("<i class='indicator glyphicon " + closedClass + "'></i>");
-            branch.addClass('branch');
-            branch.on('click', function (e) {
-                if (this == e.target) {
-                    var icon = $(this).children('i:first');
-                    icon.toggleClass(openedClass + " " + closedClass);
-                    $(this).children().children().toggle();
-                }
-            })
-            branch.children().children().toggle();
-        });
-        //fire event from the dynamically added icon
-      tree.find('.branch .indicator').each(function(){
-        $(this).on('click', function () {
-            $(this).closest('li').click();
-        });
-      });
-        //fire event to open branch if the li contains an anchor instead of text
-        tree.find('.branch>a').each(function () {
-            $(this).on('click', function (e) {
-                $(this).closest('li').click();
-                e.preventDefault();
-            });
-        });
-        //fire event to open branch if the li contains a button instead of text
-        tree.find('.branch>button').each(function () {
-            $(this).on('click', function (e) {
-                $(this).closest('li').click();
-                e.preventDefault();
-            });
-        });
-    }
-});
-
+                        var $tree = $('#treeview').treeview({
+                            color: "#428bca",
+                            expandIcon: "fa fa-chevron-right text-danger",
+                            collapseIcon: "fa fa-chevron-down text-danger",
+                            nodeIcon: "fa fa-user",
+                            showTags: true,
+                            showBorder: false,
+                            data: datascource
+                        });
 
 
                         $('#togglePan').on('click', function () {

@@ -297,8 +297,8 @@ namespace CryptoCityWallet.Api.Controllers
             return Ok(_apiResponse);
         }
 
-        [HttpGet("Map")]
-        public ActionResult Map()
+        [HttpGet("BinaryMap")]
+        public ActionResult BinaryMap()
         {
             UserMapAppService userMapAppService = new UserMapAppService();
             UserResponseBO _apiResponse = new UserResponseBO();
@@ -309,7 +309,36 @@ namespace CryptoCityWallet.Api.Controllers
                 SessionController sessionController = new SessionController();
                 TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
 
-                _apiResponse.UserMap = userMapAppService.Get(userAuth);
+                _apiResponse.UserBinaryMap = userMapAppService.GetBinary(userAuth);
+
+                _apiResponse.HttpStatusCode = "200";
+                //_apiResponse.Message = "UserWallet GET";
+                _apiResponse.Status = "Success";
+            }
+            catch (Exception ex)
+            {
+                _apiResponse.HttpStatusCode = "500";
+                _apiResponse.Message = ex.Message;
+                _apiResponse.Status = "Error";
+
+            }
+
+            return Ok(_apiResponse);
+        }
+
+        [HttpGet("UnilevelMap")]
+        public ActionResult UnilevelMap()
+        {
+            UserMapAppService userMapAppService = new UserMapAppService();
+            UserResponseBO _apiResponse = new UserResponseBO();
+
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
+
+                _apiResponse.UserUnilevelMap = userMapAppService.GetUnilevel(userAuth);
 
                 _apiResponse.HttpStatusCode = "200";
                 //_apiResponse.Message = "UserWallet GET";

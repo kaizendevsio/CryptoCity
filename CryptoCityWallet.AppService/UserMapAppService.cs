@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace CryptoCityWallet.AppService
 {
-   public class UserMapAppService
+    public class UserMapAppService
     {
         public bool Create(UserBO userBO, TblUserAuth userAuth, dbWorldCCityContext db)
         {
@@ -42,15 +42,18 @@ namespace CryptoCityWallet.AppService
                 UserUid = userBO.Uid
             };
 
-            return userMapRepository.Create(userMap,db);
+            return userMapRepository.Create(userMap, db);
         }
 
-        public UserMapBO Get(TblUserAuth userAuth, dbWorldCCityContext db = null)
+        public UserMapBO GetBinary(TblUserAuth userAuth, dbWorldCCityContext db = null)
         {
             if (db != null)
             {
+                using var transaction = db.Database.BeginTransaction();
                 UserMapRepository userMapRepository = new UserMapRepository();
-                return userMapRepository.GetMap(userAuth);
+                UserMapBO userMap = userMapRepository.GetMap(userAuth);
+
+                return userMap;
             }
             else
             {
@@ -58,17 +61,29 @@ namespace CryptoCityWallet.AppService
                 {
                     using var transaction = db.Database.BeginTransaction();
                     UserMapRepository userMapRepository = new UserMapRepository();
-                    UserInfoRepository userInfoRepository = new UserInfoRepository();
-
                     UserMapBO userMap = userMapRepository.GetMap(userAuth);
-                    //var _i = userInfoRepository.Get(userAuth, db);
-                    //userMap.title = String.Format("{0} {1}", _i.FirstName, _i.LastName);
+
                     return userMap;
                 }
             }
         }
-
-        public bool Validate(UserBO userBO,dbWorldCCityContext db)
+        public UnilevelMapBO GetUnilevel(TblUserAuth userAuth, dbWorldCCityContext db = null)
+        {
+            if (db != null)
+            {
+                UserMapRepository userMapRepository = new UserMapRepository();
+                return userMapRepository.GetUnilevel(userAuth, db);
+            }
+            else
+            {
+                using (db = new dbWorldCCityContext())
+                {
+                    UserMapRepository userMapRepository = new UserMapRepository();
+                    return userMapRepository.GetUnilevel(userAuth, db);
+                }
+            }
+        }
+        public bool Validate(UserBO userBO, dbWorldCCityContext db)
         {
             UserAuthRepository userAuthRepository = new UserAuthRepository();
             UserMapRepository userMapRepository = new UserMapRepository();
@@ -83,7 +98,7 @@ namespace CryptoCityWallet.AppService
                 }
                 else
                 {
-                    List<TblUserMap> _userMapList = userMapRepository.GetAll(new TblUserMap { Id = binarySponsorUser.Id, UserUid = ""}, db).FindAll(i => i.Position == short.Parse(userBO.BinaryPosition));
+                    List<TblUserMap> _userMapList = userMapRepository.GetAll(new TblUserMap { UplineUserId = binarySponsorUser.Id, UserUid = ""}, db).FindAll(i => i.Position == short.Parse(userBO.BinaryPosition));
                     if (_userMapList.Count > 0)
                     {
                         throw new ArgumentException("Binary position is already taken");
@@ -108,3 +123,4 @@ namespace CryptoCityWallet.AppService
         }
     }
 }
+

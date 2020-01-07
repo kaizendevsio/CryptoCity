@@ -101,7 +101,7 @@ namespace CryptoCityWallet.AppService
                         externalRecordsRepository.CreateUserVolume(userAuth, db);
 
                         UserWalletAddressAppService userWalletAddressAppService = new UserWalletAddressAppService();
-                        bool r = await userWalletAddressAppService.Create(userAuth,"BTC");
+                        bool r = await userWalletAddressAppService.Create(userAuth, "BTC", "", db);
 
                         userMapAppService.Create(userBO, userAuth, db);
 

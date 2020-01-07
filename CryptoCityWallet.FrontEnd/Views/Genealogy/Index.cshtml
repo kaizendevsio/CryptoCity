@@ -524,7 +524,7 @@
                 }
 
                 $.ajax({
-                    url: '@Url.Action("GetMap", "Genealogy")',
+                    url: '@Url.Action("GetMapBinary", "Genealogy")',
                     type: 'GET',
                     success: function (data) {
                         //console.log(data);
@@ -533,7 +533,7 @@
                         }
                         //window.location = data.RedirectUrl;
                         //window.location.replace(data.RedirectUrl);
-                        datascource = data.UserMap;
+                        datascource = data.UserBinaryMap;
 
                         var oc = $('#chart-container').orgchart({
                             'data': datascource,

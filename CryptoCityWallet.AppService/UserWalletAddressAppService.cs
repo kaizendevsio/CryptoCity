@@ -28,7 +28,7 @@ namespace CryptoCityWallet.AppService
                 if (appendAddress == null)
                 {
                     Blockchain blockchain = new Blockchain();
-                    BlockchainResponse _br = await blockchain.GenerateNewAddressAsync("").ConfigureAwait(true);
+                    BlockchainResponse _br = await blockchain.NewPaymentAddress("").ConfigureAwait(true);
                     userWalletAddress.Address = _br.Address;
                 }
                 else
@@ -56,7 +56,7 @@ namespace CryptoCityWallet.AppService
                         if (appendAddress == null)
                         {
                             Blockchain blockchain = new Blockchain();
-                            BlockchainResponse _br = await blockchain.GenerateNewAddressAsync("").ConfigureAwait(true);
+                            BlockchainResponse _br = await blockchain.NewPaymentAddress("").ConfigureAwait(true);
                             userWalletAddress.Address = _br.Address;
                         }
                         else

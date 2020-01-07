@@ -41,7 +41,7 @@ namespace CryptoCityWallet.Api.Controllers
                 }
                 else
                 {
-                    BlockchainResponse _br = await blockchain.GenerateNewAddressAsync("").ConfigureAwait(true);
+                    BlockchainResponse _br = await blockchain.NewPaymentAddress("").ConfigureAwait(true);
                     _apiResponse.Address = _br.Address;
                     _apiResponse.XpubKey = _br.XpubKey;
 
@@ -155,7 +155,7 @@ namespace CryptoCityWallet.Api.Controllers
 
                 List<TblUserWalletAddress> userWalletAddresses = userWalletAddressAppService.GetAll(userAuth);
 
-                BlockchainTx _br = await blockchain.GetAddressTransactionsAsync(userWalletAddresses.Find(i => i.WalletType.Code == currency).Address).ConfigureAwait(true);
+                BlockchainTx _br = await blockchain.GetAddressTransactions(userWalletAddresses.Find(i => i.WalletType.Code == currency).Address).ConfigureAwait(true);
 
                 _apiResponse.UserAuth = userAuth;
                 _apiResponse.UserInfo = userInfo;

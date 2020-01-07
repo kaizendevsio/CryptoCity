@@ -140,7 +140,6 @@ namespace CryptoCityWallet.AppService
                     }
                     else { throw new ArgumentException("Insufficient wallet funds"); }
                 }
-                return true;
             }
 
 
