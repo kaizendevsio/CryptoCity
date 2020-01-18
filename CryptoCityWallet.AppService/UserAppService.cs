@@ -57,16 +57,13 @@ namespace CryptoCityWallet.AppService
                 UserWalletAppService userWallet = new UserWalletAppService();
                 userWallet.Create(userAuth, db);
 
-                // CREATE USER MAP
-                UserMapAppService userMapAppService = new UserMapAppService();
-                userMapAppService.Validate(userBO, db);
-
                 ExternalRecordsRepository externalRecordsRepository = new ExternalRecordsRepository();
                 externalRecordsRepository.CreateUserVolume(userAuth,db);
 
                 UserWalletAddressAppService userWalletAddressAppService = new UserWalletAddressAppService();
                 bool r = await userWalletAddressAppService.Create(userAuth,"BTC");
 
+                UserMapAppService userMapAppService = new UserMapAppService();
                 userMapAppService.Create(userBO, userAuth, db);
 
                 return true;
@@ -93,16 +90,13 @@ namespace CryptoCityWallet.AppService
                         UserWalletAppService userWallet = new UserWalletAppService();
                         userWallet.Create(userAuth, db);
 
-                        // CREATE USER MAP
-                        UserMapAppService userMapAppService = new UserMapAppService();
-                        userMapAppService.Validate(userBO,db);
-
                         ExternalRecordsRepository externalRecordsRepository = new ExternalRecordsRepository();
                         externalRecordsRepository.CreateUserVolume(userAuth, db);
 
                         UserWalletAddressAppService userWalletAddressAppService = new UserWalletAddressAppService();
                         bool r = await userWalletAddressAppService.Create(userAuth, "BTC", "", db);
 
+                        UserMapAppService userMapAppService = new UserMapAppService();
                         userMapAppService.Create(userBO, userAuth, db);
 
                         transaction.Commit();

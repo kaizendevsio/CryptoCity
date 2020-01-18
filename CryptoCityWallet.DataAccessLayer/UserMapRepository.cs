@@ -104,7 +104,6 @@ namespace CryptoCityWallet.DataAccessLayer
 
             return userMapBO;
         }
-
         public List<UnilevelMapBO> GetUnilevelChildren(TblUserAuth userAuth, dbWorldCCityContext db)
         {
             var _q = from a in db.TblUserMap
@@ -133,7 +132,6 @@ namespace CryptoCityWallet.DataAccessLayer
 
             return _qRes;
         }
-
         public UnilevelMapBO GetUnilevel(TblUserAuth userAuth, dbWorldCCityContext db)
         {
             List<UnilevelMapBO> _o = GetUnilevelChildren(userAuth, db);

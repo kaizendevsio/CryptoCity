@@ -27,6 +27,8 @@ namespace CryptoCityWallet.ExternalUtilities
             return blockchainApiSettings;
         }
 
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         public CreateWalletResponse CreateWallet(string passwordString, string walletLabel)
         {
             BlockchainApiSettings blockchainApiSettings = GetSettings();
@@ -147,6 +149,26 @@ namespace CryptoCityWallet.ExternalUtilities
 
                     Wallet wallet = apiHelper.InitializeWallet(blockchainApiSettings.WalletID, blockchainApiSettings.WalletPassword);
                     PaymentResponse payment = wallet.SendAsync(recipientWallet, _amount, fee: _fee).Result;
+
+                    return payment;
+                }
+                catch (ClientApiException e)
+                {
+                    throw new ArgumentException("Blockchain exception: " + e.Message);
+                }
+            }
+        }
+
+        public PaymentResponse SendMany(Dictionary<string, BitcoinValue> recipients)
+        {
+            BlockchainApiSettings blockchainApiSettings = GetSettings();
+
+            using (BlockchainApiHelper apiHelper = new BlockchainApiHelper(apiCode: blockchainApiSettings.ApiKey, serviceUrl: blockchainApiSettings.ServiceUrl))
+            {
+                try
+                {
+                    Wallet wallet = apiHelper.InitializeWallet(blockchainApiSettings.WalletID, blockchainApiSettings.WalletPassword);
+                    PaymentResponse payment = wallet.SendManyAsync(recipients).Result;
 
                     return payment;
                 }
