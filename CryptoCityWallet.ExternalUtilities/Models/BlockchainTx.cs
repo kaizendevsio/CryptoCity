@@ -67,6 +67,7 @@ namespace CryptoCityWallet.ExternalUtilities.Models
 
         [JsonProperty("value")]
         public long Value { get; set; }
+        public long ValueFiat { get; set; }
 
         [JsonProperty("ref_balance")]
         public long RefBalance { get; set; }

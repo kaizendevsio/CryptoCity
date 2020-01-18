@@ -70,7 +70,7 @@
                                 else
                                 {
                                     <td style="color:#0bbd0b">
-                                        @String.Format("{0:#,##0.00000}", (item.Value / 100000000)).ToString()
+                                        @String.Format("{0:#,##0.00000}", ((decimal)item.Value / 100000000)).ToString()
                                     </td>
                                 }
 

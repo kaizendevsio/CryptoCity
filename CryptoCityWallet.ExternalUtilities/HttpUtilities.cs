@@ -49,7 +49,7 @@ namespace CryptoCityWallet.ExternalUtilities
             }
         }
 
-        public async Task<HttpResponseBO> GetAsync(Uri ApiUri, string url, object param, CookieCollection requestCookies = null, string contentType = "application/json")
+        public async Task<HttpResponseBO> GetAsync(Uri ApiUri, string url, object param = null, CookieCollection requestCookies = null, string contentType = "application/json")
         {
             CookieContainer cookies = new CookieContainer();
             HttpClientHandler handler = new HttpClientHandler();

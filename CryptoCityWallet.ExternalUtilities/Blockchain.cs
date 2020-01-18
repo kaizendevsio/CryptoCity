@@ -133,6 +133,14 @@ namespace CryptoCityWallet.ExternalUtilities
             HttpResponseBO _res = await httpUtilities.GetAsync(blockchainApiSettings.BlockCypherApiUri, "v1/btc/main/addrs/" + _walletAddress, new object{});
             BlockchainTx _blockchainTx = JsonConvert.DeserializeObject<BlockchainTx>(_res.ResponseResult);
 
+            CoinCap coinCap = new CoinCap();
+            CoinProperty coinProperty = coinCap.GetCoinProperty("bitcoin");
+
+            foreach (var item in _blockchainTx.Txrefs)
+            {
+                item.ValueFiat = (long)decimal.Parse(coinProperty.Data.PriceUsd) * item.Value;
+            }
+
             return _blockchainTx;
         }
 
