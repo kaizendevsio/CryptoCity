@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoCityWallet.DataAccess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoCityWallet.Entities", "CryptoCityWallet.Entities\CryptoCityWallet.Entities.csproj", "{C3E583D6-CC09-46E5-B9B0-D342749EC505}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoCityWallet.UnitTest", "CryptoCityWallet.UnitTest\CryptoCityWallet.UnitTest.csproj", "{38947E2E-753F-4812-B5C6-77B777330B79}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoCityWallet.ExternalUtilities", "CryptoCityWallet.ExternalUtilities\CryptoCityWallet.ExternalUtilities.csproj", "{B0BEECD5-D6CF-4BA9-B742-A6E16D01635C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoCityWallet.UnitTest", "CryptoCityWallet.UnitTest\CryptoCityWallet.UnitTest.csproj", "{0BD59FC5-93BB-47E4-B516-9857BCA56912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +37,14 @@ Global
 		{C3E583D6-CC09-46E5-B9B0-D342749EC505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3E583D6-CC09-46E5-B9B0-D342749EC505}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3E583D6-CC09-46E5-B9B0-D342749EC505}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38947E2E-753F-4812-B5C6-77B777330B79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38947E2E-753F-4812-B5C6-77B777330B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38947E2E-753F-4812-B5C6-77B777330B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38947E2E-753F-4812-B5C6-77B777330B79}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0BEECD5-D6CF-4BA9-B742-A6E16D01635C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0BEECD5-D6CF-4BA9-B742-A6E16D01635C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0BEECD5-D6CF-4BA9-B742-A6E16D01635C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0BEECD5-D6CF-4BA9-B742-A6E16D01635C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD59FC5-93BB-47E4-B516-9857BCA56912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD59FC5-93BB-47E4-B516-9857BCA56912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD59FC5-93BB-47E4-B516-9857BCA56912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD59FC5-93BB-47E4-B516-9857BCA56912}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

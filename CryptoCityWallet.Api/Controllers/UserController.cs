@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,9 +6,7 @@ using CryptoCityWallet.API.Controllers;
 using CryptoCityWallet.AppService;
 using CryptoCityWallet.Entities.BO;
 using CryptoCityWallet.Entities.DTO;
-using System.Dynamic;
-using Newtonsoft.Json;
-using SendGrid;
+using CryptoCityWallet.Entities.Enums;
 
 namespace CryptoCityWallet.Api.Controllers
 {
@@ -28,10 +24,10 @@ namespace CryptoCityWallet.Api.Controllers
             try
             {
                 bool _r = await userAppService.CreateAsync(userBO).ConfigureAwait(true);
-                Response response = await mailAppService.SendAsync(userBO).ConfigureAwait(true);
+                bool response = mailAppService.SendSmtp(userBO, EmailType.EmailConfirmation);
 
                 _apiResponse.HttpStatusCode = "200";
-                _apiResponse.Message = "User successfully created : " + response.StatusCode;
+                _apiResponse.Message = "User successfully created, Email sent: " + response;
                 _apiResponse.Status = "Success";
             }
             catch (Exception ex)
