@@ -20,7 +20,7 @@ namespace CryptoCityWallet.AppService
             {
                 userBO = SetDefaultUpline(userBO, db, false);
                 UserBO _user = GetExtremeBinary(userBO, db);
-                _userMap.UplineUserId = _user.Id;
+                userBO.BinarySponsorID = _user.Id.ToString();
                 userBO.BinaryPosition = _user.BinaryPosition;
             }
             else if (_y == BinaryMapStatus.Available)
@@ -36,6 +36,7 @@ namespace CryptoCityWallet.AppService
                 throw new ArgumentException("Introducer ID is invalid");
             }
 
+            _userMap.UplineUserId = long.Parse(userBO.BinarySponsorID);
             _userMap.SponsorUserId = long.Parse(userBO.DirectSponsorID);
 
             TblUserMap userMap = new TblUserMap
