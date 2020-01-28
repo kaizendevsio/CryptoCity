@@ -45,13 +45,13 @@ namespace CryptoCityWallet.ExternalUtilities.Models
         public long FinalNTx { get; set; }
 
         [JsonProperty("txrefs")]
-        public List<Txref> Txrefs { get; set; }
+        public IEnumerable<Txref> Txrefs { get; set; }
 
         [JsonProperty("tx_url")]
         public Uri TxUrl { get; set; }
     }
 
-    public partial class Txref
+    public partial class Txref : IEquatable<Txref>
     {
         [JsonProperty("tx_hash")]
         public string TxHash { get; set; }
@@ -66,7 +66,18 @@ namespace CryptoCityWallet.ExternalUtilities.Models
         public long TxOutputN { get; set; }
 
         [JsonProperty("value")]
-        public long Value { get; set; }
+        private long _Value { get; set;}
+
+        public long Value { get {
+                if (TxOutputN < 0)
+                {
+                    this._Value = Math.Abs(this._Value) * -1;
+                };
+                return this._Value;
+            }
+            set { return; }
+        }
+
         public long ValueFiat { get; set; }
 
         [JsonProperty("ref_balance")]
@@ -86,6 +97,32 @@ namespace CryptoCityWallet.ExternalUtilities.Models
 
         [JsonProperty("spent_by", NullValueHandling = NullValueHandling.Ignore)]
         public string SpentBy { get; set; }
+
+        public bool Equals(Txref other)
+        {
+
+            //Check whether the compared object is null. 
+            if (Object.ReferenceEquals(other, null)) return false;
+
+            //Check whether the compared object references the same data. 
+            if (Object.ReferenceEquals(this, other)) return true;
+
+            //Check whether the products' properties are equal. 
+            return TxHash.Equals(other.TxHash);
+        }
+
+        // If Equals() returns true for a pair of objects  
+        // then GetHashCode() must return the same value for these objects. 
+
+        public override int GetHashCode()
+        {
+            
+            //Get hash code for the Code field. 
+            int hashProductCode = TxHash.GetHashCode();
+
+            //Calculate the hash code for the product. 
+            return hashProductCode;
+        }
     }
 
     public partial class BlockchainTx

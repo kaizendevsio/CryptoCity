@@ -7,6 +7,8 @@ using CryptoCityWallet.AppService;
 using CryptoCityWallet.Entities.BO;
 using CryptoCityWallet.Entities.DTO;
 using CryptoCityWallet.Entities.Enums;
+using CryptoCityWallet.ExternalUtilities.Models;
+using CryptoCityWallet.ExternalUtilities;
 
 namespace CryptoCityWallet.Api.Controllers
 {
@@ -188,11 +190,12 @@ namespace CryptoCityWallet.Api.Controllers
             {
                 // GET SESSIONS
                 SessionController sessionController = new SessionController();
+                
                 TblUserAuth userAuth = sessionController.GetSession(HttpContext.Session);
 
                 _apiResponse.UserWallet = userWalletAppService.GetAllBO(userAuth);
                 _apiResponse.UserWalletAddress = userWalletAddressAppService.GetAll(userAuth);
-
+                
                 _apiResponse.HttpStatusCode = "200";
                 _apiResponse.Message = "UserWallet GET";
                 _apiResponse.Status = "Success";

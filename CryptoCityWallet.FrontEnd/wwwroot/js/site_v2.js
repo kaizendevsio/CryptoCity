@@ -44,3 +44,29 @@ function sendFormData(url, type, form) {
 
     return false
 }
+
+function sendFormData_V2(url, type, form) {
+    $.ajax({
+        url: url,
+        type: type,
+        data: getFormData(form),
+        contentType: 'application/json',
+        success: function (data) {
+            //console.log(data);
+            if (data.Message != undefined) {
+                alert(data.Message);
+            }
+            //window.location = data.RedirectUrl;
+            //window.location.replace(data.RedirectUrl);
+        },
+        error: function (data, textStatus, jqXHR) {
+            console.log(data.responseJSON);
+            //alert(data.responseJSON.Status);
+            alert(document.getElementById("myModal").getElementsByClassName("modal-message")[0].innerHTML = data.responseJSON.Message);
+            //$('#myModal').modal('show');
+            //window.location.href = data.responseJSON.RedirectUrl;
+        },
+    });
+
+    return false
+}

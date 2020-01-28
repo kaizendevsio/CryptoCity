@@ -97,6 +97,9 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                 _res = await apiRequest.GetAsync(Env, "Wallet/Address/Transactions/" + "?currency=BTC", session.SessionCookies);
                 WalletAddressResponseBO walletApiResponse = JsonConvert.DeserializeObject<WalletAddressResponseBO>(_res.ResponseResult);
 
+                BlockchainTx blockchainTx = JsonConvert.DeserializeObject<BlockchainTx>(walletApiResponse.AddressTransactions);
+                //IEnumerable<ExternalUtilities.Models.Txref> txrefs = blockchainTx.Txrefs.Distinct();
+
                 if (apiResponse.HttpStatusCode == "200")
                 {
                     WalletVM walletVM = new WalletVM();
@@ -107,8 +110,8 @@ namespace CryptoCityWallet.FrontEnd.Controllers
                     walletVM.PaymentAddress = userWalletAddresses.Find(i => i.WalletType.Code == "BTC").Address;
                     walletVM.UserWallets = userWallets.FindAll(item => item.WalletType.Type == (short)WalletType.CurrencyValue);
                     walletVM.UserWalletAddresses = userWalletAddresses;
-                    walletVM.UserWalletAddressTxs = JsonConvert.DeserializeObject<BlockchainTx>(walletApiResponse.AddressTransactions);
-                    walletVM.UserWalletAddressTxs.Txrefs = walletVM.UserWalletAddressTxs.Txrefs == null ? new List<ExternalUtilities.Models.Txref>(): walletVM.UserWalletAddressTxs.Txrefs;
+                    walletVM.UserWalletAddressTxs = blockchainTx;
+                    walletVM.UserWalletAddressTxs.Txrefs = blockchainTx.Txrefs == null ? new List<ExternalUtilities.Models.Txref>() : blockchainTx.Txrefs;
 
                     return View(walletVM);
                 }
@@ -252,6 +255,37 @@ namespace CryptoCityWallet.FrontEnd.Controllers
             }
         }
 
+        [HttpPost("Send")]
+        public async Task<ActionResult> SendAsync([FromBody] WalletTransactionVM walletTransaction)
+        {
+            try
+            {
+                // GET SESSIONS
+                SessionController sessionController = new SessionController();
+                SessionBO session = sessionController.GetSession(HttpContext.Session);
+
+                ApiRequest apiRequest = new ApiRequest();
+                ResponseBO _res = await apiRequest.PostAsync(Env, "Wallet/Send", new WalletTransactionBO { From = walletTransaction.From, To = walletTransaction.To, Amount = decimal.Parse(walletTransaction.Amount)}, session.SessionCookies);
+               
+                ApiResponseBO apiResponse = JsonConvert.DeserializeObject<ApiResponseBO>(_res.ResponseResult);
+
+                if (apiResponse.HttpStatusCode == "200")
+                {
+                    apiResponse.Message = apiResponse.Status;
+                    return Ok(apiResponse);
+                }
+                else
+                {
+                    return BadRequest(apiResponse);
+                }
+
+            }
+            catch (System.Exception e)
+            {
+                ApiResponseBO apiResponse = new ApiResponseBO();
+                return BadRequest(apiResponse);
+            }
+        }
 
         public IActionResult Privacy()
         {

@@ -22,7 +22,7 @@ namespace CryptoCityWallet.ExternalUtilities
             blockchainApiSettings.BlockCypherApiUri = new Uri("https://api.blockcypher.com/");
             blockchainApiSettings.ServiceUrl = "http://127.0.0.1:3000/";
             blockchainApiSettings.WalletID = "cda0ac06-2bf7-4df5-a76d-e891c2e225b8";
-            blockchainApiSettings.WalletPassword = "";
+            blockchainApiSettings.WalletPassword = "-WG{%rj:[9b&vj2%";
 
             return blockchainApiSettings;
         }
@@ -147,8 +147,9 @@ namespace CryptoCityWallet.ExternalUtilities
         public PaymentResponse Send(string recipientWallet, decimal amount, decimal fee)
         {
             BlockchainApiSettings blockchainApiSettings = GetSettings();
+            var httpClient = new BlockchainHttpClient(blockchainApiSettings.ApiKey, blockchainApiSettings.ServiceUrl);
 
-            using (BlockchainApiHelper apiHelper = new BlockchainApiHelper(apiCode: blockchainApiSettings.ApiKey, serviceUrl: blockchainApiSettings.ServiceUrl))
+            using (BlockchainApiHelper apiHelper = new BlockchainApiHelper(apiCode: blockchainApiSettings.ApiKey, serviceUrl: blockchainApiSettings.ServiceUrl, serviceHttpClient: httpClient))
             {
                 try
                 {

@@ -23,7 +23,7 @@ namespace CryptoCityWallet.DataAccessLayer
         {
             var _q = from a in db.TblUserWalletAddress
                      join b in db.TblWalletType on a.WalletTypeId equals b.Id
-                     //where a.Id == (int)walletBO.WalletTypeId
+                     where a.UserAuthId == userAuth.Id
                      select new TblUserWalletAddress
                      {
                          Id = a.Id,
@@ -39,6 +39,16 @@ namespace CryptoCityWallet.DataAccessLayer
             List<TblUserWalletAddress> _r = _q.ToList<TblUserWalletAddress>();
 
             return _r;
+        }
+
+        public bool Update(TblUserWalletAddress tblUserWalletAddress, dbWorldCCityContext db)
+        {
+            db.TblUserWalletAddress.Update(tblUserWalletAddress);
+            db.SaveChanges();
+
+            tblUserWalletAddress.WalletType.TblUserWalletAddress = new List<TblUserWalletAddress>();
+            tblUserWalletAddress.WalletType.TblUserWallet = new List<TblUserWallet>();
+            return true;
         }
     }
 }

@@ -19,7 +19,6 @@
     },
     "CryptoCityWallet.Api": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "startup",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

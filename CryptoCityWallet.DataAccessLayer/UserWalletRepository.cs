@@ -138,11 +138,13 @@ namespace CryptoCityWallet.DataAccessLayer
             UserWalletTransactionRepository userWalletTransactionRepository = new UserWalletTransactionRepository();
             TblUserWallet tblUserWallet = db.TblUserWallet.FirstOrDefault(item => item.UserAuthId == userWallet.UserAuthId && item.WalletTypeId == userWallet.WalletTypeId);
 
-            UserWalletBO UWT_entry = new UserWalletBO();
-            UWT_entry.Id = tblUserWallet.Id;
-            UWT_entry.Balance = tblUserWallet.Balance;
-            UWT_entry.UserAuthId = tblUserWallet.UserAuthId;
-            UWT_entry.IsEnabled = tblUserWallet.IsEnabled;
+            UserWalletBO UWT_entry = new UserWalletBO
+            {
+                Id = tblUserWallet.Id,
+                Balance = tblUserWallet.Balance,
+                UserAuthId = tblUserWallet.UserAuthId,
+                IsEnabled = tblUserWallet.IsEnabled
+            };
 
             WalletTransactionBO walletTransaction = new WalletTransactionBO();
             walletTransaction.Amount = userWallet.Balance - UWT_entry.Balance;

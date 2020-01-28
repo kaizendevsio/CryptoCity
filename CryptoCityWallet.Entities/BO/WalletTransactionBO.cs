@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CryptoCityWallet.Entities.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,5 +12,6 @@ namespace CryptoCityWallet.Entities.BO
         public decimal? Amount { get; set; }
         public string TxHash { get; set; }
         public bool IsFeeEnabled { get; set; }
+        public TransactionStatus TransactionStatus { get; set; }
     }
 }

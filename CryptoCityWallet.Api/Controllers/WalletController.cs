@@ -8,6 +8,7 @@ using CryptoCityWallet.Entities.BO;
 using CryptoCityWallet.Entities.DTO;
 using CryptoCityWallet.ExternalUtilities;
 using CryptoCityWallet.ExternalUtilities.Models;
+using Info.Blockchain.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -175,5 +176,45 @@ namespace CryptoCityWallet.Api.Controllers
 
             return Ok(_apiResponse);
         }
+        
+        [HttpPost("Send")]
+        public ActionResult Send([FromBody] WalletTransactionBO walletTransaction)
+        {
+            ApiResponseBO _apiResponse = new ApiResponseBO();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // GET SESSIONS
+                    SessionController sessionController = new SessionController();
+                    Blockchain blockchain = new Blockchain();
+
+                    PaymentResponse _res = blockchain.Send(walletTransaction.To, (decimal)walletTransaction.Amount, 0m);
+                    
+                    _apiResponse.HttpStatusCode = "200";
+                    _apiResponse.Status = _res.Message;
+                }
+                catch (Exception ex)
+                {
+                    _apiResponse.HttpStatusCode = "500";
+                    _apiResponse.Message = ex.Message;
+                    _apiResponse.Status = "Error";
+
+                }
+            }
+            else
+            {
+                _apiResponse.HttpStatusCode = "500";
+                _apiResponse.Message = "Required data is missing";
+                _apiResponse.Status = "Error";
+            }
+
+           
+
+            return Ok(_apiResponse);
+
+        }
+
     }
 }

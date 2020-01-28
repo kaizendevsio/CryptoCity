@@ -53,7 +53,7 @@ namespace CryptoCityWallet.DataAccessLayer
                         ModifiedOn = a.ModifiedOn,
                         Remarks = a.Remarks,
                         RunningBalance = a.RunningBalance,
-                        SourceUserWallet = new TblUserWallet { Id = b.Id, Balance = b.Balance, WalletType = c, IsEnabled = b.IsEnabled, CreatedOn = b.CreatedOn}
+                        SourceUserWallet = new TblUserWallet { Id = b.Id, Balance = b.Balance, WalletType = c, IsEnabled = b.IsEnabled, CreatedOn = b.CreatedOn, UserAuthId = userAuth.Id}
                      };
 
             List<TblUserWalletTransaction> userWalletTransactions = _q.ToList<TblUserWalletTransaction>();
